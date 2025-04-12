@@ -46,19 +46,29 @@
 
         /* 画像（背景）の表示部分。全ての画像にzoom効果を付与 */
         .img-layer {
-            width: 110%;              /* コンテナより少し大きくする */
+            width: 110%;              /* コンテナより少し大きく */
             height: 110%;
-            margin-left: -5%;         /* 中心寄せ用に左右を補正 */
-            margin-top: -5%;          /* 中心寄せ用に上下を補正 */
+            margin-left: -5%;         /* 中心寄せ */
+            margin-top: -5%;          /* 中心寄せ */
             background-size: cover;
             background-position: center;
-            transform-origin: center center; /* ズームの起点を中央に */
-            /* 8秒かけて拡大するアニメーション。最終的には scale(1.2) にする例 */
+            transform-origin: center center;
             animation: zoomEffect 8s forwards;
         }
         @keyframes zoomEffect {
             from { transform: scale(1); }
-            to { transform: scale(1.2); }
+            to { transform: scale(1.2); }  /* ズーム倍率はお好みで調整 */
+        }
+
+        .img-container {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         /* 各シーンエフェクトの定義 */
@@ -210,7 +220,7 @@
       });
     </script>
     </section>
-    
+
     <!-- Section: Research -->
     <section id="research">
         <h2 class="section-title">- Research -</h2>
