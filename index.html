@@ -1,348 +1,205 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JWST VENUS</title>
-    <style>
-        html, body {
-          margin: 0;
-          padding: 0;
-          background: black;
-          overflow: hidden;
-          height: 100%;
-        }
- 
-        section {
-            padding: 100px 0;
-            color: white;
-            text-align: center;
-        }
-        /* スライドショー領域（背景画像） */
-        .slideshow {
-          position: relative;
-          width: 100vw;
-          height: 100vh;
-        }
-        .slide {
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          opacity: 0;
-          transition: opacity 3s ease-in-out, transform 3s ease-in-out, clip-path 3s ease-in-out;
-          z-index: 1;
-        }
+  <meta charset="UTF-8">
+  <title>宇宙スライドショー（完全な自然トランジション＋Zoom＋テキスト）</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: black;
+      overflow: hidden;
+      height: 100%;
+    }
 
-        .slide.show {
-          opacity: 1;
-          z-index: 2;
-        }
+    /* スライドショー領域（背景画像） */
+    .slideshow {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+    }
 
-        .slide.fade-out {
-          opacity: 0;
-          z-index: 1;
-          transition: opacity 3s ease-in-out;
-        }
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 3s ease-in-out, transform 3s ease-in-out, clip-path 3s ease-in-out;
+      z-index: 1;
+    }
 
-        /* 画像（背景）の表示部分。全ての画像にzoom効果を付与 */
-        .img-layer {
-            width: 110%;              /* コンテナより少し大きく */
-            height: 110%;
-            margin-left: -5%;         /* 中心寄せ */
-            margin-top: -5%;          /* 中心寄せ */
-            background-size: cover;
-            background-position: center;
-            transform-origin: center center;
-            animation: zoomEffect 8s forwards;
-        }
-        @keyframes zoomEffect {
-            from { transform: scale(1); }
-            to { transform: scale(1.2); }  /* ズーム倍率はお好みで調整 */
-        }
+    .slide.show {
+      opacity: 1;
+      z-index: 2;
+    }
 
-        .img-container {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-        .img-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+    .slide.fade-out {
+      opacity: 0;
+      z-index: 1;
+      transition: opacity 3s ease-in-out;
+    }
 
-        /* 各シーンエフェクトの定義 */
-        .effect-fade {
-          /* 初期transform指定なし */
-        }
-        .effect-slideX { transform: translateX(-100%); }
-        .slide.show.effect-slideX { transform: translateX(0); }
-        .effect-splitX { clip-path: inset(50% 0 50% 0); }
-        .slide.show.effect-splitX { clip-path: inset(0 0 0 0); }
-        .effect-splitY { clip-path: inset(0 50% 0 50%); }
-        .slide.show.effect-splitY { clip-path: inset(0 0 0 0); }
-        .effect-slideY { transform: translateY(-100%); }
-        .slide.show.effect-slideY { transform: translateY(0); }
-        .effect-zoomRotate { transform: scale(0.6) rotate(-15deg); }
-        .slide.show.effect-zoomRotate { transform: scale(1) rotate(0); }
-        .effect-circle { clip-path: circle(0% at center); }
-        .slide.show.effect-circle { clip-path: circle(100% at center); }
+    /* 画像（背景）の表示部分。全ての画像にzoom効果を付与 */
+    .img-layer {
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      /* 8秒かけて拡大：初期 scale(1) から scale(1.3) へ */
+      animation: zoomEffect 8s forwards;
+    }
+    @keyframes zoomEffect {
+      from { transform: scale(1); }
+      to { transform: scale(1.3); }
+    }
 
-        /* 2分割スライドの場合 */
-        .half-left, .half-right {
-          position: absolute;
-          width: 50%;
-          height: 100%;
-          background-size: cover;
-          background-position: center;
-          top: 0;
-          transition: all 3s ease-in-out;
-          animation: zoomEffect 8s forwards;
-        }
-        .half-left { left: -50%; }
-        .half-right { right: -50%; }
-        .slide.show .half-left { left: 0; }
-        .slide.show .half-right { right: 0; }
+    /* 各シーンエフェクトの定義 */
+    .effect-fade {
+      /* 初期transform指定なし */
+    }
+    .effect-slideX { transform: translateX(-100%); }
+    .slide.show.effect-slideX { transform: translateX(0); }
+    .effect-splitX { clip-path: inset(50% 0 50% 0); }
+    .slide.show.effect-splitX { clip-path: inset(0 0 0 0); }
+    .effect-splitY { clip-path: inset(0 50% 0 50%); }
+    .slide.show.effect-splitY { clip-path: inset(0 0 0 0); }
+    .effect-slideY { transform: translateY(-100%); }
+    .slide.show.effect-slideY { transform: translateY(0); }
+    .effect-zoomRotate { transform: scale(0.6) rotate(-15deg); }
+    .slide.show.effect-zoomRotate { transform: scale(1) rotate(0); }
+    .effect-circle { clip-path: circle(0% at center); }
+    .slide.show.effect-circle { clip-path: circle(100% at center); }
 
-        /* テキストレイヤー（常に表示、初回はフェードイン） */
-        #text-overlay {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          z-index: 10;
-          width: 90vw;
-          font-family: "Times New Roman", Times, serif;
-          font-weight: bold;
-          color: white;
-          font-size: 4em;
-          text-align: center;
-          opacity: 0;
-          transition: opacity 3s ease-in-out;
-          /* 立体感を出すためのtext-shadow */
-          text-shadow: 
-            2px 2px 3px rgba(0,0,0,0.7),
-            4px 4px 5px rgba(0,0,0,0.6),
-            6px 6px 7px rgba(0,0,0,0.5);
-        }
-        #text-overlay.show {
-          opacity: 1;
-        }
+    /* 2分割スライドの場合 */
+    .half-left, .half-right {
+      position: absolute;
+      width: 50%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      top: 0;
+      transition: all 3s ease-in-out;
+      animation: zoomEffect 8s forwards;
+    }
+    .half-left { left: -50%; }
+    .half-right { right: -50%; }
+    .slide.show .half-left { left: 0; }
+    .slide.show .half-right { right: 0; }
 
-    </style>
+    /* テキストレイヤー（常に表示、初回はフェードイン） */
+    #text-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      width: 90vw;
+      font-family: "Times New Roman", Times, serif;
+      font-weight: bold;
+      color: white;
+      font-size: 4em;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 3s ease-in-out;
+      /* 立体感を出すためのtext-shadow */
+      text-shadow: 
+        2px 2px 3px rgba(0,0,0,0.7),
+        4px 4px 5px rgba(0,0,0,0.6),
+        6px 6px 7px rgba(0,0,0,0.5);
+    }
+    #text-overlay.show {
+      opacity: 1;
+    }
+  </style>
 </head>
 <body>
-    <section id="cover_image">
-    <!-- 背景のスライドショー -->
-    <div class="slideshow" id="slideshow"></div>
-    <!-- 常時表示するテキストレイヤー -->
-    <div id="text-overlay">
-      Vast Exploration for Next UnknownS<br>(VENUS)
-    </div>
 
-    <script>
-      // 画像パスに a2744.jpg と plckg165.jpg を追加
-      const images = [
-        'cover_image/a2744.jpg',
-        'cover_image/plckg165.jpg',
-        'cover_image/smacs0723.png',
-        'cover_image/elgordo.png',
-        'cover_image/macs0416.jpg',
-        'cover_image/spt0615.jpg'
-      ];
+<!-- 背景のスライドショー -->
+<div class="slideshow" id="slideshow"></div>
+<!-- 常時表示するテキストレイヤー -->
+<div id="text-overlay">
+  Vast Exploration for Next UnknownS<br>(VENUS)
+</div>
 
-      // 各シーンの設定（シーンごとにエフェクトを指定）
-      const scenes = [
-        { image: images[0], effect: 'effect-fade' },
-        { image: images[1], effect: 'effect-splitY' },
-        { image: images[2], effect: 'effect-circle' },
-        { image: images[3], effect: 'effect-zoomRotate' },
-        { image: images[4], effect: 'effect-splitX' },
-        { image: images[5], effect: 'effect-slideY' }
-      ];
+<script>
+  // 画像パスに a2744.jpg と plckg165.jpg を追加
+  const images = [
+    'cover_image/a2744.jpg',
+    'cover_image/plckg165.jpg',
+    'cover_image/smacs0723.png',
+    'cover_image/elgordo.png',
+    'cover_image/macs0416.jpg',
+    'cover_image/spt0615.jpg'
+  ];
 
-      const container = document.getElementById('slideshow');
-      let current = 0;
-      let prevSlide = null;
+  // 各シーンの設定（シーンごとにエフェクトを指定）
+  const scenes = [
+    { image: images[0], effect: 'effect-fade' },
+    { image: images[1], effect: 'effect-splitY' },
+    { image: images[2], effect: 'effect-circle' },
+    { image: images[3], effect: 'effect-zoomRotate' },
+    { image: images[4], effect: 'effect-splitX' },
+    { image: images[5], effect: 'effect-slideY' }
+  ];
 
-      // スライド要素生成関数
-      function createSlide(scene) {
-        const slide = document.createElement('div');
-        slide.classList.add('slide', scene.effect);
+  const container = document.getElementById('slideshow');
+  let current = 0;
+  let prevSlide = null;
 
-        if (scene.effect === 'effect-merge') {
-          // 2分割スライドの場合
-          const left = document.createElement('div');
-          left.className = 'half-left';
-          left.style.backgroundImage = `url(${scene.image})`;
-          const right = document.createElement('div');
-          right.className = 'half-right';
-          right.style.backgroundImage = `url(${scene.image})`;
-          slide.appendChild(left);
-          slide.appendChild(right);
-        } else {
-          // 通常スライド：背景画像を保持する子要素（.img-layer）にzoom適用
-          const imgLayer = document.createElement('div');
-          imgLayer.className = 'img-layer';
-          imgLayer.style.backgroundImage = `url(${scene.image})`;
-          slide.appendChild(imgLayer);
-        }
+  // スライド要素生成関数
+  function createSlide(scene) {
+    const slide = document.createElement('div');
+    slide.classList.add('slide', scene.effect);
 
-        container.appendChild(slide);
-        return slide;
-      }
+    if (scene.effect === 'effect-merge') {
+      // 2分割スライドの場合
+      const left = document.createElement('div');
+      left.className = 'half-left';
+      left.style.backgroundImage = `url(${scene.image})`;
+      const right = document.createElement('div');
+      right.className = 'half-right';
+      right.style.backgroundImage = `url(${scene.image})`;
+      slide.appendChild(left);
+      slide.appendChild(right);
+    } else {
+      // 通常スライド：背景画像を保持する子要素（.img-layer）にzoom適用
+      const imgLayer = document.createElement('div');
+      imgLayer.className = 'img-layer';
+      imgLayer.style.backgroundImage = `url(${scene.image})`;
+      slide.appendChild(imgLayer);
+    }
 
-      // 新しいシーン表示
-      function showScene(index) {
-        const scene = scenes[index];
-        const slide = createSlide(scene);
-        setTimeout(() => slide.classList.add('show'), 50);
-        if (prevSlide) {
-          prevSlide.classList.add('fade-out');
-        }
-        prevSlide = slide;
-      }
+    container.appendChild(slide);
+    return slide;
+  }
 
-      // 8秒周期でシーン切替
-      function loopScenes() {
-        showScene(current);
-        current = (current + 1) % scenes.length;
-      }
-      
-      loopScenes();
-      setInterval(loopScenes, 8000);
+  // 新しいシーン表示
+  function showScene(index) {
+    const scene = scenes[index];
+    const slide = createSlide(scene);
+    setTimeout(() => slide.classList.add('show'), 50);
+    if (prevSlide) {
+      prevSlide.classList.add('fade-out');
+    }
+    prevSlide = slide;
+  }
 
-      // ページ読み込み時テキストフェードイン
-      window.addEventListener('load', function() {
-        setTimeout(() => {
-          document.getElementById('text-overlay').classList.add('show');
-        }, 50);
-      });
-    </script>
-    </section>
+  // 8秒周期でシーン切替
+  function loopScenes() {
+    showScene(current);
+    current = (current + 1) % scenes.length;
+  }
+  
+  loopScenes();
+  setInterval(loopScenes, 8000);
 
-    <!-- Section: Research -->
-    <section id="research">
-        <h2 class="section-title">- Research -</h2>
-        <div id="researchCarousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <div class="row">
-                        <div class="col-md-8"> <!-- 70% width for image -->
-                            <img src="research_image/jades.jpg" class="d-block w-100 align-middle" alt="Research Topic 1">
-                        </div>
-                        <div class="col-md-4">
-                            <h3>Distant Universe</h3>
-                            <p style="font-size: larger;"> 
-                                <br><br>
-                                When did the first light emerge in the Universe? How did the first stars and galaxies look like? <br><br>
-                                These fundamental questions have always driven us to quest for the most distant universe. 
-                                Today, we have succeeded in spectroscopy of light emitted just a few hundred million years after the Big Bang.  <br><br>
-                                We continue our efforts, aiming for capturing the first light in the universe. 
-                            </p>
-                            <button type="button" class="btn btn-info mt-3" onclick="location.href='pages/research.html'">Learn More</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="row">
-                        <div class="col-md-8">　<!-- 70% width for image -->
-                            <img src="research_image/smbh.jpeg" class="d-block w-100 align-middle" alt="Research Topic 2">
-                        </div>
-                        <div class="col-md-4">
-                            <h3>Super Massive Blackholes</h3>
-                            <p style="font-size: larger;">
-                                <br><br>
-                                How do black holes grow to become monsters weighing billions of times more than our Sun? What role do they play in shaping the galaxies around them? <br><br>
-                                We study these cosmic giants that lie at the hearts of galaxies, including our own Milky Way. Using state-of-the-art telescopes, we witness their dramatic influence on their surroundings and uncover the mysteries of their rapid growth in the early universe.
-                            </p>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="row">
-                        <div class="col-md-8">　<!-- 70% width for image -->
-                            <img src="research_image/m74.jpg" class="d-block w-100 align-middle" alt="Research Topic 3">
-                        </div>
-                        <div class="col-md-4">
-                            <h3>Gas, Stars, and Dust</h3>
-                            <p style="font-size: larger;">
-                                <br><br>
-                                What drives the endless cycle of star formation in galaxies? How do the building blocks of life spread throughout the cosmos? <br><br>
-                                Our research unveils the intricate dance between gas, stars, and cosmic dust - the key ingredients that shape galaxy evolution. We track how these components interact and transform, ultimately leading to the formation of new stars and planetary systems.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="row">
-                        <div class="col-md-8">　<!-- 70% width for image -->
-                            <img src="research_image/mambo9.jpg" class="d-block w-100 align-middle" alt="Research Topic 4">
-                        </div>
-                        <div class="col-md-4">
-                            <h3>Hidden Monsters in the Universe</h3>
-                            <p style="font-size: larger;">
-                                <br><br>
-                                What secrets lie behind the cosmic veils of dust? How many massive star-forming galaxies are hiding in plain sight? <br><br>
-                                We explore the "dark side" of galaxy evolution, hunting for massive galaxies that are invisible to optical telescopes. Using advanced infrared and radio telescopes, we reveal these cosmic behemoths that challenge our understanding of galaxy formation.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="row">
-                        <div class="col-md-8">　<!-- 70% width for image -->
-                            <img src="research_image/gems.jpg" class="d-block w-100 align-middle" alt="Research Topic 5">
-                        </div>
-                        <div class="col-md-4">
-                            <h3>Gravitational Lensing</h3>
-                            <p style="font-size: larger;">
-                                <br><br>
-                                How can we use Einstein's theory of gravity to create cosmic telescopes? What can we learn about dark matter using these natural magnifying glasses? <br><br>
-                                We harness the power of massive galaxy clusters that act as natural telescopes, bending and magnifying light from distant galaxies. This remarkable phenomenon allows us to study the faintest and most distant objects in the universe in unprecedented detail.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="row">
-                        <div class="col-md-8">　<!-- 70% width for image -->
-                            <img src="research_image/eta.jpeg" class="d-block w-100 align-middle" alt="Research Topic 6">
-                        </div>
-                        <div class="col-md-4">
-                            <h3>Death of stars</h3>
-                            <p style="font-size: larger;">
-                                <br><br>
-                                What happens in the final moments of a star's life? How do stellar explosions enrich the universe with heavy elements? <br><br>
-                                We investigate the dramatic endings of massive stars through supernovae and their aftermath. These cosmic explosions are crucial laboratories for understanding both stellar physics and the origin of elements necessary for life in the universe.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <!-- More carousel items as needed -->
-            </div>
-                <ol class="carousel-indicators">
-                    <li data-bs-target="#researchCarousel" data-bs-slide-to="0" class="active"></li>
-                    <li data-bs-target="#researchCarousel" data-bs-slide-to="1"></li>
-                    <li data-bs-target="#researchCarousel" data-bs-slide-to="2"></li>
-                    <li data-bs-target="#researchCarousel" data-bs-slide-to="3"></li>
-                    <li data-bs-target="#researchCarousel" data-bs-slide-to="4"></li>
-                    <li data-bs-target="#researchCarousel" data-bs-slide-to="5"></li>
-                </ol>
-                <div class="carousel-inner">
-                    <!-- Carousel items here -->
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#researchCarousel" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#researchCarousel" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-        </div>
-    </section>
+  // ページ読み込み時テキストフェードイン
+  window.addEventListener('load', function() {
+    setTimeout(() => {
+      document.getElementById('text-overlay').classList.add('show');
+    }, 50);
+  });
+</script>
 
 </body>
 </html>
