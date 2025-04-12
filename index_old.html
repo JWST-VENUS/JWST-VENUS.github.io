@@ -1,59 +1,205 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JWST VENUS Project</title>
-  <link rel="stylesheet" href="style.css">
+  <title>JWST VENUS</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: black;
+      overflow: hidden;
+      height: 100%;
+    }
+
+    /* スライドショー領域（背景画像） */
+    .slideshow {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 3s ease-in-out, transform 3s ease-in-out, clip-path 3s ease-in-out;
+      z-index: 1;
+    }
+
+    .slide.show {
+      opacity: 1;
+      z-index: 2;
+    }
+
+    .slide.fade-out {
+      opacity: 0;
+      z-index: 1;
+      transition: opacity 3s ease-in-out;
+    }
+
+    /* 画像（背景）の表示部分。全ての画像にzoom効果を付与 */
+    .img-layer {
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      /* 8秒かけて拡大：初期 scale(1) から scale(1.3) へ */
+      animation: zoomEffect 8s forwards;
+    }
+    @keyframes zoomEffect {
+      from { transform: scale(1); }
+      to { transform: scale(1.3); }
+    }
+
+    /* 各シーンエフェクトの定義 */
+    .effect-fade {
+      /* 初期transform指定なし */
+    }
+    .effect-slideX { transform: translateX(-100%); }
+    .slide.show.effect-slideX { transform: translateX(0); }
+    .effect-splitX { clip-path: inset(50% 0 50% 0); }
+    .slide.show.effect-splitX { clip-path: inset(0 0 0 0); }
+    .effect-splitY { clip-path: inset(0 50% 0 50%); }
+    .slide.show.effect-splitY { clip-path: inset(0 0 0 0); }
+    .effect-slideY { transform: translateY(-100%); }
+    .slide.show.effect-slideY { transform: translateY(0); }
+    .effect-zoomRotate { transform: scale(0.6) rotate(-15deg); }
+    .slide.show.effect-zoomRotate { transform: scale(1) rotate(0); }
+    .effect-circle { clip-path: circle(0% at center); }
+    .slide.show.effect-circle { clip-path: circle(100% at center); }
+
+    /* 2分割スライドの場合 */
+    .half-left, .half-right {
+      position: absolute;
+      width: 50%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      top: 0;
+      transition: all 3s ease-in-out;
+      animation: zoomEffect 8s forwards;
+    }
+    .half-left { left: -50%; }
+    .half-right { right: -50%; }
+    .slide.show .half-left { left: 0; }
+    .slide.show .half-right { right: 0; }
+
+    /* テキストレイヤー（常に表示、初回はフェードイン） */
+    #text-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      width: 90vw;
+      font-family: "Times New Roman", Times, serif;
+      font-weight: bold;
+      color: white;
+      font-size: 4em;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 3s ease-in-out;
+      /* 立体感を出すためのtext-shadow */
+      text-shadow: 
+        2px 2px 3px rgba(0,0,0,0.7),
+        4px 4px 5px rgba(0,0,0,0.6),
+        6px 6px 7px rgba(0,0,0,0.5);
+    }
+    #text-overlay.show {
+      opacity: 1;
+    }
+  </style>
 </head>
-
 <body>
-  <header>
-    <h1>JWST VENUS Project</h1>
-    <nav>
-      <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#team">Team</a></li>
-        <li><a href="#publications">Publications</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
 
-  <main>
-    <section id="about">
-      <h2>About VENUS</h2>
-      <p>
-        VENUS (Vast Exploration of Nearby and Ultra-distant Supernovae) aims to investigate distant galaxies and supernovae using JWST observations.
-      </p>
-    </section>
+<!-- 背景のスライドショー -->
+<div class="slideshow" id="slideshow"></div>
+<!-- 常時表示するテキストレイヤー -->
+<div id="text-overlay">
+  Vast Exploration for Next UnknownS<br>(VENUS)
+</div>
 
-    <section id="team">
-      <h2>Our Team</h2>
-      <ul>
-        <li>Seiji Fujimoto (University of Toronto)</li>
-        <li>Dan Coe (Space Telescope Science Institute)</li>
-        <li>(Additional team members here)</li>
-      </ul>
-    </section>
+<script>
+  // 画像パスに a2744.jpg と plckg165.jpg を追加
+  const images = [
+    'cover_image/a2744.jpg',
+    'cover_image/plckg165.jpg',
+    'cover_image/smacs0723.png',
+    'cover_image/elgordo.png',
+    'cover_image/macs0416.jpg',
+    'cover_image/spt0615.jpg'
+  ];
 
-    <section id="publications">
-      <h2>Publications</h2>
-      <ul>
-        <li>(List future publications here)</li>
-      </ul>
-    </section>
+  // 各シーンの設定（シーンごとにエフェクトを指定）
+  const scenes = [
+    { image: images[0], effect: 'effect-splitX' },
+    { image: images[1], effect: 'effect-fade' },
+    { image: images[2], effect: 'effect-zoomRotate' },
+    { image: images[3], effect: 'effect-splitY' },
+    { image: images[4], effect: 'effect-circle' },
+    { image: images[5], effect: 'effect-slideX' }
+  ];
 
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>
-        For inquiries, please contact us at <a href="mailto:your-email@example.com">your-email@example.com</a>.
-      </p>
-    </section>
-  </main>
+  const container = document.getElementById('slideshow');
+  let current = 0;
+  let prevSlide = null;
 
-  <footer>
-    <p>&copy; 2025 JWST VENUS Project. All rights reserved.</p>
-  </footer>
+  // スライド要素生成関数
+  function createSlide(scene) {
+    const slide = document.createElement('div');
+    slide.classList.add('slide', scene.effect);
+
+    if (scene.effect === 'effect-merge') {
+      // 2分割スライドの場合
+      const left = document.createElement('div');
+      left.className = 'half-left';
+      left.style.backgroundImage = `url(${scene.image})`;
+      const right = document.createElement('div');
+      right.className = 'half-right';
+      right.style.backgroundImage = `url(${scene.image})`;
+      slide.appendChild(left);
+      slide.appendChild(right);
+    } else {
+      // 通常スライド：背景画像を保持する子要素（.img-layer）にzoom適用
+      const imgLayer = document.createElement('div');
+      imgLayer.className = 'img-layer';
+      imgLayer.style.backgroundImage = `url(${scene.image})`;
+      slide.appendChild(imgLayer);
+    }
+
+    container.appendChild(slide);
+    return slide;
+  }
+
+  // 新しいシーン表示
+  function showScene(index) {
+    const scene = scenes[index];
+    const slide = createSlide(scene);
+    setTimeout(() => slide.classList.add('show'), 50);
+    if (prevSlide) {
+      prevSlide.classList.add('fade-out');
+    }
+    prevSlide = slide;
+  }
+
+  // 6秒周期でシーン切替
+  function loopScenes() {
+    showScene(current);
+    current = (current + 1) % scenes.length;
+  }
+  
+  loopScenes();
+  setInterval(loopScenes, 6000);
+
+  // ページ読み込み時テキストフェードイン
+  window.addEventListener('load', function() {
+    setTimeout(() => {
+      document.getElementById('text-overlay').classList.add('show');
+    }, 50);
+  });
+</script>
+
 </body>
 </html>

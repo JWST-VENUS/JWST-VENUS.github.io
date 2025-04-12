@@ -1,205 +1,173 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <title>JWST VENUS</title>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      background: black;
-      overflow: hidden;
-      height: 100%;
-    }
+<!DOCTYPE HTML>
+<!--
+	Spectral by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>JWST VENUS</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="landing is-preload">
 
-    /* スライドショー領域（背景画像） */
-    .slideshow {
-      position: relative;
-      width: 100vw;
-      height: 100vh;
-    }
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+				<video autoplay muted loop id="myVideo">
+					<source src="images/venus.mp4" type="video/mp4">
+				</video>
 
-    .slide {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      transition: opacity 3s ease-in-out, transform 3s ease-in-out, clip-path 3s ease-in-out;
-      z-index: 1;
-    }
+				<!-- Header -->
+					<header id="header" class="alt">
+						<h1><a href="index.html">VENUS</a></h1>
+						<nav id="nav">
+							<ul>
+								<li class="special">
+									<a href="#menu" class="menuToggle"><span>Menu</span></a>
+									<div id="menu">
+										<ul>
+											<li><a href="index.html">Home</a></li>
+											<li><a href="about.html">About</a></li>
+											<li><a href="team.html">Meet the Team</a></li>
+											<li><a href="data.html">Data Products</a></li>
+											<li><a href="pubs.html">Publications</a></li>
+										</ul>
+									</div>
+								</li>
+							</ul>
+						</nav>
+					</header>
 
-    .slide.show {
-      opacity: 1;
-      z-index: 2;
-    }
+				<!-- Banner -->
+					<section id="banner">
+						<div class="inner">
+							<h2>VENUS</h2>
+							<p>Vast Exploration for Next UknownS</p>
+							<!-- <ul class="actions special">
+								<li><a href="#" class="button primary">Activate</a></li>
+							</ul> -->
+						</div>
+						<a href="#one" class="more scrolly"></a>
+					</section>
 
-    .slide.fade-out {
-      opacity: 0;
-      z-index: 1;
-      transition: opacity 3s ease-in-out;
-    }
+				<!-- Main about splash -->
+					<section id="one" class="wrapper style1 special">
+						<div class="inner">
+							<header class="major">
+								<h2>VENUS will explore the early universe<br />
+								using the most massive objects as magnifiying</h2>
+								<p>VENUS will obtain uniform NIRCam imaging for 60 lensing clusters <br />
+									plus NIRSpec PRISM+G395M spectroscopy in Cycle 5</p>
+								</header>
+							<ul class="icons major">
+								<li><span class="icon fa-gem major style1"><span class="label">Lorem</span></span></li>
+								<li><span class="icon fa-heart major style2"><span class="label">Ipsum</span></span></li>
+								<li><span class="icon solid fa-code major style3"><span class="label">Dolor</span></span></li>
+							</ul>
+						</div>
+					</section>
 
-    /* 画像（背景）の表示部分。全ての画像にzoom効果を付与 */
-    .img-layer {
-      width: 100%;
-      height: 100%;
-      background-size: cover;
-      background-position: center;
-      /* 8秒かけて拡大：初期 scale(1) から scale(1.3) へ */
-      animation: zoomEffect 8s forwards;
-    }
-    @keyframes zoomEffect {
-      from { transform: scale(1); }
-      to { transform: scale(1.3); }
-    }
+				<!-- Two -->
+					<section id="two" class="wrapper alt style2">
+						<section class="spotlight">
+							<div class="image"><img src="images/pic01.jpg" alt="" /></div><div class="content">
+								<h2>Meet the Team</h2>
+								<p>
+									PIs Seiji Fujimoto (Toronto) & Dan Coe (STScI). </br>
+									International team from many+ institutions.  
+								</p>
+							</div>
+						</section>
+						<section class="spotlight">
+							<div class="image"><img src="images/pic02.jpg" alt="" /></div><div class="content">
+								<h2>Data Products</h2>
+								<p>
+									Public data products, when available. </br>
+									<ul>
+										<li>Lens models</li>
+										<li>Imaging</li>
+										<li>Catalogs</li>
+									</ul>
+								</p>
+							</div>
+						</section>
+						<section class="spotlight">
+							<div class="image"><img src="images/pic03.jpg" alt="" /></div><div class="content">
+								<h2>Publications</h2>
+								<p>View on ADS.</p>
+							</div>
+						</section>
+					</section>
 
-    /* 各シーンエフェクトの定義 */
-    .effect-fade {
-      /* 初期transform指定なし */
-    }
-    .effect-slideX { transform: translateX(-100%); }
-    .slide.show.effect-slideX { transform: translateX(0); }
-    .effect-splitX { clip-path: inset(50% 0 50% 0); }
-    .slide.show.effect-splitX { clip-path: inset(0 0 0 0); }
-    .effect-splitY { clip-path: inset(0 50% 0 50%); }
-    .slide.show.effect-splitY { clip-path: inset(0 0 0 0); }
-    .effect-slideY { transform: translateY(-100%); }
-    .slide.show.effect-slideY { transform: translateY(0); }
-    .effect-zoomRotate { transform: scale(0.6) rotate(-15deg); }
-    .slide.show.effect-zoomRotate { transform: scale(1) rotate(0); }
-    .effect-circle { clip-path: circle(0% at center); }
-    .slide.show.effect-circle { clip-path: circle(100% at center); }
+				<!-- Three -->
+					<section id="three" class="wrapper style3 special">
+						<div class="inner">
+							<header class="major">
+								<h2>Key Science Goals</h2>
+								<p>The key science driving VENUS.</p>
+							</header>
+							<ul class="features">
+								<li class="icon fa-paper-plane">
+									<h3>Earliest galaxies</h3>
+									<p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
+								</li>
+								<li class="icon solid fa-laptop">
+									<h3>Earliest star clusters</h3>
+									<p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
+								</li>
+								<li class="icon solid fa-code">
+									<h3>Earliest Black Holes</h3>
+									<p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
+								</li>
+								<li class="icon solid fa-headphones-alt">
+									<h3>Earliest supernovae</h3>
+									<p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
+								</li>
+							</ul>
+						</div>
+					</section>
 
-    /* 2分割スライドの場合 */
-    .half-left, .half-right {
-      position: absolute;
-      width: 50%;
-      height: 100%;
-      background-size: cover;
-      background-position: center;
-      top: 0;
-      transition: all 3s ease-in-out;
-      animation: zoomEffect 8s forwards;
-    }
-    .half-left { left: -50%; }
-    .half-right { right: -50%; }
-    .slide.show .half-left { left: 0; }
-    .slide.show .half-right { right: 0; }
+				<!-- CTA -->
+					<!-- <section id="cta" class="wrapper style4">
+						<div class="inner">
+							<header>
+								<h2>Arcue ut vel commodo</h2>
+								<p>Aliquam ut ex ut augue consectetur interdum endrerit imperdiet amet eleifend fringilla.</p>
+							</header>
+							<ul class="actions stacked">
+								<li><a href="#" class="button fit primary">Activate</a></li>
+								<li><a href="#" class="button fit">Learn More</a></li>
+							</ul>
+						</div>
+					</section> -->
 
-    /* テキストレイヤー（常に表示、初回はフェードイン） */
-    #text-overlay {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 10;
-      width: 90vw;
-      font-family: "Times New Roman", Times, serif;
-      font-weight: bold;
-      color: white;
-      font-size: 4em;
-      text-align: center;
-      opacity: 0;
-      transition: opacity 3s ease-in-out;
-      /* 立体感を出すためのtext-shadow */
-      text-shadow: 
-        2px 2px 3px rgba(0,0,0,0.7),
-        4px 4px 5px rgba(0,0,0,0.6),
-        6px 6px 7px rgba(0,0,0,0.5);
-    }
-    #text-overlay.show {
-      opacity: 1;
-    }
-  </style>
-</head>
-<body>
+				<!-- Footer -->
+					<footer id="footer">
+						<!-- <ul class="icons">
+							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
+							<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+						</ul> -->
+						<ul class="copyright">
+							<li>&copy; JWST-VENUS</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+						</ul>
+					</footer>
 
-<!-- 背景のスライドショー -->
-<div class="slideshow" id="slideshow"></div>
-<!-- 常時表示するテキストレイヤー -->
-<div id="text-overlay">
-  Vast Exploration for Next UnknownS<br>(VENUS)
-</div>
+			</div>
 
-<script>
-  // 画像パスに a2744.jpg と plckg165.jpg を追加
-  const images = [
-    'cover_image/a2744.jpg',
-    'cover_image/plckg165.jpg',
-    'cover_image/smacs0723.png',
-    'cover_image/elgordo.png',
-    'cover_image/macs0416.jpg',
-    'cover_image/spt0615.jpg'
-  ];
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
 
-  // 各シーンの設定（シーンごとにエフェクトを指定）
-  const scenes = [
-    { image: images[0], effect: 'effect-splitX' },
-    { image: images[1], effect: 'effect-fade' },
-    { image: images[2], effect: 'effect-zoomRotate' },
-    { image: images[3], effect: 'effect-splitY' },
-    { image: images[4], effect: 'effect-circle' },
-    { image: images[5], effect: 'effect-slideX' }
-  ];
-
-  const container = document.getElementById('slideshow');
-  let current = 0;
-  let prevSlide = null;
-
-  // スライド要素生成関数
-  function createSlide(scene) {
-    const slide = document.createElement('div');
-    slide.classList.add('slide', scene.effect);
-
-    if (scene.effect === 'effect-merge') {
-      // 2分割スライドの場合
-      const left = document.createElement('div');
-      left.className = 'half-left';
-      left.style.backgroundImage = `url(${scene.image})`;
-      const right = document.createElement('div');
-      right.className = 'half-right';
-      right.style.backgroundImage = `url(${scene.image})`;
-      slide.appendChild(left);
-      slide.appendChild(right);
-    } else {
-      // 通常スライド：背景画像を保持する子要素（.img-layer）にzoom適用
-      const imgLayer = document.createElement('div');
-      imgLayer.className = 'img-layer';
-      imgLayer.style.backgroundImage = `url(${scene.image})`;
-      slide.appendChild(imgLayer);
-    }
-
-    container.appendChild(slide);
-    return slide;
-  }
-
-  // 新しいシーン表示
-  function showScene(index) {
-    const scene = scenes[index];
-    const slide = createSlide(scene);
-    setTimeout(() => slide.classList.add('show'), 50);
-    if (prevSlide) {
-      prevSlide.classList.add('fade-out');
-    }
-    prevSlide = slide;
-  }
-
-  // 6秒周期でシーン切替
-  function loopScenes() {
-    showScene(current);
-    current = (current + 1) % scenes.length;
-  }
-  
-  loopScenes();
-  setInterval(loopScenes, 6000);
-
-  // ページ読み込み時テキストフェードイン
-  window.addEventListener('load', function() {
-    setTimeout(() => {
-      document.getElementById('text-overlay').classList.add('show');
-    }, 50);
-  });
-</script>
-
-</body>
+	</body>
 </html>
