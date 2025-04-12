@@ -1,59 +1,239 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JWST VENUS Project</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seiji Fujimoto</title>
+    <!-- CSS: Inside head tag -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <!-- Devicon & Font Awesome -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Times New Roman', Times, serif; 
+        }    
+        .full-bg-image {
+            background: url('cover_image/smacs0723.png') no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            filter: brightness(50%);
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -10;
+        }
+        section {
+            padding: 100px 0;
+            color: white;
+            text-align: center;
+        }
+        .social-icons i {
+            font-size: 2em;
+        }
+        .social-icons {
+            text-align: center;
+            padding: 20px;
+        }
+        .social-icons a {
+            margin: 0 10px;
+            color: #333;
+        }
+        .social-icons a:hover {
+            color: #007bff;
+        }
+
+    </style>
 </head>
-
 <body>
-  <header>
-    <h1>JWST VENUS Project</h1>
-    <nav>
-      <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#team">Team</a></li>
-        <li><a href="#publications">Publications</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+    <div class="full-bg-image"></div>
+    <nav class="navbar navbar-dark navbar-expand-lg bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="https://sfseiji.github.io/">Seiji Fujimoto</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/news.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/about.html">Science</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/research.html">Publications</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/members.html">Team</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/projects.html">Clusters</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/teaching.html">Data</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </nav>
-  </header>
 
-  <main>
-    <section id="about">
-      <h2>About VENUS</h2>
-      <p>
-        VENUS (Vast Exploration of Nearby and Ultra-distant Supernovae) aims to investigate distant galaxies and supernovae using JWST observations.
-      </p>
+    <section id="cover_image">
+        <div class="container my-4 ">
+            <div class="row justify-content-center">
+                <div class="col-lg mb-lg-4">
+                    <img src="self/square.jpeg" class="img-fluid" alt="" srcset=""style="max-width: 80%;">
+                </div>
+                <div class="col-lg mx-2 align-self-center">
+                    <div class="my-3">
+                        <h1 class="text-center">Seiji Fujimoto</h1>
+                        <p class="position-title">Assistant Professor</p>
+                        <p class="department">Department of Astronomy & Astrophysics, University of Toronto</p>
+                        <p class="intro"> As an observational astronomer, I am passionate about venturing into unknown horizons and sharing the thrill of discovery with everyone. </p>
+                        <button type="button" class="btn btn-info mt-3" onclick="location.href='pages/about.html'">Learn More</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section id="team">
-      <h2>Our Team</h2>
-      <ul>
-        <li>Seiji Fujimoto (University of Toronto)</li>
-        <li>Dan Coe (Space Telescope Science Institute)</li>
-        <li>(Additional team members here)</li>
-      </ul>
+    <!-- Section: Research -->
+    <section id="research">
+        <h2 class="section-title">- Research -</h2>
+        <div id="researchCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="row">
+                        <div class="col-md-8"> <!-- 70% width for image -->
+                            <img src="research_image/jades.jpg" class="d-block w-100 align-middle" alt="Research Topic 1">
+                        </div>
+                        <div class="col-md-4">
+                            <h3>Distant Universe</h3>
+                            <p style="font-size: larger;"> 
+                                <br><br>
+                                When did the first light emerge in the Universe? How did the first stars and galaxies look like? <br><br>
+                                These fundamental questions have always driven us to quest for the most distant universe. 
+                                Today, we have succeeded in spectroscopy of light emitted just a few hundred million years after the Big Bang.  <br><br>
+                                We continue our efforts, aiming for capturing the first light in the universe. 
+                            </p>
+                            <button type="button" class="btn btn-info mt-3" onclick="location.href='pages/research.html'">Learn More</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="row">
+                        <div class="col-md-8">　<!-- 70% width for image -->
+                            <img src="research_image/smbh.jpeg" class="d-block w-100 align-middle" alt="Research Topic 2">
+                        </div>
+                        <div class="col-md-4">
+                            <h3>Super Massive Blackholes</h3>
+                            <p style="font-size: larger;">
+                                <br><br>
+                                How do black holes grow to become monsters weighing billions of times more than our Sun? What role do they play in shaping the galaxies around them? <br><br>
+                                We study these cosmic giants that lie at the hearts of galaxies, including our own Milky Way. Using state-of-the-art telescopes, we witness their dramatic influence on their surroundings and uncover the mysteries of their rapid growth in the early universe.
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="row">
+                        <div class="col-md-8">　<!-- 70% width for image -->
+                            <img src="research_image/m74.jpg" class="d-block w-100 align-middle" alt="Research Topic 3">
+                        </div>
+                        <div class="col-md-4">
+                            <h3>Gas, Stars, and Dust</h3>
+                            <p style="font-size: larger;">
+                                <br><br>
+                                What drives the endless cycle of star formation in galaxies? How do the building blocks of life spread throughout the cosmos? <br><br>
+                                Our research unveils the intricate dance between gas, stars, and cosmic dust - the key ingredients that shape galaxy evolution. We track how these components interact and transform, ultimately leading to the formation of new stars and planetary systems.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="row">
+                        <div class="col-md-8">　<!-- 70% width for image -->
+                            <img src="research_image/mambo9.jpg" class="d-block w-100 align-middle" alt="Research Topic 4">
+                        </div>
+                        <div class="col-md-4">
+                            <h3>Hidden Monsters in the Universe</h3>
+                            <p style="font-size: larger;">
+                                <br><br>
+                                What secrets lie behind the cosmic veils of dust? How many massive star-forming galaxies are hiding in plain sight? <br><br>
+                                We explore the "dark side" of galaxy evolution, hunting for massive galaxies that are invisible to optical telescopes. Using advanced infrared and radio telescopes, we reveal these cosmic behemoths that challenge our understanding of galaxy formation.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="row">
+                        <div class="col-md-8">　<!-- 70% width for image -->
+                            <img src="research_image/gems.jpg" class="d-block w-100 align-middle" alt="Research Topic 5">
+                        </div>
+                        <div class="col-md-4">
+                            <h3>Gravitational Lensing</h3>
+                            <p style="font-size: larger;">
+                                <br><br>
+                                How can we use Einstein's theory of gravity to create cosmic telescopes? What can we learn about dark matter using these natural magnifying glasses? <br><br>
+                                We harness the power of massive galaxy clusters that act as natural telescopes, bending and magnifying light from distant galaxies. This remarkable phenomenon allows us to study the faintest and most distant objects in the universe in unprecedented detail.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="row">
+                        <div class="col-md-8">　<!-- 70% width for image -->
+                            <img src="research_image/eta.jpeg" class="d-block w-100 align-middle" alt="Research Topic 6">
+                        </div>
+                        <div class="col-md-4">
+                            <h3>Death of stars</h3>
+                            <p style="font-size: larger;">
+                                <br><br>
+                                What happens in the final moments of a star's life? How do stellar explosions enrich the universe with heavy elements? <br><br>
+                                We investigate the dramatic endings of massive stars through supernovae and their aftermath. These cosmic explosions are crucial laboratories for understanding both stellar physics and the origin of elements necessary for life in the universe.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- More carousel items as needed -->
+            </div>
+                <ol class="carousel-indicators">
+                    <li data-bs-target="#researchCarousel" data-bs-slide-to="0" class="active"></li>
+                    <li data-bs-target="#researchCarousel" data-bs-slide-to="1"></li>
+                    <li data-bs-target="#researchCarousel" data-bs-slide-to="2"></li>
+                    <li data-bs-target="#researchCarousel" data-bs-slide-to="3"></li>
+                    <li data-bs-target="#researchCarousel" data-bs-slide-to="4"></li>
+                    <li data-bs-target="#researchCarousel" data-bs-slide-to="5"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <!-- Carousel items here -->
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#researchCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#researchCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+        </div>
     </section>
 
-    <section id="publications">
-      <h2>Publications</h2>
-      <ul>
-        <li>(List future publications here)</li>
-      </ul>
-    </section>
-
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>
-        For inquiries, please contact us at <a href="mailto:your-email@example.com">your-email@example.com</a>.
-      </p>
-    </section>
-  </main>
-
-  <footer>
-    <p>&copy; 2025 JWST VENUS Project. All rights reserved.</p>
-  </footer>
 </body>
 </html>
