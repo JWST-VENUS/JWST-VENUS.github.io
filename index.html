@@ -46,16 +46,19 @@
 
         /* 画像（背景）の表示部分。全ての画像にzoom効果を付与 */
         .img-layer {
-          width: 100%;
-          height: 100%;
-          background-size: cover;
-          background-position: center;
-          /* 8秒かけて拡大：初期 scale(1) から scale(1.3) へ */
-          animation: zoomEffect 8s forwards;
+            width: 110%;              /* コンテナより少し大きくする */
+            height: 110%;
+            margin-left: -5%;         /* 中心寄せ用に左右を補正 */
+            margin-top: -5%;          /* 中心寄せ用に上下を補正 */
+            background-size: cover;
+            background-position: center;
+            transform-origin: center center; /* ズームの起点を中央に */
+            /* 8秒かけて拡大するアニメーション。最終的には scale(1.2) にする例 */
+            animation: zoomEffect 8s forwards;
         }
         @keyframes zoomEffect {
-          from { transform: scale(1); }
-          to { transform: scale(1.3); }
+            from { transform: scale(1); }
+            to { transform: scale(1.2); }
         }
 
         /* 各シーンエフェクトの定義 */
