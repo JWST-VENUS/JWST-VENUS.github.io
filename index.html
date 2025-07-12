@@ -36,7 +36,21 @@
 		.advisory-committee-grid .member:nth-child(n+3) {
 		  grid-row: 2;
 		}
-		<style>
+
+
+		@media (max-width: 800px) {
+		  .advisory-committee-grid {
+		    grid-template-columns: 1fr 1fr;
+		  }
+		  .advisory-committee-grid .member:nth-child(1),
+		  .advisory-committee-grid .member:nth-child(2),
+		  .advisory-committee-grid .member:nth-child(n+3) {
+		    grid-column: auto;
+		    grid-row: auto;
+		  }
+		}
+
+		</style>
 
 	</head>
 	<body class="landing is-preload">
