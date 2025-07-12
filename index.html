@@ -11,6 +11,33 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+
+		<style>
+		.advisory-committee-grid {
+		  display: grid;
+		  grid-template-rows: repeat(2, auto);
+		  grid-template-columns: repeat(4, 1fr); /* 4列 */
+		  justify-items: center;
+		  align-items: start;
+		  gap: 2.5rem 2rem; /* お好みで調整 */
+		  margin-bottom: 2em;
+		}
+
+		/* 上段2人を中央2列に配置 */
+		.advisory-committee-grid .member:nth-child(1) {
+		  grid-row: 1;
+		  grid-column: 2 / 3;
+		}
+		.advisory-committee-grid .member:nth-child(2) {
+		  grid-row: 1;
+		  grid-column: 3 / 4;
+		}
+		/* 下段4人は自動で下段4列に並ぶ */
+		.advisory-committee-grid .member:nth-child(n+3) {
+		  grid-row: 2;
+		}
+		<style>
+
 	</head>
 	<body class="landing is-preload">
 
