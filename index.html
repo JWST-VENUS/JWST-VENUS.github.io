@@ -5,249 +5,273 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
-	<head>
-		<title>VENUS</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+<head>
+	<title>VENUS</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 
-		<style>
-		.advisory-committee-grid {
-		  display: grid;
-		  grid-template-rows: repeat(2, auto);
-		  grid-template-columns: repeat(4, 1fr); /* 4列 */
-		  justify-items: center;
-		  align-items: start;
-		  gap: 2.5rem 2rem; /* お好みで調整 */
-		  margin-bottom: 2em;
-		}
+	<style>
+	/* --- ここからスライドショー用 --- */
+	#banner {
+		position: relative;
+		overflow: hidden;
+		min-height: 100vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0;
+	}
 
-		/* 上段2人を中央2列に配置 */
-		.advisory-committee-grid .member:nth-child(1) {
-		  grid-row: 1;
-		  grid-column: 2 / 3;
-		}
-		.advisory-committee-grid .member:nth-child(2) {
-		  grid-row: 1;
-		  grid-column: 3 / 4;
-		}
-		/* 下段4人は自動で下段4列に並ぶ */
-		.advisory-committee-grid .member:nth-child(n+3) {
-		  grid-row: 2;
-		}
+	.slideshow {
+		position: absolute;
+		top: 0; left: 0;
+		width: 100vw; height: 100vh;
+		overflow: hidden;
+		z-index: 1;
+	}
+	.slide {
+		position: absolute;
+		width: 100vw; height: 100vh;
+		top: 0; left: 0;
+		opacity: 0;
+		transition: opacity 2.5s, transform 2.5s, clip-path 2.5s;
+		z-index: 1;
+	}
+	.slide.show {
+		opacity: 1;
+		z-index: 2;
+	}
+	.slide.fade-out {
+		opacity: 0;
+		z-index: 1;
+		transition: opacity 2.5s;
+	}
+	.img-layer {
+		width: 100vw; height: 100vh;
+		background-size: cover;
+		background-position: center;
+		animation: zoomEffect 7s forwards;
+	}
+	@keyframes zoomEffect {
+		from { transform: scale(1); }
+		to { transform: scale(1.2); }
+	}
+	.effect-fade { }
+	.effect-slideX { transform: translateX(-100%); }
+	.slide.show.effect-slideX { transform: translateX(0); }
+	.effect-splitX { clip-path: inset(50% 0 50% 0); }
+	.slide.show.effect-splitX { clip-path: inset(0 0 0 0); }
+	.effect-splitY { clip-path: inset(0 50% 0 50%); }
+	.slide.show.effect-splitY { clip-path: inset(0 0 0 0); }
+	.effect-slideY { transform: translateY(-100%); }
+	.slide.show.effect-slideY { transform: translateY(0); }
+	.effect-zoomRotate { transform: scale(0.7) rotate(-14deg);}
+	.slide.show.effect-zoomRotate { transform: scale(1) rotate(0);}
+	.effect-circle { clip-path: circle(0% at center);}
+	.slide.show.effect-circle { clip-path: circle(100% at center);}
+	/* テキストオーバーレイ */
+	#banner #venus-overlay-text {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		z-index: 10;
+		width: 90vw;
+		font-family: "Times New Roman", Times, serif;
+		font-weight: bold;
+		color: white;
+		font-size: 3em;
+		text-align: center;
+		opacity: 0;
+		transition: opacity 2.5s;
+		text-shadow: 2px 2px 4px rgba(0,0,0,0.7), 4px 4px 7px rgba(0,0,0,0.6);
+	}
+	#banner #venus-overlay-text.show { opacity: 1; }
 
+	@media (max-width: 900px) {
+		#banner, .slideshow, .slide, .img-layer { height: 60vw !important; min-height: 320px;}
+		#banner #venus-overlay-text { font-size: 2em;}
+	}
+	@media (max-width: 600px) {
+		#banner, .slideshow, .slide, .img-layer { height: 70vw !important; min-height: 240px;}
+		#banner #venus-overlay-text { font-size: 1.1em;}
+	}
+	/* --- ここまでスライドショー用 --- */
+	</style>
+</head>
+<body class="landing is-preload">
 
-		@media (max-width: 600px) {
-		  /* spotlightセクションを縦並びへ */
-		  #two .spotlight {
-		    flex-direction: column !important;
-		    text-align: center;
-		    gap: 1em;
-		    padding: 1em 0;
-		  }
-		  #two .spotlight .image,
-		  #two .spotlight .content {
-		    width: 100%;
-		    max-width: 95vw;
-		    margin: 0 auto;
-		    box-sizing: border-box;
-		  }
-		  /* featuresのリストを1列に */
-		  #three .features {
-		    display: flex;
-		    flex-direction: column !important;
-		    align-items: center;
-		    gap: 1.2em;
-		    padding-left: 0;
-		  }
-		  #three .features li {
-		    width: 98vw !important;
-		    max-width: 500px;
-		    margin: 0 auto;
-		    box-sizing: border-box;
-		  }
-		  /* タイトルやパディングの縮小 */
-		  h2, .major h2 {
-		    font-size: 1.2em !important;
-		    line-height: 1.3;
-		  }
-		  .wrapper {
-		    padding: 1.2em 0 0.8em 0;
-		  }
-		  /* videoも画面幅ぴったりに */
-		  #myVideo {
-		    width: 100vw !important;
-		    height: auto !important;
-		    min-height: 100vw;
-		    object-fit: cover;
-		  }
-		}
-
-		</style>
-
-	</head>
-	<body class="landing is-preload">
-
-		<!-- Page Wrapper -->
-			<div id="page-wrapper">
-				<video autoplay muted loop id="myVideo">
-					<source src="images/venus.mp4" type="video/mp4">
-				</video>
-
-				<!-- Header -->
-					<header id="header" class="alt">
-						<h1><a href="index.html">VENUS</a></h1>
-						<nav id="nav">
-							<ul>
-								<li class="special">
-									<a href="#menu" class="menuToggle"><span>Menu</span></a>
-									<div id="menu">
-										<ul>
-											<li><a href="index.html">Home</a></li>
-											<li><a href="about.html">About</a></li>
-											<li><a href="team.html">Meet the Team</a></li>
-											<li><a href="data.html">Data Products</a></li>
-											<li><a href="pubs.html">Publications</a></li>
-										</ul>
-									</div>
-								</li>
-							</ul>
-						</nav>
-					</header>
-
-				<!-- Banner -->
-					<section id="banner">
-						<div class="inner">
-							<h2>VENUS</h2>
-							<p>Vast Exploration for Next UknownS</p>
-							<!-- <ul class="actions special">
-								<li><a href="#" class="button primary">Activate</a></li>
-							</ul> -->
-						</div>
-						<a href="#one" class="more scrolly"></a>
-					</section>
-
-				<!-- Main about splash -->
-					<section id="one" class="wrapper style1 special">
-						<div class="inner">
-							<header class="major">
-								<h2>VENUS will explore the early universe using the<br />
-								    most massive galaxies as a magnifying glass</h2>
-								<p>
-									VENUS will obtain uniform 10-filter NIRCam imaging for 60 lensing clusters in Cycle 4<br />
-								   	and multi-epoch NIRCam imaging + NIRSpec PRISM+G395M spectroscopy in Cycle 5
-								</p>
-								<p>
-									Read more about VENUS <a href="about.html">here</a>.
-								</p>
-							</header>
-							<!-- <ul class="icons major">
-								<li><span class="icon solid fa-user major style3"><span class="label">Lorem</span></span></li>
-								<li><span class="icon fa-heart major style2"><span class="label">Ipsum</span></span></li>
-								<li><span class="icon solid fa-code major style3"><span class="label">Dolor</span></span></li>
-							</ul> -->
-						</div>
-					</section>
-
-				<!-- Two -->
-					<section id="two" class="wrapper alt style2">
-						<section class="spotlight">
-							<div class="image"><img src="images/pic01.jpg" alt="" /></div><div class="content">
-								<h2>Meet the Team</h2>
-								<p>
-									PIs Seiji Fujimoto (Toronto) & Dan Coe (STScI). </br>
-									International team from many+ institutions.  
-								</p>
-							</div>
-						</section>
-						<section class="spotlight">
-							<div class="image"><img src="images/pic02.jpg" alt="" /></div><div class="content">
-								<h2>Data Products</h2>
-								<p>
-									Public data products, when available. 
-									<ul>
-										<li>Lens models</li>
-										<li>Imaging</li>
-										<li>Catalogs</li>
-									</ul>
-								</p>
-							</div>
-						</section>
-						<section class="spotlight">
-							<div class="image"><img src="images/pic03.jpg" alt="" /></div><div class="content">
-								<h2>Publications</h2>
-								<p>View on ADS.</p>
-							</div>
-						</section>
-					</section>
-
-				<!-- Three -->
-					<section id="three" class="wrapper style3 special">
-						<div class="inner">
-							<header class="major">
-								<h2>Key Science Goals</h2>
-								<p>The key science driving VENUS.</p>
-							</header>
-							<ul class="features">
-								<li class="icon fa-paper-plane">
-									<h3>Earliest galaxies</h3>
-									<p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
-								</li>
-								<li class="icon solid fa-laptop">
-									<h3>Earliest star clusters</h3>
-									<p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
-								</li>
-								<li class="icon solid fa-code">
-									<h3>Earliest Black Holes</h3>
-									<p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
-								</li>
-								<li class="icon solid fa-headphones-alt">
-									<h3>Earliest supernovae</h3>
-									<p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
-								</li>
-							</ul>
-						</div>
-					</section>
-
-				<!-- CTA -->
-					<!-- <section id="cta" class="wrapper style4">
-						<div class="inner">
-							<header>
-								<h2>Arcue ut vel commodo</h2>
-								<p>Aliquam ut ex ut augue consectetur interdum endrerit imperdiet amet eleifend fringilla.</p>
-							</header>
-							<ul class="actions stacked">
-								<li><a href="#" class="button fit primary">Activate</a></li>
-								<li><a href="#" class="button fit">Learn More</a></li>
-							</ul>
-						</div>
-					</section> -->
-
-				<!-- Footer -->
-					<footer id="footer">
-						<!-- <ul class="icons">
-							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-							<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
-							<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-						</ul> -->
-						<ul class="copyright">
-							<li>&copy; JWST-VENUS</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-						</ul>
-					</footer>
-
+	<!-- Page Wrapper -->
+	<div id="page-wrapper">
+		
+		<!-- Banner -->
+		<section id="banner">
+			<!-- スライドショー領域 -->
+			<div class="slideshow" id="venus-slideshow"></div>
+			<!-- 常時テキスト -->
+			<div id="venus-overlay-text">
+				Vast Exploration for Nascent Unexplored Sources<br>(VENUS)
 			</div>
+			<div class="inner" style="position:relative;z-index:20;">
+				<h2 style="color:white;text-shadow:2px 2px 6px #000;">VENUS</h2>
+				<!-- pタグは下でテキスト被るので消してもOK（テキストレイヤーで代用可） -->
+			</div>
+			<a href="#one" class="more scrolly"></a>
+		</section>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+		<!-- Main about splash -->
+		<section id="one" class="wrapper style1 special">
+			<div class="inner">
+				<header class="major">
+					<h2>VENUS will explore the early universe using the<br />
+						most massive galaxies as a magnifying glass</h2>
+					<p>
+						VENUS will obtain uniform 10-filter NIRCam imaging for 60 lensing clusters in Cycle 4<br />
+						and multi-epoch NIRCam imaging + NIRSpec PRISM+G395M spectroscopy in Cycle 5
+					</p>
+					<p>
+						Read more about VENUS <a href="about.html">here</a>.
+					</p>
+				</header>
+			</div>
+		</section>
+		<!-- Two -->
+		<section id="two" class="wrapper alt style2">
+			<section class="spotlight">
+				<div class="image"><img src="images/pic01.jpg" alt="" /></div>
+				<div class="content">
+					<h2>Meet the Team</h2>
+					<p>
+						PIs Seiji Fujimoto (Toronto) & Dan Coe (STScI). <br>
+						International team from many+ institutions.  
+					</p>
+				</div>
+			</section>
+			<section class="spotlight">
+				<div class="image"><img src="images/pic02.jpg" alt="" /></div>
+				<div class="content">
+					<h2>Data Products</h2>
+					<p>
+						Public data products, when available. 
+						<ul>
+							<li>Lens models</li>
+							<li>Imaging</li>
+							<li>Catalogs</li>
+						</ul>
+					</p>
+				</div>
+			</section>
+			<section class="spotlight">
+				<div class="image"><img src="images/pic03.jpg" alt="" /></div>
+				<div class="content">
+					<h2>Publications</h2>
+					<p>View on ADS.</p>
+				</div>
+			</section>
+		</section>
+		<!-- Three -->
+		<section id="three" class="wrapper style3 special">
+			<div class="inner">
+				<header class="major">
+					<h2>Key Science Goals</h2>
+					<p>The key science driving VENUS.</p>
+				</header>
+				<ul class="features">
+					<li class="icon fa-paper-plane">
+						<h3>Earliest galaxies</h3>
+						<p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
+					</li>
+					<li class="icon solid fa-laptop">
+						<h3>Earliest star clusters</h3>
+						<p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
+					</li>
+					<li class="icon solid fa-code">
+						<h3>Earliest Black Holes</h3>
+						<p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
+					</li>
+					<li class="icon solid fa-headphones-alt">
+						<h3>Earliest supernovae</h3>
+						<p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
+					</li>
+				</ul>
+			</div>
+		</section>
+		<!-- Footer -->
+		<footer id="footer">
+			<ul class="copyright">
+				<li>&copy; JWST-VENUS</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+			</ul>
+		</footer>
+	</div>
 
-	</body>
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="assets/js/jquery.scrolly.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+	
+	<!-- スライドショーJS -->
+	<script>
+	// 画像リスト
+	const images = [
+		'cover_image/a2744.jpg',
+		'cover_image/plckg165.jpg',
+		'cover_image/smacs0723.png',
+		'cover_image/elgordo.png',
+		'cover_image/macs0416.jpg',
+		'cover_image/spt0615.jpg'
+	];
+	const scenes = [
+		{ image: images[0], effect: 'effect-splitX' },
+		{ image: images[1], effect: 'effect-fade' },
+		{ image: images[2], effect: 'effect-zoomRotate' },
+		{ image: images[3], effect: 'effect-splitY' },
+		{ image: images[4], effect: 'effect-circle' },
+		{ image: images[5], effect: 'effect-slideX' }
+	];
+	const container = document.getElementById('venus-slideshow');
+	let current = 0;
+	let prevSlide = null;
+	function createSlide(scene) {
+		const slide = document.createElement('div');
+		slide.classList.add('slide', scene.effect);
+		const imgLayer = document.createElement('div');
+		imgLayer.className = 'img-layer';
+		imgLayer.style.backgroundImage = `url(${scene.image})`;
+		slide.appendChild(imgLayer);
+		container.appendChild(slide);
+		return slide;
+	}
+	function showScene(index) {
+		const scene = scenes[index];
+		const slide = createSlide(scene);
+		setTimeout(() => slide.classList.add('show'), 50);
+		if (prevSlide) {
+			prevSlide.classList.add('fade-out');
+			setTimeout(() => {
+				if(prevSlide.parentNode) prevSlide.parentNode.removeChild(prevSlide);
+			}, 2500);
+		}
+		prevSlide = slide;
+	}
+	function loopScenes() {
+		showScene(current);
+		current = (current + 1) % scenes.length;
+	}
+	loopScenes();
+	setInterval(loopScenes, 6000);
+	// テキストフェードイン
+	window.addEventListener('load', function() {
+		setTimeout(() => {
+			document.getElementById('venus-overlay-text').classList.add('show');
+		}, 200);
+	});
+	</script>
+
+</body>
 </html>
