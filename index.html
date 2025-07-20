@@ -240,8 +240,7 @@
 	];
 	const container = document.getElementById('venus-slideshow');
 	let current = 0;
-	let prevSlide = null;
-	
+
 	function createSlide(scene) {
 	  const slide = document.createElement('div');
 	  slide.classList.add('slide', scene.effect);
@@ -253,39 +252,28 @@
 	}
 
 	function showScene(index) {
-	  // 新しいスライドを作成
+	  // 1. containerの中身を必ず全消し（これが一番重要）
+	  while (container.firstChild) {
+	    container.removeChild(container.firstChild);
+	  }
+	  // 2. 新しいスライドを1枚だけ追加
 	  const scene = scenes[index];
 	  const slide = createSlide(scene);
 	  container.appendChild(slide);
-
-	  // 適切なタイミングでアニメーションを発火
 	  setTimeout(() => {
 	    slide.classList.add('show');
 	  }, 50);
-
-	  // 前のスライドを消す（fade-out → remove）
-	  if (prevSlide) {
-	    prevSlide.classList.remove('show');
-	    prevSlide.classList.add('fade-out');
-	    setTimeout(() => {
-	      if (prevSlide.parentNode) prevSlide.parentNode.removeChild(prevSlide);
-	    }, 2500); // CSSのtransitionと同じ時間
-	  }
-	  prevSlide = slide;
 	}
 
-	// ループ
 	function loopScenes() {
 	  showScene(current);
 	  current = (current + 1) % scenes.length;
 	}
 
-	// 最初の一枚目だけ即座に表示してループをスタート
 	showScene(current);
 	current = (current + 1) % scenes.length;
 	setInterval(loopScenes, 6000);
 
-	// テキストフェードイン
 	window.addEventListener('load', function() {
 	  setTimeout(() => {
 	    document.getElementById('venus-overlay-text').classList.add('show');
