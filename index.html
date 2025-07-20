@@ -98,7 +98,7 @@
 	.venus-subtitle {
 	  color: #fff;
 	  font-family: 'Cinzel', serif;
-	  font-size: 0.8em;  /* VENUSの半分サイズ */
+	  font-size: 1em;  /* VENUSの半分サイズ */
 	  font-weight: normal;  /* 太字解除 */
 	  text-shadow: 2px 2px 4px #000, 4px 4px 8px rgba(0,0,0,0.4);
 	  margin: 0;
@@ -109,19 +109,48 @@
 	.venus-subtitle.show {
 	  opacity: 1;
 	}
-
 	.banner-title-overlay .venus-subtitle.show {
 	  opacity: 1;
 	}
 
+	/* --- 反転影の演出 --- */
+	.venus-subtitle-reflection {
+	  font-family: 'Cinzel', serif;
+	  font-size: 3rem;
+	  font-weight: normal;
+	  color: rgba(255,255,255,0.22);
+	  position: absolute;
+	  left: 50%;
+	  top: calc(100% + 0.3em); /* サブタイトル下に少しだけ余白 */
+	  transform: translate(-50%, 0) scaleY(-1) skewX(-10deg) skewY(2deg);
+	  letter-spacing: 0.02em;
+	  opacity: 0;
+	  pointer-events: none;
+	  filter: blur(1.5px) brightness(1.2);
+	  /* 左から光を意識して影の左端だけもっと白っぽくするならグラデーション使ってもOK */
+	  transition: opacity 3.5s;
+	  z-index: 0;
+	  user-select: none;
+	}
+	.venus-subtitle-reflection.show { opacity: 1; }
+
+	.venus-subtitle-reflection .emph {
+	  color: rgba(230,230,230,0.55); 
+	  letter-spacing: 0.03em;
+	}
+
+	/* モバイル対応も忘れず */
 	@media (max-width: 900px) {
-	  .venus-title { font-size: 2.3em; }
-	  .venus-subtitle { font-size: 1.15em; }
+	  .venus-subtitle,
+	  .venus-subtitle-reflection {
+	    font-size: 1.15em;
+	  }
 	}
 	@media (max-width: 600px) {
-	  .banner-title-overlay { top: 34%; }
-	  .venus-title { font-size: 1.4em; }
-	  .venus-subtitle { font-size: 0.7em; }
+	  .venus-subtitle,
+	  .venus-subtitle-reflection {
+	    font-size: 0.7em;
+	  }
 	}
 	/* --- ここまでスライドショー用 --- */
 	</style>
@@ -137,6 +166,7 @@
 		  <div class="banner-title-overlay">
 		    <h2 class="venus-title">VENUS</h2>
 		    <p class="venus-subtitle">Vast Exploration for Nascent Unexplored Sources</p>
+			<p class="venus-subtitle-reflection">Vast Exploration for <span class="emph">Next UnknownS</span></p>
 		  </div>
 		  <a href="#one" class="more scrolly"></a>
 		</section>
