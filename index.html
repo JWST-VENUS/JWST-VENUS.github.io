@@ -254,7 +254,9 @@
 	  const scene = scenes[index];
 	  const slide = createSlide(scene);
 	  container.appendChild(slide);
-	  setTimeout(() => slide.classList.add('show'), 50);
+	  // 強制リフロー
+	  void slide.offsetWidth;
+	  setTimeout(() => slide.classList.add('show'), 10);
 
 	  // 前のshow（まだ残ってるもの）をfade-out
 	  const slides = container.querySelectorAll('.slide.show');
