@@ -150,10 +150,10 @@
 	.feature-icon {
 	  display: block;
 	  margin: 0 auto 0.6em auto;   /* 上下の余白を確保 */
-	  width: 64px;
-	  height: 64px;
-	  max-width: 64px;
-	  max-height: 64px;
+	  width: 80px;
+	  height: 80px;
+	  max-width: 80px;
+	  max-height: 80px;
 	  object-fit: contain;         /* アイコン画像の縦横比を維持しつつ枠内に収める */
 	  border-radius: 10px;         /* お好み。丸くしたいなら20px以上、四角なら0 */
 	  background: transparent;
@@ -161,37 +161,49 @@
 	}
 
 	.features {
-	  display: grid;
-	  grid-template-columns: repeat(2, 1fr);
-	  grid-gap: 2em;
-	  justify-items: center;
-	  align-items: start;
+	  display: flex;
+	  flex-wrap: wrap;
+	  justify-content: center;
 	  padding-left: 0;
+	  margin: 0 auto;
+	  max-width: 64em;
 	}
-
 	.features li {
-	  list-style: none;
-	  width: 100%;
-	  max-width: 300px;
-	  text-align: center;
+	  box-sizing: border-box;
+	  display: flex;
+	  flex-direction: column;
+	  align-items: center;
+	  width: 50%;
+	  padding: 2.5em 2em 2em 2em;
 	  margin: 0;
+	  list-style: none;
+	  text-align: center;
+	  /* カード風の背景や影はmain.cssに準拠 */
 	}
-
-	@media (max-width: 800px) {
+	@media (max-width: 980px) {
+	  .features li {
+	    padding: 2em 1.5em 1.5em 1.5em;
+	  }
+	}
+	@media (max-width: 736px) {
+	  .features li {
+	    width: 100%;
+	    padding: 2em 1.5em 1.5em 1.5em;
+	  }
 	  .features {
 	    flex-direction: column;
-	    align-items: center;
-	  }
-	  .features li {
-	    max-width: 95vw;
-	    min-width: 0;
 	  }
 	}
-	@media (max-width: 800px) {
-	  .features {
-	    grid-template-columns: 1fr;
-	  }
-}
+
+	/* アイコン画像にサイズ統一＋中央寄せ */
+	.feature-icon {
+	  display: block;
+	  width: 3.5em;
+	  height: 3.5em;
+	  margin: 0 auto 1em auto;
+	  object-fit: contain;
+	  border-radius: 0.5em;
+	}
 
 
 	</style>
