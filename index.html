@@ -141,6 +141,38 @@
 		  <a href="#one" class="more scrolly"></a>
 		</section>
 
+		<style>
+		.venus-title {
+		  font-size: 4em;
+		  font-family: 'Cinzel', serif;
+		  font-weight: bold;
+		  color: #fff;
+		  text-shadow: 2px 2px 6px #000, 4px 4px 10px rgba(0,0,0,0.4);
+		  margin: 0 0 0.7em 0;
+		  letter-spacing: 0.08em;
+		}
+		.venus-subtitle {
+		  font-size: 2em;
+		  font-family: "Times New Roman", Times, serif;
+		  font-weight: normal;
+		  color: #fff;
+		  text-shadow: 2px 2px 4px #000, 4px 4px 8px rgba(0,0,0,0.4);
+		  margin: 0;
+		  opacity: 0;
+		  transition: opacity 2s;
+		}
+		.venus-subtitle.show { opacity: 1; }
+		</style>
+
+		<script>
+		window.onload = function() {
+		  setTimeout(() => {
+		    const el = document.querySelector('.venus-subtitle');
+		    if (el) el.classList.add('show');
+		  }, 900);
+		}
+		</script>
+
 		<!-- Main about splash -->
 		<section id="one" class="wrapper style1 special">
 			<div class="inner">
