@@ -150,7 +150,6 @@
 					<p>
 						Read more about our team <a href="team.html">here</a>.
 					</p>
-
 				</div>
 			</section>
 			<section class="spotlight">
@@ -240,6 +239,7 @@
 	];
 	const container = document.getElementById('venus-slideshow');
 	let current = 0;
+	let prevSlide = null;
 
 	function createSlide(scene) {
 	  const slide = document.createElement('div');
@@ -252,28 +252,31 @@
 	}
 
 	function showScene(index) {
-	  // 1. containerの中身を必ず全消し
-	  while (container.firstChild) {
-	    container.removeChild(container.firstChild);
-	  }
-	  // 2. 新しいスライドを1枚だけ追加
 	  const scene = scenes[index];
 	  const slide = createSlide(scene);
-	  container.appendChild(slide);
-	  setTimeout(() => {
-	    slide.classList.add('show');
-	  }, 50);
-	}
+	  setTimeout(() => slide.classList.add('show'), 50);
 
-	// ★最初だけ（current=0）を表示
-	showScene(current);
+	  if (prevSlide) {
+	    prevSlide.classList.add('fade-out');
+	    // ここでトランジション後にremove
+	    prevSlide.addEventListener('transitionend', function onFade(e) {
+	      if (e.propertyName === "opacity") {
+	        if (prevSlide && prevSlide.parentNode) prevSlide.parentNode.removeChild(prevSlide);
+	        prevSlide.removeEventListener('transitionend', onFade);
+	      }
+	    });
+	  }
+	  prevSlide = slide;
+	  container.appendChild(slide);
+	}
 
 	function loopScenes() {
-	  // currentを進めてから表示（進めて→表示！）
-	  current = (current + 1) % scenes.length;
 	  showScene(current);
+	  current = (current + 1) % scenes.length;
 	}
 
+	// 初回表示
+	loopScenes();
 	setInterval(loopScenes, 6000);
 
 	window.addEventListener('load', function() {
@@ -281,7 +284,6 @@
 	    document.getElementById('venus-overlay-text').classList.add('show');
 	  }, 200);
 	});
-
 	</script>
 
 </body>
