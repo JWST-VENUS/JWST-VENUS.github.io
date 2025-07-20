@@ -181,7 +181,7 @@
 			</nav>
 		</header>
 
-		
+
 
 		<section id="banner">
 		  <div class="slideshow" id="venus-slideshow"></div>
@@ -201,6 +201,16 @@
 		  }, 900);
 		}
 		</script>
+
+		<script>
+		window.onload = function() {
+		  setTimeout(() => {
+		    const el = document.querySelector('.venus-subtitle-reflection');
+		    if (el) el.classList.add('show');
+		  }, 900);
+		}
+		</script>
+
 
 		<!-- Main about splash -->
 		<section id="one" class="wrapper style1 special">
