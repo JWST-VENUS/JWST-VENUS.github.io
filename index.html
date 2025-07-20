@@ -239,7 +239,6 @@
 	];
 	const container = document.getElementById('venus-slideshow');
 	let current = 0;
-	let prevSlide = null;
 
 	function createSlide(scene) {
 	  const slide = document.createElement('div');
@@ -254,28 +253,28 @@
 	function showScene(index) {
 	  const scene = scenes[index];
 	  const slide = createSlide(scene);
+	  container.appendChild(slide);
 	  setTimeout(() => slide.classList.add('show'), 50);
 
-	  if (prevSlide) {
-	    prevSlide.classList.add('fade-out');
-	    // ここでトランジション後にremove
-	    prevSlide.addEventListener('transitionend', function onFade(e) {
+	  // 前のshow（まだ残ってるもの）をfade-out
+	  const slides = container.querySelectorAll('.slide.show');
+	  if (slides.length > 1) {
+	    const fadeSlide = slides[0];
+	    fadeSlide.classList.remove('show');
+	    fadeSlide.classList.add('fade-out');
+	    fadeSlide.addEventListener('transitionend', function onFade(e) {
 	      if (e.propertyName === "opacity") {
-	        if (prevSlide && prevSlide.parentNode) prevSlide.parentNode.removeChild(prevSlide);
-	        prevSlide.removeEventListener('transitionend', onFade);
+	        if (fadeSlide.parentNode) fadeSlide.parentNode.removeChild(fadeSlide);
+	        fadeSlide.removeEventListener('transitionend', onFade);
 	      }
 	    });
 	  }
-	  prevSlide = slide;
-	  container.appendChild(slide);
 	}
 
 	function loopScenes() {
 	  showScene(current);
 	  current = (current + 1) % scenes.length;
 	}
-
-	// 初回表示
 	loopScenes();
 	setInterval(loopScenes, 6000);
 
