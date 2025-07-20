@@ -252,10 +252,11 @@
 	}
 
 	function showScene(index) {
-	  // containerの中身を全消し
+	  // 1. containerの中身を必ず全消し
 	  while (container.firstChild) {
 	    container.removeChild(container.firstChild);
 	  }
+	  // 2. 新しいスライドを1枚だけ追加
 	  const scene = scenes[index];
 	  const slide = createSlide(scene);
 	  container.appendChild(slide);
@@ -264,22 +265,24 @@
 	  }, 50);
 	}
 
-	// ★ ここが重要：currentを“常に”進めてから表示
-	function nextScene() {
+	// ★最初だけ（current=0）を表示
+	showScene(current);
+
+	function loopScenes() {
+	  // currentを進めてから表示（進めて→表示！）
 	  current = (current + 1) % scenes.length;
 	  showScene(current);
 	}
 
-	// 最初の一枚目だけ初期表示
-	showScene(current);
-
-	// 6秒ごとに「次の画像」を表示
-	setInterval(nextScene, 6000);
+	setInterval(loopScenes, 6000);
 
 	window.addEventListener('load', function() {
 	  setTimeout(() => {
 	    document.getElementById('venus-overlay-text').classList.add('show');
 	  }, 200);
 	});
+
+	</script>
+
 </body>
 </html>
