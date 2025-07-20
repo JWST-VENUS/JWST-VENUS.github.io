@@ -146,8 +146,11 @@
 					<p>
 						PIs Seiji Fujimoto (U.Toronto) & Dan Coe (STScI). <br>
 						International team from many+ institutions.
-						More about our team <a href="team.html">here</a>
 					</p>
+					<p>
+						Read more about our team <a href="team.html">here</a>.
+					</p>
+
 				</div>
 			</section>
 			<section class="spotlight">
@@ -220,57 +223,73 @@
 	<script>
 	// 画像リスト
 	const images = [
-		'cover_image/a2744.jpg',
-		'cover_image/plckg165.jpg',
-		'cover_image/smacs0723.png',
-		'cover_image/elgordo.png',
-		'cover_image/macs0416.jpg',
-		'cover_image/spt0615.jpg'
+	  'cover_image/a2744.jpg',
+	  'cover_image/plckg165.jpg',
+	  'cover_image/smacs0723.png',
+	  'cover_image/elgordo.png',
+	  'cover_image/macs0416.jpg',
+	  'cover_image/spt0615.jpg'
 	];
 	const scenes = [
-		{ image: images[0], effect: 'effect-splitX' },
-		{ image: images[1], effect: 'effect-fade' },
-		{ image: images[2], effect: 'effect-zoomRotate' },
-		{ image: images[3], effect: 'effect-splitY' },
-		{ image: images[4], effect: 'effect-circle' },
-		{ image: images[5], effect: 'effect-slideX' }
+	  { image: images[0], effect: 'effect-splitX' },
+	  { image: images[1], effect: 'effect-fade' },
+	  { image: images[2], effect: 'effect-zoomRotate' },
+	  { image: images[3], effect: 'effect-splitY' },
+	  { image: images[4], effect: 'effect-circle' },
+	  { image: images[5], effect: 'effect-slideX' }
 	];
 	const container = document.getElementById('venus-slideshow');
 	let current = 0;
 	let prevSlide = null;
+	
 	function createSlide(scene) {
-		const slide = document.createElement('div');
-		slide.classList.add('slide', scene.effect);
-		const imgLayer = document.createElement('div');
-		imgLayer.className = 'img-layer';
-		imgLayer.style.backgroundImage = `url(${scene.image})`;
-		slide.appendChild(imgLayer);
-		container.appendChild(slide);
-		return slide;
+	  const slide = document.createElement('div');
+	  slide.classList.add('slide', scene.effect);
+	  const imgLayer = document.createElement('div');
+	  imgLayer.className = 'img-layer';
+	  imgLayer.style.backgroundImage = `url(${scene.image})`;
+	  slide.appendChild(imgLayer);
+	  return slide;
 	}
+
 	function showScene(index) {
-		const scene = scenes[index];
-		const slide = createSlide(scene);
-		setTimeout(() => slide.classList.add('show'), 50);
-		if (prevSlide) {
-			prevSlide.classList.add('fade-out');
-			setTimeout(() => {
-				if(prevSlide.parentNode) prevSlide.parentNode.removeChild(prevSlide);
-			}, 2500);
-		}
-		prevSlide = slide;
+	  // 新しいスライドを作成
+	  const scene = scenes[index];
+	  const slide = createSlide(scene);
+	  container.appendChild(slide);
+
+	  // 適切なタイミングでアニメーションを発火
+	  setTimeout(() => {
+	    slide.classList.add('show');
+	  }, 50);
+
+	  // 前のスライドを消す（fade-out → remove）
+	  if (prevSlide) {
+	    prevSlide.classList.remove('show');
+	    prevSlide.classList.add('fade-out');
+	    setTimeout(() => {
+	      if (prevSlide.parentNode) prevSlide.parentNode.removeChild(prevSlide);
+	    }, 2500); // CSSのtransitionと同じ時間
+	  }
+	  prevSlide = slide;
 	}
+
+	// ループ
 	function loopScenes() {
-		showScene(current);
-		current = (current + 1) % scenes.length;
+	  showScene(current);
+	  current = (current + 1) % scenes.length;
 	}
-	loopScenes();
+
+	// 最初の一枚目だけ即座に表示してループをスタート
+	showScene(current);
+	current = (current + 1) % scenes.length;
 	setInterval(loopScenes, 6000);
+
 	// テキストフェードイン
 	window.addEventListener('load', function() {
-		setTimeout(() => {
-			document.getElementById('venus-overlay-text').classList.add('show');
-		}, 200);
+	  setTimeout(() => {
+	    document.getElementById('venus-overlay-text').classList.add('show');
+	  }, 200);
 	});
 	</script>
 
