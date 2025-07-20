@@ -128,6 +128,7 @@
 	  .venus-title { font-size: 1.4em; }
 	  .venus-subtitle { font-size: 0.7em; }
 	}
+	
 	/* --- ここまでスライドショー用 --- */
 
 	#header h1 {
@@ -144,6 +145,47 @@
 	  font-family: 'Cinzel', serif;
 	  letter-spacing: 0.08em;
 	}
+
+	.feature-icon {
+	  display: block;
+	  margin: 0 auto 0.6em auto;   /* 上下の余白を確保 */
+	  width: 48px;
+	  height: 48px;
+	  max-width: 48px;
+	  max-height: 48px;
+	  object-fit: contain;         /* アイコン画像の縦横比を維持しつつ枠内に収める */
+	  border-radius: 10px;         /* お好み。丸くしたいなら20px以上、四角なら0 */
+	  background: transparent;
+	  box-shadow: none;            /* お好みで薄く影を入れてもOK */
+	}
+
+	.features {
+	  display: flex;
+	  flex-wrap: wrap;
+	  justify-content: center;
+	  gap: 2em;
+	  padding-left: 0;
+	}
+	.features li {
+	  flex: 1 1 180px;
+	  max-width: 240px;
+	  min-width: 140px;
+	  text-align: center;
+	  list-style: none;
+	  margin: 0 0.6em;
+	}
+
+	@media (max-width: 800px) {
+	  .features {
+	    flex-direction: column;
+	    align-items: center;
+	  }
+	  .features li {
+	    max-width: 95vw;
+	    min-width: 0;
+	  }
+	}
+
 
 	</style>
 </head>
