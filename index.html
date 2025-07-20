@@ -71,33 +71,53 @@
 	.slide.show.effect-zoomRotate { transform: scale(1) rotate(0);}
 	.effect-circle { clip-path: circle(0% at center);}
 	.slide.show.effect-circle { clip-path: circle(100% at center);}
+
 	/* テキストオーバーレイ */
-	#banner #venus-overlay-text {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		z-index: 10;
-		width: 90vw;
-		font-family: "Times New Roman", Times, serif;
-		font-weight: bold;
-		color: white;
-		font-size: 3em;
-		text-align: center;
-		opacity: 0;
-		transition: opacity 2.5s;
-		text-shadow: 2px 2px 4px rgba(0,0,0,0.7), 4px 4px 7px rgba(0,0,0,0.6);
+	.banner-title-overlay {
+	  position: absolute;
+	  top: 38%;
+	  left: 50%;
+	  transform: translate(-50%, -50%);
+	  z-index: 11;
+	  width: 100vw;
+	  text-align: center;
+	  pointer-events: none; /* バナー内のクリック透過 */
 	}
-	#banner #venus-overlay-text.show { opacity: 1; }
+
+	.banner-title-overlay h2 {
+	  color: #fff;
+	  font-size: 4em;
+	  letter-spacing: 0.08em;
+	  font-family: "Times New Roman", Times, serif;
+	  font-weight: bold;
+	  text-shadow:
+	    2px 2px 6px #000,
+	    4px 4px 10px rgba(0,0,0,0.4);
+	  margin: 0 0 0.2em 0;
+	}
+
+	.banner-title-overlay p {
+	  color: #fff;
+	  font-size: 1.8em;
+	  letter-spacing: 0.04em;
+	  font-family: "Times New Roman", Times, serif;
+	  text-shadow:
+	    2px 2px 4px #000,
+	    4px 4px 8px rgba(0,0,0,0.4);
+	  margin: 0;
+	  font-weight: 400;
+	}
 
 	@media (max-width: 900px) {
-		#banner, .slideshow, .slide, .img-layer { height: 60vw !important; min-height: 320px;}
-		#banner #venus-overlay-text { font-size: 2em;}
+	  .banner-title-overlay h2 { font-size: 2.2em; }
+	  .banner-title-overlay p { font-size: 1.0em; }
 	}
 	@media (max-width: 600px) {
-		#banner, .slideshow, .slide, .img-layer { height: 70vw !important; min-height: 240px;}
-		#banner #venus-overlay-text { font-size: 1.1em;}
+	  .banner-title-overlay { top: 34%; }
+	  .banner-title-overlay h2 { font-size: 1.5em; }
+	  .banner-title-overlay p { font-size: 0.8em; }
 	}
+
 	/* --- ここまでスライドショー用 --- */
 	</style>
 </head>
@@ -106,20 +126,16 @@
 	<!-- Page Wrapper -->
 	<div id="page-wrapper">
 		
-		<!-- Banner -->
+
 		<section id="banner">
-			<!-- スライドショー領域 -->
-			<div class="slideshow" id="venus-slideshow"></div>
-			<!-- 常時テキスト -->
-			<div id="venus-overlay-text">
-				Vast Exploration for Nascent Unexplored Sources<br>(VENUS)
-			</div>
-			<div class="inner" style="position:relative;z-index:20;">
-				<!-- <h2 style="color:white;text-shadow:2px 2px 6px #000;">VENUS</h2> -->
-				<!-- pタグは下でテキスト被るので消してもOK（テキストレイヤーで代用可） -->
-			</div>
-			<a href="#one" class="more scrolly"></a>
+		  <div class="slideshow" id="venus-slideshow"></div>
+		  <div class="banner-title-overlay">
+		    <h2>VENUS</h2>
+		    <p>Vast Exploration for Nascent Unexplored Sources</p>
+		  </div>
+		  <a href="#one" class="more scrolly"></a>
 		</section>
+
 
 		<!-- Main about splash -->
 		<section id="one" class="wrapper style1 special">
