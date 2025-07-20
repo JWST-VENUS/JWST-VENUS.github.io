@@ -161,19 +161,20 @@
 	}
 
 	.features {
-	  display: flex;
-	  flex-wrap: wrap;
-	  justify-content: center;
-	  gap: 2em;
+	  display: grid;
+	  grid-template-columns: repeat(2, 1fr);
+	  grid-gap: 2em;
+	  justify-items: center;
+	  align-items: start;
 	  padding-left: 0;
 	}
+
 	.features li {
-	  flex: 1 1 180px;
-	  max-width: 240px;
-	  min-width: 140px;
-	  text-align: center;
 	  list-style: none;
-	  margin: 0 0.6em;
+	  width: 100%;
+	  max-width: 300px;
+	  text-align: center;
+	  margin: 0;
 	}
 
 	@media (max-width: 800px) {
@@ -186,6 +187,11 @@
 	    min-width: 0;
 	  }
 	}
+	@media (max-width: 800px) {
+	  .features {
+	    grid-template-columns: 1fr;
+	  }
+}
 
 
 	</style>
