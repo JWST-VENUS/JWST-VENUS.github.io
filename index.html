@@ -505,5 +505,43 @@
 	});
 	</script>
 
+	<script>
+	(function() {
+	  const slider = document.getElementById('teamSlider');
+	  if (!slider) return;
+
+	  const track  = slider.querySelector('.team-track');
+	  const slides = Array.from(slider.querySelectorAll('.team-slide'));
+	  const prev   = slider.querySelector('.prev');
+	  const next   = slider.querySelector('.next');
+	  let index = 0;
+
+	  function update() {
+	    track.style.transform = 'translateX(' + (-index * 100) + '%)';
+	  }
+
+	  prev.addEventListener('click', function() {
+	    index = (index - 1 + slides.length) % slides.length;
+	    update();
+	  });
+
+	  next.addEventListener('click', function() {
+	    index = (index + 1) % slides.length;
+	    update();
+	  });
+
+	  // キーボード操作（左右矢印）
+	  slider.addEventListener('keydown', function(e) {
+	    if (e.key === 'ArrowLeft')  { prev.click(); }
+	    if (e.key === 'ArrowRight') { next.click(); }
+	  });
+
+	  // フォーカスリングを出したい場合はCSS側で:focus可視化もOK
+	  // 初期表示
+	  update();
+	})();
+	</script>
+
+
 </body>
 </html>
