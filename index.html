@@ -205,81 +205,66 @@
 	  border-radius: 0.5em;
 	}
 
-/* --- Meet the Team スライダー（全体表示版） --- */
-
-/* 比率固定ボックス（16:9。違う比率なら 3/2 や 4/3 に変更） */
-.team-slider {
+/* --- Meet the Team: Research風スライダー --- */
+.meet-slider {
   position: relative;
   width: 100%;
-  background: #0f0f12;   /* 余白の色（テーマに合わせて調整可） */
-  border-radius: 0.25rem;
+  background: #0b0b0d;      /* 余白色。テーマに合わせて調整可 */
+  border-radius: 4px;
   overflow: hidden;
 }
-/* padding-topで高さを作る：56.25% = 16:9 */
-.team-slider::before {
-  content: "";
-  display: block;
-  padding-top: 56.25%;
-}
-
-/* 中身をボックスいっぱいに広げる */
-.team-track,
-.team-slide {
-  position: absolute;
-  inset: 0;       /* top:0; right:0; bottom:0; left:0; の省略 */
-}
-
-.team-track {
+.meet-viewport { width: 100%; }
+.meet-track {
   display: flex;
-  width: 300%;               /* 3枚なら300% */
-  height: 100%;              /* ← これで内部の高さが親に一致 */
-  transition: transform 0.45s ease;
+  width: 300%;              /* 3枚なので300% */
+  transition: transform 0.4s ease;
 }
-
-.team-slide {
-  min-width: 100%;
-  height: 100%;
-  display: flex;             /* 画像を中央寄せ */
-  align-items: center;
+.meet-slide {
+  flex: 0 0 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;       /* 画像を中央寄せ */
   justify-content: center;
+  background: #000;         /* レターボックス用 */
 }
-
-.team-slide img {
+.meet-slide img {
   max-width: 100%;
   max-height: 100%;
-  width: auto;               /* 伸長しない */
-  height: auto;              /* 伸長しない */
-  object-fit: contain;       /* ← 全体が入る */
+  width: 100%;              /* 親の横幅にフィット */
+  height: auto;             /* 歪み防止 */
+  object-fit: contain;      /* 常に全体が見える（はみ出しなし） */
+  display: block;
 }
 
-/* 矢印（そのまま使ってOK） */
-.team-nav button {
+/* 左右ナビ（Bootstrap風の丸矢印） */
+.meet-arrow {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 44px;
-  height: 44px;
-  border: none;
-  border-radius: 50%;
+  top: 50%; transform: translateY(-50%);
+  width: 44px; height: 44px; border: none; border-radius: 50%;
   background: rgba(0,0,0,0.35);
-  color: #fff;
-  font-size: 22px;
-  line-height: 44px;
-  text-align: center;
-  cursor: pointer;
-  z-index: 3;
-  transition: background 0.2s;
+  color: #fff; font-size: 22px; line-height: 44px; text-align: center;
+  cursor: pointer; z-index: 3; transition: background 0.2s ease;
 }
-.team-nav button:hover,
-.team-nav button:focus { background: rgba(0,0,0,0.55); }
-.team-nav .prev { left: 10px; }
-.team-nav .next { right: 10px; }
+.meet-arrow:hover, .meet-arrow:focus { background: rgba(0,0,0,0.55); }
+.meet-arrow.prev { left: 8px; }
+.meet-arrow.next { right: 8px; }
 
-/* テーマ側の高さ指定を無効化（念のため） */
-.spotlight .image img { height: auto !important; width: auto !important; }
+/* 研究セクションのドット相当：横長バーのインジケータ */
+.meet-indicators {
+  position: absolute;
+  left: 0; right: 0; bottom: 8px;
+  display: flex; gap: 6px; justify-content: center; z-index: 3;
+}
+.meet-indicators button {
+  width: 28px; height: 5px; border: none; border-radius: 3px;
+  background: rgba(255,255,255,0.35); cursor: pointer;
+}
+.meet-indicators button.active { background: #fff; }
 
+/* HTML5 UP Spectral の既定高さを上書き（念のため） */
+.spotlight .image img { height: auto !important; }
 
-	</style>
+</style>
 </head>
 <body class="landing is-preload">
 
@@ -347,24 +332,31 @@
 		<section id="two" class="wrapper alt style2">
 			<section class="spotlight">
 				<div class="image">
-					  <div class="team-slider" id="teamSlider" aria-label="Meet the Team screenshots" tabindex="0">
-					    <div class="team-track">
-					      <div class="team-slide">
-					        <img src="images/group1.png" alt="Team Zoom screenshot 1">
-					      </div>
-					      <div class="team-slide">
-					        <img src="images/group2.png" alt="Team Zoom screenshot 2">
-					      </div>
-					      <div class="team-slide">
-					        <img src="images/group3.png" alt="Team Zoom screenshot 3">
-					      </div>
-					    </div>
-					    <div class="team-nav">
-					      <button class="prev" aria-label="Previous slide">&#10094;</button>
-					      <button class="next" aria-label="Next slide">&#10095;</button>
-					    </div>
-					  </div>
-					</div>
+				  <div class="meet-slider" id="meetTeamSlider" aria-label="Meet the Team screenshots" tabindex="0">
+				    <div class="meet-viewport">
+				      <div class="meet-track">
+				        <div class="meet-slide">
+				          <img src="images/group1.png" alt="Team Zoom screenshot 1">
+				        </div>
+				        <div class="meet-slide">
+				          <img src="images/group2.png" alt="Team Zoom screenshot 2">
+				        </div>
+				        <div class="meet-slide">
+				          <img src="images/group3.png" alt="Team Zoom screenshot 3">
+				        </div>
+				      </div>
+				    </div>
+
+				    <button class="meet-arrow prev" aria-label="Previous slide">&#10094;</button>
+				    <button class="meet-arrow next" aria-label="Next slide">&#10095;</button>
+
+				    <div class="meet-indicators" role="tablist" aria-label="Meet the Team slide indicators">
+				      <button type="button" aria-label="Go to slide 1" aria-controls="meetTeamSlider"></button>
+				      <button type="button" aria-label="Go to slide 2" aria-controls="meetTeamSlider"></button>
+				      <button type="button" aria-label="Go to slide 3" aria-controls="meetTeamSlider"></button>
+				    </div>
+				  </div>
+				</div>
 				<div class="content">
 					<h2>Meet the Team</h2>
 					<p>
@@ -515,43 +507,44 @@
 	});
 	</script>
 
-	<script>
-	(function() {
-	  const slider = document.getElementById('teamSlider');
-	  if (!slider) return;
+<script>
+(function(){
+  const root  = document.getElementById('meetTeamSlider');
+  if (!root) return;
 
-	  const track  = slider.querySelector('.team-track');
-	  const slides = Array.from(slider.querySelectorAll('.team-slide'));
-	  const prev   = slider.querySelector('.prev');
-	  const next   = slider.querySelector('.next');
-	  let index = 0;
+  const track = root.querySelector('.meet-track');
+  const slides = Array.from(root.querySelectorAll('.meet-slide'));
+  const prev = root.querySelector('.meet-arrow.prev');
+  const next = root.querySelector('.meet-arrow.next');
+  const dots = Array.from(root.querySelectorAll('.meet-indicators button'));
+  let index = 0;
 
-	  function update() {
-	    track.style.transform = 'translateX(' + (-index * 100) + '%)';
-	  }
+  function update(to) {
+    if (typeof to === 'number') index = to;
+    track.style.transform = 'translateX(' + (-index * 100) + '%)';
+    dots.forEach((d,i)=>d.classList.toggle('active', i===index));
+  }
 
-	  prev.addEventListener('click', function() {
-	    index = (index - 1 + slides.length) % slides.length;
-	    update();
-	  });
+  prev.addEventListener('click', () => {
+    index = (index - 1 + slides.length) % slides.length;
+    update();
+  });
+  next.addEventListener('click', () => {
+    index = (index + 1) % slides.length;
+    update();
+  });
+  dots.forEach((btn,i)=>btn.addEventListener('click', ()=>update(i)));
 
-	  next.addEventListener('click', function() {
-	    index = (index + 1) % slides.length;
-	    update();
-	  });
+  // キーボードでも左右で操作
+  root.addEventListener('keydown', (e)=>{
+    if (e.key === 'ArrowLeft')  prev.click();
+    if (e.key === 'ArrowRight') next.click();
+  });
 
-	  // キーボード操作（左右矢印）
-	  slider.addEventListener('keydown', function(e) {
-	    if (e.key === 'ArrowLeft')  { prev.click(); }
-	    if (e.key === 'ArrowRight') { next.click(); }
-	  });
-
-	  // フォーカスリングを出したい場合はCSS側で:focus可視化もOK
-	  // 初期表示
-	  update();
-	})();
-	</script>
-
+  // 初期表示
+  update(0);
+})();
+</script>
 
 </body>
 </html>
