@@ -205,36 +205,54 @@
 	  border-radius: 0.5em;
 	}
 
-/* --- Meet the Team スライダー（修正版） --- */
+/* --- Meet the Team スライダー（全体表示版） --- */
+
+/* 比率固定ボックス（16:9。違う比率なら 3/2 や 4/3 に変更） */
 .team-slider {
   position: relative;
   width: 100%;
-  /* 高さは固定しない。比率で決める */
-  aspect-ratio: 16/9;          /* スクショに合わせて 3/2, 4/3 等に変更可 */
-  overflow: hidden;
+  background: #0f0f12;   /* 余白の色（テーマに合わせて調整可） */
   border-radius: 0.25rem;
+  overflow: hidden;
+}
+/* padding-topで高さを作る：56.25% = 16:9 */
+.team-slider::before {
+  content: "";
+  display: block;
+  padding-top: 56.25%;
+}
+
+/* 中身をボックスいっぱいに広げる */
+.team-track,
+.team-slide {
+  position: absolute;
+  inset: 0;       /* top:0; right:0; bottom:0; left:0; の省略 */
 }
 
 .team-track {
   display: flex;
-  width: 300%;                 /* 3枚なら 300% */
-  /* 高さはコンテンツに任せる */
+  width: 300%;               /* 3枚なら300% */
+  height: 100%;              /* ← これで内部の高さが親に一致 */
   transition: transform 0.45s ease;
 }
 
 .team-slide {
   min-width: 100%;
-  /* 高さはコンテンツに任せる */
+  height: 100%;
+  display: flex;             /* 画像を中央寄せ */
+  align-items: center;
+  justify-content: center;
 }
 
 .team-slide img {
-  display: block;
-  width: 100%;
-  height: auto;                /* ← これが重要：縦の歪み防止 */
-  object-fit: cover;           /* はみ出しはトリミングして見栄えキープ */
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;               /* 伸長しない */
+  height: auto;              /* 伸長しない */
+  object-fit: contain;       /* ← 全体が入る */
 }
 
-/* 矢印 */
+/* 矢印（そのまま使ってOK） */
 .team-nav button {
   position: absolute;
   top: 50%;
@@ -250,20 +268,16 @@
   text-align: center;
   cursor: pointer;
   z-index: 3;
-  transition: background 0.2s ease;
+  transition: background 0.2s;
 }
 .team-nav button:hover,
 .team-nav button:focus { background: rgba(0,0,0,0.55); }
 .team-nav .prev { left: 10px; }
 .team-nav .next { right: 10px; }
 
-/* テーマ側のimg高さ指定を上書き（念のため） */
-.spotlight .image img { height: auto !important; }
+/* テーマ側の高さ指定を無効化（念のため） */
+.spotlight .image img { height: auto !important; width: auto !important; }
 
-/* モバイルで比率を変えたい場合 */
-@media (max-width: 980px) {
-  .team-slider { aspect-ratio: 21/9; }
-}
 
 	</style>
 </head>
