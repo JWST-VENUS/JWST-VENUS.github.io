@@ -205,6 +205,69 @@
 	  border-radius: 0.5em;
 	}
 
+/* --- Meet the Team スライダー --- */
+.team-slider {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 0.25rem;
+}
+
+.team-track {
+  display: flex;
+  width: 300%;
+  height: 100%;
+  transition: transform 0.45s ease;
+}
+
+.team-slide {
+  min-width: 100%;
+  height: 100%;
+}
+
+.team-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* ズームスクショをきれいにフィット */
+}
+
+/* ナビ矢印 */
+.team-nav button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.35);
+  color: #fff;
+  font-size: 22px;
+  line-height: 44px;
+  text-align: center;
+  cursor: pointer;
+  z-index: 3;
+  transition: background 0.2s ease;
+}
+
+.team-nav button:hover,
+.team-nav button:focus {
+  background: rgba(0,0,0,0.55);
+  outline: none;
+}
+
+.team-nav .prev { left: 10px; }
+.team-nav .next { right: 10px; }
+
+/* スポットライトの画像枠に馴染むよう比率を調整（テーマの高さに依存） */
+.spotlight .image { display: block; }
+.spotlight .image .team-slider { aspect-ratio: 16/9; } /* 好みで変更可 */
+@media (max-width: 980px) {
+  .spotlight .image .team-slider { aspect-ratio: 21/9; }
+}
+
 
 	</style>
 </head>
@@ -273,7 +336,25 @@
 		<!-- Two -->
 		<section id="two" class="wrapper alt style2">
 			<section class="spotlight">
-				<div class="image"><img src="images/pic01.jpg" alt="" /></div>
+				<div class="image">
+					  <div class="team-slider" id="teamSlider" aria-label="Meet the Team screenshots" tabindex="0">
+					    <div class="team-track">
+					      <div class="team-slide">
+					        <img src="images/group1.png" alt="Team Zoom screenshot 1">
+					      </div>
+					      <div class="team-slide">
+					        <img src="images/group2.png" alt="Team Zoom screenshot 2">
+					      </div>
+					      <div class="team-slide">
+					        <img src="images/group3.png" alt="Team Zoom screenshot 3">
+					      </div>
+					    </div>
+					    <div class="team-nav">
+					      <button class="prev" aria-label="Previous slide">&#10094;</button>
+					      <button class="next" aria-label="Next slide">&#10095;</button>
+					    </div>
+					  </div>
+					</div>
 				<div class="content">
 					<h2>Meet the Team</h2>
 					<p>
