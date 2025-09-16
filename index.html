@@ -205,63 +205,68 @@
 	  border-radius: 0.5em;
 	}
 
-/* --- Meet the Team: Research風スライダー --- */
+/* --- Meet the Team: ズームなし・自然比率スライダー --- */
+/* 既存の .team- / .meet- スタイルは削除してOK */
+
 .meet-slider {
-  position: relative;
+  position: relative;        /* インジケータ・矢印の基準 */
   width: 100%;
-  background: #0b0b0d;      /* 余白色。テーマに合わせて調整可 */
+  overflow: hidden;          /* 横スクロールを隠すだけ */
+  background: transparent;   /* 余白色は親任せ */
   border-radius: 4px;
-  overflow: hidden;
-}
-.meet-viewport { width: 100%; }
-.meet-track {
-  display: flex;
-  width: 300%;              /* 3枚なので300% */
-  transition: transform 0.4s ease;
-}
-.meet-slide {
-  flex: 0 0 100%;
-  width: 100%;
-  display: flex;
-  align-items: center;       /* 画像を中央寄せ */
-  justify-content: center;
-  background: #000;         /* レターボックス用 */
-}
-.meet-slide img {
-  max-width: 100%;
-  max-height: 100%;
-  width: 100%;              /* 親の横幅にフィット */
-  height: auto;             /* 歪み防止 */
-  object-fit: contain;      /* 常に全体が見える（はみ出しなし） */
-  display: block;
 }
 
-/* 左右ナビ（Bootstrap風の丸矢印） */
+/* 高さは “画像の自然比率” に完全依存させるため、絶対配置しない */
+.meet-track {
+  white-space: nowrap;       /* 横に並べる */
+  transition: transform 0.35s ease;
+}
+
+.meet-slide {
+  display: inline-block;
+  width: 100%;
+  vertical-align: top;
+}
+
+.meet-slide img {
+  display: block;
+  width: 100%;
+  height: auto;              /* ← ズーム・歪み禁止 */
+  object-fit: contain;       /* 余白が出ても可。cover は使わない */
+  background: transparent;
+  border-radius: 0;
+}
+
+/* 左右矢印（クリックだけ） */
 .meet-arrow {
   position: absolute;
   top: 50%; transform: translateY(-50%);
-  width: 44px; height: 44px; border: none; border-radius: 50%;
+  width: 40px; height: 40px;
+  border: none; border-radius: 50%;
   background: rgba(0,0,0,0.35);
-  color: #fff; font-size: 22px; line-height: 44px; text-align: center;
-  cursor: pointer; z-index: 3; transition: background 0.2s ease;
+  color: #fff; font-size: 20px; line-height: 40px; text-align: center;
+  cursor: pointer; z-index: 3;
 }
-.meet-arrow:hover, .meet-arrow:focus { background: rgba(0,0,0,0.55); }
+.meet-arrow:hover { background: rgba(0,0,0,0.55); }
 .meet-arrow.prev { left: 8px; }
 .meet-arrow.next { right: 8px; }
 
-/* 研究セクションのドット相当：横長バーのインジケータ */
+/* 下部インジケータ（Research のバー風） */
 .meet-indicators {
   position: absolute;
   left: 0; right: 0; bottom: 8px;
-  display: flex; gap: 6px; justify-content: center; z-index: 3;
+  display: flex; justify-content: center; gap: 6px; z-index: 2;
+  pointer-events: auto;
 }
 .meet-indicators button {
-  width: 28px; height: 5px; border: none; border-radius: 3px;
-  background: rgba(255,255,255,0.35); cursor: pointer;
+  width: 28px; height: 5px;
+  border: none; border-radius: 3px;
+  background: rgba(255,255,255,0.35);
+  cursor: pointer;
 }
 .meet-indicators button.active { background: #fff; }
 
-/* HTML5 UP Spectral の既定高さを上書き（念のため） */
+/* テーマ側の “高さ固定” を無効化（念のため） */
 .spotlight .image img { height: auto !important; }
 
 </style>
