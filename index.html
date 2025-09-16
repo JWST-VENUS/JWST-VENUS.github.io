@@ -237,19 +237,41 @@
   border-radius: 0;
 }
 
-/* 左右矢印（クリックだけ） */
 .meet-arrow {
   position: absolute;
-  top: 50%; transform: translateY(-50%);
-  width: 40px; height: 40px;
-  border: none; border-radius: 50%;
-  background: rgba(0,0,0,0.35);
-  color: #fff; font-size: 20px; line-height: 40px; text-align: center;
-  cursor: pointer; z-index: 3;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0; 
+  height: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  z-index: 3;
 }
-.meet-arrow:hover { background: rgba(0,0,0,0.55); }
-.meet-arrow.prev { left: 8px; }
-.meet-arrow.next { right: 8px; }
+
+/* 左矢印（三角形） */
+.meet-arrow.prev {
+  left: 10px;
+  border-top: 30px solid transparent;
+  border-bottom: 30px solid transparent;
+  border-right: 40px solid rgba(255,255,255,0.85);
+}
+
+/* 右矢印（三角形） */
+.meet-arrow.next {
+  right: 10px;
+  border-top: 30px solid transparent;
+  border-bottom: 30px solid transparent;
+  border-left: 40px solid rgba(255,255,255,0.85);
+}
+
+/* ホバー時に色を少し濃くする */
+.meet-arrow.prev:hover {
+  border-right-color: #fff;
+}
+.meet-arrow.next:hover {
+  border-left-color: #fff;
+}
 
 /* 下部インジケータ（Research のバー風） */
 .meet-indicators {
