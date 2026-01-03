@@ -130,10 +130,6 @@
 	}
 	.venus-subtitle.show { opacity: 1; }
 
-	@keyframes venusLineGrow{
-	  from { width: 0; }
-	  to   { width: 72%; }          /* 好みで 60〜90% で調整 */
-	}
 
 	/* ロゴ：上下ラインが出た後、上ラインの“上側”にフェードイン */
 	#venus-logo{
@@ -147,7 +143,16 @@
 	  opacity: 0;
 	  filter: drop-shadow(2px 2px 8px rgba(0,0,0,0.45));
 	  animation: venusLogoFadeIn 1.0s ease forwards;
-	  animation-delay: 1s;        /* 上下ライン完了後 */
+	  animation-delay: 2.6s;        /* 上下ライン完了後 */
+	}
+
+	#venus-logo.show{
+	  animation: venusLogoFadeIn 1.0s ease forwards; /* ← showで発火 */
+	}
+
+	@keyframes venusLineGrow{
+	  from { width: 0; }
+	  to   { width: 72%; }          /* 好みで 60〜90% で調整 */
 	}
 
 	@keyframes venusLogoFadeIn{
@@ -389,7 +394,7 @@
 		  setTimeout(() => {
 		    const el = document.querySelector('.venus-subtitle');
 		    if (el) el.classList.add('show');
-		  }, 2600); // ← ライン→ロゴの後に出す（お好みで調整）
+		  }, 1000); // ← ライン→ロゴの後に出す（お好みで調整）
 		}
 		</script>
 
