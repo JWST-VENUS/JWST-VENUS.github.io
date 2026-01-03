@@ -89,13 +89,14 @@
 	  pointer-events: none;
 	}
 
+	/* ===== タイトルまわり：サイズUP ===== */
 	.venus-title {
 	  color: #fff;
 	  font-family: 'Cinzel', serif;
-	  font-size: 8em;
+	  font-size: 16em;              /* ← 2倍（元: 8em） */
 	  font-weight: bold;
 	  text-shadow: 2px 2px 6px #000, 4px 4px 10px rgba(0,0,0,0.4);
-	  margin: 0 0 0.7em 0; /* ← 余白はここで調整 */
+	  margin: 0 0 0.25em 0;
 	  line-height: 1;
 	  letter-spacing: 0.08em;
 	}
@@ -103,30 +104,82 @@
 	.venus-subtitle {
 	  color: #fff;
 	  font-family: 'Cinzel', serif;
-	  font-size: 1em;  /* VENUSの半分サイズ */
-	  font-weight: normal;  /* 太字解除 */
+	  font-size: 1.5em;             /* ← 1.5倍（元: 1em） */
+	  font-weight: normal;
 	  text-shadow: 2px 2px 4px #000, 4px 4px 8px rgba(0,0,0,0.4);
 	  margin: 0;
 	  opacity: 0;
-	  transition: opacity 3.5s;
+	  transition: opacity 1.2s ease;
 	  letter-spacing: 0.02em;
 	}
-	.venus-subtitle.show {
-	  opacity: 1;
-	}
-	.banner-title-overlay .venus-subtitle.show {
-	  opacity: 1;
+	.venus-subtitle.show { opacity: 1; }
+
+	/* ===== 上下ライン + ロゴの演出 ===== */
+	.venus-title-wrap{
+	  position: relative;
+	  display: inline-block;
+	  padding: 0.35em 0; /* ラインと文字の間隔 */
 	}
 
-	/* モバイル対応も忘れず */
-	@media (max-width: 900px) {
-	  .venus-title { font-size: 2.3em; }
-	  .venus-subtitle { font-size: 1.15em; }
+	/* ライン（上/下）を疑似要素で描画して横に伸ばす */
+	.venus-title-wrap::before,
+	.venus-title-wrap::after{
+	  content: "";
+	  position: absolute;
+	  left: 50%;
+	  transform: translateX(-50%);
+	  height: 3px;
+	  width: 0;
+	  background: rgba(255,255,255,0.95);
+	  box-shadow: 0 0 10px rgba(0,0,0,0.25);
+	  border-radius: 2px;
+	  animation: venusLineGrow 1.1s ease forwards;
 	}
+
+	.venus-title-wrap::before{
+	  top: 0.05em;                  /* 上ライン */
+	  animation-delay: 0.2s;
+	}
+	.venus-title-wrap::after{
+	  bottom: 0.05em;               /* 下ライン */
+	  animation-delay: 0.9s;
+	}
+
+	@keyframes venusLineGrow{
+	  from { width: 0; }
+	  to   { width: 72%; }          /* 好みで 60〜90% で調整 */
+	}
+
+	/* ロゴ：上下ラインが出た後、上ラインの“上側”にフェードイン */
+	#venus-logo{
+	  position: absolute;
+	  left: 50%;
+	  top: 0.02em;                  /* 上ライン付近 */
+	  transform: translate(-50%, -120%); /* ← 上ラインの上に持ち上げる */
+	  width: 3.2em;                 /* タイトルに追従するサイズ感 */
+	  max-width: 40vw;
+	  height: auto;
+	  opacity: 0;
+	  filter: drop-shadow(2px 2px 8px rgba(0,0,0,0.45));
+	  animation: venusLogoFadeIn 1.0s ease forwards;
+	  animation-delay: 2.1s;        /* 上下ライン完了後 */
+	}
+
+	@keyframes venusLogoFadeIn{
+	  from { opacity: 0; transform: translate(-50%, -140%); }
+	  to   { opacity: 1; transform: translate(-50%, -120%); }
+	}
+
+	/* ===== モバイル：倍率を保ったまま全体を調整 ===== */
+	@media (max-width: 900px) {
+	  .venus-title { font-size: 4.6em; }     /* 元 2.3em → 2倍 */
+	  .venus-subtitle { font-size: 1.725em; }/* 元 1.15em → 1.5倍 */
+	}
+
 	@media (max-width: 600px) {
 	  .banner-title-overlay { top: 34%; }
-	  .venus-title { font-size: 1.4em; }
-	  .venus-subtitle { font-size: 0.7em; }
+	  .venus-title { font-size: 2.8em; }     /* 元 1.4em → 2倍 */
+	  .venus-subtitle { font-size: 1.05em; } /* 元 0.7em → 1.5倍 */
 	}
 
 	/* --- ここまでスライドショー用 --- */
@@ -324,24 +377,27 @@
 		<section id="banner">
 		  <div class="slideshow" id="venus-slideshow"></div>
 
-		  <!-- ▼ フェードインロゴ追加 -->
-		  <img src="icon/VENUS_logo_V_W2.png" alt="VENUS logo" id="venus-logo">
-		  <!-- ▲ -->
-
 		  <div class="banner-title-overlay">
-		    <h2 class="venus-title">VENUS</h2>
+		    <div class="venus-title-wrap">
+		      <!-- ロゴをここへ移動（上ラインの上側に出す） -->
+		      <img src="icon/VENUS_logo_V_W2.png" alt="VENUS logo" id="venus-logo">
+
+		      <h2 class="venus-title">VENUS</h2>
+		    </div>
+
 		    <p class="venus-subtitle">Vast Exploration for Nascent Unexplored Sources</p>
 		  </div>
 
 		  <a href="#one" class="more scrolly"></a>
 		</section>
 
+
 		<script>
 		window.onload = function() {
 		  setTimeout(() => {
 		    const el = document.querySelector('.venus-subtitle');
 		    if (el) el.classList.add('show');
-		  }, 900);
+		  }, 2600); // ← ライン→ロゴの後に出す（お好みで調整）
 		}
 		</script>
 
