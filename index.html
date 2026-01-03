@@ -364,15 +364,31 @@
 	  overflow: hidden;       /* はみ出しカット */
 	}
 
-	/* 高さ固定した枠に対して、画像を全面にフィット（トリミングあり） */
+	/* =========================
+	   Fixed-height image box (no cropping)
+	   ========================= */
+	.spotlight-fixedimg .image{
+	  height: 360px;           /* ← 固定したい縦サイズ */
+	  display: flex;
+	  align-items: center;     /* 縦中央 */
+	  justify-content: center; /* 横中央 */
+	  overflow: hidden;        /* 念のため */
+	}
+
+	/* 画像は比率維持で最大表示（切らない） */
 	.spotlight-fixedimg .image img{
-	  width: 100%;
-	  height: 100% !important;    /* ← 既存の height:auto !important を上書き */
-	  object-fit: cover;          /* トリミングして枠いっぱい */
+	  max-width: 100%;
+	  max-height: 100%;
+	  width: auto;
+	  height: auto;
+	  object-fit: contain;     /* ← ここがポイント */
 	  display: block;
 	}
+
 	@media screen and (max-width: 736px){
-	  .spotlight-fixedimg .image{ height: 240px; } /* モバイルは少し低く */
+	  .spotlight-fixedimg .image{
+	    height: 240px;         /* モバイルでは少し低く */
+	  }
 	}
 
 	/* ===== Acknowledgement text above footer ===== */
