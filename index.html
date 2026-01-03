@@ -150,6 +150,11 @@
 	  animation: venusLogoFadeIn 1.0s ease forwards; /* ← showで発火 */
 	}
 
+	#venus-logo,
+	.venus-logo-wrap.show #venus-logo{
+	  transform: none;
+	}
+
 	@keyframes venusLineGrow{
 	  from { width: 0; }
 	  to   { width: 72%; }          /* 好みで 60〜90% で調整 */
