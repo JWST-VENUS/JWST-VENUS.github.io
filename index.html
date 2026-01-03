@@ -402,7 +402,17 @@
 
 /* Data Products: 連続する段落の間だけ詰める */
 .spotlight .content p + p{
-  margin-top: -1em;   /* ← 好みで -0.4〜-0.8em */
+  margin-top: -2em;   /* ← 好みで -0.4〜-0.8em */
+}
+
+/* Data Products（spotlight-fixedimg）だけ、左右の余白を詰めて画像を広げる */
+#two .spotlight.spotlight-fixedimg .image{
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+#two .spotlight.spotlight-fixedimg .content{
+  padding-left: 2em;  /* 近づけすぎ防止。好みで 1〜3em */
 }
 
   </style>
