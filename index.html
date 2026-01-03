@@ -260,6 +260,12 @@
   box-sizing: border-box;
 }
 
+.meet-slide{
+  display: inline-block;  /* ← これが無いと縦に積まれる */
+  width: 100%;
+  vertical-align: top;
+}
+
 /* 画像（スライド領域）自体は padding の内側で100% */
 .meet-viewport{
   overflow: hidden;          /* ← 画像ははみ出さないようにここで隠す */
@@ -365,9 +371,6 @@
   #menu ul li a{
     font-size: 1.25em !important;
   }
-  /* Meet矢印が外に出すぎる場合は少し戻す */
-  .meet-arrow.prev { left: -34px; }
-  .meet-arrow.next { right: -34px; }
 }
 
 /* ===== ヘッダー左上の "VENUS" を画像ロゴに置換 ===== */
