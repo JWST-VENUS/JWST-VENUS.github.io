@@ -91,25 +91,25 @@
 
 	/* ===== Bannerタイトルを確実に上書き ===== */
 	#banner .banner-title-overlay .venus-title{
-	  font-size: 3.5em !important;     /* ←確実に反映 */
+	  font-size: 3.5em !important;
 	  line-height: 1 !important;
 	  margin: 0 0 0.25em 0 !important;
 	  letter-spacing: 0.08em !important;
-	  text-transform: none !important; /* テンプレの強制大文字化等を無効化 */
+	  text-transform: none !important;
 	}
 
-	/* ロゴ位置決め用（あなたのCSSに抜けている） */
+	/* ロゴ位置決め用 */
 	#banner .banner-title-overlay .venus-title-wrap{
 	  position: relative;
 	  display: inline-block;
 	  padding: 0.35em 0;
 	}
 
-	/* ===== タイトルまわり：サイズUP ===== */
+	/* ===== タイトルまわり ===== */
 	.venus-title {
 	  color: #fff;
 	  font-family: 'Cinzel', serif;
-	  font-size: 20em;              /* ← 2倍（元: 8em） */
+	  font-size: 20em;
 	  font-weight: bold;
 	  text-shadow: 2px 2px 6px #000, 4px 4px 10px rgba(0,0,0,0.4);
 	  margin: 0 0 0.25em 0;
@@ -120,61 +120,52 @@
 	.venus-subtitle {
 	  color: #fff;
 	  font-family: 'Cinzel', serif;
-	  font-size: 1.em;             /* ← 1.5倍（元: 1em） */
+	  font-size: 1em; /* (元の 1.em は無効なので修正) */
 	  font-weight: normal;
 	  text-shadow: 2px 2px 4px #000, 4px 4px 8px rgba(0,0,0,0.4);
-	  margin: 2em 0 0 0;   /* ← 上に余白を追加 */
+	  margin: 2em 0 0 0;
 	  opacity: 0;
 	  transition: opacity 1s ease;
 	  letter-spacing: 0.02em;
 	}
 	.venus-subtitle.show { opacity: 1; }
 
-
-	/* ロゴ：上下ラインが出た後、上ラインの“上側”にフェードイン */
+	/* ロゴ */
 	#venus-logo{
 	  position: absolute;
 	  left: 50%;
-	  top: 0.02em;                  /* 上ライン付近 */
-	  transform: translate(-50%, -120%); /* ← 上ラインの上に持ち上げる */
-	  width: 16em;                 /* タイトルに追従するサイズ感 */
+	  top: 0.02em;
+	  transform: translate(-50%, -120%);
+	  width: 16em;
 	  max-width: 80vw;
 	  height: auto;
 	  opacity: 0;
 	  filter: drop-shadow(2px 2px 8px rgba(0,0,0,0.45));
 	  animation: venusLogoFadeIn 1.0s ease forwards;
-	  animation-delay: 3.s;        /* 上下ライン完了後 */
+	  animation-delay: 3s; /* (元の 3.s は無効なので修正) */
 	}
-
 	#venus-logo.show{
-	  animation: venusLogoFadeIn 1.0s ease forwards; /* ← showで発火 */
-	}
-
-	#venus-logo,
-	.venus-logo-wrap.show #venus-logo{
-	  transform: none;
+	  animation: venusLogoFadeIn 1.0s ease forwards;
 	}
 
 	@keyframes venusLineGrow{
 	  from { width: 0; }
-	  to   { width: 72%; }          /* 好みで 60〜90% で調整 */
+	  to   { width: 72%; }
 	}
-
 	@keyframes venusLogoFadeIn{
 	  from { opacity: 0; transform: translate(-50%, -140%); }
 	  to   { opacity: 1; transform: translate(-50%, -120%); }
 	}
 
-	/* ===== モバイル：倍率を保ったまま全体を調整 ===== */
+	/* ===== モバイル ===== */
 	@media (max-width: 900px) {
-	  .venus-title { font-size: 4.6em; }     /* 元 2.3em → 2倍 */
-	  .venus-subtitle { font-size: 1.725em; }/* 元 1.15em → 1.5倍 */
+	  .venus-title { font-size: 4.6em; }
+	  .venus-subtitle { font-size: 1.725em; }
 	}
-
 	@media (max-width: 600px) {
 	  .banner-title-overlay { top: 34%; }
-	  .venus-title { font-size: 2.8em; }     /* 元 1.4em → 2倍 */
-	  .venus-subtitle { font-size: 1.05em; } /* 元 0.7em → 1.5倍 */
+	  .venus-title { font-size: 2.8em; }
+	  .venus-subtitle { font-size: 1.05em; }
 	}
 
 	/* --- ここまでスライドショー用 --- */
@@ -186,15 +177,15 @@
 
 	.feature-icon {
 	  display: block;
-	  margin: 0 auto 0.6em auto;   /* 上下の余白を確保 */
+	  margin: 0 auto 0.6em auto;
 	  width: 95px;
 	  height: 95px;
 	  max-width: 95px;
 	  max-height: 95px;
-	  object-fit: contain;         /* アイコン画像の縦横比を維持しつつ枠内に収める */
-	  border-radius: 10px;         /* お好み。丸くしたいなら20px以上、四角なら0 */
+	  object-fit: contain;
+	  border-radius: 10px;
 	  background: transparent;
-	  box-shadow: none;            /* お好みで薄く影を入れてもOK */
+	  box-shadow: none;
 	}
 
 	.features {
@@ -215,24 +206,19 @@
 	  margin: 0;
 	  list-style: none;
 	  text-align: center;
-	  /* カード風の背景や影はmain.cssに準拠 */
 	}
 	@media (max-width: 980px) {
-	  .features li {
-	    padding: 2em 1.5em 1.5em 1.5em;
-	  }
+	  .features li { padding: 2em 1.5em 1.5em 1.5em; }
 	}
 	@media (max-width: 736px) {
 	  .features li {
 	    width: 100%;
 	    padding: 2em 1.5em 1.5em 1.5em;
 	  }
-	  .features {
-	    flex-direction: column;
-	  }
+	  .features { flex-direction: column; }
 	}
 
-	/* アイコン画像にサイズ統一＋中央寄せ */
+	/* アイコン画像にサイズ統一＋中央寄せ（上書き） */
 	.feature-icon {
 	  display: block;
 	  width: 3.5em;
@@ -242,118 +228,121 @@
 	  border-radius: 0.5em;
 	}
 
-/* --- Meet the Team: ズームなし・自然比率スライダー --- */
-/* 既存の .team- / .meet- スタイルは削除してOK */
+	/* --- Meet the Team: ズームなし・自然比率スライダー --- */
 
-.meet-slider {
-  position: relative;        /* インジケータ・矢印の基準 */
-  width: 100%;
-  overflow: hidden;          /* 横スクロールを隠すだけ */
-  background: transparent;   /* 余白色は親任せ */
-  border-radius: 4px;
-}
+	.meet-slider {
+	  position: relative;
+	  width: 100%;
+	  overflow: visible;            /* ★矢印を外側に出すため hidden→visible */
+	  background: transparent;
+	  border-radius: 4px;
+	}
 
-/* 高さは “画像の自然比率” に完全依存させるため、絶対配置しない */
-.meet-track {
-  white-space: nowrap;       /* 横に並べる */
-  transition: transform 0.35s ease;
-}
+	.meet-track {
+	  white-space: nowrap;
+	  transition: transform 0.35s ease;
+	}
 
-.meet-slide {
-  display: inline-block;
-  width: 100%;
-  vertical-align: top;
-}
+	.meet-slide {
+	  display: inline-block;
+	  width: 100%;
+	  vertical-align: top;
+	}
 
-.meet-slide img {
-  display: block;
-  width: 100%;
-  height: auto;              /* ← ズーム・歪み禁止 */
-  object-fit: contain;       /* 余白が出ても可。cover は使わない */
-  background: transparent;
-  border-radius: 0;
-}
+	.meet-slide img {
+	  display: block;
+	  width: 100%;
+	  height: auto;
+	  object-fit: contain;
+	  background: transparent;
+	  border-radius: 0;
+	}
 
-.meet-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 0; 
-  height: 0;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  z-index: 3;
-}
+	.meet-arrow {
+	  position: absolute;
+	  top: 50%;
+	  transform: translateY(-50%);
+	  width: 0;
+	  height: 0;
+	  border: none;
+	  background: transparent;
+	  cursor: pointer;
+	  z-index: 3;
+	}
 
-/* 左矢印（三角形） */
-.meet-arrow.prev {
-  left: 10px;
-  border-top: 30px solid transparent;
-  border-bottom: 30px solid transparent;
-  border-right: 40px solid rgba(255,255,255,0.85);
-}
+	/* ★矢印を画像の外側へ（左右に出す） */
+	.meet-arrow.prev {
+	  left: -46px; /* ★外側へ */
+	  border-top: 30px solid transparent;
+	  border-bottom: 30px solid transparent;
+	  border-right: 40px solid rgba(255,255,255,0.85);
+	}
+	.meet-arrow.next {
+	  right: -46px; /* ★外側へ */
+	  border-top: 30px solid transparent;
+	  border-bottom: 30px solid transparent;
+	  border-left: 40px solid rgba(255,255,255,0.85);
+	}
 
-/* 右矢印（三角形） */
-.meet-arrow.next {
-  right: 10px;
-  border-top: 30px solid transparent;
-  border-bottom: 30px solid transparent;
-  border-left: 40px solid rgba(255,255,255,0.85);
-}
+	.meet-arrow.prev:hover { border-right-color: #fff; }
+	.meet-arrow.next:hover { border-left-color: #fff; }
 
-/* ホバー時に色を少し濃くする */
-.meet-arrow.prev:hover {
-  border-right-color: #fff;
-}
-.meet-arrow.next:hover {
-  border-left-color: #fff;
-}
+	.meet-indicators {
+	  position: absolute;
+	  left: 0; right: 0; bottom: 8px;
+	  display: flex; justify-content: center; gap: 6px; z-index: 2;
+	  pointer-events: auto;
+	}
+	.meet-indicators button {
+	  width: 28px; height: 5px;
+	  border: none; border-radius: 3px;
+	  background: rgba(255,255,255,0.35);
+	  cursor: pointer;
+	}
+	.meet-indicators button.active { background: #fff; }
 
-/* 下部インジケータ（Research のバー風） */
-.meet-indicators {
-  position: absolute;
-  left: 0; right: 0; bottom: 8px;
-  display: flex; justify-content: center; gap: 6px; z-index: 2;
-  pointer-events: auto;
-}
-.meet-indicators button {
-  width: 28px; height: 5px;
-  border: none; border-radius: 3px;
-  background: rgba(255,255,255,0.35);
-  cursor: pointer;
-}
-.meet-indicators button.active { background: #fff; }
+	/* テーマ側の “高さ固定” を無効化（念のため） */
+	.spotlight .image img { height: auto !important; }
 
-/* テーマ側の “高さ固定” を無効化（念のため） */
-.spotlight .image img { height: auto !important; }
+	/* ===== Menu トグル（右上）拡大 ===== */
+	#header nav ul li.special a.menuToggle{
+	  padding: 0.8em 2.4em 0.8em 2.0em !important;
+	}
+	#header nav ul li.special a.menuToggle span{
+	  font-size: 2em !important;
+	  letter-spacing: 0.25em !important;
+	}
+	#header nav ul li.special a.menuToggle:before,
+	#header nav ul li.special a.menuToggle:after{
+	  transform: scale(1.8) !important;
+	  right: 1.1em !important;
+	}
 
-/* ===== Menu 全体（文字＋アイコン＋クリック領域）を拡大 ===== */
-#header nav ul li.special a.menuToggle{
-  padding: 0.8em 2.4em 0.8em 2.0em !important; /* 上 右 下 左 */
-}
+	/* ===== ★修正1: MENU内（Home, About, ...）も大きく ===== */
+	#menu ul li a{
+	  font-size: 1.6em !important;     /* 好みで 1.3〜2.0 */
+	  letter-spacing: 0.06em !important;
+	  line-height: 1.5 !important;
+	}
 
-/* Menu の文字 */
-#header nav ul li.special a.menuToggle span{
-  font-size: 2em !important;
-  letter-spacing: 0.25em !important;
-}
-
-/* 右側のトグルアイコン（≡ / ×） */
-#header nav ul li.special a.menuToggle:before,
-#header nav ul li.special a.menuToggle:after{
-  transform: scale(1.8) !important;   /* アイコン自体を拡大 */
-  right: 1.1em !important;             /* 文字から少し離す */
-}
-
-</style>
+	/* モバイルでは少し抑える */
+	@media screen and (max-width: 736px){
+	  #menu ul li a{
+	    font-size: 1.25em !important;
+	  }
+	  /* Meet矢印が外に出すぎる場合は少し戻す */
+	  .meet-arrow.prev { left: -34px; }
+	  .meet-arrow.next { right: -34px; }
+	}
+	</style>
 </head>
+
 <body class="landing is-preload">
 
 	<!-- Page Wrapper -->
 	<div id="page-wrapper">
-		
-	<!-- Header -->
+
+		<!-- Header -->
 		<header id="header" class="alt">
 			<h1><a href="index.html">VENUS</a></h1>
 			<nav id="nav">
@@ -374,16 +363,12 @@
 			</nav>
 		</header>
 
-
-
 		<section id="banner">
 		  <div class="slideshow" id="venus-slideshow"></div>
 
 		  <div class="banner-title-overlay">
 		    <div class="venus-title-wrap">
-		      <!-- ロゴをここへ移動（上ラインの上側に出す） -->
 		      <img src="icon/VENUS_logo_V_W2.png" alt="VENUS logo" id="venus-logo">
-
 		      <h2 class="venus-title">VENUS</h2>
 		    </div>
 
@@ -393,13 +378,12 @@
 		  <a href="#one" class="more scrolly"></a>
 		</section>
 
-
 		<script>
 		window.onload = function() {
 		  setTimeout(() => {
 		    const el = document.querySelector('.venus-subtitle');
 		    if (el) el.classList.add('show');
-		  }, 1000); // ← ライン→ロゴの後に出す（お好みで調整）
+		  }, 1000);
 		}
 		</script>
 
@@ -419,6 +403,7 @@
 				</header>
 			</div>
 		</section>
+
 		<!-- Two -->
 		<section id="two" class="wrapper alt style2">
 			<section class="spotlight">
@@ -459,12 +444,13 @@
 					</p>
 				</div>
 			</section>
+
 			<section class="spotlight">
 				<div class="image"><img src="images/pic02.jpg" alt="" /></div>
 				<div class="content">
 					<h2>Data Products</h2>
 					<p>
-						Public data products, when available. 
+						Public data products, when available.
 						<ul>
 							<li>Lens models</li>
 							<li>Imaging</li>
@@ -473,6 +459,7 @@
 					</p>
 				</div>
 			</section>
+
 			<section class="spotlight">
 				<div class="image"><img src="images/pic03.jpg" alt="" /></div>
 				<div class="content">
@@ -481,6 +468,7 @@
 				</div>
 			</section>
 		</section>
+
 		<!-- Three -->
 		<section id="three" class="wrapper style3 special">
 			<div class="inner">
@@ -489,22 +477,22 @@
 					<p>The key science driving VENUS.</p>
 				</header>
 				<ul class="features">
-					<li>   
+					<li>
 						<img src="icon/icon_galaxy.png" alt="Earliest galaxies icon" class="feature-icon" />
 						<h3>Earliest galaxies</h3>
 						<p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
 					</li>
-					<li>   
+					<li>
 						<img src="icon/icon_star.png" alt="Earliest star clusters icon" class="feature-icon" />
 						<h3>Earliest star clusters</h3>
 						<p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
 					</li>
-					<li>   
+					<li>
 						<img src="icon/icon_bh.png" alt="Earliest blackholes icon" class="feature-icon" />
 						<h3>Earliest Black Holes</h3>
 						<p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
 					</li>
-					<li>   
+					<li>
 						<img src="icon/icon_sn.png" alt="Earliest supernovae icon" class="feature-icon" />
 						<h3>Earliest supernovae</h3>
 						<p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
@@ -512,6 +500,7 @@
 				</ul>
 			</div>
 		</section>
+
 		<!-- Footer -->
 		<footer id="footer">
 			<ul class="copyright">
@@ -528,7 +517,7 @@
 	<script src="assets/js/breakpoints.min.js"></script>
 	<script src="assets/js/util.js"></script>
 	<script src="assets/js/main.js"></script>
-	
+
 	<!-- スライドショーJS -->
 	<script>
 	// 画像リスト
@@ -565,11 +554,9 @@
 	  const scene = scenes[index];
 	  const slide = createSlide(scene);
 	  container.appendChild(slide);
-	  // 強制リフロー
 	  void slide.offsetWidth;
 	  setTimeout(() => slide.classList.add('show'), 10);
 
-	  // 前のshow（まだ残ってるもの）をfade-out
 	  const slides = container.querySelectorAll('.slide.show');
 	  if (slides.length > 1) {
 	    const fadeSlide = slides[0];
@@ -590,52 +577,44 @@
 	}
 	loopScenes();
 	setInterval(loopScenes, 6000);
-
-	window.addEventListener('load', function() {
-	  setTimeout(() => {
-	    document.getElementById('venus-overlay-text').classList.add('show');
-	  }, 200);
-	});
 	</script>
 
-<script>
-(function(){
-  const root  = document.getElementById('meetTeamSlider');
-  if (!root) return;
+	<script>
+	(function(){
+	  const root  = document.getElementById('meetTeamSlider');
+	  if (!root) return;
 
-  const track = root.querySelector('.meet-track');
-  const slides = Array.from(root.querySelectorAll('.meet-slide'));
-  const prev = root.querySelector('.meet-arrow.prev');
-  const next = root.querySelector('.meet-arrow.next');
-  const dots = Array.from(root.querySelectorAll('.meet-indicators button'));
-  let index = 0;
+	  const track = root.querySelector('.meet-track');
+	  const slides = Array.from(root.querySelectorAll('.meet-slide'));
+	  const prev = root.querySelector('.meet-arrow.prev');
+	  const next = root.querySelector('.meet-arrow.next');
+	  const dots = Array.from(root.querySelectorAll('.meet-indicators button'));
+	  let index = 0;
 
-  function update(to) {
-    if (typeof to === 'number') index = to;
-    track.style.transform = 'translateX(' + (-index * 100) + '%)';
-    dots.forEach((d,i)=>d.classList.toggle('active', i===index));
-  }
+	  function update(to) {
+	    if (typeof to === 'number') index = to;
+	    track.style.transform = 'translateX(' + (-index * 100) + '%)';
+	    dots.forEach((d,i)=>d.classList.toggle('active', i===index));
+	  }
 
-  prev.addEventListener('click', () => {
-    index = (index - 1 + slides.length) % slides.length;
-    update();
-  });
-  next.addEventListener('click', () => {
-    index = (index + 1) % slides.length;
-    update();
-  });
-  dots.forEach((btn,i)=>btn.addEventListener('click', ()=>update(i)));
+	  prev.addEventListener('click', () => {
+	    index = (index - 1 + slides.length) % slides.length;
+	    update();
+	  });
+	  next.addEventListener('click', () => {
+	    index = (index + 1) % slides.length;
+	    update();
+	  });
+	  dots.forEach((btn,i)=>btn.addEventListener('click', ()=>update(i)));
 
-  // キーボードでも左右で操作
-  root.addEventListener('keydown', (e)=>{
-    if (e.key === 'ArrowLeft')  prev.click();
-    if (e.key === 'ArrowRight') next.click();
-  });
+	  root.addEventListener('keydown', (e)=>{
+	    if (e.key === 'ArrowLeft')  prev.click();
+	    if (e.key === 'ArrowRight') next.click();
+	  });
 
-  // 初期表示
-  update(0);
-})();
-</script>
+	  update(0);
+	})();
+	</script>
 
 </body>
 </html>
