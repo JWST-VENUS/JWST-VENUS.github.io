@@ -89,6 +89,22 @@
 	  pointer-events: none;
 	}
 
+	/* ===== Bannerタイトルを確実に上書き ===== */
+	#banner .banner-title-overlay .venus-title{
+	  font-size: 16em !important;     /* ←確実に反映 */
+	  line-height: 1 !important;
+	  margin: 0 0 0.25em 0 !important;
+	  letter-spacing: 0.08em !important;
+	  text-transform: none !important; /* テンプレの強制大文字化等を無効化 */
+	}
+
+	/* ロゴ位置決め用（あなたのCSSに抜けている） */
+	#banner .banner-title-overlay .venus-title-wrap{
+	  position: relative;
+	  display: inline-block;
+	  padding: 0.35em 0;
+	}
+
 	/* ===== タイトルまわり：サイズUP ===== */
 	.venus-title {
 	  color: #fff;
@@ -152,11 +168,6 @@
 	}
 
 	/* --- ここまでスライドショー用 --- */
-
-	#header nav a {
-	  font-size: 6em;   /* ← MENU の文字サイズを上げる */
-	  letter-spacing: 0.15em;
-	}
 
 	@media screen and (max-width: 736px) {
 	  #header h1 a { font-size: 1.4em; }
@@ -306,6 +317,17 @@
 
 /* テーマ側の “高さ固定” を無効化（念のため） */
 .spotlight .image img { height: auto !important; }
+
+/* ===== 右上 "Menu" を確実に拡大 ===== */
+#header nav ul li.special a.menuToggle span{
+  font-size: 3em !important;       /* ここで大きく */
+  letter-spacing: 0.25em !important; /* space（字間） */
+}
+
+/* クリック領域も大きくしたい場合（任意） */
+#header nav ul li.special a.menuToggle{
+  padding: 0 1.2em !important;
+}
 
 </style>
 </head>
