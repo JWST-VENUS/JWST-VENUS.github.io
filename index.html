@@ -318,15 +318,22 @@
 /* テーマ側の “高さ固定” を無効化（念のため） */
 .spotlight .image img { height: auto !important; }
 
-/* ===== 右上 "Menu" を確実に拡大 ===== */
-#header nav ul li.special a.menuToggle span{
-  font-size: 2em !important;       /* ここで大きく */
-  letter-spacing: 0.25em !important; /* space（字間） */
+/* ===== Menu 全体（文字＋アイコン＋クリック領域）を拡大 ===== */
+#header nav ul li.special a.menuToggle{
+  padding: 0.8em 2.4em 0.8em 2.0em !important; /* 上 右 下 左 */
 }
 
-/* クリック領域も大きくしたい場合（任意） */
-#header nav ul li.special a.menuToggle{
-  padding: 0 1.2em !important;
+/* Menu の文字 */
+#header nav ul li.special a.menuToggle span{
+  font-size: 2em !important;
+  letter-spacing: 0.25em !important;
+}
+
+/* 右側のトグルアイコン（≡ / ×） */
+#header nav ul li.special a.menuToggle:before,
+#header nav ul li.special a.menuToggle:after{
+  transform: scale(1.8) !important;   /* アイコン自体を拡大 */
+  right: 1.1em !important;             /* 文字から少し離す */
 }
 
 </style>
