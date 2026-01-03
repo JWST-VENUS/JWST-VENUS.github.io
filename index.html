@@ -359,6 +359,25 @@
   .meet-arrow.next { right: -34px; }
 }
 
+/* ===== ヘッダー左上の "VENUS" を画像ロゴに置換 ===== */
+#header h1 a.header-logo{
+  border: 0 !important;
+  text-decoration: none !important;
+}
+
+#header h1 a.header-logo img{
+  display: block;
+  height: 2.2em;     /* ← だいたい “今の文字の2倍” 目安。必要なら 2.6〜3.8em で調整 */
+  width: auto;
+}
+
+/* モバイルは少し控えめに */
+@media screen and (max-width: 736px){
+  #header h1 a.header-logo img{
+    height: 2.2em;
+  }
+}
+
 </style>
 </head>
 <body class="landing is-preload">
