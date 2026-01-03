@@ -1,626 +1,205 @@
-<!DOCTYPE HTML>
-<!--
-	Spectral by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
+<!DOCTYPE html>
+<html lang="ja">
 <head>
-	<title>VENUS</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="assets/css/main.css" />
-	<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+  <meta charset="UTF-8">
+  <title>JWST VENUS</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: black;
+      overflow: hidden;
+      height: 100%;
+    }
 
-	<style>
-	/* --- ここからスライドショー用 --- */
+    /* スライドショー領域（背景画像） */
+    .slideshow {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+    }
 
-	html, body {
-	  font-family: 'Cinzel', serif;
-	}
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 3s ease-in-out, transform 3s ease-in-out, clip-path 3s ease-in-out;
+      z-index: 1;
+    }
 
-	#banner {
-		position: relative;
-		overflow: hidden;
-		min-height: 100vh;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		padding: 0;
-	}
+    .slide.show {
+      opacity: 1;
+      z-index: 2;
+    }
 
-	.slideshow {
-		position: absolute;
-		top: 0; left: 0;
-		width: 100vw; height: 100vh;
-		overflow: hidden;
-		z-index: 1;
-	}
-	.slide {
-		position: absolute;
-		width: 100vw; height: 100vh;
-		top: 0; left: 0;
-		opacity: 0;
-		transition: opacity 2.5s, transform 2.5s, clip-path 2.5s;
-		z-index: 1;
-	}
-	.slide.show {
-		opacity: 1;
-		z-index: 2;
-	}
-	.slide.fade-out {
-		opacity: 0;
-		z-index: 1;
-		transition: opacity 2.5s;
-	}
-	.img-layer {
-		width: 100vw; height: 100vh;
-		background-size: cover;
-		background-position: center;
-		animation: zoomEffect 7s forwards;
-	}
-	@keyframes zoomEffect {
-		from { transform: scale(1); }
-		to { transform: scale(1.2); }
-	}
-	.effect-fade { }
-	.effect-slideX { transform: translateX(-100%); }
-	.slide.show.effect-slideX { transform: translateX(0); }
-	.effect-splitX { clip-path: inset(50% 0 50% 0); }
-	.slide.show.effect-splitX { clip-path: inset(0 0 0 0); }
-	.effect-splitY { clip-path: inset(0 50% 0 50%); }
-	.slide.show.effect-splitY { clip-path: inset(0 0 0 0); }
-	.effect-slideY { transform: translateY(-100%); }
-	.slide.show.effect-slideY { transform: translateY(0); }
-	.effect-zoomRotate { transform: scale(0.7) rotate(-14deg);}
-	.slide.show.effect-zoomRotate { transform: scale(1) rotate(0);}
-	.effect-circle { clip-path: circle(0% at center);}
-	.slide.show.effect-circle { clip-path: circle(100% at center);}
+    .slide.fade-out {
+      opacity: 0;
+      z-index: 1;
+      transition: opacity 3s ease-in-out;
+    }
 
-	/* ===== Banner overlay（テキスト領域） ===== */
-	.banner-title-overlay {
-	  position: absolute;
-	  top: 50%;
-	  left: 50%;
-	  transform: translate(-50%, -50%);
-	  z-index: 11;
-	  width: 100vw;
-	  text-align: center;
-	  pointer-events: none;
-	}
+    /* 画像（背景）の表示部分。全ての画像にzoom効果を付与 */
+    .img-layer {
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      /* 8秒かけて拡大：初期 scale(1) から scale(1.3) へ */
+      animation: zoomEffect 8s forwards;
+    }
+    @keyframes zoomEffect {
+      from { transform: scale(1); }
+      to { transform: scale(1.3); }
+    }
 
-	/* ===== 新: title+subtitle+logoを1枚画像で表示 ===== */
-	.venus-sign-wrap{
-	  position: relative;
-	  display: inline-block;
-	  width: min(980px, 88vw);
-	}
+    /* 各シーンエフェクトの定義 */
+    .effect-fade {
+      /* 初期transform指定なし */
+    }
+    .effect-slideX { transform: translateX(-100%); }
+    .slide.show.effect-slideX { transform: translateX(0); }
+    .effect-splitX { clip-path: inset(50% 0 50% 0); }
+    .slide.show.effect-splitX { clip-path: inset(0 0 0 0); }
+    .effect-splitY { clip-path: inset(0 50% 0 50%); }
+    .slide.show.effect-splitY { clip-path: inset(0 0 0 0); }
+    .effect-slideY { transform: translateY(-100%); }
+    .slide.show.effect-slideY { transform: translateY(0); }
+    .effect-zoomRotate { transform: scale(0.6) rotate(-15deg); }
+    .slide.show.effect-zoomRotate { transform: scale(1) rotate(0); }
+    .effect-circle { clip-path: circle(0% at center); }
+    .slide.show.effect-circle { clip-path: circle(100% at center); }
 
-	/* 画像本体（最初は非表示→最終的にフェードイン） */
-	#venus-sign{
-	  display: block;
-	  width: 100%;
-	  height: auto;
-	  opacity: 0;
-	  filter: drop-shadow(0 6px 14px rgba(0,0,0,0.55));
-	  transform: translateY(8px);
-	}
-	#venus-sign.is-visible{
-	  animation: venusSignFadeIn 1.4s ease forwards;
-	  animation-delay: 0.20s; /* 懐中電灯演出の直後 */
-	}
-	@keyframes venusSignFadeIn{
-	  from { opacity: 0; transform: translateY(10px); }
-	  to   { opacity: 1; transform: translateY(0); }
-	}
+    /* 2分割スライドの場合 */
+    .half-left, .half-right {
+      position: absolute;
+      width: 50%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      top: 0;
+      transition: all 3s ease-in-out;
+      animation: zoomEffect 8s forwards;
+    }
+    .half-left { left: -50%; }
+    .half-right { right: -50%; }
+    .slide.show .half-left { left: 0; }
+    .slide.show .half-right { right: 0; }
 
-	/* ===== 懐中電灯っぽい「斜めの光」+ 一瞬だけ見えて消える演出 =====
-	   - “暗闇の看板” の上を斜めに光が走る
-	   - 走る瞬間だけ、画像が斜めにチラ見え → すぐ消える → その後フェードイン
-	*/
-	.venus-flash{
-	  position: absolute;
-	  inset: 0;
-	  pointer-events: none;
-	  opacity: 0;
-	}
-
-	/* 光のビーム（疑似要素） */
-	.venus-flash::before{
-	  content:"";
-	  position:absolute;
-	  top: -30%;
-	  left: -60%;
-	  width: 55%;
-	  height: 220%;
-	  transform: rotate(-18deg);
-	  background: linear-gradient(
-	    90deg,
-	    rgba(255,255,255,0) 0%,
-	    rgba(255,255,255,0.02) 20%,
-	    rgba(255,255,255,0.40) 50%,
-	    rgba(255,255,255,0.02) 80%,
-	    rgba(255,255,255,0) 100%
-	  );
-	  filter: blur(1.5px);
-	  mix-blend-mode: screen;
-	}
-
-	/* “一瞬だけ文字が斜めに見える” 用：画像をクリップしてチラ見せ */
-	.venus-flash::after{
-	  content:"";
-	  position:absolute;
-	  inset: 0;
-	  background: url("icon/VENUS_name logo_1_H1_W.png") center / contain no-repeat;
-	  opacity: 0;
-	  transform: rotate(-12deg) translateX(-10px);
-	  filter:
-	    brightness(1.15)
-	    contrast(1.05)
-	    drop-shadow(0 6px 16px rgba(0,0,0,0.55));
-	  /* 斜めビームの領域っぽく見せる */
-	  clip-path: polygon(0 45%, 100% 30%, 100% 55%, 0 70%);
-	}
-
-	/* 発火（JSで .run を付ける） */
-	.venus-sign-wrap.run .venus-flash{
-	  animation: flashContainer 0.65s ease forwards;
-	}
-	@keyframes flashContainer{
-	  0%   { opacity: 0; }
-	  8%   { opacity: 1; }
-	  100% { opacity: 0; }
-	}
-
-	.venus-sign-wrap.run .venus-flash::before{
-	  animation: flashlightSweep 0.65s ease forwards;
-	}
-	@keyframes flashlightSweep{
-	  0%   { transform: rotate(-18deg) translateX(0); }
-	  100% { transform: rotate(-18deg) translateX(240%); }
-	}
-
-	.venus-sign-wrap.run .venus-flash::after{
-	  animation: signGlimpse 0.65s ease forwards;
-	}
-	@keyframes signGlimpse{
-	  0%   { opacity: 0; }
-	  10%  { opacity: 0.85; }
-	  45%  { opacity: 0.55; }
-	  100% { opacity: 0; }
-	}
-
-	/* --- ここまでスライドショー用 --- */
-
-	/* ===== Menu 全体（文字＋アイコン＋クリック領域）を拡大 ===== */
-	#header nav ul li.special a.menuToggle{
-	  padding: 0.8em 2.4em 0.8em 2.0em !important;
-	}
-	#header nav ul li.special a.menuToggle span{
-	  font-size: 2em !important;
-	  letter-spacing: 0.25em !important;
-	}
-	#header nav ul li.special a.menuToggle:before,
-	#header nav ul li.special a.menuToggle:after{
-	  transform: scale(1.8) !important;
-	  right: 1.1em !important;
-	}
-
-	/* Meet the Team slider / features etc.（元のまま） */
-	.feature-icon {
-	  display: block;
-	  margin: 0 auto 0.6em auto;
-	  width: 95px;
-	  height: 95px;
-	  max-width: 95px;
-	  max-height: 95px;
-	  object-fit: contain;
-	  border-radius: 10px;
-	  background: transparent;
-	  box-shadow: none;
-	}
-	.features {
-	  display: flex;
-	  flex-wrap: wrap;
-	  justify-content: center;
-	  padding-left: 0;
-	  margin: 0 auto;
-	  max-width: 64em;
-	}
-	.features li {
-	  box-sizing: border-box;
-	  display: flex;
-	  flex-direction: column;
-	  align-items: center;
-	  width: 50%;
-	  padding: 2.5em 2em 2em 2em;
-	  margin: 0;
-	  list-style: none;
-	  text-align: center;
-	}
-	@media (max-width: 980px) {
-	  .features li { padding: 2em 1.5em 1.5em 1.5em; }
-	}
-	@media (max-width: 736px) {
-	  .features li {
-	    width: 100%;
-	    padding: 2em 1.5em 1.5em 1.5em;
-	  }
-	  .features { flex-direction: column; }
-	}
-	.feature-icon {
-	  display: block;
-	  width: 3.5em;
-	  height: 3.5em;
-	  margin: 0 auto 1em auto;
-	  object-fit: contain;
-	  border-radius: 0.5em;
-	}
-
-	.meet-slider {
-	  position: relative;
-	  width: 100%;
-	  overflow: hidden;
-	  background: transparent;
-	  border-radius: 4px;
-	}
-	.meet-track {
-	  white-space: nowrap;
-	  transition: transform 0.35s ease;
-	}
-	.meet-slide {
-	  display: inline-block;
-	  width: 100%;
-	  vertical-align: top;
-	}
-	.meet-slide img {
-	  display: block;
-	  width: 100%;
-	  height: auto;
-	  object-fit: contain;
-	  background: transparent;
-	  border-radius: 0;
-	}
-	.meet-arrow {
-	  position: absolute;
-	  top: 50%;
-	  transform: translateY(-50%);
-	  width: 0;
-	  height: 0;
-	  border: none;
-	  background: transparent;
-	  cursor: pointer;
-	  z-index: 3;
-	}
-	.meet-arrow.prev {
-	  left: 10px;
-	  border-top: 30px solid transparent;
-	  border-bottom: 30px solid transparent;
-	  border-right: 40px solid rgba(255,255,255,0.85);
-	}
-	.meet-arrow.next {
-	  right: 10px;
-	  border-top: 30px solid transparent;
-	  border-bottom: 30px solid transparent;
-	  border-left: 40px solid rgba(255,255,255,0.85);
-	}
-	.meet-arrow.prev:hover { border-right-color: #fff; }
-	.meet-arrow.next:hover { border-left-color: #fff; }
-
-	.meet-indicators {
-	  position: absolute;
-	  left: 0; right: 0; bottom: 8px;
-	  display: flex; justify-content: center; gap: 6px; z-index: 2;
-	  pointer-events: auto;
-	}
-	.meet-indicators button {
-	  width: 28px; height: 5px;
-	  border: none; border-radius: 3px;
-	  background: rgba(255,255,255,0.35);
-	  cursor: pointer;
-	}
-	.meet-indicators button.active { background: #fff; }
-	.spotlight .image img { height: auto !important; }
-
-	/* ===== レスポンシブ微調整：看板画像サイズ ===== */
-	@media (max-width: 600px){
-	  .banner-title-overlay{ top: 34%; }
-	  .venus-sign-wrap{ width: min(520px, 92vw); }
-	}
-	</style>
+    /* テキストレイヤー（常に表示、初回はフェードイン） */
+    #text-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      width: 90vw;
+      font-family: "Times New Roman", Times, serif;
+      font-weight: bold;
+      color: white;
+      font-size: 4em;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 3s ease-in-out;
+      /* 立体感を出すためのtext-shadow */
+      text-shadow: 
+        2px 2px 3px rgba(0,0,0,0.7),
+        4px 4px 5px rgba(0,0,0,0.6),
+        6px 6px 7px rgba(0,0,0,0.5);
+    }
+    #text-overlay.show {
+      opacity: 1;
+    }
+  </style>
 </head>
+<body>
 
-<body class="landing is-preload">
+<!-- 背景のスライドショー -->
+<div class="slideshow" id="slideshow"></div>
+<!-- 常時表示するテキストレイヤー -->
+<div id="text-overlay">
+  Vast Exploration for Nascent Unexplored Sources<br>(VENUS)
+</div>
 
-	<!-- Page Wrapper -->
-	<div id="page-wrapper">
+<script>
+  // 画像パスに a2744.jpg と plckg165.jpg を追加
+  const images = [
+    'cover_image/a2744.jpg',
+    'cover_image/plckg165.jpg',
+    'cover_image/smacs0723.png',
+    'cover_image/elgordo.png',
+    'cover_image/macs0416.jpg',
+    'cover_image/spt0615.jpg'
+  ];
 
-		<!-- Header -->
-		<header id="header" class="alt">
-			<h1><a href="index.html">VENUS</a></h1>
-			<nav id="nav">
-				<ul>
-					<li class="special">
-						<a href="#menu" class="menuToggle"><span>Menu</span></a>
-						<div id="menu">
-							<ul>
-								<li><a href="index.html">Home</a></li>
-								<li><a href="about.html">About</a></li>
-								<li><a href="team.html">Meet the Team</a></li>
-								<li><a href="data.html">Data Products</a></li>
-								<li><a href="pubs.html">Publications</a></li>
-							</ul>
-						</div>
-					</li>
-				</ul>
-			</nav>
-		</header>
+  // 各シーンの設定（シーンごとにエフェクトを指定）
+  const scenes = [
+    { image: images[0], effect: 'effect-splitX' },
+    { image: images[1], effect: 'effect-fade' },
+    { image: images[2], effect: 'effect-zoomRotate' },
+    { image: images[3], effect: 'effect-splitY' },
+    { image: images[4], effect: 'effect-circle' },
+    { image: images[5], effect: 'effect-slideX' }
+  ];
 
-		<section id="banner">
-		  <div class="slideshow" id="venus-slideshow"></div>
+  const container = document.getElementById('slideshow');
+  let current = 0;
+  let prevSlide = null;
 
-		  <div class="banner-title-overlay">
-		    <div class="venus-sign-wrap" id="venusSignWrap" aria-label="VENUS title image">
-		      <!-- 斜めに一瞬見えて消える → フェードインする “看板” -->
-		      <div class="venus-flash" aria-hidden="true"></div>
-		      <img
-		        src="icon/VENUS_name logo_1_H1_W.png"
-		        alt="VENUS — Vast Exploration for Nascent Unexplored Sources"
-		        id="venus-sign"
-		        loading="eager"
-		        decoding="async"
-		      />
-		    </div>
-		  </div>
+  // スライド要素生成関数
+  function createSlide(scene) {
+    const slide = document.createElement('div');
+    slide.classList.add('slide', scene.effect);
 
-		  <a href="#one" class="more scrolly"></a>
-		</section>
+    if (scene.effect === 'effect-merge') {
+      // 2分割スライドの場合
+      const left = document.createElement('div');
+      left.className = 'half-left';
+      left.style.backgroundImage = `url(${scene.image})`;
+      const right = document.createElement('div');
+      right.className = 'half-right';
+      right.style.backgroundImage = `url(${scene.image})`;
+      slide.appendChild(left);
+      slide.appendChild(right);
+    } else {
+      // 通常スライド：背景画像を保持する子要素（.img-layer）にzoom適用
+      const imgLayer = document.createElement('div');
+      imgLayer.className = 'img-layer';
+      imgLayer.style.backgroundImage = `url(${scene.image})`;
+      slide.appendChild(imgLayer);
+    }
 
-		<script>
-		// タイトル画像：懐中電灯の斜めスイープ → 少し待ってフェードイン
-		window.addEventListener('load', function () {
-		  const wrap = document.getElementById('venusSignWrap');
-		  const sign = document.getElementById('venus-sign');
-		  if (!wrap || !sign) return;
+    container.appendChild(slide);
+    return slide;
+  }
 
-		  // 1) 一瞬だけ斜めに見える（懐中電灯）
-		  wrap.classList.add('run');
+  // 新しいシーン表示
+  function showScene(index) {
+    const scene = scenes[index];
+    const slide = createSlide(scene);
+    setTimeout(() => slide.classList.add('show'), 50);
+    if (prevSlide) {
+      prevSlide.classList.add('fade-out');
+    }
+    prevSlide = slide;
+  }
 
-		  // 2) その後に本体をフェードイン
-		  setTimeout(() => {
-		    sign.classList.add('is-visible');
-		  }, 700); // 懐中電灯(0.65s)の直後
-		});
-		</script>
+  // 6秒周期でシーン切替
+  function loopScenes() {
+    showScene(current);
+    current = (current + 1) % scenes.length;
+  }
+  
+  loopScenes();
+  setInterval(loopScenes, 6000);
 
-		<!-- Main about splash -->
-		<section id="one" class="wrapper style1 special">
-			<div class="inner">
-				<header class="major">
-					<h2>VENUS explores the earliest epoch of the universe<br />
-						<span style="white-space: nowrap;">using the most massive galaxies as a magnifying glass</span></h2>
-					<p>
-						VENUS will unlock uniform 10-filter NIRCam imaging across 60 lensing clusters in Cycle 4<br />
-						and multi-epoch NIRCam imaging + NIRSpec PRISM+G395M spectroscopy in Cycle 5
-					</p>
-					<p>
-						Read more about VENUS <a href="about.html">here</a>.
-					</p>
-				</header>
-			</div>
-		</section>
-
-		<!-- Two -->
-		<section id="two" class="wrapper alt style2">
-			<section class="spotlight">
-				<div class="image">
-				  <div class="meet-slider" id="meetTeamSlider" aria-label="Meet the Team screenshots" tabindex="0">
-				    <div class="meet-viewport">
-				      <div class="meet-track">
-				        <div class="meet-slide">
-				          <img src="images/group1.png" alt="Team Zoom screenshot 1">
-				        </div>
-				        <div class="meet-slide">
-				          <img src="images/group2.png" alt="Team Zoom screenshot 2">
-				        </div>
-				        <div class="meet-slide">
-				          <img src="images/group3.png" alt="Team Zoom screenshot 3">
-				        </div>
-				      </div>
-				    </div>
-
-				    <button class="meet-arrow prev" aria-label="Previous slide">&#10094;</button>
-				    <button class="meet-arrow next" aria-label="Next slide">&#10095;</button>
-
-				    <div class="meet-indicators" role="tablist" aria-label="Meet the Team slide indicators">
-				      <button type="button" aria-label="Go to slide 1" aria-controls="meetTeamSlider"></button>
-				      <button type="button" aria-label="Go to slide 2" aria-controls="meetTeamSlider"></button>
-				      <button type="button" aria-label="Go to slide 3" aria-controls="meetTeamSlider"></button>
-				    </div>
-				  </div>
-				</div>
-				<div class="content">
-					<h2>Meet the Team</h2>
-					<p>
-						PIs Seiji Fujimoto (U.Toronto) & Dan Coe (STScI). <br>
-						International team from many+ institutions.
-					</p>
-					<p>
-						Read more about our team <a href="team.html">here</a>.
-					</p>
-				</div>
-			</section>
-
-			<section class="spotlight">
-				<div class="image"><img src="images/pic02.jpg" alt="" /></div>
-				<div class="content">
-					<h2>Data Products</h2>
-					<p>
-						Public data products, when available.
-						<ul>
-							<li>Lens models</li>
-							<li>Imaging</li>
-							<li>Catalogs</li>
-						</ul>
-					</p>
-				</div>
-			</section>
-
-			<section class="spotlight">
-				<div class="image"><img src="images/pic03.jpg" alt="" /></div>
-				<div class="content">
-					<h2>Publications</h2>
-					<p>View on ADS.</p>
-				</div>
-			</section>
-		</section>
-
-		<!-- Three -->
-		<section id="three" class="wrapper style3 special">
-			<div class="inner">
-				<header class="major">
-					<h2>Key Science Goals</h2>
-					<p>The key science driving VENUS.</p>
-				</header>
-				<ul class="features">
-					<li>
-						<img src="icon/icon_galaxy.png" alt="Earliest galaxies icon" class="feature-icon" />
-						<h3>Earliest galaxies</h3>
-						<p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
-					</li>
-					<li>
-						<img src="icon/icon_star.png" alt="Earliest star clusters icon" class="feature-icon" />
-						<h3>Earliest star clusters</h3>
-						<p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
-					</li>
-					<li>
-						<img src="icon/icon_bh.png" alt="Earliest blackholes icon" class="feature-icon" />
-						<h3>Earliest Black Holes</h3>
-						<p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
-					</li>
-					<li>
-						<img src="icon/icon_sn.png" alt="Earliest supernovae icon" class="feature-icon" />
-						<h3>Earliest supernovae</h3>
-						<p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
-					</li>
-				</ul>
-			</div>
-		</section>
-
-		<!-- Footer -->
-		<footer id="footer">
-			<ul class="copyright">
-				<li>&copy; JWST-VENUS</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li> Seiji Fujimoto & Hollis Akins
-			</ul>
-		</footer>
-	</div>
-
-	<!-- Scripts -->
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/jquery.scrollex.min.js"></script>
-	<script src="assets/js/jquery.scrolly.min.js"></script>
-	<script src="assets/js/browser.min.js"></script>
-	<script src="assets/js/breakpoints.min.js"></script>
-	<script src="assets/js/util.js"></script>
-	<script src="assets/js/main.js"></script>
-
-	<!-- スライドショーJS -->
-	<script>
-	// 画像リスト
-	const images = [
-	  'cover_image/a2744.jpg',
-	  'cover_image/plckg165.jpg',
-	  'cover_image/smacs0723.png',
-	  'cover_image/elgordo.png',
-	  'cover_image/macs0416.jpg',
-	  'cover_image/spt0615.jpg'
-	];
-	const scenes = [
-	  { image: images[0], effect: 'effect-splitX' },
-	  { image: images[1], effect: 'effect-fade' },
-	  { image: images[2], effect: 'effect-zoomRotate' },
-	  { image: images[3], effect: 'effect-splitY' },
-	  { image: images[4], effect: 'effect-circle' },
-	  { image: images[5], effect: 'effect-slideX' }
-	];
-	const container = document.getElementById('venus-slideshow');
-	let current = 0;
-
-	function createSlide(scene) {
-	  const slide = document.createElement('div');
-	  slide.classList.add('slide', scene.effect);
-	  const imgLayer = document.createElement('div');
-	  imgLayer.className = 'img-layer';
-	  imgLayer.style.backgroundImage = `url(${scene.image})`;
-	  slide.appendChild(imgLayer);
-	  return slide;
-	}
-
-	function showScene(index) {
-	  const scene = scenes[index];
-	  const slide = createSlide(scene);
-	  container.appendChild(slide);
-	  void slide.offsetWidth;
-	  setTimeout(() => slide.classList.add('show'), 10);
-
-	  const slides = container.querySelectorAll('.slide.show');
-	  if (slides.length > 1) {
-	    const fadeSlide = slides[0];
-	    fadeSlide.classList.remove('show');
-	    fadeSlide.classList.add('fade-out');
-	    fadeSlide.addEventListener('transitionend', function onFade(e) {
-	      if (e.propertyName === "opacity") {
-	        if (fadeSlide.parentNode) fadeSlide.parentNode.removeChild(fadeSlide);
-	        fadeSlide.removeEventListener('transitionend', onFade);
-	      }
-	    });
-	  }
-	}
-
-	function loopScenes() {
-	  showScene(current);
-	  current = (current + 1) % scenes.length;
-	}
-	loopScenes();
-	setInterval(loopScenes, 6000);
-	</script>
-
-	<script>
-	(function(){
-	  const root  = document.getElementById('meetTeamSlider');
-	  if (!root) return;
-
-	  const track = root.querySelector('.meet-track');
-	  const slides = Array.from(root.querySelectorAll('.meet-slide'));
-	  const prev = root.querySelector('.meet-arrow.prev');
-	  const next = root.querySelector('.meet-arrow.next');
-	  const dots = Array.from(root.querySelectorAll('.meet-indicators button'));
-	  let index = 0;
-
-	  function update(to) {
-	    if (typeof to === 'number') index = to;
-	    track.style.transform = 'translateX(' + (-index * 100) + '%)';
-	    dots.forEach((d,i)=>d.classList.toggle('active', i===index));
-	  }
-
-	  prev.addEventListener('click', () => {
-	    index = (index - 1 + slides.length) % slides.length;
-	    update();
-	  });
-	  next.addEventListener('click', () => {
-	    index = (index + 1) % slides.length;
-	    update();
-	  });
-	  dots.forEach((btn,i)=>btn.addEventListener('click', ()=>update(i)));
-
-	  root.addEventListener('keydown', (e)=>{
-	    if (e.key === 'ArrowLeft')  prev.click();
-	    if (e.key === 'ArrowRight') next.click();
-	  });
-
-	  update(0);
-	})();
-	</script>
+  // ページ読み込み時テキストフェードイン
+  window.addEventListener('load', function() {
+    setTimeout(() => {
+      document.getElementById('text-overlay').classList.add('show');
+    }, 50);
+  });
+</script>
 
 </body>
 </html>
