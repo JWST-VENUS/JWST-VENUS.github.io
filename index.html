@@ -136,7 +136,7 @@
 	  position: absolute;
 	  left: 50%;
 	  top: 0.02em;                  /* 上ライン付近 */
-	  transform: translate(-50%, -120%); /* ← 上ラインの上に持ち上げる */
+	  transform: none /*translate(-50%, -120%); /* ← 上ラインの上に持ち上げる */
 	  width: 16em;                 /* タイトルに追従するサイズ感 */
 	  max-width: 80vw;
 	  height: auto;
@@ -146,8 +146,22 @@
 	  animation-delay: 2.6s;        /* 上下ライン完了後 */
 	}
 
-	#venus-logo.show{
-	  animation: venusLogoFadeIn 1.0s ease forwards; /* ← showで発火 */
+	.venus-logo-wrap{
+	  position: absolute;
+	  left: 50%;
+	  top: 0.02em;
+	  transform: translate(-50%, -118%); /* ← -120% → -118% */
+	}
+
+	/* show時も opacity のみ */
+	.venus-logo-wrap.show #venus-logo{
+	  opacity: 1;
+	  transition: opacity 0.35s ease;
+	}
+
+	.venus-logo-wrap.show::after{
+	  transform: translateX(102%);
+	  transition: transform 0.9s cubic-bezier(.2,.8,.2,1);
 	}
 
 	@keyframes venusLineGrow{
