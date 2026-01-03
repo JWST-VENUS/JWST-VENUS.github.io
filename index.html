@@ -357,6 +357,24 @@
   /* Theme override (kept) */
   .spotlight .image img{ height: auto !important; }
 
+
+	/* Data Products等：画像枠の高さを固定して揃える */
+	.spotlight-fixedimg .image{
+	  height: 360px;          /* 好みで固定値に */
+	  overflow: hidden;       /* はみ出しカット */
+	}
+
+	/* 高さ固定した枠に対して、画像を全面にフィット（トリミングあり） */
+	.spotlight-fixedimg .image img{
+	  width: 100%;
+	  height: 100% !important;    /* ← 既存の height:auto !important を上書き */
+	  object-fit: cover;          /* トリミングして枠いっぱい */
+	  display: block;
+	}
+	@media screen and (max-width: 736px){
+	  .spotlight-fixedimg .image{ height: 240px; } /* モバイルは少し低く */
+	}
+
   </style>
 </head>
 
@@ -471,20 +489,18 @@
         </div>
       </section>
 
-      <section class="spotlight">
-        <div class="image"><img src="cover_image/MJ1931.png" alt="" /></div>
-        <div class="content">
-          <h2>Data Products</h2>
-          <p>
-            Public data products, when available.
-          <ul>
-            <li>Reduced Images</li>
-            <li>Catalogs</li>
-            <li>Lens models</li>
-          </ul>
-          </p>
-        </div>
-      </section>
+			<section class="spotlight spotlight-fixedimg">
+			  <div class="image"><img src="cover_image/MJ1931.png" alt="" /></div>
+			  <div class="content">
+			    <h2>Data Products</h2>
+			    <p>Public data products, when available.</p>
+			    <ul>
+			      <li>Reduced Images</li>
+			      <li>Catalogs</li>
+			      <li>Lens models</li>
+			    </ul>
+			  </div>
+			</section>
 
       <section class="spotlight">
         <div class="image"><img src="images/pic03.jpg" alt="" /></div>
