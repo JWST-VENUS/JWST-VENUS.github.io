@@ -435,6 +435,34 @@
   margin-bottom: 2em;
 }
 
+/* =========================
+   Key Science Goals: 背景画像（薄暗く）
+   ========================= */
+#three.wrapper.style3.special{
+  position: relative;
+  background-image: url("images/cover_key.png"); /* ← 好きな画像 */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* 黒の半透明オーバーレイ */
+#three.wrapper.style3.special::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.55); /* ← 暗さ調整（0.4〜0.7がおすすめ） */
+  z-index: 0;
+}
+
+/* 中身はオーバーレイの上に */
+#three.wrapper.style3.special > *{
+  position: relative;
+  z-index: 1;
+}
+
+
+
   </style>
 </head>
 
@@ -598,7 +626,7 @@
 			</section>
 
       <section class="spotlight">
-        <div class="image"><img src="images/pub_cover2.png" alt="" /></div>
+        <div class="image"><img src="images/cover_pub.png" alt="" /></div>
         <div class="content">
           <h2>Publications</h2>
           <p>View on <a href="https://ui.adsabs.harvard.edu/search/fq=%7B!type%3Daqp%20v%3D%24fq_database%7D&fq_database=database%3A%20astronomy&q=pubdate%3A%5B2025-01%20TO%209999-12%5D%20author%3A(%22Fujimoto%2C%22%20%22Coe%2C%22%20%22Kokorev%2C%22%20%22Furtak%22)&sort=date%20desc%2C%20bibcode%20desc&p_=0">ADS</a>.</p>
