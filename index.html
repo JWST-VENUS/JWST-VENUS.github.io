@@ -505,19 +505,6 @@
   filter: invert(1) brightness(1.1) contrast(1.1);
 }
 
-/* 1) 追加で出てしまった “header.major:after の線” を無効化 */
-#three header.major:after{
-  content: none !important;
-  background: transparent !important;
-}
-
-/* 2) 元々の “2文の間の線” (h2の下線) を白にする */
-#three header.major h2:after,
-#three header.major h2:before{
-  background: rgba(255,255,255,0.85) !important;
-  border-color: rgba(255,255,255,0.85) !important;
-}
-
 
   </style>
 </head>
@@ -597,8 +584,7 @@
     <section id="three" class="wrapper style3 special">
       <div class="inner">
         <header class="major">
-          <h2>Key Science Goals</h2>
-          <p>The key science driving VENUS:</p>
+          <h2>Four Science Pillars of VENUS</h2>
         </header>
         <ul class="features">
           <li>
