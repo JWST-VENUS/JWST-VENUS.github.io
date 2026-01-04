@@ -505,6 +505,44 @@
   filter: invert(1) brightness(1.1) contrast(1.1);
 }
 
+/* =========================
+   Four Science Pillars: 4 items in one row (desktop)
+   ========================= */
+#three .features{
+  max-width: 100%;           /* 4つ入るように幅制限を緩める */
+}
+
+#three .features li{
+  width: 25% !important;     /* 50% → 25% で 1列4つ */
+  padding: 2em 1.25em 1.5em 1.25em;  /* 横並び時に少し詰める（好みで） */
+}
+
+/* 文字が詰まりすぎる場合の調整（任意） */
+#three .features li p{
+  font-size: 0.95em;
+}
+
+/* タブレットは 2列（2x2）に戻す */
+@media (max-width: 980px){
+  #three .features li{
+    width: 50% !important;
+  }
+}
+
+/* モバイルは 1列に */
+@media (max-width: 736px){
+  #three .features li{
+    width: 100% !important;
+  }
+}
+
+#three .features{
+  gap: 1.2em;
+}
+#three .features li{
+  width: calc(25% - 1.2em) !important;
+}
+
 
   </style>
 </head>
