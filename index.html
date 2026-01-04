@@ -12,442 +12,453 @@
   <link rel="stylesheet" href="assets/css/main.css" />
   <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 
-  <style>
-  /* =========================
-     Global
-     ========================= */
-  html, body { font-family: 'Cinzel', serif; }
+<style>
+/* =========================================================
+   Global
+   ========================================================= */
+html, body { font-family: 'Cinzel', serif; }
 
-  /* =========================
-     Banner slideshow
-     ========================= */
-  #banner{
-    position: relative;
-    overflow: hidden;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-  }
-
-  .slideshow{
-    position: absolute;
-    inset: 0;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    z-index: 1;
-  }
-
-  .slide{
-    position: absolute;
-    inset: 0;
-    width: 100vw;
-    height: 100vh;
-    opacity: 0;
-    transition: opacity 2.5s, transform 2.5s, clip-path 2.5s;
-    z-index: 1;
-  }
-  .slide.show{ opacity: 1; z-index: 2; }
-  .slide.fade-out{ opacity: 0; z-index: 1; transition: opacity 2.5s; }
-
-  .img-layer{
-    width: 100vw;
-    height: 100vh;
-    background-size: cover;
-    background-position: center;
-    animation: zoomEffect 7s forwards;
-  }
-  @keyframes zoomEffect{ from{ transform: scale(1);} to{ transform: scale(1.2);} }
-
-  .effect-fade {}
-  .effect-slideX{ transform: translateX(-100%); }
-  .slide.show.effect-slideX{ transform: translateX(0); }
-  .effect-splitX{ clip-path: inset(50% 0 50% 0); }
-  .slide.show.effect-splitX{ clip-path: inset(0 0 0 0); }
-  .effect-splitY{ clip-path: inset(0 50% 0 50%); }
-  .slide.show.effect-splitY{ clip-path: inset(0 0 0 0); }
-  .effect-slideY{ transform: translateY(-100%); }
-  .slide.show.effect-slideY{ transform: translateY(0); }
-  .effect-zoomRotate{ transform: scale(0.7) rotate(-14deg); }
-  .slide.show.effect-zoomRotate{ transform: scale(1) rotate(0); }
-  .effect-circle{ clip-path: circle(0% at center); }
-  .slide.show.effect-circle{ clip-path: circle(100% at center); }
-
-  /* =========================
-     Banner overlay: title/subtitle/logo
-     ========================= */
-  .banner-title-overlay{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 11;
-    width: 100vw;
-    text-align: center;
-    pointer-events: none;
-  }
-
-  /* Template overrides for h2 in banner */
-  #banner .banner-title-overlay .venus-title{
-    font-size: 2.5em !important;
-    line-height: 1 !important;
-    margin: 0 0 0.25em 0 !important;
-    letter-spacing: 0.08em !important;
-    text-transform: none !important;
-  }
-
-  #banner .banner-title-overlay .venus-title-wrap{
-    position: relative;
-    display: inline-block;
-    padding: 0.35em 0;
-  }
-
-  .venus-title{
-    color: #fff;
-    font-family: 'Cinzel', serif;
-    font-size: 16em; /* (kept as-is even if overridden above) */
-    font-weight: bold;
-    text-shadow: 2px 2px 6px #000, 4px 4px 10px rgba(0,0,0,0.4);
-    margin: 0 0 0.25em 0;
-    line-height: 1;
-    letter-spacing: 0.08em;
-  }
-
-  .venus-subtitle{
-    color: #fff;
-    font-family: 'Cinzel', serif;
-    font-size: 0.8em; /* kept as-is */
-    font-weight: normal;
-    text-shadow: 2px 2px 4px #000, 4px 4px 8px rgba(0,0,0,0.4);
-    margin: 2em 0 0 0;
-    opacity: 0;
-    transition: opacity 1s ease;
-    letter-spacing: 0.02em;
-  }
-  .venus-subtitle.show{ opacity: 1; }
-
-  #venus-logo{
-    position: absolute;
-    left: 50%;
-    top: 0.02em;
-    transform: translate(-50%, -120%);
-    width: 12em;
-    max-width: 80vw;
-    height: auto;
-    opacity: 0;
-    filter: drop-shadow(2px 2px 8px rgba(0,0,0,0.45));
-    animation: venusLogoFadeIn 1.6s ease forwards;
-    animation-delay: 3.6s;
-  }
-  #venus-logo.show{
-    animation: venusLogoFadeIn 1.0s ease forwards;
-  }
-
-  @keyframes venusLineGrow{ from{ width: 0; } to{ width: 72%; } }
-  @keyframes venusLogoFadeIn{
-    from{ opacity: 0; transform: translate(-50%, -140%); }
-    to{ opacity: 1; transform: translate(-50%, -120%); }
-  }
-
-  @media (max-width: 900px){
-    .venus-title{ font-size: 4.6em; }
-    .venus-subtitle{ font-size: 1.725em; }
-  }
-  @media (max-width: 600px){
-    .banner-title-overlay{ top: 34%; }
-    .venus-title{ font-size: 2.8em; }
-    .venus-subtitle{ font-size: 1.05em; }
-  }
-
-  /* =========================
-     Header: logo / menu sizing  (70%版)
-     ========================= */
-  @media screen and (max-width: 736px){
-    #header h1 a{ font-size: 0.98em; }   /* 1.4em × 0.7 */
-    #header nav a{ font-size: 0.63em; }  /* 0.9em × 0.7 */
-  }
-
-  /* menu toggle bigger -> 70%に縮小 */
-  #header nav ul li.special a.menuToggle{
-    padding: 0.56em 1.68em 0.56em 1.40em !important;  /* 元 0.8 / 2.4 / 0.8 / 2.0 の×0.7 */
-  }
-  #header nav ul li.special a.menuToggle span{
-    font-size: 1.4em !important;        /* 2.0em × 0.7 */
-    letter-spacing: 0.175em !important; /* 0.25em × 0.7 */
-  }
-  /* Menu 三本線（≡ / ×）の縦ズレ修正 */
-  #header nav ul li.special a.menuToggle:before,
-  #header nav ul li.special a.menuToggle:after{
-    top: 50% !important;                 /* ← 縦中央に固定 */
-    transform: translateY(-18%) scale(1.26) !important;
-    right: 0.77em !important;
-  }
-
-  /* menu items bigger -> 70%に縮小 */
-  #menu ul li a{
-    font-size: 0.91em !important;       /* 1.3em × 0.7 */
-    letter-spacing: 0.042em !important; /* 0.06em × 0.7 */
-    line-height: 1.5 !important;        /* 行間はそのままが読みやすいので維持 */
-  }
-  @media screen and (max-width: 736px){
-    #menu ul li a{ font-size: 0.875em !important; } /* 1.25em × 0.7 */
-  }
-
-  /* header left logo image instead of text -> 70%に縮小 */
-  #header h1 a.header-logo{
-    border: 0 !important;
-    text-decoration: none !important;
-    margin-top: 0.42em;   /* 0.6em × 0.7 */
-    display: inline-block;
-  }
-  #header h1 a.header-logo img{
-    display: block;
-    height: 1.75em;       /* 2.5em × 0.7 */
-    width: auto;
-  }
-  @media screen and (max-width: 736px){
-    #header h1{ margin-top: 0.21em; }   /* 0.3em × 0.7 */
-    #header h1 a.header-logo img{ height: 0.84em; } /* 1.2em × 0.7 */
-  }
-
-  /* scroll header black bar size
-     ↑ logo/menuも小さくしたので、高さも少し下げる(4em×0.7=2.8emだと詰まりすぎることが多いので控えめ) */
-  #header{
-    height: 2.8em;        /* 4em → 3.2em（ほどよく） */
-    line-height: 1.6;     /* 1.8 → 1.6 */
-  }
-
-  /* =========================
-     Features icons / layout
-     ========================= */
-  .features{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding-left: 0;
-    margin: 0 auto;
-    max-width: 64em;
-  }
-  .features li{
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 50%;
-    padding: 2.5em 2em 2em 2em;
-    margin: 0;
-    list-style: none;
-    text-align: center;
-  }
-  @media (max-width: 980px){
-    .features li{ padding: 2em 1.5em 1.5em 1.5em; }
-  }
-  @media (max-width: 736px){
-    .features{ flex-direction: column; }
-    .features li{
-      width: 100%;
-      padding: 2em 1.5em 1.5em 1.5em;
-    }
-  }
-
-  .feature-icon{
-    display: block;
-    width: 3.5em;
-    height: 3.5em;
-    margin: 0 auto 1em auto;
-    object-fit: contain;
-    border-radius: 0.5em;
-    background: transparent;
-    box-shadow: none;
-  }
-
-
-  /* =========================
-     Meet the Team slider
-     ========================= */
-  @media screen and (min-width: 981px){
-    #two .spotlight .image{ width: 56% !important; }
-    #two .spotlight .content{ width: 44% !important; }
-  }
-
-  .meet-slider{
-    position: relative;
-    width: 100%;
-    overflow: visible;
-    padding: 0 64px;
-    box-sizing: border-box;
-  }
-  .meet-viewport{
-    overflow: hidden;
-    width: 100%;
-  }
-  .meet-track{
-    white-space: nowrap;
-    transition: transform 0.35s ease;
-  }
-  .meet-slide{
-    display: inline-block;
-    width: 100%;
-    vertical-align: top;
-  }
-  .meet-slide img{
-    display: block;
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-    background: transparent;
-    border-radius: 0;
-  }
-
-  .meet-arrow{
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 0;
-    height: 0;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    z-index: 3;
-  }
-  .meet-arrow.prev{
-    left: 14px;
-    border-top: 30px solid transparent;
-    border-bottom: 30px solid transparent;
-    border-right: 40px solid rgba(255,255,255,0.85);
-  }
-  .meet-arrow.next{
-    right: 14px;
-    border-top: 30px solid transparent;
-    border-bottom: 30px solid transparent;
-    border-left: 40px solid rgba(255,255,255,0.85);
-  }
-  .meet-arrow.prev:hover{ border-right-color: #fff; }
-  .meet-arrow.next:hover{ border-left-color: #fff; }
-
-  @media screen and (max-width: 736px){
-    .meet-slider{ padding: 0 46px; }
-    .meet-arrow.prev{ left: 8px; }
-    .meet-arrow.next{ right: 8px; }
-    .meet-arrow.prev{
-      border-top-width: 22px; border-bottom-width: 22px; border-right-width: 30px;
-    }
-    .meet-arrow.next{
-      border-top-width: 22px; border-bottom-width: 22px; border-left-width: 30px;
-    }
-  }
-
-  .meet-indicators{
-    position: absolute;
-    left: 0; right: 0; bottom: 8px;
-    display: flex;
-    justify-content: center;
-    gap: 6px;
-    z-index: 2;
-    pointer-events: auto;
-  }
-  .meet-indicators button{
-    width: 28px;
-    height: 5px;
-    border: none;
-    border-radius: 3px;
-    background: rgba(255,255,255,0.35);
-    cursor: pointer;
-  }
-  .meet-indicators button.active{ background: #fff; }
-
-  /* Theme override (kept) */
-  .spotlight .image img{ height: auto !important; }
-
-
-	/* Data Products等：画像枠の高さを固定して揃える */
-	.spotlight-fixedimg .image{
-	  height: 360px;          /* 好みで固定値に */
-	  overflow: hidden;       /* はみ出しカット */
-	}
-
-	/* =========================
-	   Fixed-height image box (no cropping)
-	   ========================= */
-	.spotlight-fixedimg .image{
-	  height: 850px;           /* ← 固定したい縦サイズ */
-	  display: flex;
-	  align-items: center;     /* 縦中央 */
-	  justify-content: center; /* 横中央 */
-	  overflow: hidden;        /* 念のため */
-	}
-
-	/* 画像は比率維持で最大表示（切らない） */
-	.spotlight-fixedimg .image img{
-	  max-width: 100%;
-	  max-height: 100%;
-	  width: auto;
-	  height: auto;
-	  object-fit: contain;     /* ← ここがポイント */
-	  display: block;
-	}
-
-	@media screen and (max-width: 736px){
-	  .spotlight-fixedimg .image{
-	    height: 240px;         /* モバイルでは少し低く */
-	  }
-	}
-
-	/* ===== Acknowledgement text above footer ===== */
-	.acknowledgement-text{
-	  max-width: 60em;
-	  margin: 0 auto;
-	  font-size: 1.1em;        /* footerより少し大きい程度 */
-	  line-height: 1.6;
-	  color: rgba(255,255,255,0.75);
-	}
-
-/* Data Products: 連続する段落の間だけ詰める */
-.spotlight .content p + p{
-  margin-top: -2em;   /* ← 好みで -0.4〜-0.8em */
+/* =========================================================
+   Banner slideshow
+   ========================================================= */
+#banner{
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
 }
 
-/* Data Products（spotlight-fixedimg）だけ、左右の余白を詰めて画像を広げる */
+.slideshow{
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.slide{
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0;
+  transition: opacity 2.5s, transform 2.5s, clip-path 2.5s;
+  z-index: 1;
+}
+.slide.show{ opacity: 1; z-index: 2; }
+.slide.fade-out{ opacity: 0; z-index: 1; transition: opacity 2.5s; }
+
+.img-layer{
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  animation: zoomEffect 7s forwards;
+}
+@keyframes zoomEffect{ from{ transform: scale(1);} to{ transform: scale(1.2);} }
+
+.effect-fade {}
+.effect-slideX{ transform: translateX(-100%); }
+.slide.show.effect-slideX{ transform: translateX(0); }
+.effect-splitX{ clip-path: inset(50% 0 50% 0); }
+.slide.show.effect-splitX{ clip-path: inset(0 0 0 0); }
+.effect-splitY{ clip-path: inset(0 50% 0 50%); }
+.slide.show.effect-splitY{ clip-path: inset(0 0 0 0); }
+.effect-slideY{ transform: translateY(-100%); }
+.slide.show.effect-slideY{ transform: translateY(0); }
+.effect-zoomRotate{ transform: scale(0.7) rotate(-14deg); }
+.slide.show.effect-zoomRotate{ transform: scale(1) rotate(0); }
+.effect-circle{ clip-path: circle(0% at center); }
+.slide.show.effect-circle{ clip-path: circle(100% at center); }
+
+/* =========================================================
+   Banner overlay: title / subtitle / logo
+   ========================================================= */
+.banner-title-overlay{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 11;
+  width: 100vw;
+  text-align: center;
+  pointer-events: none;
+}
+
+/* template override for banner h2 */
+#banner .banner-title-overlay .venus-title{
+  font-size: 2.5em !important;
+  line-height: 1 !important;
+  margin: 0 0 0.25em 0 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: none !important;
+}
+
+#banner .banner-title-overlay .venus-title-wrap{
+  position: relative;
+  display: inline-block;
+  padding: 0.35em 0;
+}
+
+.venus-title{
+  color: #fff;
+  font-family: 'Cinzel', serif;
+  font-size: 16em; /* keep */
+  font-weight: bold;
+  text-shadow: 2px 2px 6px #000, 4px 4px 10px rgba(0,0,0,0.4);
+  margin: 0 0 0.25em 0;
+  line-height: 1;
+  letter-spacing: 0.08em;
+}
+
+.venus-subtitle{
+  color: #fff;
+  font-family: 'Cinzel', serif;
+  font-size: 0.8em; /* keep */
+  font-weight: normal;
+  text-shadow: 2px 2px 4px #000, 4px 4px 8px rgba(0,0,0,0.4);
+  margin: 2em 0 0 0;
+  opacity: 0;
+  transition: opacity 1s ease;
+  letter-spacing: 0.02em;
+}
+.venus-subtitle.show{ opacity: 1; }
+
+#venus-logo{
+  position: absolute;
+  left: 50%;
+  top: 0.02em;
+  transform: translate(-50%, -120%);
+  width: 12em;
+  max-width: 80vw;
+  height: auto;
+  opacity: 0;
+  filter: drop-shadow(2px 2px 8px rgba(0,0,0,0.45));
+  animation: venusLogoFadeIn 1.6s ease forwards;
+  animation-delay: 3.6s;
+}
+#venus-logo.show{ animation: venusLogoFadeIn 1.0s ease forwards; }
+
+@keyframes venusLogoFadeIn{
+  from{ opacity: 0; transform: translate(-50%, -140%); }
+  to{ opacity: 1; transform: translate(-50%, -120%); }
+}
+
+@media (max-width: 900px){
+  .venus-title{ font-size: 4.6em; }
+  .venus-subtitle{ font-size: 1.725em; }
+}
+@media (max-width: 600px){
+  .banner-title-overlay{ top: 34%; }
+  .venus-title{ font-size: 2.8em; }
+  .venus-subtitle{ font-size: 1.05em; }
+}
+
+/* =========================================================
+   Header: logo / menu sizing (70%)
+   ========================================================= */
+@media screen and (max-width: 736px){
+  #header h1 a{ font-size: 0.98em; }
+  #header nav a{ font-size: 0.63em; }
+}
+
+/* menu toggle */
+#header nav ul li.special a.menuToggle{
+  padding: 0.56em 1.68em 0.56em 1.40em !important;
+}
+#header nav ul li.special a.menuToggle span{
+  font-size: 1.4em !important;
+  letter-spacing: 0.175em !important;
+}
+
+/* hamburger / close icon vertical alignment */
+#header nav ul li.special a.menuToggle:before,
+#header nav ul li.special a.menuToggle:after{
+  top: 50% !important;
+  transform: translateY(-18%) scale(1.26) !important;
+  right: 0.77em !important;
+}
+
+/* menu items */
+#menu ul li a{
+  font-size: 0.91em !important;
+  letter-spacing: 0.042em !important;
+  line-height: 1.5 !important;
+}
+@media screen and (max-width: 736px){
+  #menu ul li a{ font-size: 0.875em !important; }
+}
+
+/* header left logo image */
+#header h1 a.header-logo{
+  border: 0 !important;
+  text-decoration: none !important;
+  margin-top: 0.42em;
+  display: inline-block;
+}
+#header h1 a.header-logo img{
+  display: block;
+  height: 1.75em;
+  width: auto;
+}
+@media screen and (max-width: 736px){
+  #header h1{ margin-top: 0.21em; }
+  #header h1 a.header-logo img{ height: 0.84em; }
+}
+
+/* scroll header bar height */
+#header{
+  height: 2.8em;
+  line-height: 1.6;
+}
+
+/* =========================================================
+   Generic "features" layout (used by #three)
+   ========================================================= */
+.features{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-left: 0;
+  margin: 0 auto;
+  max-width: 64em; /* default; #three will override */
+}
+.features li{
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  padding: 2.5em 2em 2em 2em;
+  margin: 0;
+  list-style: none;
+  text-align: center;
+}
+@media (max-width: 980px){
+  .features li{ padding: 2em 1.5em 1.5em 1.5em; }
+}
+@media (max-width: 736px){
+  .features{ flex-direction: column; }
+  .features li{
+    width: 100%;
+    padding: 2em 1.5em 1.5em 1.5em;
+  }
+}
+
+.feature-icon{
+  display: block;
+  width: 3.5em;
+  height: 3.5em;
+  margin: 0 auto 1em auto;
+  object-fit: contain;
+  border-radius: 0.5em;
+  background: transparent;
+  box-shadow: none;
+}
+
+/* =========================================================
+   Meet the Team slider
+   ========================================================= */
+@media screen and (min-width: 981px){
+  #two .spotlight .image{ width: 56% !important; }
+  #two .spotlight .content{ width: 44% !important; }
+}
+
+.meet-slider{
+  position: relative;
+  width: 100%;
+  overflow: visible;
+  padding: 0 64px;
+  box-sizing: border-box;
+}
+.meet-viewport{
+  overflow: hidden;
+  width: 100%;
+}
+.meet-track{
+  white-space: nowrap;
+  transition: transform 0.35s ease;
+}
+.meet-slide{
+  display: inline-block;
+  width: 100%;
+  vertical-align: top;
+}
+.meet-slide img{
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  background: transparent;
+  border-radius: 0;
+}
+
+.meet-arrow{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  z-index: 3;
+}
+.meet-arrow.prev{
+  left: 14px;
+  border-top: 30px solid transparent;
+  border-bottom: 30px solid transparent;
+  border-right: 40px solid rgba(255,255,255,0.85);
+}
+.meet-arrow.next{
+  right: 14px;
+  border-top: 30px solid transparent;
+  border-bottom: 30px solid transparent;
+  border-left: 40px solid rgba(255,255,255,0.85);
+}
+.meet-arrow.prev:hover{ border-right-color: #fff; }
+.meet-arrow.next:hover{ border-left-color: #fff; }
+
+@media screen and (max-width: 736px){
+  .meet-slider{ padding: 0 46px; }
+  .meet-arrow.prev{ left: 8px; }
+  .meet-arrow.next{ right: 8px; }
+  .meet-arrow.prev{
+    border-top-width: 22px; border-bottom-width: 22px; border-right-width: 30px;
+  }
+  .meet-arrow.next{
+    border-top-width: 22px; border-bottom-width: 22px; border-left-width: 30px;
+  }
+}
+
+.meet-indicators{
+  position: absolute;
+  left: 0; right: 0; bottom: 8px;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  z-index: 2;
+  pointer-events: auto;
+}
+.meet-indicators button{
+  width: 28px;
+  height: 5px;
+  border: none;
+  border-radius: 3px;
+  background: rgba(255,255,255,0.35);
+  cursor: pointer;
+}
+.meet-indicators button.active{ background: #fff; }
+
+/* theme override */
+.spotlight .image img{ height: auto !important; }
+
+/* =========================================================
+   Data Products fixed image box (no cropping)
+   ========================================================= */
+.spotlight-fixedimg .image{
+  height: 850px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.spotlight-fixedimg .image img{
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+@media screen and (max-width: 736px){
+  .spotlight-fixedimg .image{ height: 240px; }
+}
+
+/* tighten only consecutive paragraphs in spotlight content */
+.spotlight .content p + p{
+  margin-top: -2em;
+}
+
+/* for spotlight-fixedimg only: tighten paddings around image/content */
 #two .spotlight.spotlight-fixedimg .image{
   padding: 0 !important;
   margin: 0 !important;
 }
-
 #two .spotlight.spotlight-fixedimg .content{
-  padding-right: 4em;  /* 近づけすぎ防止。好みで 1〜3em */
+  padding-right: 4em;
 }
 
-/* ===== Key Science Goals セクションの縦幅を詰める ===== */
+/* acknowledgement block above footer */
+.acknowledgement-text{
+  max-width: 60em;
+  margin: 0 auto;
+  font-size: 1.1em;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.75);
+}
+
+/* =========================================================
+   #three: Four Science Pillars styling
+   - dark "cosmic dawn" background
+   - per-card background images + overlay
+   - 4-in-a-row on desktop
+   - wider container (reduced side margins)
+   ========================================================= */
+
+/* section padding (shorter than template) */
 #three.wrapper{
   padding-top: 3em;
   padding-bottom: 3em;
 }
-
 #three .inner{
   padding-top: 0;
   padding-bottom: 0;
 }
 
-/* タイトル下の余白を詰める */
+/* widen only this section */
+#three.wrapper.style3.special .inner{
+  max-width: 92em;
+  width: 100%;
+  padding-left: 1.2em;
+  padding-right: 1.2em;
+}
+
+/* cosmic-dawn background */
+#three.wrapper.style3.special{
+  background-color: #070b1a !important;
+}
+
+/* title spacing */
 #three header.major{
   margin-bottom: 2em;
 }
 
-/* =========================
-   #three (Key Science Goals)
-   各 feature カードごとに背景画像 + 暗いオーバーレイ
-   ========================= */
-
-/* カードを背景レイヤ対応に */
-#three .features li{
-  position: relative;
-  overflow: hidden;           /* 背景がはみ出さない */
-  border-radius: 0.75em;      /* 角丸（不要なら消してOK） */
+/* make features full width in this section */
+#three .features{
+  max-width: none;
+  width: 100%;
+  margin: 0 auto;
+  gap: 1.2em;
 }
 
-/* 背景画像レイヤ（下） */
+/* 4-in-a-row on desktop */
+#three .features li{
+  width: calc(25% - 1.2em) !important;
+  padding: 2.0em 1.4em 1.6em 1.4em;
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.75em;
+}
+
+/* text size tweak inside cards */
+#three .features li p{ font-size: 0.95em; }
+
+/* per-card background image layer */
 #three .features li::before{
   content: "";
   position: absolute;
@@ -455,96 +466,56 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.55;              /* ← 画像の薄さ（0.3〜0.7で調整） */
+  opacity: 0.55;
   z-index: 0;
-  transform: scale(1.03);     /* 端の隙間防止（任意） */
+  transform: scale(1.03);
 }
 
-/* 暗いオーバーレイ（中） */
+/* dark overlay on top of image */
 #three .features li::after{
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.55); /* ← 暗さ（0.35〜0.75で調整） */
+  background: rgba(0,0,0,0.55);
   z-index: 1;
 }
 
-/* テキスト・アイコンは最前面へ */
+/* bring content above overlays */
 #three .features li > *{
   position: relative;
   z-index: 2;
 }
 
-/* 4項目それぞれに背景画像を割り当て */
-#three .features li:nth-child(1)::before{
-  background-image: url("images/cover_bg_galaxy.png");
-}
-#three .features li:nth-child(2)::before{
-  background-image: url("images/cover_bg_fs.png");
-}
-#three .features li:nth-child(3)::before{
-  background-image: url("images/cover_bg_smbh.png");
-}
-#three .features li:nth-child(4)::before{
-  background-image: url("images/cover_bg_sn.png");
-}
+/* assign images */
+#three .features li:nth-child(1)::before{ background-image: url("images/cover_bg_galaxy.png"); }
+#three .features li:nth-child(2)::before{ background-image: url("images/cover_bg_fs.png"); }
+#three .features li:nth-child(3)::before{ background-image: url("images/cover_bg_smbh.png"); }
+#three .features li:nth-child(4)::before{ background-image: url("images/cover_bg_sn.png"); }
 
-/* 文字の可読性を少し強化（任意） */
+/* readability */
 #three .features li h3,
 #three .features li p{
   text-shadow: 0 2px 10px rgba(0,0,0,0.6);
 }
 
-/* Key Science Goals セクション：宇宙の夜明け風 背景 */
-#three.wrapper.style3.special{
-  background-color: #070b1a !important;
-}
-
-
+/* invert icons to white on dark */
 #three .feature-icon{
   filter: invert(1) brightness(1.1) contrast(1.1);
 }
 
-/* =========================
-   Four Science Pillars: 4 items in one row (desktop)
-   ========================= */
-#three .features{
-  max-width: 100%;           /* 4つ入るように幅制限を緩める */
-}
-
-#three .features li{
-  width: 25% !important;     /* 50% → 25% で 1列4つ */
-  padding: 2em 1.25em 1.5em 1.25em;  /* 横並び時に少し詰める（好みで） */
-}
-
-/* 文字が詰まりすぎる場合の調整（任意） */
-#three .features li p{
-  font-size: 0.95em;
-}
-
-/* タブレットは 2列（2x2）に戻す */
+/* responsive: tablet -> 2 columns, mobile -> 1 column */
 @media (max-width: 980px){
-  #three .features li{
-    width: 50% !important;
-  }
+  #three .features li{ width: calc(50% - 1.2em) !important; }
 }
-
-/* モバイルは 1列に */
 @media (max-width: 736px){
-  #three .features li{
-    width: 100% !important;
+  #three.wrapper.style3.special .inner{
+    padding-left: 1.5em;
+    padding-right: 1.5em;
   }
+  #three .features li{ width: 100% !important; }
 }
+</style>
 
-#three .features{
-  gap: 1.2em;
-}
-#three .features li{
-  width: calc(25% - 1.2em) !important;
-}
-
-
-  </style>
 </head>
 
 <body class="landing is-preload">
