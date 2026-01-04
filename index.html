@@ -505,8 +505,12 @@
   filter: invert(1) brightness(1.1) contrast(1.1);
 }
 
-#three header.major:after{
-  background-color: rgba(255,255,255,0.7);
+/* Key Science Goals の横線を確実に白へ（Spectralの実装差異に対応） */
+#three header.major:after,
+#three header.major h2:after,
+#three header.major h2:before{
+  background-color: rgba(255,255,255,0.85) !important;
+  border-color: rgba(255,255,255,0.85) !important;
 }
 
 
