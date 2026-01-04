@@ -505,11 +505,10 @@
   filter: invert(1) brightness(1.1) contrast(1.1);
 }
 
-/* Key Science Goals の横線を確実に白へ（Spectralの実装差異に対応） */
-#three header.major:after,
+/* 2) 元々の “2文の間の線” (h2の下線) を白にする */
 #three header.major h2:after,
 #three header.major h2:before{
-  background-color: rgba(255,255,255,0.85) !important;
+  background: rgba(255,255,255,0.85) !important;
   border-color: rgba(255,255,255,0.85) !important;
 }
 
