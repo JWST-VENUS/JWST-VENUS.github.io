@@ -177,10 +177,12 @@
     font-size: 1.4em !important;        /* 2.0em × 0.7 */
     letter-spacing: 0.175em !important; /* 0.25em × 0.7 */
   }
+  /* Menu 三本線（≡ / ×）の縦ズレ修正 */
   #header nav ul li.special a.menuToggle:before,
   #header nav ul li.special a.menuToggle:after{
-    transform: scale(1.26) !important;  /* 1.8 × 0.7 */
-    right: 0.77em !important;           /* 1.1em × 0.7 */
+    top: 50% !important;                 /* ← 縦中央に固定 */
+    transform: translateY(-50%) scale(1.26) !important;
+    right: 0.77em !important;
   }
 
   /* menu items bigger -> 70%に縮小 */
