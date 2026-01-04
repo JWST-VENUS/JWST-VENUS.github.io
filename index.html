@@ -436,32 +436,64 @@
 }
 
 /* =========================
-   Key Science Goals: 背景画像（薄暗く）
+   #three (Key Science Goals)
+   各 feature カードごとに背景画像 + 暗いオーバーレイ
    ========================= */
-#three.wrapper.style3.special{
+
+/* カードを背景レイヤ対応に */
+#three .features li{
   position: relative;
-  background-image: url("images/cover_key.png"); /* ← 好きな画像 */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  overflow: hidden;           /* 背景がはみ出さない */
+  border-radius: 0.75em;      /* 角丸（不要なら消してOK） */
 }
 
-/* 黒の半透明オーバーレイ */
-#three.wrapper.style3.special::before{
+/* 背景画像レイヤ（下） */
+#three .features li::before{
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.55); /* ← 暗さ調整（0.4〜0.7がおすすめ） */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.55;              /* ← 画像の薄さ（0.3〜0.7で調整） */
   z-index: 0;
+  transform: scale(1.03);     /* 端の隙間防止（任意） */
 }
 
-/* 中身はオーバーレイの上に */
-#three.wrapper.style3.special > *{
-  position: relative;
+/* 暗いオーバーレイ（中） */
+#three .features li::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.55); /* ← 暗さ（0.35〜0.75で調整） */
   z-index: 1;
 }
 
+/* テキスト・アイコンは最前面へ */
+#three .features li > *{
+  position: relative;
+  z-index: 2;
+}
 
+/* 4項目それぞれに背景画像を割り当て */
+#three .features li:nth-child(1)::before{
+  background-image: url("images/cover_bg_galaxy.png");
+}
+#three .features li:nth-child(2)::before{
+  background-image: url("images/cover_bg_smbh.png");
+}
+#three .features li:nth-child(3)::before{
+  background-image: url("images/cover_bg_fs.png");
+}
+#three .features li:nth-child(4)::before{
+  background-image: url("images/cover_bg_sn.png");
+}
+
+/* 文字の可読性を少し強化（任意） */
+#three .features li h3,
+#three .features li p{
+  text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+}
 
   </style>
 </head>
