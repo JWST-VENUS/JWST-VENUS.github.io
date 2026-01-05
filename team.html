@@ -255,13 +255,13 @@
 
 /* ★カード自体を「テキストが入る幅」にする */
 .team-card{
-  width: 16em;          /* ←ここがポイント（テキスト用） */
+  width: 14em;          /* ←ここがポイント（テキスト用） */
   padding: 0.25em 0.25em;
 }
 
 /* PIカードは少し広め */
 .team-card.pi{
-  width: 18em;
+  width: 16em;
 }
 
 /* ★画像は固定サイズで維持（見た目を変えない） */
@@ -297,6 +297,21 @@
   }
 }
 
+/* =========================
+   PI card: slightly larger avatar
+   ========================= */
+
+/* PIカードの画像だけ大きく */
+.team-card.pi .avatar{
+  width: 12em;     /* 通常 8em → 少し大きく */
+  height: 12em;
+  margin-bottom: 0.9em;
+}
+
+/* PIカード全体の幅も少し余裕を持たせる（任意だが推奨） */
+.team-card.pi{
+  width: 20em;      /* 通常 18em → バランス調整 */
+}
 
 
   </style>
