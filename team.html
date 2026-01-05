@@ -12,141 +12,99 @@
   <link rel="stylesheet" href="assets/css/main.css" />
   <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 
-  <style>
-    /* Keep typography consistent with index/about */
-    html, body { font-family: 'Cinzel', serif; }
+<style>
+/* =========================================================
+   Global
+   ========================================================= */
+html, body { font-family: 'Cinzel', serif; }
 
-    /* =========================
-       Header: logo / menu sizing (match index/about)
-       ========================= */
-    @media screen and (max-width: 736px){
-      #header h1 a{ font-size: 0.98em; }
-      #header nav a{ font-size: 0.63em; }
-    }
+/* =========================================================
+   Header: logo / menu sizing (match index/about)
+   ========================================================= */
+#header{
+  height: 2.8em;
+  line-height: 1.6;
+}
 
-    #header nav ul li.special a.menuToggle{
-      padding: 0.56em 1.68em 0.56em 1.40em !important;
-    }
-    #header nav ul li.special a.menuToggle span{
-      font-size: 1.4em !important;
-      letter-spacing: 0.175em !important;
-    }
-    #header nav ul li.special a.menuToggle:before,
-    #header nav ul li.special a.menuToggle:after{
-      top: 50% !important;
-      transform: translateY(-18%) scale(1.26) !important;
-      right: 0.77em !important;
-    }
+/* mobile header font scaling */
+@media screen and (max-width: 736px){
+  #header h1 a{ font-size: 0.98em; }
+  #header nav a{ font-size: 0.63em; }
+}
 
-    #menu ul li a{
-      font-size: 0.91em !important;
-      letter-spacing: 0.042em !important;
-      line-height: 1.5 !important;
-    }
-    @media screen and (max-width: 736px){
-      #menu ul li a{ font-size: 0.875em !important; }
-    }
+/* menu toggle */
+#header nav ul li.special a.menuToggle{
+  padding: 0.56em 1.68em 0.56em 1.40em !important;
+}
+#header nav ul li.special a.menuToggle span{
+  font-size: 1.4em !important;
+  letter-spacing: 0.175em !important;
+}
+#header nav ul li.special a.menuToggle:before,
+#header nav ul li.special a.menuToggle:after{
+  top: 50% !important;
+  transform: translateY(-18%) scale(1.26) !important;
+  right: 0.77em !important;
+}
 
-    #header h1 a.header-logo{
-      border: 0 !important;
-      text-decoration: none !important;
-      margin-top: 0.42em;
-      display: inline-block;
-    }
-    #header h1 a.header-logo img{
-      display: block;
-      height: 1.75em;
-      width: auto;
-    }
-    @media screen and (max-width: 736px){
-      #header h1{ margin-top: 0.21em; }
-      #header h1 a.header-logo img{ height: 0.84em; }
-    }
+/* menu items */
+#menu ul li a{
+  font-size: 0.91em !important;
+  letter-spacing: 0.042em !important;
+  line-height: 1.5 !important;
+}
+@media screen and (max-width: 736px){
+  #menu ul li a{ font-size: 0.875em !important; }
+}
 
-    #header{
-      height: 2.8em;
-      line-height: 1.6;
-    }
+/* header left logo image */
+#header h1 a.header-logo{
+  border: 0 !important;
+  text-decoration: none !important;
+  margin-top: 0.42em;
+  display: inline-block;
+}
+#header h1 a.header-logo img{
+  display: block;
+  height: 1.75em;
+  width: auto;
+}
+@media screen and (max-width: 736px){
+  #header h1{ margin-top: 0.21em; }
+  #header h1 a.header-logo img{ height: 0.84em; }
+}
 
-    /* =========================
-       Team page layout tweaks
-       ========================= */
-    #main header p{
-      max-width: 70em;
-      margin: 0.5em auto 0 auto;
-    }
+/* =========================================================
+   Team page layout
+   ========================================================= */
+#main header p{
+  max-width: 70em;
+  margin: 0.5em auto 0 auto;
+}
 
-    .team-lead{
-      max-width: 72em;
-      margin: 0 auto 1.25em auto;
-      text-transform: none !important;
-      letter-spacing: normal;
-    }
+.team-lead{
+  max-width: 72em;
+  margin: 0 auto 1.25em auto;
+  text-transform: none !important;
+  letter-spacing: normal;
+}
 
-    .team-section{ margin-top: 2em; }
+.team-section{ margin-top: 2em; }
+#main .team-section h3{ text-align: center; }
 
-    /* Avatar grid cards */
-    .team-grid{
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5em;
-      justify-content: center;
-      margin-top: 1.25em;
-    }
+/* Subtle divider between sections */
+.soft-hr{
+  border: 0;
+  height: 1px;
+  background: rgba(0,0,0,0.12);
+  margin: 2.25em 0;
+}
 
-    .team-card{
-      width: 8em;               /* adjust if you want */
-      max-width: 90vw;
-      text-align: center;
-    }
-
-    .team-card .avatar{
-      width: 100%;
-      aspect-ratio: 1 / 1;         /* keeps square box */
-      border-radius: 50%;
-      overflow: hidden;
-      margin: 0 auto 0.75em auto;
-      background: rgba(0,0,0,0.06);
-    }
-
-    .team-card .avatar img{
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .team-card h4{
-      margin: 0.2em 0 0 0;
-    }
-    .team-card p{
-      margin: 0.35em 0 0 0;
-      font-size: 0.95em;
-      opacity: 0.9;
-    }
-
-    /* Make PI row a bit larger */
-    .team-card.pi{
-      width: 12em;
-    }
-
-    /* Optional: a subtle divider between sections */
-    .soft-hr{
-      border: 0;
-      height: 1px;
-      background: rgba(0,0,0,0.12);
-      margin: 2.25em 0;
-    }
-
-/* =========================
-   Team page: wider text without enlarging avatars
-   ========================= */
-
-/* inner を少し広げて左右余白を減らす（ページ全体の横幅UP） */
+/* Make page content wider (reduce side margins) */
 .wrapper.style5 .inner{
-  max-width: 86em;         /* 例: 80〜96emで好み調整 */
+  max-width: 92em;
   width: 100%;
-  padding-left: 1.6em;     /* 左右余白を少し狭く */
+  padding-left: 1.6em;
   padding-right: 1.6em;
 }
 @media (max-width: 736px){
@@ -156,32 +114,35 @@
   }
 }
 
-/* グリッドの横方向の詰まり具合を調整 */
+/* =========================================================
+   Team grid + cards (final effective layout)
+   ========================================================= */
 .team-grid{
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 1.25em 2.0em;       /* row-gap / column-gap */
+  gap: 1.25em 2.0em;   /* row-gap / column-gap */
   margin-top: 1.25em;
+  align-items: flex-start;
 }
 
-/* カード本体は「画像の見た目」を変えないため、幅は今に近い */
+/* Card width is for text layout; avatar size is controlled separately */
 .team-card{
-  width: 8em;           /* 画像サイズは現状維持 */
+  width: 14em;          /* text-friendly width */
   max-width: 95vw;
   text-align: center;
-  padding: 0.25em 0.25em;  /* カード内余白を少しだけ追加 */
+  padding: 0.25em 0.25em;
 }
 
-/* PIは少しだけ広め（画像は変えない） */
+/* PI cards are wider */
 .team-card.pi{
-  width: 12em;
+  width: 20em;
 }
 
-/* 画像部分はそのまま */
+/* Avatar size (fixed so image look stays consistent) */
 .team-card .avatar{
-  width: 100%;
-  aspect-ratio: 1 / 1;
+  width: 8em;
+  height: 8em;
   border-radius: 50%;
   overflow: hidden;
   margin: 0 auto 0.75em auto;
@@ -194,17 +155,16 @@
   display: block;
 }
 
-/* ★ここがポイント：テキストだけ横幅を広げる */
+/* Text block */
 .team-card .meta{
-  display: block;
-  width: min(22em, 100vw); /* テキスト領域を広げる（カード幅より大きくしてOK） */
-  margin: 0 auto;          /* 中央に配置 */
+  width: 100%;
 }
 
-/* 行間・余白を少し整える（見た目が締まる） */
+/* Typography inside cards */
 .team-card h4{
   margin: 0.15em 0 0 0;
   line-height: 1.25;
+  min-height: 2.6em;    /* keep layout stable even with 2-line titles */
 }
 .team-card p{
   margin: 0.35em 0 0 0;
@@ -213,108 +173,40 @@
   opacity: 0.9;
 }
 
-/* テキストが長い人用に、モバイルでは横幅を広げすぎない */
-@media (max-width: 980px){
-  .team-card .meta{
-    width: min(20em, 92vw);
-  }
-}
-@media (max-width: 736px){
-  .team-grid{
-    gap: 1.1em;
-  }
-  .team-card{
-    width: 16em;           /* モバイルは少し余裕ある幅に */
-  }
-  .team-card .meta{
-    width: min(22em, 92vw);
-  }
-}
-
-/* Team page section headings: center alignment */
-#main .team-section h3{
-  text-align: center;
+/* =========================================================
+   PI: larger avatar (only)
+   ========================================================= */
+.team-card.pi .avatar{
+  width: 12em;
+  height: 12em;
+  margin-bottom: 0.9em;
 }
 
 /* =========================================================
-   FIX: text 崩れ対策（画像サイズは維持しつつ、カードを広げる）
+   Mobile behavior
    ========================================================= */
-
-/* inner を広げる（既にあるならOK。より安定させるだけ） */
-.wrapper.style5 .inner{
-  max-width: 92em;
-  padding-left: 1.6em;
-  padding-right: 1.6em;
-}
-
-/* グリッド */
-.team-grid{
-  gap: 1.25em 2.0em;
-  align-items: flex-start; /* 高さ違いでも上を揃える */
-}
-
-/* ★カード自体を「テキストが入る幅」にする */
-.team-card{
-  width: 14em;          /* ←ここがポイント（テキスト用） */
-  padding: 0.25em 0.25em;
-}
-
-/* PIカードは少し広め */
-.team-card.pi{
-  width: 16em;
-}
-
-/* ★画像は固定サイズで維持（見た目を変えない） */
-.team-card .avatar{
-  width: 8em;           /* 画像見た目を今と同等に固定 */
-  height: 8em;
-  aspect-ratio: auto;   /* 念のため */
-  margin: 0 auto 0.75em auto;
-}
-
-/* meta の「無理やり拡張」をやめる */
-.team-card .meta{
-  width: 100%;
-  max-width: none;
-}
-
-/* 見出しが2行になっても崩れにくくする */
-.team-card h4{
-  line-height: 1.25;
-  min-height: 2.6em;    /* 2行分くらい確保（好みで微調整） */
-}
-
-/* モバイル */
 @media (max-width: 736px){
+  .team-grid{ gap: 1.1em; }
+
   .team-card,
   .team-card.pi{
     width: 100%;
     max-width: 26em;
   }
+
   .team-card .avatar{
     width: 7.5em;
     height: 7.5em;
   }
+
+  .team-card.pi .avatar{
+    width: 9.5em;   /* PIもモバイルでは少し控えめ */
+    height: 9.5em;
+  }
 }
+</style>
 
-/* =========================
-   PI card: slightly larger avatar
-   ========================= */
-
-/* PIカードの画像だけ大きく */
-.team-card.pi .avatar{
-  width: 12em;     /* 通常 8em → 少し大きく */
-  height: 12em;
-  margin-bottom: 0.9em;
-}
-
-/* PIカード全体の幅も少し余裕を持たせる（任意だが推奨） */
-.team-card.pi{
-  width: 20em;      /* 通常 18em → バランス調整 */
-}
-
-
-  </style>
+  
 </head>
 
 <body class="is-preload">
