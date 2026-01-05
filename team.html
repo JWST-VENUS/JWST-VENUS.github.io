@@ -228,6 +228,35 @@ html, body { font-family: 'Cinzel', serif; }
   line-height: 1.3;
 }
 
+  /* 3-column bullets */
+  .all-members{
+    margin-top: 1.25em;
+  }
+
+  .all-members .member-list{
+    margin: 0;
+    padding-left: 1.1em;            /* bullet indentation */
+    list-style: disc;
+    columns: 3;                     /* 3 columns */
+    column-gap: 2.5em;              /* space between columns */
+  }
+
+  .all-members .member-list li{
+    break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+    margin: 0 0 0.45em 0;
+    font-size: 0.95em;
+    line-height: 1.35;
+  }
+
+  /* responsive */
+  @media (max-width: 980px){
+    .all-members .member-list{ columns: 2; }
+  }
+  @media (max-width: 736px){
+    .all-members .member-list{ columns: 1; }
+  }
+
 
 </style>
 
@@ -499,14 +528,109 @@ html, body { font-family: 'Cinzel', serif; }
           <hr class="soft-hr" />
 
           <!-- All members -->
-          <section class="team-section">
-            <h3>All Team Members</h3>
-            <p>
-              A full list of team members will be posted here.
-              <!-- If you later want: link to a PDF/Google Sheet -->
-              <!-- <a href="#">(TBD)</a> -->
-            </p>
-          </section>
+<section class="team-section all-members">
+  <h3>All Team Members</h3>
+
+  <ul class="member-list">
+    <li>Abdurro&#39;uf Abdurro&#39;uf (The Johns Hopkins University)</li>
+    <li>Roberto G. Abraham (University of Toronto)</li>
+    <li>Angela Adamo (Stockholm University)</li>
+    <li>Hollis Akins (University of Texas at Austin)</li>
+    <li>Ricardo Amorin (Universidad de La Serena)</li>
+    <li>Pablo Arrabal Haro (NASA Goddard Space Flight Center)</li>
+    <li>Yoshihisa Asada (St. Mary&#39;s University)</li>
+    <li>Hakim Atek (CNRS, Institut d&#39;Astrophysique de Paris)</li>
+    <li>Micaela Bagley (University of Texas at Austin)</li>
+    <li>Rachana Bhatawdekar (ESA-European Space Astronomy Centre)</li>
+    <li>Marusa Bradac (University of Ljubljana, Dept. of Physics)</li>
+    <li>Larry Bradley (Space Telescope Science Institute)</li>
+    <li>Gabriel Brammer (University of Copenhagen, Niels Bohr Institute)</li>
+    <li>Volker Bromm (University of Texas at Austin)</li>
+    <li>Caitlin M. Casey (University of Texas at Austin)</li>
+    <li>John Chisholm (University of Texas at Austin)</li>
+    <li>Dan Coe (Space Telescope Science Institute - ESA - JWST)</li>
+    <li>Christopher Conselice (University of Manchester)</li>
+    <li>Liang Dai (University of California - Berkeley)</li>
+
+    <li>Pratika Dayal (Kapteyn Astronomical Institute)</li>
+    <li>Guillaume Desprez (Kapteyn Astronomical Institute)</li>
+    <li>Miroslava Dessauges-Zavadsky (University of Geneva, Department of Astronomy)</li>
+    <li>Mark Dickinson (NOIRLab - (AZ))</li>
+    <li>Jose M. Diego (Instituto de Fisica de Cantabria)</li>
+    <li>Eiichi Egami (University of Arizona)</li>
+    <li>Daniel J. Eisenstein (Harvard University)</li>
+    <li>Henry C. Ferguson (Space Telescope Science Institute)</li>
+    <li>Steven L. Finkelstein (University of Texas at Austin)</li>
+    <li>Seiji Fujimoto (University of Toronto)</li>
+    <li>Lukas Jonathan Furtak (Ben-Gurion University of the Negev)</li>
+    <li>Timothy S. Hamilton (Shawnee State University)</li>
+    <li>Yuichi Harikane (University of Tokyo, Institute of Cosmic Ray Research)</li>
+    <li>Takuya Hashimoto (University of Tsukuba)</li>
+    <li>Nimish P. Hathi (Space Telescope Science Institute)</li>
+    <li>Tiger Hsiao (Harvard University)</li>
+    <li>Kohei Inayoshi (Peking University)</li>
+    <li>Yolanda Jimenez-Teja (Instituto de Astrofisica de Andalucia (IAA))</li>
+    <li>Shardha Jogee (University of Texas at Austin)</li>
+    <li>Jeyhan Kartaltepe (Rochester Institute of Technology)</li>
+    <li>Anton M. Koekemoer (Space Telescope Science Institute)</li>
+    <li>Kotaro Kohno (University of Tokyo, Institute of Astronomy)</li>
+    <li>Vasily Kokorev (University of Texas at Austin)</li>
+    <li>Nimisha Kumari (Space Telescope Science Institute - ESA - JWST)</li>
+    <li>Ivo Labbe (Swinburne University of Technology)</li>
+    <li>Rebecca L. Larson (Rochester Institute of Technology)</li>
+    <li>Ray A. Lucas (Space Telescope Science Institute)</li>
+    <li>Georgios Magdis (Technical University of Denmark-DTU Space)</li>
+    <li>Danilo Marchesini (Tufts University)</li>
+    <li>Vladan Markov (Faculty of Mathematics and Physics, University of Ljubljana)</li>
+    <li>Nicholas Martis (University of Ljubljana, Dept. of Physics)</li>
+    <li>Jorryt Matthee (Institute of Science and Technology Austria)</li>
+    <li>Ashish Kumar Meena (Ben Gurion University of the Negev)</li>
+    <li>Matteo Messa (INAF - OAS Bologna)</li>
+    <li>Lamiya Mowla (Wellesley College)</li>
+    <li>Julian B. Munoz (University of Texas at Austin)</li>
+    <li>Rohan Naidu (Massachusetts Institute of Technology)</li>
+    <li>Kimihiko Nakajima (National Astronomical Observatory of Japan (NAOJ))</li>
+    <li>Minami Nakane (University of Tokyo, Institute of Cosmic Ray Research)</li>
+    <li>Gael Noirot (Space Telescope Science Institute)</li>
+    <li>Pascal Oesch (University of Geneva, Department of Astronomy)</li>
+    <li>Masamune Oguri (Chiba University)</li>
+    <li>Yoshiaki Ono (University of Tokyo, Institute of Cosmic Ray Research)</li>
+    <li>Masami Ouchi (National Astronomical Observatory of Japan (NAOJ))</li>
+    <li>Richard Pan (Tufts University)</li>
+    <li>Casey Papovich (Texas A &amp; M University)</li>
+    <li>Massimo Pascale (University of California - Berkeley)</li>
+    <li>Justin Pierel (Space Telescope Science Institute)</li>
+    <li>Marc Postman (Space Telescope Science Institute)</li>
+    <li>Tom Resseguier (Space Telescope Science Institute)</li>
+    <li>Armin Rest (Space Telescope Science Institute)</li>
+    <li>Johan Pierre Richard (Centre de Recherche Astrophysique de Lyon)</li>
+    <li>Massimo Ricotti (University of Maryland)</li>
+    <li>Jane R. Rigby (NASA Goddard Space Flight Center)</li>
+    <li>Marcin Sawicki (St. Mary&#39;s University)</li>
+    <li>Raffaella Schneider (Universita di Roma La Sapienza)</li>
+    <li>Kazuhiro Shimasaku (University of Tokyo, Graduate School of Science)</li>
+    <li>Louis-Gregory Strolger (Space Telescope Science Institute)</li>
+    <li>Fengwu Sun (Harvard University)</li>
+    <li>Sune Toft (University of Copenhagen, Niels Bohr Institute)</li>
+    <li>Roberta Tripodi (University of Ljubljana, Dept. of Physics)</li>
+    <li>James Trussler (Harvard University)</li>
+    <li>Akiyoshi Tsujita (University of Tokyo, Institute of Astronomy)</li>
+    <li>Hiroya Umeda (University of Tokyo, Graduate School of Science)</li>
+    <li>Francesco Maria Valentino (European Southern Observatory - Germany)</li>
+    <li>Eros Vanzella (INAF - Osservatorio di Astrofisica e Scienza dello Spazio)</li>
+    <li>Alessandra Venditti (Universita di Roma La Sapienza)</li>
+    <li>Darach Watson (University of Copenhagen, Niels Bohr Institute)</li>
+    <li>John R. Weaver (University of Massachusetts - Amherst)</li>
+    <li>Brian Welch (University of Maryland)</li>
+    <li>Chris J. Willott (NRC Herzberg Institute of Astrophysics)</li>
+    <li>Rogier A. Windhorst (Arizona State University)</li>
+    <li>Yi Xu (University of Tokyo, Institute of Cosmic Ray Research)</li>
+    <li>Hiroto Yanagisawa (University of Tokyo, Institute of Cosmic Ray Research)</li>
+    <li>Erik Zackrisson (Uppsala Astronomical Observatory)</li>
+
+    <li>Adi Zitrin (Ben Gurion University of the Negev)</li>
+  </ul>
+</section>
 
         </div>
       </section>
