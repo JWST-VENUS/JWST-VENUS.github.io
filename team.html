@@ -137,6 +137,100 @@
       background: rgba(0,0,0,0.12);
       margin: 2.25em 0;
     }
+
+/* =========================
+   Team page: wider text without enlarging avatars
+   ========================= */
+
+/* inner を少し広げて左右余白を減らす（ページ全体の横幅UP） */
+.wrapper.style5 .inner{
+  max-width: 86em;         /* 例: 80〜96emで好み調整 */
+  width: 100%;
+  padding-left: 1.6em;     /* 左右余白を少し狭く */
+  padding-right: 1.6em;
+}
+@media (max-width: 736px){
+  .wrapper.style5 .inner{
+    padding-left: 1.25em;
+    padding-right: 1.25em;
+  }
+}
+
+/* グリッドの横方向の詰まり具合を調整 */
+.team-grid{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.25em 2.0em;       /* row-gap / column-gap */
+  margin-top: 1.25em;
+}
+
+/* カード本体は「画像の見た目」を変えないため、幅は今に近い */
+.team-card{
+  width: 8em;           /* 画像サイズは現状維持 */
+  max-width: 95vw;
+  text-align: center;
+  padding: 0.25em 0.25em;  /* カード内余白を少しだけ追加 */
+}
+
+/* PIは少しだけ広め（画像は変えない） */
+.team-card.pi{
+  width: 12em;
+}
+
+/* 画像部分はそのまま */
+.team-card .avatar{
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto 0.75em auto;
+  background: rgba(0,0,0,0.06);
+}
+.team-card .avatar img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ★ここがポイント：テキストだけ横幅を広げる */
+.team-card .meta{
+  display: block;
+  width: min(22em, 100vw); /* テキスト領域を広げる（カード幅より大きくしてOK） */
+  margin: 0 auto;          /* 中央に配置 */
+}
+
+/* 行間・余白を少し整える（見た目が締まる） */
+.team-card h4{
+  margin: 0.15em 0 0 0;
+  line-height: 1.25;
+}
+.team-card p{
+  margin: 0.35em 0 0 0;
+  font-size: 0.95em;
+  line-height: 1.35;
+  opacity: 0.9;
+}
+
+/* テキストが長い人用に、モバイルでは横幅を広げすぎない */
+@media (max-width: 980px){
+  .team-card .meta{
+    width: min(20em, 92vw);
+  }
+}
+@media (max-width: 736px){
+  .team-grid{
+    gap: 1.1em;
+  }
+  .team-card{
+    width: 16em;           /* モバイルは少し余裕ある幅に */
+  }
+  .team-card .meta{
+    width: min(22em, 92vw);
+  }
+}
+
   </style>
 </head>
 
@@ -186,7 +280,7 @@
 
           <!-- PIs -->
           <section class="team-section">
-            <h3>VENUS Key Architects</h3>
+            <h3>Principal Investigators</h3>
 
             <div class="team-grid">
               <div class="team-card pi">
@@ -204,14 +298,6 @@
                 <h4>Deputy PI: <br> Dan Coe</h4>
                 <p>Space Telescope Science Institute</p>
               </div>
-
-              <div class="team-card pi">
-                <div class="avatar">
-                  <img src="images/johan.jpg" alt="Johan Richard" />
-                </div>
-                <h4>Target Selection: <br> Johan Richard</h4>
-                <p>Lyon Observatory</p>
-              </div>
             </div>
 
           </section>
@@ -220,9 +306,18 @@
 
           <!-- Key Architects -->
           <section class="team-section">
-            <h3>VENUS Key Builders</h3>
+            <h3>VENUS Key Architects & Builders</h3>
 
             <div class="team-grid">
+
+              <div class="team-card">
+                <div class="avatar">
+                  <img src="images/johan.jpg" alt="Johan Richard" />
+                </div>
+                <h4>Target Selection: <br> Johan Richard</h4>
+                <p>Lyon Observatory</p>
+              </div>
+
               <div class="team-card">
                 <div class="avatar">
                   <img src="images/vasily.jpeg" alt="Vasily Kokorev" />
