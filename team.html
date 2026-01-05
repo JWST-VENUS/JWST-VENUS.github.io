@@ -741,6 +741,115 @@ html, body { font-family: 'Cinzel', serif; }
   </p>
 </section>
 
+<!-- Collaboration Network Header and Description -->
+<div class="container mt-6 mb-4">
+  <h3 class="text-center text-white" style="font-family:'Times New Roman', Times, serif; font-style:italic;">
+    Collaboration Network
+  </h3>
+  <p class="lead text-center" style="color:#dee2e6;">
+    Global distribution of our close collaborators/institutes involved in the past 5 years.
+  </p>
+</div>
+ 
+
+<!-- Google Maps API 読み込み -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDi5OF_PdwmOU1IwURby9Y1AzmDG4K9Mjw"></script>
+<div id="collabMap" style="width:100%; height:600px; margin: 30px 0;"></div>
+<script>
+const collaboratorInstitutes = [
+  "University of Toronto",
+  "Space Telescope Science Institute",
+  "National Astronomical Observatory of Japan (NAOJ)",
+  "University of Texas at Austin",
+  "University of Tokyo",
+  "Waseda University",
+  "Johns Hopkins University",
+  "University of Arizona",
+  "Scuola Normale Superiore, Pisa",
+  "Ben-Gurion University of the Negev",
+  "Centre de Recherche Astrophysique de Lyon",
+  "University of Copenhagen, Niels Bohr Institute",
+  "Technical University of Denmark-DTU Space",
+  "Harvard University",
+  "CNRS, Laboratoire d'Astrophysique de Marseille",
+  "University of Geneva, Department of Astronomy",
+  "Chulalongkorn University",
+  "Kapteyn Astronomical Institute",
+  "University of Western Australia",
+  "Cosmic Dawn Center, Niels Bohr Institute",
+  "Swinburne University of Technology",
+  "Yale University",
+  "Max Planck Institute for Astronomy",
+  "University of Colorado at Boulder",
+  "University of Massachusetts - Amherst",
+  "Princeton University",
+  "Leiden Observatory / Universiteit Leiden",
+  "University of Wisconsin - Madison",
+  "University of California - Santa Barbara",
+  "Texas A & M University",
+  "INAF - Osservatorio Astronomico di Roma",
+  "Chiba University",
+  "Centro de Astrobiologia - CAB",
+  "Universita di Firenze",
+  "Complutense University of Madrid",
+  "California Institute of Technology",
+  "California Institute of Technology, IPAC",
+  "University of Missouri - Columbia",
+  "Rochester Institute of Technology",
+  "Liverpool John Moores University",
+  "Massachusetts Institute of Technology",
+  "ESA, European Space Astronomy Centre",
+  "National Institute of Astrophysics, Optics and Electronics",
+  "Purple Mountain Observatory, CAS",
+  "Max-Planck-Institut fur extraterrestrische Physik",
+  "University of Maryland",
+  "University of California - Los Angeles",
+  "Tufts University",
+  "University of Pittsburgh",
+  "NOIRLab",
+  "Pennsylvania State University",
+  "University of Zurich",
+  "Kavli Institute for the Physics and Mathematics of the Universe",
+  "Peking University",
+  "Institute of Science and Technology Austria",
+  "Academia Sinica, Institute of Astronomy and Astrophysics",
+  "Chalmers University of Technology",
+  "York University",
+  "University of California - Santa Cruz",
+  "Sapienza Università di Roma",
+  "Wellesley College"
+];
+const geocoder = new google.maps.Geocoder();
+const map = new google.maps.Map(document.getElementById('collabMap'), {
+  center: { lat: 43.6532, lng: -79.3832 },  // Torontoの緯度経度
+  zoom: 3,
+  mapTypeId: 'roadmap',
+  streetViewControl: false,
+  mapTypeControl: false,
+});
+
+collaboratorInstitutes.forEach((institute) => {
+  geocoder.geocode({ address: institute }, (results, status) => {
+    if (status === 'OK') {
+      new google.maps.Marker({
+        map: map,
+        position: results[0].geometry.location,
+        title: institute
+      });
+    }
+  });
+});
+</script>
+
+
+    <!-- JavaScript: Above <body> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+  <div style="width:100%; height: 48px;"></div>
+
+
+
 
     <!-- Footer (consistent) -->
     <footer id="footer">
@@ -762,116 +871,6 @@ html, body { font-family: 'Cinzel', serif; }
   <script src="assets/js/util.js"></script>
   <script src="assets/js/main.js"></script>
 
- <script>
-  // 1) 所属一覧をここに入れる（あなたが既に持っている affiliation list からコピペでOK）
-  //    まずは「所属の重複を減らす」のが重要（同じ大学が何十回も出てくるため）
-  const collaboratorInstitutesRaw = [
-    "University of Toronto",
-    "Space Telescope Science Institute",
-    "University of Texas at Austin",
-    "University of Tokyo",
-    "University of Geneva",
-    "NASA Goddard Space Flight Center",
-    "Arizona State University",
-    "Ben Gurion University",
-    "Harvard University",
-    "Tufts University",
-    "University of Ljubljana",
-    "Technical University of Denmark",
-    "Kapteyn Astronomical Institute",
-    "Institut d'Astrophysique de Paris",
-    "National Astronomical Observatory of Japan",
-    "INAF - Bologna",
-    "University of Arizona",
-    "University of Manchester",
-    "Rochester Institute of Technology",
-    "Wellesley College",
-    "York University",
-    "Chiba University",
-    "Peking University",
-    "Institute of Science and Technology Austria",
-    "Pontificia Universidad Católica de Chile",
-    "Universidad de Cantabria",
-    "Universidad de La Serena",
-    "Universidad de Chile",
-    "NRC Herzberg Institute of Astrophysics",
-    "Uppsala Astronomical Observatory",
-    "NOIRLab",
-    "University of Pittsburgh",
-    "University of Massachusetts Amherst",
-    "University of Nova Gorica",
-    "Universidade do Vale do Paraíba",
-    "Sapienza Università di Roma",
-    "California Institute of Technology",
-    "University of Tsukuba",
-    "St. Mary's University"
-    // ...TBD: ここにどんどん追加
-  ];
-
-  // 2) 重複排除（大文字小文字差も吸収したい場合はさらに正規化してもOK）
-  function uniqueInstitutes(list){
-    const seen = new Set();
-    const out = [];
-    list.forEach(s => {
-      const key = String(s).trim();
-      if (!key) return;
-      const k = key.toLowerCase();
-      if (seen.has(k)) return;
-      seen.add(k);
-      out.push(key);
-    });
-    return out;
-  }
-
-  // 3) geocodeの連打はクォータに当たりやすいので “少しずつ” 実行
-  function geocodeWithDelay(geocoder, address, delayMs){
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        geocoder.geocode({ address }, (results, status) => resolve({ results, status, address }));
-      }, delayMs);
-    });
-  }
-
-  // 4) Maps callback
-  async function initCollabMap(){
-    const el = document.getElementById('collabMap');
-    if (!el || !window.google || !google.maps) return;
-
-    const map = new google.maps.Map(el, {
-      center: { lat: 20, lng: 0 }, // 世界中心っぽく
-      zoom: 2,
-      mapTypeId: 'roadmap',
-      streetViewControl: false,
-      mapTypeControl: false,
-      fullscreenControl: true
-    });
-
-    const geocoder = new google.maps.Geocoder();
-    const institutes = uniqueInstitutes(collaboratorInstitutesRaw);
-
-    // 連打回避：1件ずつ 150〜250ms くらい空ける（増やしてもOK）
-    let delay = 0;
-
-    for (const institute of institutes){
-      const { results, status } = await geocodeWithDelay(geocoder, institute, delay);
-      delay += 180;
-
-      if (status === 'OK' && results && results[0]){
-        new google.maps.Marker({
-          map,
-          position: results[0].geometry.location,
-          title: institute
-        });
-      } else {
-        // 失敗は静かにスキップ（必要なら console.log で確認）
-        // console.warn('Geocode failed:', institute, status);
-      }
-    }
-  }
-</script>
-
-<!-- ここをあなたのAPIキーに置き換え（Referrer制限を必ず設定） -->
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDi5OF_PdwmOU1IwURby9Y1AzmDG4K9Mjw"></script>
 
 </body>
 </html>
