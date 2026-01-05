@@ -204,9 +204,19 @@ html, body { font-family: 'Cinzel', serif; }
     height: 9.5em;
   }
 }
+
+/* =========================
+   Non-PI team grids: tighter spacing
+   ========================= */
+
+/* PI セクション以外（Key Architects / Advisory / All Members） */
+.team-section:not(:first-of-type) .team-grid{
+  gap: 0.8em 1.2em;   /* ← 横・縦ともに少し詰める */
+}
+
 </style>
 
-  
+
 </head>
 
 <body class="is-preload">
