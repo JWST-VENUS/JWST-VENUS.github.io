@@ -236,6 +236,68 @@
   text-align: center;
 }
 
+/* =========================================================
+   FIX: text 崩れ対策（画像サイズは維持しつつ、カードを広げる）
+   ========================================================= */
+
+/* inner を広げる（既にあるならOK。より安定させるだけ） */
+.wrapper.style5 .inner{
+  max-width: 92em;
+  padding-left: 1.6em;
+  padding-right: 1.6em;
+}
+
+/* グリッド */
+.team-grid{
+  gap: 1.25em 2.0em;
+  align-items: flex-start; /* 高さ違いでも上を揃える */
+}
+
+/* ★カード自体を「テキストが入る幅」にする */
+.team-card{
+  width: 16em;          /* ←ここがポイント（テキスト用） */
+  padding: 0.25em 0.25em;
+}
+
+/* PIカードは少し広め */
+.team-card.pi{
+  width: 18em;
+}
+
+/* ★画像は固定サイズで維持（見た目を変えない） */
+.team-card .avatar{
+  width: 8em;           /* 画像見た目を今と同等に固定 */
+  height: 8em;
+  aspect-ratio: auto;   /* 念のため */
+  margin: 0 auto 0.75em auto;
+}
+
+/* meta の「無理やり拡張」をやめる */
+.team-card .meta{
+  width: 100%;
+  max-width: none;
+}
+
+/* 見出しが2行になっても崩れにくくする */
+.team-card h4{
+  line-height: 1.25;
+  min-height: 2.6em;    /* 2行分くらい確保（好みで微調整） */
+}
+
+/* モバイル */
+@media (max-width: 736px){
+  .team-card,
+  .team-card.pi{
+    width: 100%;
+    max-width: 26em;
+  }
+  .team-card .avatar{
+    width: 7.5em;
+    height: 7.5em;
+  }
+}
+
+
 
   </style>
 </head>
@@ -379,10 +441,7 @@
                 <p>Tuft University</p>
             	</div>
               </div>
-
             </div>
-
-
           </section>
 
 
