@@ -1,205 +1,345 @@
 <!DOCTYPE HTML>
 <!--
-	Spectral by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+  Spectral by HTML5 UP
+  html5up.net | @ajlkn
+  Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
-	<head>
-		<title>VENUS - Team</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+<head>
+  <title>VENUS - Team</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 
-	<style>
-	html, body {
-	  font-family: 'Cinzel', serif;
-	}
-	</style>
+  <style>
+    /* Keep typography consistent with index/about */
+    html, body { font-family: 'Cinzel', serif; }
 
+    /* =========================
+       Header: logo / menu sizing (match index/about)
+       ========================= */
+    @media screen and (max-width: 736px){
+      #header h1 a{ font-size: 0.98em; }
+      #header nav a{ font-size: 0.63em; }
+    }
 
-	</head>
-	<body class="is-preload">
+    #header nav ul li.special a.menuToggle{
+      padding: 0.56em 1.68em 0.56em 1.40em !important;
+    }
+    #header nav ul li.special a.menuToggle span{
+      font-size: 1.4em !important;
+      letter-spacing: 0.175em !important;
+    }
+    #header nav ul li.special a.menuToggle:before,
+    #header nav ul li.special a.menuToggle:after{
+      top: 50% !important;
+      transform: translateY(-18%) scale(1.26) !important;
+      right: 0.77em !important;
+    }
 
-		<!-- Page Wrapper -->
-			<div id="page-wrapper">
+    #menu ul li a{
+      font-size: 0.91em !important;
+      letter-spacing: 0.042em !important;
+      line-height: 1.5 !important;
+    }
+    @media screen and (max-width: 736px){
+      #menu ul li a{ font-size: 0.875em !important; }
+    }
 
-				<!-- Header -->
-					<header id="header" class="alt">
-						<h1><a href="index.html">VENUS</a></h1>
-						<nav id="nav">
-							<ul>
-								<li class="special">
-									<a href="#menu" class="menuToggle"><span>Menu</span></a>
-									<div id="menu">
-										<ul>
-											<li><a href="index.html">Home</a></li>
-											<li><a href="about.html">About</a></li>
-											<li><a href="team.html">Meet the Team</a></li>
-											<li><a href="data.html">Data Products</a></li>
-											<li><a href="pubs.html">Publications</a></li>
-										</ul>
-									</div>
-								</li>
-							</ul>
-						</nav>
-					</header>
-				<!-- Header -->
-					<header id="header">
-						<h1><a href="index.html">VENUS</a></h1>
-						<nav id="nav">
-							<ul>
-								<li class="special">
-									<a href="#menu" class="menuToggle"><span>Menu</span></a>
-									<div id="menu">
-										<ul>
-											<li><a href="index.html">Home</a></li>
-											<li><a href="about.html">About</a></li>
-											<li><a href="team.html">Meet the Team</a></li>
-											<li><a href="data.html">Data Products</a></li>
-											<li><a href="pubs.html">Publications</a></li>
-										</ul>
-									</div>
-								</li>
-							</ul>
-						</nav>
-					</header>
+    #header h1 a.header-logo{
+      border: 0 !important;
+      text-decoration: none !important;
+      margin-top: 0.42em;
+      display: inline-block;
+    }
+    #header h1 a.header-logo img{
+      display: block;
+      height: 1.75em;
+      width: auto;
+    }
+    @media screen and (max-width: 736px){
+      #header h1{ margin-top: 0.21em; }
+      #header h1 a.header-logo img{ height: 0.84em; }
+    }
 
-				<!-- Main -->
-					<article id="main">
-						<header>
-							<h2>Meet the Team</h2>
-						</header>
-						<section class="wrapper style5">
-							<div class="inner">
-								
-								<h3>Principal Investigators</h3>
-								<div class="row">
-									<div class="off-1"></div>
-									<div class="col-4">
-										<span class="image fit"><image src="images/seiji.jpeg" style="border-radius:50%;"></image></span>
-										<h4 style="text-align:center;margin:0;">PI: Seiji Fujimoto</h4>
-										<p style="text-align:center;">University of Toronto</p>
-									</div>
-									<div class="off-2"></div>
-									<div class="col-4">
-										<span class="image fit"><image src="images/dan.jpg" style="border-radius:50%;"></image></span>
-										<h4 style="text-align:center;margin:0;">Deputy PI: Dan Coe</h4>
-										<p style="text-align:center;">Space Telescope Science Institute</p>
-									</div>
-								</div>								
-								</br>
+    #header{
+      height: 2.8em;
+      line-height: 1.6;
+    }
 
-								<h3>VENUS Key Architects</h3>
-								<div class="row">
-									
-									<div class="col-3">
-										<span class="image fit"><image src="images/johan.jpg" style="border-radius:50%;"></image></span>
-										<h4 style="text-align:center;margin:0;">Target selection: Johan Richard</h4>
-										<p style="text-align:center;">Lyon Observatory</p>
-									</div>
+    /* =========================
+       Team page layout tweaks
+       ========================= */
+    #main header p{
+      max-width: 70em;
+      margin: 0.5em auto 0 auto;
+    }
 
-									<div class="col-3">
-										<span class="image fit"><image src="images/vasily.jpeg" style="border-radius:50%;"></image></span>
-										<h4 style="text-align:center;margin:0;">NIRCam+HST: Vasily Kokorev</h4>
-										<p style="text-align:center;">University of Texas, Austin</p>
-									</div>
-									
-									<div class="col-3">
-										<span class="image fit"><image src="images/lukas.jpg" style="border-radius:50%;"></image></span>
-										<h4 style="text-align:center;margin:0;">Lens model: Lukas Furtak</h4>
-										<p style="text-align:center;">University of Texas, Austin</p>
-									</div>
-									
-									<div class="col-3">
-										<span class="image fit"><image src="images/justin.jpeg" style="border-radius:50%;"></image></span>
-										<h4 style="text-align:center;margin:0;">Transient:<br>Justin Pierel</h4>
-										<p style="text-align:center;">Space Telescope Science Institute</p>
-									</div>
-									
-								
-								</div>
-								</br>
+    .team-lead{
+      max-width: 72em;
+      margin: 0 auto 1.25em auto;
+      text-transform: none !important;
+      letter-spacing: normal;
+    }
 
-								<h3>VENUS Advisory Committee</h3>
-								<div class="row">
-									
-									<div class="col-3">
-										<span class="image fit"><image src="images/casey.jpg" style="border-radius:50%;"></image></span>
-										<h4 style="text-align:center;margin:0;">Casey Papovich</h4>
-										<p style="text-align:center;">Texas A&M University</p>
-									</div>
+    .team-section{ margin-top: 2em; }
 
-									<div class="col-3">
-										<span class="image fit"><image src="images/pratika.jpeg" style="border-radius:50%;"></image></span>
-										<h4 style="text-align:center;margin:0;">Pratika Dayal</h4>
-										<p style="text-align:center;">Canadian Institute for Theoretical Astrophysics</p>
-									</div>
-									
-									<div class="col-3">
-										<span class="image fit"><image src="images/rachel.jpg" style="border-radius:50%;"></image></span>
-										<h4 style="text-align:center;margin:0;">Rachel Bezanson</h4>
-										<p style="text-align:center;">University of Pittsburgh</p>
-									</div>
-									
-									<div class="col-3">
-										<span class="image fit"><image src="images/tommaso.jpg" style="border-radius:50%;"></image></span>
-										<h4 style="text-align:center;margin:0;">Tommaso Treu</h4>
-										<p style="text-align:center;">University of California, Los Angeles</p>
-									</div>
+    /* Avatar grid cards */
+    .team-grid{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5em;
+      justify-content: center;
+      margin-top: 1.25em;
+    }
 
+    .team-card{
+      width: 15.5em;               /* adjust if you want */
+      max-width: 90vw;
+      text-align: center;
+    }
 
-									<div class="col-3">
-										<span class="image fit"><image src="images/john.png" style="border-radius:50%;"></image></span>
-										<h4 style="text-align:center;margin:0;">John Chisholm</h4>
-										<p style="text-align:center;">University of Texas, Austin</p>
-									</div>
-									
-									<div class="col-3">
-										<span class="image fit"><image src="images/marusa.png" style="border-radius:50%;"></image></span>
-										<h4 style="text-align:center;margin:0;">Maruša Bradač</h4>
-										<p style="text-align:center;">University of Ljubljana</p>
-									</div>
-									
-								</div>
-								</br>
+    .team-card .avatar{
+      width: 100%;
+      aspect-ratio: 1 / 1;         /* keeps square box */
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 auto 0.75em auto;
+      background: rgba(0,0,0,0.06);
+    }
 
+    .team-card .avatar img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
 
-								<h3>All Team Members</h3>
+    .team-card h4{
+      margin: 0.2em 0 0 0;
+    }
+    .team-card p{
+      margin: 0.35em 0 0 0;
+      font-size: 0.95em;
+      opacity: 0.9;
+    }
 
-								<p>...</p>
+    /* Make PI row a bit larger */
+    .team-card.pi{
+      width: 18em;
+    }
 
+    /* Optional: a subtle divider between sections */
+    .soft-hr{
+      border: 0;
+      height: 1px;
+      background: rgba(0,0,0,0.12);
+      margin: 2.25em 0;
+    }
+  </style>
+</head>
 
-							</div>
-						</section>
-					</article>
+<body class="is-preload">
+  <div id="page-wrapper">
 
+    <!-- Header (single, consistent) -->
+    <header id="header" class="alt">
+      <h1>
+        <a href="index.html" class="header-logo" aria-label="VENUS Home">
+          <img src="icon/VENUS_logo_H2_W.png" alt="VENUS" />
+        </a>
+      </h1>
+      <nav id="nav">
+        <ul>
+          <li class="special">
+            <a href="#menu" class="menuToggle"><span>Menu</span></a>
+            <div id="menu">
+              <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="team.html">Meet the Team</a></li>
+                <li><a href="data.html">Data Products</a></li>
+                <li><a href="press.html">Press</a></li>
+                <li><a href="pubs.html">Publications</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="internal.html">Internal</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </header>
 
-				<!-- Footer -->
-                <footer id="footer">
-                    <!-- <ul class="icons">
-                        <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-                        <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-                        <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-                        <li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
-                        <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-                    </ul> -->
-                    <ul class="copyright">
-                        <li>&copy; JWST-VENUS</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li> Seiji Fujimoto & Hollis Akins
-                    </ul>
-                </footer>
+    <!-- Main -->
+    <article id="main">
+      <header>
+        <h2>Meet the Team</h2>
+        <p class="team-lead">
+          VENUS is led by an international team spanning lensing, high-redshift galaxies, stellar populations,
+          black holes, and time-domain astrophysics. Key roles and contacts are listed below.
+        </p>
+      </header>
 
-			</div>
+      <section class="wrapper style5">
+        <div class="inner">
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+          <!-- PIs -->
+          <section class="team-section">
+            <h3>Principal Investigators</h3>
 
-	</body>
+            <div class="team-grid">
+              <div class="team-card pi">
+                <div class="avatar">
+                  <img src="images/seiji.jpeg" alt="Seiji Fujimoto" />
+                </div>
+                <h4>PI: Seiji Fujimoto</h4>
+                <p>University of Toronto</p>
+              </div>
+
+              <div class="team-card pi">
+                <div class="avatar">
+                  <img src="images/dan.jpg" alt="Dan Coe" />
+                </div>
+                <h4>Deputy PI: Dan Coe</h4>
+                <p>Space Telescope Science Institute</p>
+              </div>
+            </div>
+          </section>
+
+          <hr class="soft-hr" />
+
+          <!-- Key Architects -->
+          <section class="team-section">
+            <h3>VENUS Key Architects</h3>
+
+            <div class="team-grid">
+              <div class="team-card">
+                <div class="avatar">
+                  <img src="images/johan.jpg" alt="Johan Richard" />
+                </div>
+                <h4>Target selection: Johan Richard</h4>
+                <p>Lyon Observatory</p>
+              </div>
+
+              <div class="team-card">
+                <div class="avatar">
+                  <img src="images/vasily.jpeg" alt="Vasily Kokorev" />
+                </div>
+                <h4>NIRCam + HST: Vasily Kokorev</h4>
+                <p>University of Texas, Austin</p>
+              </div>
+
+              <div class="team-card">
+                <div class="avatar">
+                  <img src="images/lukas.jpg" alt="Lukas Furtak" />
+                </div>
+                <h4>Lens model: Lukas Furtak</h4>
+                <p>University of Texas, Austin</p>
+              </div>
+
+              <div class="team-card">
+                <div class="avatar">
+                  <img src="images/justin.jpeg" alt="Justin Pierel" />
+                </div>
+                <h4>Transient: Justin Pierel</h4>
+                <p>Space Telescope Science Institute</p>
+              </div>
+            </div>
+          </section>
+
+          <hr class="soft-hr" />
+
+          <!-- Advisory Committee -->
+          <section class="team-section">
+            <h3>VENUS Advisory Committee</h3>
+
+            <div class="team-grid">
+              <div class="team-card">
+                <div class="avatar">
+                  <img src="images/casey.jpg" alt="Casey Papovich" />
+                </div>
+                <h4>Casey Papovich</h4>
+                <p>Texas A&amp;M University</p>
+              </div>
+
+              <div class="team-card">
+                <div class="avatar">
+                  <img src="images/pratika.jpeg" alt="Pratika Dayal" />
+                </div>
+                <h4>Pratika Dayal</h4>
+                <p>Canadian Institute for Theoretical Astrophysics</p>
+              </div>
+
+              <div class="team-card">
+                <div class="avatar">
+                  <img src="images/rachel.jpg" alt="Rachel Bezanson" />
+                </div>
+                <h4>Rachel Bezanson</h4>
+                <p>University of Pittsburgh</p>
+              </div>
+
+              <div class="team-card">
+                <div class="avatar">
+                  <img src="images/tommaso.jpg" alt="Tommaso Treu" />
+                </div>
+                <h4>Tommaso Treu</h4>
+                <p>University of California, Los Angeles</p>
+              </div>
+
+              <div class="team-card">
+                <div class="avatar">
+                  <img src="images/john.png" alt="John Chisholm" />
+                </div>
+                <h4>John Chisholm</h4>
+                <p>University of Texas, Austin</p>
+              </div>
+
+              <div class="team-card">
+                <div class="avatar">
+                  <img src="images/marusa.png" alt="Maruša Bradač" />
+                </div>
+                <h4>Maruša Bradač</h4>
+                <p>University of Ljubljana</p>
+              </div>
+            </div>
+          </section>
+
+          <hr class="soft-hr" />
+
+          <!-- All members -->
+          <section class="team-section">
+            <h3>All Team Members</h3>
+            <p>
+              A full list of team members will be posted here.
+              <!-- If you later want: link to a PDF/Google Sheet -->
+              <!-- <a href="#">(TBD)</a> -->
+            </p>
+          </section>
+
+        </div>
+      </section>
+    </article>
+
+    <!-- Footer (consistent) -->
+    <footer id="footer">
+      <ul class="copyright">
+        <li>&copy; JWST-VENUS <span class="since">since 2025</span></li>
+        <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+        <li>Seiji Fujimoto &amp; Hollis Akins</li>
+      </ul>
+    </footer>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/jquery.scrollex.min.js"></script>
+  <script src="assets/js/jquery.scrolly.min.js"></script>
+  <script src="assets/js/browser.min.js"></script>
+  <script src="assets/js/breakpoints.min.js"></script>
+  <script src="assets/js/util.js"></script>
+  <script src="assets/js/main.js"></script>
+
+</body>
 </html>
