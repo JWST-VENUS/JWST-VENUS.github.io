@@ -285,16 +285,6 @@ html, body { font-family: 'Cinzel', serif; }
   margin: 0.75em 0 0 0;
 }
 
- /* 読み込み中は地図を隠して、最後に表示（「最初から全部ある」見え方にする） */
-  #collabMap { opacity: 0; transition: opacity 250ms ease; }
-  #collabMap.is-ready { opacity: 1; }
-  .map-loading {
-    text-align:center;
-    opacity:0.85;
-    margin-top:0.8em;
-    font-size:0.95em;
-  }
-
 
 </style>
 
@@ -764,78 +754,73 @@ html, body { font-family: 'Cinzel', serif; }
   <script src="assets/js/util.js"></script>
   <script src="assets/js/main.js"></script>
 
- <!-- Collaboration Network Header and Description -->
-<div class="container mt-6 mb-4">
-	<h3>Collaboration Network</h3>
-</div>
- 
 <!-- Google Maps API 読み込み -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrPu_3XJ6nPeNcfznEGlFlDmmcMamQNmw"></script>
 <div id="collabMap" style="width:100%; height:600px; margin: 30px 0;"></div>
 <script>
 const collaboratorInstitutes = [
-  "Arizona State University",
-  "Ben Gurion University",
-  "California Institute of Technology",
-  "Canadian Institute for Theoretical Astrophysics",
-  "Centre de Recherche Astrophysique de Lyon",
-  "Chalmers University",
-  "Chiba University",
-  "European Space Astronomy Centre",
-  "Harvard University",
-  "INAF – Bologna",
-  "INAF – Roma",
-  "Institut d'Astrophysique de Paris",
-  "Instituto de Astrofísica de Andalucía",
-  "Instituto de Astrofísica de Canarias",
-  "Instituto de Física de Cantabria",
-  "Institute of Science and Technology Austria",
-  "Johns Hopkins University",
-  "Kapteyn Astronomical Institute",
-  "Massachusetts Institute of Technology",
-  "NASA Goddard Space Flight Center",
-  "National Astronomical Observatory of Japan",
-  "NRC Herzberg Institute of Astrophysics",
-  "NOIRLab",
-  "Peking University",
-  "Pontificia Universidad Católica de Chile",
-  "Rochester Institute of Technology",
-  "Saint Mary's University",
-  "Sapienza Università di Roma",
-  "Shawnee State University",
-  "Space Telescope Science Institute",
-  "Stockholm University",
-  "Swinburne University of Technology",
-  "Technical University of Denmark",
-  "Texas A&M University",
-  "The Johns Hopkins University",
-  "Tufts University",
-  "Universidad de Cantabria",
-  "Universidad de La Serena",
-  "Universidad de Chile",
-  "Universidade do Vale do Paraíba",
-  "University of Arizona",
-  "University of California – Berkeley",
-  "University of California – Los Angeles",
-  "University of Copenhagen",
-  "University of Geneva",
-  "University of Illinois Urbana-Champaign",
-  "University of Ljubljana",
-  "University of Manchester",
-  "University of Maryland",
-  "University of Massachusetts Amherst",
-  "University of Nova Gorica",
-  "University of Pittsburgh",
   "University of Toronto",
-  "University of Tsukuba",
+  "Space Telescope Science Institute",
+  "National Astronomical Observatory of Japan (NAOJ)",
   "University of Texas at Austin",
   "University of Tokyo",
-  "University of Washington",
-  "Uppsala Astronomical Observatory",
-  "Wellesley College",
-  "York University"
+  "Waseda University",
+  "Johns Hopkins University",
+  "University of Arizona",
+  "Scuola Normale Superiore, Pisa",
+  "Ben-Gurion University of the Negev",
+  "Centre de Recherche Astrophysique de Lyon",
+  "University of Copenhagen, Niels Bohr Institute",
+  "Technical University of Denmark-DTU Space",
+  "Harvard University",
+  "CNRS, Laboratoire d'Astrophysique de Marseille",
+  "University of Geneva, Department of Astronomy",
+  "Chulalongkorn University",
+  "Kapteyn Astronomical Institute",
+  "University of Western Australia",
+  "Cosmic Dawn Center, Niels Bohr Institute",
+  "Swinburne University of Technology",
+  "Yale University",
+  "Max Planck Institute for Astronomy",
+  "University of Colorado at Boulder",
+  "University of Massachusetts - Amherst",
+  "Princeton University",
+  "Leiden Observatory / Universiteit Leiden",
+  "University of Wisconsin - Madison",
+  "University of California - Santa Barbara",
+  "Texas A & M University",
+  "INAF - Osservatorio Astronomico di Roma",
+  "Chiba University",
+  "Centro de Astrobiologia - CAB",
+  "Universita di Firenze",
+  "Complutense University of Madrid",
+  "California Institute of Technology",
+  "California Institute of Technology, IPAC",
+  "University of Missouri - Columbia",
+  "Rochester Institute of Technology",
+  "Liverpool John Moores University",
+  "Massachusetts Institute of Technology",
+  "ESA, European Space Astronomy Centre",
+  "National Institute of Astrophysics, Optics and Electronics",
+  "Purple Mountain Observatory, CAS",
+  "Max-Planck-Institut fur extraterrestrische Physik",
+  "University of Maryland",
+  "University of California - Los Angeles",
+  "Tufts University",
+  "University of Pittsburgh",
+  "NOIRLab",
+  "Pennsylvania State University",
+  "University of Zurich",
+  "Kavli Institute for the Physics and Mathematics of the Universe",
+  "Peking University",
+  "Institute of Science and Technology Austria",
+  "Academia Sinica, Institute of Astronomy and Astrophysics",
+  "Chalmers University of Technology",
+  "York University",
+  "University of California - Santa Cruz",
+  "Sapienza Università di Roma",
+  "Wellesley College"
 ];
-
 const geocoder = new google.maps.Geocoder();
 const map = new google.maps.Map(document.getElementById('collabMap'), {
   center: { lat: 43.6532, lng: -79.3832 },  // Torontoの緯度経度
