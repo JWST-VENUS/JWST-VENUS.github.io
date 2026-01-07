@@ -1,111 +1,211 @@
 <!DOCTYPE HTML>
-<!--
-	Spectral by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
-	<head>
-		<title>VENUS - Publications</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+<head>
+    <title>Publications - VENUS Project</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    <style>
+        /* 出版物リスト専用のスタイル */
+        .pub-year-section {
+            margin-bottom: 4em;
+        }
+        .pub-year-title {
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 1.5em;
+            padding-bottom: 0.5em;
+            font-family: 'Cinzel', serif;
+            color: #fff;
+        }
+        .pub-item {
+            margin-bottom: 2em;
+            padding-left: 1em;
+            border-left: 3px solid #ed4933; /* アクセントカラー */
+            transition: 0.3s;
+        }
+        .pub-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            padding-left: 1.5em;
+        }
+        .pub-title {
+            font-weight: bold;
+            color: #fff;
+            display: block;
+            margin-bottom: 0.3em;
+            line-height: 1.4;
+        }
+        .pub-authors {
+            font-size: 0.9em;
+            opacity: 0.8;
+            margin-bottom: 0.3em;
+        }
+        .pub-meta {
+            font-size: 0.85em;
+            font-style: italic;
+            opacity: 0.6;
+        }
+        .ads-link {
+            display: inline-block;
+            margin-top: 0.5em;
+            font-size: 0.8em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #ed4933 !important;
+            text-decoration: none;
+        }
+        .ads-link:hover {
+            text-decoration: underline;
+        }
+        #loading {
+            text-align: center;
+            padding: 3em;
+        }
+    </style>
+</head>
+<body class="is-preload">
 
-	<style>
-	html, body {
-	  font-family: 'Cinzel', serif;
-	}
-	</style>
+    <div id="page-wrapper">
 
-	</head>
-	<body class="is-preload">
+        <header id="header">
+            <h1><a href="index.html">VENUS</a></h1>
+            <nav id="nav">
+                <ul>
+                    <li class="special">
+                        <a href="#menu" class="menu-toggle"><span>Menu</span></a>
+                        <div id="menu">
+                            <ul>
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="news.html">News</a></li>
+                                <li><a href="pub.html">Publications</a></li>
+                                <li><a href="team.html">Team</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </header>
 
-		<!-- Page Wrapper -->
-			<div id="page-wrapper">
+        <article id="main">
+            <header>
+                <h2>Publications</h2>
+                <p>Scientific results from the VENUS survey and related studies.</p>
+            </header>
+            <section class="wrapper style5">
+                <div class="inner">
+                    
+                    <div id="loading">
+                        <div class="spinner">Loading publication list from ADS...</div>
+                    </div>
+                    
+                    <div id="pub-list-container">
+                        </div>
 
-				<!-- Header -->
-					<header id="header" class="alt">
-						<h1><a href="index.html">VENUS</a></h1>
-						<nav id="nav">
-							<ul>
-								<li class="special">
-									<a href="#menu" class="menuToggle"><span>Menu</span></a>
-									<div id="menu">
-										<ul>
-											<li><a href="index.html">Home</a></li>
-											<li><a href="about.html">About</a></li>
-											<li><a href="team.html">Meet the Team</a></li>
-											<li><a href="data.html">Data Products</a></li>
-											<li><a href="pubs.html">Publications</a></li>
-										</ul>
-									</div>
-								</li>
-							</ul>
-						</nav>
-					</header>
-				<!-- Header -->
-					<header id="header">
-						<h1><a href="index.html">VENUS</a></h1>
-						<nav id="nav">
-							<ul>
-								<li class="special">
-									<a href="#menu" class="menuToggle"><span>Menu</span></a>
-									<div id="menu">
-										<ul>
-											<li><a href="index.html">Home</a></li>
-											<li><a href="about.html">About</a></li>
-											<li><a href="team.html">Meet the Team</a></li>
-											<li><a href="data.html">Data Products</a></li>
-											<li><a href="pubs.html">Publications</a></li>
-										</ul>
-									</div>
-								</li>
-							</ul>
-						</nav>
-					</header>
+                </div>
+            </section>
+        </article>
 
-				<!-- Main -->
-					<article id="main">
-						<header>
-							<h2>Publications</h2>
-						</header>
-						<section class="wrapper style5">
-							<div class="inner">
+        <footer id="footer">
+            <ul class="icons">
+                <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+                <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+            </ul>
+            <ul class="copyright">
+                <li>&copy; VENUS Project</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+            </ul>
+        </footer>
 
-								<p>Morbi mattis mi consectetur tortor elementum, varius pellentesque velit convallis. Aenean tincidunt lectus auctor mauris maximus, ac scelerisque ipsum tempor. Duis vulputate ex et ex tincidunt, quis lacinia velit aliquet. Duis non efficitur nisi, id malesuada justo. Maecenas sagittis felis ac sagittis semper. Curabitur purus leo, tempus sed finibus eget, fringilla quis risus. Maecenas et lorem quis sem varius sagittis et a est. Maecenas iaculis iaculis sem. Donec vel dolor at arcu tincidunt bibendum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Fusce ut aliquet justo. Donec id neque ipsum. Integer eget ultricies odio. Nam vel ex a orci fringilla tincidunt. Aliquam eleifend ligula non velit accumsan cursus. Etiam ut gravida sapien.</p>
+    </div>
 
-								<p>Vestibulum ultrices risus velit, sit amet blandit massa auctor sit amet. Sed eu lectus sem. Phasellus in odio at ipsum porttitor mollis id vel diam. Praesent sit amet posuere risus, eu faucibus lectus. Vivamus ex ligula, tempus pulvinar ipsum in, auctor porta quam. Proin nec dui cursus, posuere dui eget interdum. Fusce lectus magna, sagittis at facilisis vitae, pellentesque at etiam. Quisque posuere leo quis sem commodo, vel scelerisque nisi scelerisque. Suspendisse id quam vel tortor tincidunt suscipit. Nullam auctor orci eu dolor consectetur, interdum ullamcorper ante tincidunt. Mauris felis nec felis elementum varius.</p>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
 
-							</div>
-						</section>
-					</article>
+    <script>
+        /**
+         * ADS Public Libraryからデータを取得して表示するスクリプト
+         */
+        async function fetchPublications() {
+            // あなたのADS Public Library IDをここに入力してください
+            const libraryId = 'YOUR_ADS_LIBRARY_ID'; 
+            const url = `https://api.adsabs.harvard.edu/v1/biblib/public/libraries/${libraryId}`;
+            
+            try {
+                // 注: ADS APIのパブリックアクセス制限により、通常は
+                // サーバーサイド(PHP等)を経由するか、JSONファイルを直接読み込むのが一般的ですが、
+                // ここでは一般的な取得ロジックを記載します。
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                // 論文データを年ごとにソート
+                const docs = data.solr.response.docs;
+                const grouped = {};
 
+                docs.forEach(doc => {
+                    const year = doc.year;
+                    if (!grouped[year]) grouped[year] = [];
+                    grouped[year].push(doc);
+                });
 
-				<!-- Footer -->
-                <footer id="footer">
-                    <!-- <ul class="icons">
-                        <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-                        <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-                        <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-                        <li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
-                        <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-                    </ul> -->
-                    <ul class="copyright">
-                        <li>&copy; JWST-VENUS</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li> Seiji Fujimoto & Hollis Akins
-                    </ul>
-                </footer>
+                // 年の降順に並べ替え
+                const years = Object.keys(grouped).sort((a, b) => b - a);
+                
+                renderPublications(years, grouped);
+                document.getElementById('loading').style.display = 'none';
 
-			</div>
+            } catch (error) {
+                console.error('Error fetching ADS data:', error);
+                document.getElementById('loading').innerHTML = 
+                    '<p>Unable to load the publication list. Please view our library directly on <a href="https://ui.adsabs.harvard.edu/">ADS</a>.</p>';
+            }
+        }
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+        function renderPublications(years, grouped) {
+            const container = document.getElementById('pub-list-container');
+            let html = '';
 
-	</body>
+            years.forEach(year => {
+                html += `<div class="pub-year-section">
+                            <h3 class="pub-year-title">${year}</h3>`;
+                
+                grouped[year].forEach(doc => {
+                    const bibcode = doc.bibcode;
+                    const title = doc.title[0];
+                    const authors = formatAuthors(doc.author);
+                    const journal = doc.pub || "arXiv";
+                    
+                    html += `
+                        <div class="pub-item">
+                            <span class="pub-title">${title}</span>
+                            <div class="pub-authors">${authors}</div>
+                            <div class="pub-meta">${journal} (${year})</div>
+                            <a href="https://ui.adsabs.harvard.edu/abs/${bibcode}/abstract" class="ads-link" target="_blank">ADS Abstract &raquo;</a>
+                        </div>
+                    `;
+                });
+
+                html += `</div>`;
+            });
+
+            container.innerHTML = html;
+        }
+
+        function formatAuthors(authorArray) {
+            if (!authorArray) return "";
+            if (authorArray.length <= 5) {
+                return authorArray.join('; ');
+            } else {
+                return authorArray.slice(0, 5).join('; ') + " et al.";
+            }
+        }
+
+        // 実行
+        window.onload = fetchPublications;
+    </script>
+
+</body>
 </html>
