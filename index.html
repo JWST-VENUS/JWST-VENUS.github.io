@@ -569,6 +569,66 @@ html, body { font-family: 'Cinzel', serif; }
   .news-card { width: 100%; max-width: none; }
 }
 
+/* ニュースセクション全体の横幅を100%に */
+.spotlight-refined .content {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 0 !important; /* Spotlightのデフォルトパディングを解除 */
+}
+
+.news-layout-container {
+  display: flex;
+  width: 100%;
+  min-height: 500px; /* 上のセクションと高さを合わせる調整 */
+}
+
+/* 左側：テキストエリア（幅50%） */
+.info-side {
+  flex: 0 0 50%; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* 垂直中央に配置 */
+  padding: 4em; /* テキスト周りの余白 */
+  box-sizing: border-box;
+}
+
+/* 右側：カードエリア（幅50%） */
+.cards-side {
+  flex: 0 0 50%;
+  background: rgba(255, 255, 255, 0.02); /* 視覚的な区切りのための薄い背景 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2em;
+  box-sizing: border-box;
+}
+
+/* カードを横に並べる設定 */
+.news-cards-container {
+  display: flex;
+  gap: 1.5em;
+  width: 100%;
+  justify-content: center; /* カードをエリア内の中央に寄せる */
+}
+
+/* カード自体の幅調整 */
+.news-card {
+  flex: 1;
+  max-width: 280px; /* カードが大きくなりすぎないよう制限 */
+}
+
+/* スマホ表示の時は縦に並べる */
+@media screen and (max-width: 980px) {
+  .news-layout-container {
+    flex-direction: column;
+  }
+  .info-side, .cards-side {
+    flex: 0 0 100%;
+    width: 100%;
+    padding: 2em;
+  }
+}
+
 </style>
 </head>
 
@@ -751,11 +811,11 @@ html, body { font-family: 'Cinzel', serif; }
           <div class="news-layout-container">
             
             <div class="info-side">
-              <h2>Latest News</h2>
+              <h2 style="font-size: 2em; letter-spacing: 0.1em;">LATEST NEWS</h2>
               <p class="description">
                 Check out our latest updates, breakthroughs, and project milestones.
               </p>
-              <p class="see-all-link">
+              <p class="see-all-link" style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 2em;">
                 See all press releases and milestones <a href="news.html">here</a>.
               </p>
             </div>
