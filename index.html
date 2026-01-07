@@ -618,7 +618,7 @@ html, body { font-family: 'Cinzel', serif; }
 /* カードの並び（横並び） */
 .news-cards-container {
     display: flex;
-    gap: 1em;
+    gap: 1.2em;
     width: 100%;
     max-width: 950px; /* カードが広がりすぎないように制限 */
     justify-content: center;
@@ -627,6 +627,8 @@ html, body { font-family: 'Cinzel', serif; }
 /* カード1枚のスタイル */
 .news-card {
     flex: 1;
+    /* 1枚あたりの最小幅を保証したい場合は以下を追加 */
+    min-width: 300px;
     background: #1a1a1a;
     border-radius: 4px;
     overflow: hidden;
