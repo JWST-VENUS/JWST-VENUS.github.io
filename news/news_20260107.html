@@ -4,241 +4,201 @@
   <title>VENUS News – Strongly Lensed Supernovae</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-  <link rel="stylesheet" href="assets/css/main.css" />
-  <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+  <link rel="stylesheet" href="../assets/css/main.css" />
+  <noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
 
   <style>
+    /* 既存のCinzelフォントを維持 */
     html, body { font-family: 'Cinzel', serif; }
 
-    .news-article{
-      max-width: 72em;
+    /* 記事の読みやすさを向上させるための微調整 */
+    .news-article {
+      max-width: 50em; /* 1行が長すぎないように調整 */
       margin: 0 auto;
+      text-transform: none !important;
+      letter-spacing: normal !important;
     }
 
-    .news-article header{
-      margin-bottom: 1.5em;
+    .news-article h2, .news-article h3, .news-article h4 {
+      text-transform: none !important;
+      letter-spacing: 0.05em;
     }
 
-    .news-article .release-date{
-      font-size: 0.95em;
-      opacity: 0.85;
-      margin-bottom: 0.4em;
-    }
-
-    .news-article .lead{
-      font-size: 1.15em;
-      line-height: 1.55;
-      margin-bottom: 1.4em;
-    }
-
-    .news-figure{
-      margin: 2em 0;
-      text-align: center;
-    }
-
-    .news-figure img{
-      width: 100%;
-      max-width: 960px;
-      border-radius: 0.6em;
-    }
-
-    .news-figure figcaption{
+    .release-date {
       font-size: 0.9em;
-      opacity: 0.85;
-      margin-top: 0.5em;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 2em;
+      display: block;
+      opacity: 0.7;
+    }
+
+    .news-figure {
+      margin: 3em 0;
       text-align: center;
     }
 
-    blockquote{
+    .news-figure img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    .news-figure figcaption {
+      font-size: 0.85em;
+      line-height: 1.6;
+      margin-top: 1.2em;
+      color: #888;
+      text-align: left; /* キャプションは左揃えが読みやすい */
+      padding: 0 1em;
+    }
+
+    blockquote {
+      border-left: 3px solid #ed4933;
+      padding: 0.5em 0 0.5em 1.5em;
+      margin: 2.5em 0;
       font-style: italic;
-      border-left: 4px solid rgba(0,0,0,0.25);
-      padding-left: 1em;
-      margin: 1.5em 0;
+    }
+
+    /* ロゴのサイズ調整 */
+    #header h1 a.header-logo img {
+      height: 1.5em;
+      vertical-align: middle;
     }
   </style>
 </head>
 
 <body class="is-preload">
-<div id="page-wrapper">
+  <div id="page-wrapper">
 
-  <!-- Header -->
-  <header id="header">
-    <h1>
-      <a href="../index.html" class="header-logo">
-        <img src="../../icon/VENUS_logo_H2_W.png" alt="VENUS">
-      </a>
-    </h1>
-    <nav id="nav">
-      <ul>
-        <li class="special">
-          <a href="#menu" class="menuToggle"><span>Menu</span></a>
-          <div id="menu">
-            <ul>
-              <li><a href="../index.html">Home</a></li>
-              <li><a href="../about.html">About</a></li>
-              <li><a href="../team.html">Meet the Team</a></li>
-              <li><a href="../data.html">Data Products</a></li>
-              <li><a href="../news.html">News</a></li>
-              <li><a href="../pubs.html">Publications</a></li>
-              <li><a href="../events.html">Events</a></li>
-            </ul>
-          </div>
-        </li>
+    <header id="header">
+      <h1>
+        <a href="../index.html" class="header-logo">
+          <img src="../icon/VENUS_logo_H2_W.png" alt="VENUS">
+        </a>
+      </h1>
+      <nav id="nav">
+        <ul>
+          <li class="special">
+            <a href="#menu" class="menuToggle"><span>Menu</span></a>
+            <div id="menu">
+              <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../team.html">Meet the Team</a></li>
+                <li><a href="../data.html">Data Products</a></li>
+                <li><a href="../news.html">News</a></li>
+                <li><a href="../pubs.html">Publications</a></li>
+                <li><a href="../events.html">Events</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <article id="main">
+      <header>
+        <h2>News Release</h2>
+        <p>Scientific discovery from the VENUS Program</p>
+      </header>
+
+      <section class="wrapper style5">
+        <div class="inner news-article">
+
+          <span class="release-date">Embargoed until January 7, 2026, 10:15 AM ET</span>
+          
+          <h2 style="margin-top: 0;">The Strongly Lensed Supernova Pantheon as Revealed by JWST</h2>
+
+          <p class="lead">
+            Astronomers from the Space Telescope Science Institute (STScI) and the JWST Vast Exploration for Nascent, Unexplored Sources (VENUS) program have announced the discovery of two exceptionally rare events: strongly lensed supernovae whose light has been split into multiple images by the warping of spacetime.
+          </p>
+
+          <figure class="news-figure">
+            <img src="../images/news/news_20260107_fig1.png" alt="Gravitational lensing of SN Ares">
+            <figcaption>
+              <strong>Figure 1:</strong> Representation of the gravitational lensing effect produced by the MJ0308 galaxy cluster. This massive cosmic lens causes multiple images of the host galaxy of SN Ares to appear, with predicted time delays of up to 60 years between images.
+            </figcaption>
+          </figure>
+
+          <h3>Peering Through Nature’s Giant Telescopes</h3>
+          <p>
+            Massive objects in space, like galaxy clusters, can warp the fabric of spacetime—a phenomenon predicted by Einstein's General Relativity. When a cluster lies directly between Earth and a distant object, it acts as a "gravitational lens," magnifying and distorting the light from the background source.
+          </p>
+          <p>
+            The VENUS collaboration is currently using JWST to survey 60 such galaxy clusters. Even at the program’s midpoint, it has already uncovered rare phenomena including individual stars from the early Universe and stellar explosions that would otherwise remain invisible.
+          </p>
+
+          <blockquote>
+            “Strong gravitational lensing transforms galaxy clusters into nature’s most powerful telescopes,” says <strong>Seiji Fujimoto</strong>, Principal Investigator of the VENUS program. “VENUS was designed to uncover the rarest events in the distant Universe, and these lensed supernovae are the perfect example of what this mission can achieve.”
+          </blockquote>
+
+          <figure class="news-figure">
+            <img src="../images/news/news_20260107_fig2.png" alt="MJ0308 and MJ0417 clusters">
+            <figcaption>
+              <strong>Figure 2:</strong> Composite images from HST and JWST of the MJ0308 and MJ0417 galaxy clusters. These clusters host the newly discovered supernovae, SN Ares and SN Athena. Both are expected to reappear in future images, providing crucial data for cosmology.
+            </figcaption>
+          </figure>
+
+          <h3>A Predictive Experiment for Cosmic Expansion</h3>
+          <p>
+            SN Ares exploded when the Universe was only 4 billion years old. Because of the vast distances and the cluster's gravity, its various images will arrive at Earth decades apart. Astronomers predict the final images will not appear for another 60 years.
+          </p>
+          <p>
+            By measuring these "time delays," the VENUS team can precisely calculate the expansion rate of the Universe, addressing the so-called "Hubble Tension"—a major discrepancy in modern astronomy regarding how fast the Universe is growing.
+          </p>
+
+          <blockquote>
+            “This system offers a predictive experiment that could place extraordinarily precise constraints on cosmological evolution,” says <strong>Conor Larison</strong> (STScI). “We have never seen such a long anticipated delay before.”
+          </blockquote>
+
+          <p>
+            While SN Ares is a long-term study, the second discovery, <strong>SN Athena</strong>, is expected to reappear much sooner—within the next two years. Its reappearance will provide an immediate and independent measurement of cosmic expansion.
+          </p>
+
+          <hr />
+
+          <section>
+            <h4>Media Contacts</h4>
+            <div class="row">
+              <div class="col-6 col-12-xsmall">
+                <p>
+                  <strong>Conor Larison</strong><br />
+                  Space Telescope Science Institute<br />
+                  <a href="mailto:clarison@stsci.edu">clarison@stsci.edu</a>
+                </p>
+              </div>
+              <div class="col-6 col-12-xsmall">
+                <p>
+                  <strong>Justin Pierel</strong><br />
+                  Space Telescope Science Institute<br />
+                  <a href="mailto:jpierel@stsci.edu">jpierel@stsci.edu</a>
+                </p>
+              </div>
+            </div>
+          </section>
+
+        </div>
+      </section>
+    </article>
+
+    <footer id="footer">
+      <ul class="copyright">
+        <li>&copy; JWST-VENUS <span class="since">since 2025</span></li>
+        <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
       </ul>
-    </nav>
-  </header>
+    </footer>
 
-  <!-- Main -->
-  <article id="main">
-    <section class="wrapper style5">
-      <div class="inner news-article">
+  </div>
 
-        <header>
-          <div class="release-date">Release date: January 7, 2026</div>
-          <h2>The Strongly Lensed Supernova Pantheon As Revealed by JWST</h2>
-        </header>
-
-        <p class="lead">
-          Astronomers from the Space Telescope Science Institute (STScI) and the JWST
-          Vast Exploration for Nascent, Unexplored Sources (VENUS) Treasury program
-          have discovered two exceptionally rare events: strongly lensed supernovae
-          whose light has been split into multiple images by the bending of spacetime.
-          These discoveries open a new avenue for studying how the Universe has evolved
-          over cosmic time.
-        </p>
-
-        <!-- Image 1 -->
-        <figure class="news-figure">
-          <img src="../images/news/news_20260107_fig1.png"
-               alt="Schematic representation of gravitational lensing of SN Ares">
-          <figcaption>
-            Representation of the gravitational lensing effect produced by the MJ0308
-            galaxy cluster, causing multiple images of the host galaxy of SN Ares to appear
-            with time delays of up to ~60 years.
-          </figcaption>
-        </figure>
-
-        <h3>Peering Through Gravity’s Lenses</h3>
-
-        <p>
-          Any object with mass affects the curvature of spacetime, a central prediction
-          of Einstein’s general theory of relativity. When a massive galaxy cluster lies
-          between Earth and a distant background source, its gravity can warp spacetime so
-          strongly that light from the background object is magnified and split into
-          multiple distorted images.
-        </p>
-
-        <p>
-          Astronomers in the VENUS collaboration exploit this effect by using JWST to observe
-          60 massive galaxy clusters. Even though the program is only halfway complete,
-          VENUS has already revealed rare and distant phenomena, including individual stars
-          from the early Universe, active black holes in primordial galaxies, and stellar
-          explosions invisible without gravitational lensing.
-        </p>
-
-        <blockquote>
-          “Strong gravitational lensing transforms galaxy clusters into nature’s most
-          powerful telescopes,” says Seiji Fujimoto, principal investigator of the VENUS
-          survey. “VENUS was designed to uncover the rarest events in the distant Universe,
-          and these lensed supernovae are exactly the kind of phenomena that only this
-          approach can reveal.”
-        </blockquote>
-
-        <!-- Image 2 -->
-        <figure class="news-figure">
-          <img src="../images/news/mj0308_mj0417_clusters.jpg"
-               alt="JWST and HST composite images of MJ0308 and MJ0417 clusters">
-          <figcaption>
-            Color-composite images from HST and JWST of the MJ0308 and MJ0417 galaxy clusters,
-            where SN Ares and SN Athena were discovered. Both supernovae will reappear in
-            other lensed images.
-          </figcaption>
-        </figure>
-
-        <h3>A Cosmological Experiment Decades in the Making</h3>
-
-        <p>
-          SN Ares exploded when the Universe was only about 4 billion years old. As its
-          light travels through the expanding Universe, gravitational lensing causes its
-          images to appear decades apart, with the final images predicted to arrive more
-          than 60 years from now.
-        </p>
-
-        <p>
-          These long time delays transform SN Ares into a unique cosmological experiment.
-          By precisely measuring the delays between images, astronomers can directly probe
-          the expansion rate of the Universe and test competing measurements of the Hubble
-          Constant.
-        </p>
-
-        <blockquote>
-          “Such a long anticipated delay between images of a strongly lensed supernova has
-          never been observed before,” says Conor Larison (STScI). “This system offers a
-          predictive experiment that could place extraordinarily precise constraints on
-          cosmological evolution.”
-        </blockquote>
-
-        <!-- Image 3 -->
-        <figure class="news-figure">
-          <img src="../images/news/news_20260107_fig2.png"
-               alt="Predicted future images of SN Athena">
-          <figcaption>
-            Predicted future appearances of SN Athena. The next image is expected within
-            the next 1–2 years, enabling near-term tests of cosmological models.
-          </figcaption>
-        </figure>
-
-        <p>
-          SN Athena, discovered at a later cosmic epoch, is expected to reappear within the
-          next one to two years. Its relatively short delay will provide an independent and
-          timely measurement of cosmic expansion.
-        </p>
-
-        <blockquote>
-          “The upcoming reappearance of SN Athena will allow us to weigh in on the value of
-          the Hubble Constant at a critical time,” says Justin Pierel (STScI). “It may point
-          toward new physics or uncover previously unknown systematics.”
-        </blockquote>
-
-        <p>
-          Together, SN Ares and SN Athena represent long-baseline experiments in cosmology,
-          offering rare windows into how the Universe has evolved over billions of years —
-          and reminding us that some of its most profound answers may still be on their way.
-        </p>
-
-        <hr />
-
-        <h4>Media Contact</h4>
-        <p>
-          <strong>Conor Larison</strong><br>
-          Space Telescope Science Institute<br>
-          <a href="mailto:clarison@stsci.edu">clarison@stsci.edu</a><br>
-          +1 (717) 454-9739
-        </p>
-
-      </div>
-    </section>
-  </article>
-
-  <!-- Footer -->
-  <footer id="footer">
-    <ul class="copyright">
-      <li>&copy; JWST-VENUS <span class="since">since 2025</span></li>
-      <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-      <li>Seiji Fujimoto &amp; Hollis Akins</li>
-    </ul>
-  </footer>
-
-</div>
-
-<!-- Scripts -->
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/jquery.scrollex.min.js"></script>
-<script src="assets/js/jquery.scrolly.min.js"></script>
-<script src="assets/js/browser.min.js"></script>
-<script src="assets/js/breakpoints.min.js"></script>
-<script src="assets/js/util.js"></script>
-<script src="assets/js/main.js"></script>
+  <script src="../assets/js/jquery.min.js"></script>
+  <script src="../assets/js/jquery.scrollex.min.js"></script>
+  <script src="../assets/js/jquery.scrolly.min.js"></script>
+  <script src="../assets/js/browser.min.js"></script>
+  <script src="../assets/js/breakpoints.min.js"></script>
+  <script src="../assets/js/util.js"></script>
+  <script src="../assets/js/main.js"></script>
 
 </body>
 </html>
