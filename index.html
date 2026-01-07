@@ -734,26 +734,29 @@ html, body { font-family: 'Cinzel', serif; }
       </section>
 
 
-      <section class="spotlight spotlight-fixedimg">
-        <div class="content" style="display: flex; gap: 2em; flex-wrap: wrap;">
+      <section class="spotlight news-section-layout">
+        <div class="content">
           
-          <div style="flex: 1; min-width: 300px;">
-            <h2>Latest News</h2>
-            <div id="latest-news-cards" class="news-cards-container">
-              <p>Loading news...</p>
+          <div class="news-grid-container">
+            
+            <div class="news-column">
+              <h2>Latest News</h2>
+              <div id="latest-news-cards" class="news-cards-container">
+                <p>Loading updates...</p>
+              </div>
+              <p class="see-all-link">
+                See all press releases and milestones <a href="news.html">here</a>.
+              </p>
             </div>
-            <p style="margin-top:1.5em;">
-              See all <a href="news.html">here</a>.
-            </p>
-          </div>
 
-          <div style="flex: 1.2; min-width: 300px; padding-left: 1.5em; border-left: 1px solid #ddd;">
-            <h2>Latest Paper</h2>
-            <div id="ads-library-cards" class="news-cards-container">
-              <p>Loading paper...</p>
+            <div class="paper-column">
+              <h2>Latest Paper</h2>
+              <div id="ads-library-cards" class="news-cards-container">
+                <p>Loading latest publication...</p>
+              </div>
             </div>
-          </div>
 
+          </div>
         </div>
       </section>
 
