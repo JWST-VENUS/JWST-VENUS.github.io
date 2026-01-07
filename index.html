@@ -528,6 +528,53 @@ html, body { font-family: 'Cinzel', serif; }
   .news-card { width: 100%; max-width: none; }
 }
 
+/* 2カラム並列のレイアウト */
+.news-layout-container {
+  display: flex;
+  gap: 4em;
+  align-items: flex-start;
+  width: 100%;
+}
+
+/* 左側（説明エリア）の幅 */
+.info-side {
+  flex: 0 0 300px; /* 幅を300pxに固定 */
+}
+
+/* 右側（カードエリア）の幅 */
+.cards-side {
+  flex: 1; /* 残りのスペースをすべて使う */
+}
+
+.info-side h2 {
+  margin-bottom: 0.5em;
+}
+
+.description {
+  margin-bottom: 1.5em;
+  font-size: 0.95em;
+  line-height: 1.6;
+  opacity: 0.8;
+}
+
+.see-all-link {
+  font-size: 0.9em;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 1.5em;
+}
+
+/* スマホ表示では縦並びにする */
+@media screen and (max-width: 980px) {
+  .news-layout-container {
+    flex-direction: column;
+    gap: 2em;
+  }
+  .info-side {
+    flex: none;
+    width: 100%;
+  }
+}
+
 </style>
 </head>
 
