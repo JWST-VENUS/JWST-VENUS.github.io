@@ -478,14 +478,29 @@ html, body { font-family: 'Cinzel', serif; }
 }
 
 /* =========================================================
-   News Dynamic Display Styling
+   News Dynamic Display Styling (Refined Layout)
    ========================================================= */
+.news-layout-container {
+  display: flex;
+  gap: 4em;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.info-side {
+  flex: 0 0 320px;
+}
+
+.cards-side {
+  flex: 1;
+}
+
 .news-cards-container {
   display: flex;
   gap: 1.5em;
   justify-content: flex-start;
-  margin-top: 1.5em;
 }
+
 .news-card {
   flex: 1;
   max-width: 320px;
@@ -497,53 +512,36 @@ html, body { font-family: 'Cinzel', serif; }
   transition: transform 0.3s ease, background 0.3s ease;
   cursor: pointer;
 }
+
 .news-card:hover { 
   transform: translateY(-5px); 
   background: rgba(255,255,255,0.1);
 }
+
 .news-card img {
   width: 100%;
   aspect-ratio: 16/9;
   object-fit: cover;
   display: block;
 }
+
 .news-card .card-body {
   padding: 1em;
 }
+
 .news-card .card-date {
   font-size: 0.75em;
   opacity: 0.6;
   margin-bottom: 0.4em;
   text-transform: uppercase;
 }
+
 .news-card .card-title {
   font-size: 0.95em;
   line-height: 1.4;
   margin: 0;
   color: #fff;
   font-family: 'Cinzel', serif;
-}
-@media (max-width: 736px) {
-  .news-cards-container { flex-direction: column; align-items: center; }
-  .news-card { width: 100%; max-width: none; }
-}
-
-/* 2カラム並列のレイアウト */
-.news-layout-container {
-  display: flex;
-  gap: 4em;
-  align-items: flex-start;
-  width: 100%;
-}
-
-/* 左側（説明エリア）の幅 */
-.info-side {
-  flex: 0 0 300px; /* 幅を300pxに固定 */
-}
-
-/* 右側（カードエリア）の幅 */
-.cards-side {
-  flex: 1; /* 残りのスペースをすべて使う */
 }
 
 .info-side h2 {
@@ -561,18 +559,14 @@ html, body { font-family: 'Cinzel', serif; }
   font-size: 0.9em;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding-top: 1.5em;
+  margin-top: 1.5em;
 }
 
-/* スマホ表示では縦並びにする */
-@media screen and (max-width: 980px) {
-  .news-layout-container {
-    flex-direction: column;
-    gap: 2em;
-  }
-  .info-side {
-    flex: none;
-    width: 100%;
-  }
+@media (max-width: 980px) {
+  .news-layout-container { flex-direction: column; gap: 2em; }
+  .info-side { flex: none; width: 100%; }
+  .news-cards-container { flex-direction: column; align-items: center; }
+  .news-card { width: 100%; max-width: none; }
 }
 
 </style>
@@ -737,7 +731,6 @@ html, body { font-family: 'Cinzel', serif; }
           <p>
             View the full list of VENUS publications on 
             <a href="https://ui.adsabs.harvard.edu/public-libraries/81Jnu02bT_-A-8TngvUXPA">ADS</a>.
-            <!--https://ui.adsabs.harvard.edu/search/fq=%7B!type%3Daqp%20v%3D%24fq_database%7D&fq_database=database%3A%20astronomy&q=pubdate%3A%5B2025-01%20TO%209999-12%5D%20author%3A(%22Fujimoto%2C%22%20%22Coe%2C%22%20%22Kokorev%2C%22%20%22Furtak%22)&sort=date%20desc%2C%20bibcode%20desc&p_=0 -->
           </p>
         </div>
       </section>
@@ -752,20 +745,6 @@ html, body { font-family: 'Cinzel', serif; }
           </p>
         </div>
       </section>
-
-      <section class="spotlight spotlight-fixedimg">
-        <div class="image"><img src="images/postcard_SPT2325.png" alt="News Postcard" /></div>
-        <div class="content">
-          <h2>Latest News</h2>
-          <div id="latest-news-cards" class="news-cards-container">
-            <p>Loading updates...</p>
-          </div>
-          <p style="margin-top:1.5em;">
-            See all press releases and milestones <a href="news.html">here</a>.
-          </p>
-        </div>
-      </section>
-
 
       <section class="spotlight spotlight-refined">
         <div class="content">
@@ -824,6 +803,8 @@ html, body { font-family: 'Cinzel', serif; }
   <script>
     async function loadNewsForIndex() {
       const container = document.getElementById('latest-news-cards');
+      if (!container) return;
+
       try {
         const response = await fetch('news.html');
         const htmlText = await response.text();
@@ -879,7 +860,7 @@ html, body { font-family: 'Cinzel', serif; }
       { image: images[4], effect: 'effect-circle' },
       { image: images[5], effect: 'effect-slideX' }
     ];
-    const container = document.getElementById('venus-slideshow');
+    const slideshowContainer = document.getElementById('venus-slideshow');
     let current = 0;
 
     function createSlide(scene) {
@@ -895,10 +876,10 @@ html, body { font-family: 'Cinzel', serif; }
     function showScene(index) {
       const scene = scenes[index];
       const slide = createSlide(scene);
-      container.appendChild(slide);
+      slideshowContainer.appendChild(slide);
       void slide.offsetWidth; 
       setTimeout(() => slide.classList.add('show'), 10);
-      const slides = container.querySelectorAll('.slide.show');
+      const slides = slideshowContainer.querySelectorAll('.slide.show');
       if (slides.length > 1) {
         const fadeSlide = slides[0];
         fadeSlide.classList.remove('show');
@@ -917,8 +898,10 @@ html, body { font-family: 'Cinzel', serif; }
       current = (current + 1) % scenes.length;
     }
 
-    loopScenes();
-    setInterval(loopScenes, 6000);
+    if (slideshowContainer) {
+      loopScenes();
+      setInterval(loopScenes, 6000);
+    }
 
     window.onload = function () {
       setTimeout(() => {
