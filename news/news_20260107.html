@@ -61,16 +61,21 @@
       font-style: italic;
     }
 
+/* 本文の 50em と一致させる */
 .acknowledgement-text {
-  max-width: 60em;
+  max-width: 50em; 
   margin: 0 auto;
   font-size: 0.9em;
   line-height: 1.6;
-  /* 色をグレーに変更 */
-  color: #888888; 
-  /* もし少し明るめのグレーが良ければ #aaaaaa に調整してください */
+  color: #888888;
+  text-align: left; /* 本文と揃える */
 }
 
+/* 謝辞セクション全体の上の余白 */
+section.acknowledgement-container {
+  margin-top: 3em;
+  width: 100%;
+}
     /* ロゴのサイズ調整 */
     #header h1 a.header-logo img {
       height: 1.5em;
