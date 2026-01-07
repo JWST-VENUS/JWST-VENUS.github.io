@@ -1,9 +1,4 @@
 <!DOCTYPE HTML>
-<!--
-  Spectral by HTML5 UP
-  html5up.net | @ajlkn
-  Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
 <head>
   <title>VENUS</title>
@@ -89,7 +84,6 @@ html, body { font-family: 'Cinzel', serif; }
   pointer-events: none;
 }
 
-/* template override for banner h2 */
 #banner .banner-title-overlay .venus-title{
   font-size: 2.5em !important;
   line-height: 1 !important;
@@ -107,7 +101,7 @@ html, body { font-family: 'Cinzel', serif; }
 .venus-title{
   color: #fff;
   font-family: 'Cinzel', serif;
-  font-size: 16em; /* keep */
+  font-size: 16em;
   font-weight: bold;
   text-shadow: 2px 2px 6px #000, 4px 4px 10px rgba(0,0,0,0.4);
   margin: 0 0 0.25em 0;
@@ -118,7 +112,7 @@ html, body { font-family: 'Cinzel', serif; }
 .venus-subtitle{
   color: #fff;
   font-family: 'Cinzel', serif;
-  font-size: 0.8em; /* keep */
+  font-size: 0.8em;
   font-weight: normal;
   text-shadow: 2px 2px 4px #000, 4px 4px 8px rgba(0,0,0,0.4);
   margin: 2em 0 0 0;
@@ -159,14 +153,13 @@ html, body { font-family: 'Cinzel', serif; }
 }
 
 /* =========================================================
-   Header: logo / menu sizing (70%)
+   Header: logo / menu sizing
    ========================================================= */
 @media screen and (max-width: 736px){
   #header h1 a{ font-size: 0.98em; }
   #header nav a{ font-size: 0.63em; }
 }
 
-/* menu toggle */
 #header nav ul li.special a.menuToggle{
   padding: 0.56em 1.68em 0.56em 1.40em !important;
 }
@@ -175,7 +168,6 @@ html, body { font-family: 'Cinzel', serif; }
   letter-spacing: 0.175em !important;
 }
 
-/* hamburger / close icon vertical alignment */
 #header nav ul li.special a.menuToggle:before,
 #header nav ul li.special a.menuToggle:after{
   top: 50% !important;
@@ -183,7 +175,6 @@ html, body { font-family: 'Cinzel', serif; }
   right: 0.77em !important;
 }
 
-/* menu items */
 #menu ul li a{
   font-size: 0.91em !important;
   letter-spacing: 0.042em !important;
@@ -193,7 +184,6 @@ html, body { font-family: 'Cinzel', serif; }
   #menu ul li a{ font-size: 0.875em !important; }
 }
 
-/* header left logo image */
 #header h1 a.header-logo{
   border: 0 !important;
   text-decoration: none !important;
@@ -210,14 +200,13 @@ html, body { font-family: 'Cinzel', serif; }
   #header h1 a.header-logo img{ height: 0.84em; }
 }
 
-/* scroll header bar height */
 #header{
   height: 2.8em;
   line-height: 1.6;
 }
 
 /* =========================================================
-   Generic "features" layout (used by #three)
+   Generic features layout
    ========================================================= */
 .features{
   display: flex;
@@ -225,7 +214,7 @@ html, body { font-family: 'Cinzel', serif; }
   justify-content: center;
   padding-left: 0;
   margin: 0 auto;
-  max-width: 64em; /* default; #three will override */
+  max-width: 64em;
 }
 .features li{
   box-sizing: border-box;
@@ -354,11 +343,10 @@ html, body { font-family: 'Cinzel', serif; }
 }
 .meet-indicators button.active{ background: #fff; }
 
-/* theme override */
 .spotlight .image img{ height: auto !important; }
 
 /* =========================================================
-   Data Products fixed image box (no cropping)
+   Data Products fixed image box
    ========================================================= */
 .spotlight-fixedimg .image{
   height: 850px;
@@ -379,8 +367,6 @@ html, body { font-family: 'Cinzel', serif; }
   .spotlight-fixedimg .image{ height: 240px; }
 }
 
-
-/* for spotlight-fixedimg only: tighten paddings around image/content */
 #two .spotlight.spotlight-fixedimg .image{
   padding: 0 !important;
   margin: 0 !important;
@@ -389,7 +375,6 @@ html, body { font-family: 'Cinzel', serif; }
   padding-right: 4em;
 }
 
-/* acknowledgement block above footer */
 .acknowledgement-text{
   max-width: 60em;
   margin: 0 auto;
@@ -400,13 +385,7 @@ html, body { font-family: 'Cinzel', serif; }
 
 /* =========================================================
    #three: Four Science Pillars styling
-   - dark "cosmic dawn" background
-   - per-card background images + overlay
-   - 4-in-a-row on desktop
-   - wider container (reduced side margins)
    ========================================================= */
-
-/* section padding (shorter than template) */
 #three.wrapper{
   padding-top: 3em;
   padding-bottom: 3em;
@@ -416,7 +395,6 @@ html, body { font-family: 'Cinzel', serif; }
   padding-bottom: 0;
 }
 
-/* widen only this section */
 #three.wrapper.style3.special .inner{
   max-width: 92em;
   width: 100%;
@@ -424,17 +402,14 @@ html, body { font-family: 'Cinzel', serif; }
   padding-right: 1.2em;
 }
 
-/* cosmic-dawn background */
 #three.wrapper.style3.special{
   background-color: #070b1a !important;
 }
 
-/* title spacing */
 #three header.major{
   margin-bottom: 2em;
 }
 
-/* make features full width in this section */
 #three .features{
   max-width: none;
   width: 100%;
@@ -442,7 +417,6 @@ html, body { font-family: 'Cinzel', serif; }
   gap: 1.2em;
 }
 
-/* 4-in-a-row on desktop */
 #three .features li{
   width: calc(25% - 1.2em) !important;
   padding: 2.0em 1.4em 1.6em 1.4em;
@@ -451,10 +425,8 @@ html, body { font-family: 'Cinzel', serif; }
   border-radius: 0.75em;
 }
 
-/* text size tweak inside cards */
 #three .features li p{ font-size: 0.95em; }
 
-/* per-card background image layer */
 #three .features li::before{
   content: "";
   position: absolute;
@@ -467,7 +439,6 @@ html, body { font-family: 'Cinzel', serif; }
   transform: scale(1.03);
 }
 
-/* dark overlay on top of image */
 #three .features li::after{
   content: "";
   position: absolute;
@@ -476,30 +447,20 @@ html, body { font-family: 'Cinzel', serif; }
   z-index: 1;
 }
 
-/* bring content above overlays */
 #three .features li > *{
   position: relative;
   z-index: 2;
 }
 
-/* assign images */
 #three .features li:nth-child(1)::before{ background-image: url("images/cover_bg_galaxy.png"); }
 #three .features li:nth-child(2)::before{ background-image: url("images/cover_bg_fs.png"); }
 #three .features li:nth-child(3)::before{ background-image: url("images/cover_bg_smbh.png"); }
 #three .features li:nth-child(4)::before{ background-image: url("images/cover_bg_sn.png"); }
 
-/* readability */
-#three .features li h3,
-#three .features li p{
-  text-shadow: 0 2px 10px rgba(0,0,0,0.6);
-}
-
-/* invert icons to white on dark */
 #three .feature-icon{
   filter: invert(1) brightness(1.1) contrast(1.1);
 }
 
-/* responsive: tablet -> 2 columns, mobile -> 1 column */
 @media (max-width: 980px){
   #three .features li{ width: calc(50% - 1.2em) !important; }
 }
@@ -513,19 +474,66 @@ html, body { font-family: 'Cinzel', serif; }
 
 #two.wrapper.alt.style2 > .spotlight + .spotlight{
   padding-top: 2.5em;
-  border-top: 1px solid rgba(255,255,255,0.15); /* いらなければ消してOK */
+  border-top: 1px solid rgba(255,255,255,0.15);
 }
 
+/* =========================================================
+   News Dynamic Display Styling
+   ========================================================= */
+.news-cards-container {
+  display: flex;
+  gap: 1.5em;
+  justify-content: flex-start;
+  margin-top: 1.5em;
+}
+.news-card {
+  flex: 1;
+  max-width: 320px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 6px;
+  overflow: hidden;
+  text-align: left;
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: transform 0.3s ease, background 0.3s ease;
+  cursor: pointer;
+}
+.news-card:hover { 
+  transform: translateY(-5px); 
+  background: rgba(255,255,255,0.1);
+}
+.news-card img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  display: block;
+}
+.news-card .card-body {
+  padding: 1em;
+}
+.news-card .card-date {
+  font-size: 0.75em;
+  opacity: 0.6;
+  margin-bottom: 0.4em;
+  text-transform: uppercase;
+}
+.news-card .card-title {
+  font-size: 0.95em;
+  line-height: 1.4;
+  margin: 0;
+  color: #fff;
+  font-family: 'Cinzel', serif;
+}
+@media (max-width: 736px) {
+  .news-cards-container { flex-direction: column; align-items: center; }
+  .news-card { width: 100%; max-width: none; }
+}
 
 </style>
-
 </head>
 
 <body class="landing is-preload">
-  <!-- Page Wrapper -->
   <div id="page-wrapper">
 
-    <!-- Header -->
     <header id="header" class="alt">
       <h1>
         <a href="index.html" class="header-logo" aria-label="VENUS Home">
@@ -555,7 +563,6 @@ html, body { font-family: 'Cinzel', serif; }
 
     <section id="banner">
       <div class="slideshow" id="venus-slideshow"></div>
-
       <div class="banner-title-overlay">
         <div class="venus-title-wrap">
           <img src="icon/VENUS_logo_V_W2.png" alt="VENUS logo" id="venus-logo">
@@ -563,21 +570,9 @@ html, body { font-family: 'Cinzel', serif; }
         </div>
         <p class="venus-subtitle">Vast Exploration for Nascent Unexplored Sources</p>
       </div>
-
       <a href="#one" class="more scrolly"></a>
     </section>
 
-    <script>
-      // Subtitle fade-in
-      window.onload = function () {
-        setTimeout(() => {
-          const el = document.querySelector('.venus-subtitle');
-          if (el) el.classList.add('show');
-        }, 1000);
-      };
-    </script>
-
-    <!-- Main about splash -->
     <section id="one" class="wrapper style1 special">
       <div class="inner">
         <header class="major">
@@ -594,8 +589,6 @@ html, body { font-family: 'Cinzel', serif; }
       </div>
     </section>
 
-
-    <!-- Three -->
     <section id="three" class="wrapper style3 special">
       <div class="inner">
         <header class="major">
@@ -606,36 +599,36 @@ html, body { font-family: 'Cinzel', serif; }
             <img src="icon/icon_galaxy.png" alt="Earliest galaxies icon" class="feature-icon" />
             <h3>Earliest galaxies</h3>
             <p>
-            VENUS probes the onset of galaxy formation at z ≳ 14 by identifying and spectroscopically confirming
-            gravitationally lensed, intrinsically ultra-faint galaxies, constraining the UV luminosity function
-            down to M<sub>UV</sub> ≃ −12 and the role of galaxies in cosmic reionization.
+              VENUS probes the onset of galaxy formation at z ≳ 14 by identifying and spectroscopically confirming
+              gravitationally lensed, intrinsically ultra-faint galaxies, constraining the UV luminosity function
+              down to M<sub>UV</sub> ≃ −12 and the role of galaxies in cosmic reionization.
             </p>
           </li>
           <li>
             <img src="icon/icon_star.png" alt="Earliest star clusters icon" class="feature-icon" />
             <h3>Earliest star clusters</h3>
             <p>
-            Using strong lensing and high-resolution multi-band NIRCam imaging, VENUS spatially resolves early galaxies
-            down to star-cluster scales (∼1-10 pc), revealing when, where, and how the first stellar populations
-            and proto–globular clusters formed.
+              Using strong lensing and high-resolution multi-band NIRCam imaging, VENUS spatially resolves early galaxies
+              down to star-cluster scales (∼1-10 pc), revealing when, where, and how the first stellar populations
+              and proto–globular clusters formed.
             </p>
           </li>
           <li>
             <img src="icon/icon_bh.png" alt="Earliest blackholes icon" class="feature-icon" />
             <h3>Earliest Black Holes</h3>
             <p>
-            VENUS conducts the first systematic census of low-mass black holes in the early universe,
-            measuring black hole masses down to ∼10<sup>5</sup> M<sub>⊙</sub> in lensed galaxies and testing the
-            co-evolution of black holes and their host galaxies at z≃4–10.
+              VENUS conducts the first systematic census of low-mass black holes in the early universe,
+              measuring black hole masses down to ∼10<sup>5</sup> M<sub>⊙</sub> in lensed galaxies and testing the
+              co-evolution of black holes and their host galaxies at z≃4–10.
             </p>
           </li>
           <li>
             <img src="icon/icon_sn.png" alt="Earliest supernovae icon" class="feature-icon" />
             <h3>Earliest stars and supernovae</h3>
             <p>
-            By exploiting wide, multi-epoch lensing fields, VENUS opens a new time-domain window on the early
-            universe, enabling the discovery of individual lensed stars and supernovae at z ≳ 5, including rare explosions from massive,
-            low-metallicity stars that directly constrain the high-redshift initial mass function.
+              By exploiting wide, multi-epoch lensing fields, VENUS opens a new time-domain window on the early
+              universe, enabling the discovery of individual lensed stars and supernovae at z ≳ 5, including rare explosions from massive,
+              low-metallicity stars that directly constrain the high-redshift initial mass function.
             </p>
           </li>
         </ul>
@@ -643,30 +636,23 @@ html, body { font-family: 'Cinzel', serif; }
     </section>
 
     <section id="two" class="wrapper alt style2">
+      
       <section class="spotlight">
         <div class="image">
           <div class="meet-slider" id="meetTeamSlider" aria-label="Meet the Team screenshots" tabindex="0">
             <div class="meet-viewport">
               <div class="meet-track">
-                <div class="meet-slide">
-                  <img src="images/group1.png" alt="Team Zoom screenshot 1">
-                </div>
-                <div class="meet-slide">
-                  <img src="images/group2.png" alt="Team Zoom screenshot 2">
-                </div>
-                <div class="meet-slide">
-                  <img src="images/group3.png" alt="Team Zoom screenshot 3">
-                </div>
+                <div class="meet-slide"><img src="images/group1.png" alt="Team 1"></div>
+                <div class="meet-slide"><img src="images/group2.png" alt="Team 2"></div>
+                <div class="meet-slide"><img src="images/group3.png" alt="Team 3"></div>
               </div>
             </div>
-
             <button class="meet-arrow prev" aria-label="Previous slide">&#10094;</button>
             <button class="meet-arrow next" aria-label="Next slide">&#10095;</button>
-
-            <div class="meet-indicators" role="tablist" aria-label="Meet the Team slide indicators">
-              <button type="button" aria-label="Go to slide 1" aria-controls="meetTeamSlider"></button>
-              <button type="button" aria-label="Go to slide 2" aria-controls="meetTeamSlider"></button>
-              <button type="button" aria-label="Go to slide 3" aria-controls="meetTeamSlider"></button>
+            <div class="meet-indicators" role="tablist">
+              <button type="button" aria-label="Go to slide 1" class="active"></button>
+              <button type="button" aria-label="Go to slide 2"></button>
+              <button type="button" aria-label="Go to slide 3"></button>
             </div>
           </div>
         </div>
@@ -676,91 +662,74 @@ html, body { font-family: 'Cinzel', serif; }
             PIs Seiji Fujimoto (U.Toronto) & Dan Coe (STScI), <br>
             with 150+ international members from around the world.
           </p>
-          <p>
-            Read more about our team <a href="team.html">here</a>.
-          </p>
+          <p>Read more about our team <a href="team.html">here</a>.</p>
         </div>
       </section>
 
-			<section class="spotlight spotlight-fixedimg">
-			  <div class="image"><img src="cover_image/MJ1931.png" alt="" /></div>
-			  <div class="content">
-			    <h2>Data Products</h2>
+      <section class="spotlight spotlight-fixedimg">
+        <div class="image"><img src="cover_image/MJ1931.png" alt="Data Product" /></div>
+        <div class="content">
+          <h2>Data Products</h2>
           <ul>
             <li>Reduced Images</li>
             <li>Catalogs</li>
             <li>Lens models</li>
           </ul>
-
           <p>
             The observations are smoothly ongoing and are scheduled to be completed in Summer 2026.
             The first data release (DR1) is anticipated in late 2026.
           </p>
-          <p>
-            Please stay tuned for updates <a href="data.html">here</a>.
-          </p>
-
-          <p>
-            Internal website <a href="XXXX">here</a>. 
-          </p>
-
-			  </div>
-			</section>
-
-      <section class="spotlight spotlight-fixedimg">
-        <div class="image"><img src="images/postcard_SPT2325.png" alt="" /></div>
-        <div class="content">
-        <h2>News</h2>
-        <p>
-          Press releases, media coverage, public announcements, and major milestones from the VENUS program. 
-        </p>
-        <p>
-          See the latest updates <a href="news.html">here</a>.
-        </p>
-
-        <p style="margin-top:0.75em; opacity:0.9;">
-          Left: VENUS Postcard 2026 distributed at <a href="https://aas.org/meetings/aas247">AAS 247</a>.
-        </p>
-
+          <p>Please stay tuned for updates <a href="data.html">here</a>.</p>
         </div>
       </section>
 
       <section class="spotlight">
-        <div class="image"><img src="images/cover_pub.png" alt="" /></div>
+        <div class="image"><img src="images/cover_pub.png" alt="Publications" /></div>
         <div class="content">
           <h2>Publications</h2>
-          <p>View on <a href="https://ui.adsabs.harvard.edu/search/fq=%7B!type%3Daqp%20v%3D%24fq_database%7D&fq_database=database%3A%20astronomy&q=pubdate%3A%5B2025-01%20TO%209999-12%5D%20author%3A(%22Fujimoto%2C%22%20%22Coe%2C%22%20%22Kokorev%2C%22%20%22Furtak%22)&sort=date%20desc%2C%20bibcode%20desc&p_=0">ADS</a>.</p>
+          <p>
+            View the full list of VENUS publications on 
+            <a href="https://ui.adsabs.harvard.edu/search/fq=%7B!type%3Daqp%20v%3D%24fq_database%7D&fq_database=database%3A%20astronomy&q=pubdate%3A%5B2025-01%20TO%209999-12%5D%20author%3A(%22Fujimoto%2C%22%20%22Coe%2C%22%20%22Kokorev%2C%22%20%22Furtak%22)&sort=date%20desc%2C%20bibcode%20desc&p_=0">ADS</a>.
+          </p>
         </div>
       </section>
 
-
       <section class="spotlight">
-        <div class="image"><img src="images/cover_santander.png" alt="" /></div>
+        <div class="image"><img src="images/cover_santander.png" alt="Events" /></div>
         <div class="content">
           <h2>Events</h2>
           <p>
-          Conferences, team meetings, and public events<br>
-          will be announced
-          <a href="events.html">here</a>.
+            Conferences, team meetings, and public events will be announced
+            <a href="events.html">here</a>.
           </p>
+        </div>
+      </section>
 
+      <section class="spotlight spotlight-fixedimg">
+        <div class="image"><img src="images/postcard_SPT2325.png" alt="News Postcard" /></div>
+        <div class="content">
+          <h2>Latest News</h2>
+          <div id="latest-news-cards" class="news-cards-container">
+            <p>Loading updates...</p>
+          </div>
+          <p style="margin-top:1.5em;">
+            See all press releases and milestones <a href="news.html">here</a>.
+          </p>
         </div>
       </section>
 
     </section>
 
+    <section id="acknowledgement" class="wrapper style1 special">
+      <div class="inner">
+        <p class="acknowledgement-text">
+          Support for the VENUS program is provided by NASA through a grant from the Space Telescope Science Institute,
+          which is operated by the Association of Universities for Research in Astronomy, Inc.,
+          under NASA contract NAS 5-26555.
+        </p>
+      </div>
+    </section>
 
-	<section id="acknowledgement" class="wrapper style1 special">
-	  <div class="inner">
-	    <p class="acknowledgement-text">
-	      Support for the VENUS program is provided by NASA through a grant from the Space Telescope Science Institute,
-	      which is operated by the Association of Universities for Research in Astronomy, Inc.,
-	      under NASA contract NAS 5-26555.
-	    </p>
-	  </div>
-	</section>
-
-    <!-- Footer -->
     <footer id="footer">
       <ul class="copyright">
         <li>&copy; JWST-VENUS <span class="since">since 2025</span></li>
@@ -769,10 +738,8 @@ html, body { font-family: 'Cinzel', serif; }
       </ul>
     </footer>
 
-  </div> <!-- /#page-wrapper -->
+  </div>
 
-
-  <!-- Scripts -->
   <script src="assets/js/jquery.min.js"></script>
   <script src="assets/js/jquery.scrollex.min.js"></script>
   <script src="assets/js/jquery.scrolly.min.js"></script>
@@ -781,7 +748,47 @@ html, body { font-family: 'Cinzel', serif; }
   <script src="assets/js/util.js"></script>
   <script src="assets/js/main.js"></script>
 
-  <!-- Slideshow JS -->
+  <script>
+    async function loadNewsForIndex() {
+      const container = document.getElementById('latest-news-cards');
+      try {
+        const response = await fetch('news.html');
+        const htmlText = await response.text();
+        const parser = new DOMParser();
+        const newsDoc = parser.parseFromString(htmlText, 'text/html');
+        const newsItems = newsDoc.querySelectorAll('.news-item');
+        
+        if (newsItems.length > 0) {
+          container.innerHTML = '';
+          const count = Math.min(newsItems.length, 2);
+          for (let i = 0; i < count; i++) {
+            const item = newsItems[i];
+            const date = item.querySelector('.news-date')?.innerText || '';
+            const title = item.querySelector('.news-title')?.innerText || '';
+            const imgSrc = item.querySelector('.news-thumb img')?.getAttribute('src') || '';
+            
+            const card = document.createElement('div');
+            card.className = 'news-card';
+            card.onclick = () => window.location.href = 'news.html';
+            card.innerHTML = `
+              <img src="${imgSrc}" alt="">
+              <div class="card-body">
+                <div class="card-date">${date}</div>
+                <h4 class="card-title">${title}</h4>
+              </div>
+            `;
+            container.appendChild(card);
+          }
+        } else {
+          container.innerHTML = '<p>Check back soon for updates.</p>';
+        }
+      } catch (err) {
+        container.innerHTML = '<p><a href="news.html">View News Page</a></p>';
+      }
+    }
+    document.addEventListener('DOMContentLoaded', loadNewsForIndex);
+  </script>
+
   <script>
     const images = [
       'cover_image/a2744.jpg',
@@ -791,7 +798,6 @@ html, body { font-family: 'Cinzel', serif; }
       'cover_image/macs0416.jpg',
       'cover_image/spt0615.jpg'
     ];
-
     const scenes = [
       { image: images[0], effect: 'effect-splitX' },
       { image: images[1], effect: 'effect-fade' },
@@ -800,18 +806,15 @@ html, body { font-family: 'Cinzel', serif; }
       { image: images[4], effect: 'effect-circle' },
       { image: images[5], effect: 'effect-slideX' }
     ];
-
     const container = document.getElementById('venus-slideshow');
     let current = 0;
 
     function createSlide(scene) {
       const slide = document.createElement('div');
       slide.classList.add('slide', scene.effect);
-
       const imgLayer = document.createElement('div');
       imgLayer.className = 'img-layer';
       imgLayer.style.backgroundImage = `url(${scene.image})`;
-
       slide.appendChild(imgLayer);
       return slide;
     }
@@ -820,10 +823,8 @@ html, body { font-family: 'Cinzel', serif; }
       const scene = scenes[index];
       const slide = createSlide(scene);
       container.appendChild(slide);
-
-      void slide.offsetWidth; // reflow
+      void slide.offsetWidth; 
       setTimeout(() => slide.classList.add('show'), 10);
-
       const slides = container.querySelectorAll('.slide.show');
       if (slides.length > 1) {
         const fadeSlide = slides[0];
@@ -846,21 +847,18 @@ html, body { font-family: 'Cinzel', serif; }
     loopScenes();
     setInterval(loopScenes, 6000);
 
-    // (kept; no matching element in current HTML)
-    window.addEventListener('load', function () {
+    window.onload = function () {
       setTimeout(() => {
-        const el = document.getElementById('venus-overlay-text');
+        const el = document.querySelector('.venus-subtitle');
         if (el) el.classList.add('show');
-      }, 200);
-    });
+      }, 1000);
+    };
   </script>
 
-  <!-- Meet the Team slider JS -->
   <script>
     (function () {
       const root = document.getElementById('meetTeamSlider');
       if (!root) return;
-
       const track = root.querySelector('.meet-track');
       const slides = Array.from(root.querySelectorAll('.meet-slide'));
       const prev = root.querySelector('.meet-arrow.prev');
@@ -878,19 +876,11 @@ html, body { font-family: 'Cinzel', serif; }
         index = (index - 1 + slides.length) % slides.length;
         update();
       });
-
       next.addEventListener('click', () => {
         index = (index + 1) % slides.length;
         update();
       });
-
       dots.forEach((btn, i) => btn.addEventListener('click', () => update(i)));
-
-      root.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft') prev.click();
-        if (e.key === 'ArrowRight') next.click();
-      });
-
       update(0);
     })();
   </script>
