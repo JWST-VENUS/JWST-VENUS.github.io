@@ -129,40 +129,44 @@
         /**
          * ADS Public Libraryからデータを取得して表示するスクリプト
          */
-        async function fetchPublications() {
-            // あなたのADS Public Library IDをここに入力してください
-            const libraryId = '81Jnu02bT_-A-8TngvUXPA'; 
-            const url = `https://ui.adsabs.harvard.edu/public-libraries/${libraryId}`;
-            
-            try {
-                // 注: ADS APIのパブリックアクセス制限により、通常は
-                // サーバーサイド(PHP等)を経由するか、JSONファイルを直接読み込むのが一般的ですが、
-                // ここでは一般的な取得ロジックを記載します。
-                const response = await fetch(url);
-                const data = await response.json();
-                
-                // 論文データを年ごとにソート
-                const docs = data.solr.response.docs;
-                const grouped = {};
+		async function fetchPublications() {
+		    // 公開ライブラリからデータを取得するための正しいエンドポイント
+		    // export?format=json というパラメータが必要です
+		    const libraryId = '81Jnu02bT_-A-8TngvUXPA'; 
+		    const url = `https://ui.adsabs.harvard.edu/v1/biblib/public/libraries/${libraryId}/export?format=json`;
+		    
+		    // ADS APIは通常Token（鍵）が必要ですが、パブリックライブラリの書き出し機能は
+		    // ブラウザから直接叩けない場合が多いです。
+		    // まずは以下の「プロキシ（経由地）」を使った方法を試してください。
+		    const proxyUrl = 'https://api.allorigins.win/get?url=' + encodeURIComponent(url);
+		    
+		    try {
+		        const response = await fetch(proxyUrl);
+		        const rawData = await response.json();
+		        // alloriginsは中身を文字列として返すのでJSONにパース
+		        const data = JSON.parse(rawData.contents);
+		        
+		        // ADSのJSON形式に合わせた処理
+		        // 書き出し形式によってデータ構造が変わるため、以下で調整します
+		        const docs = data.response.docs; 
+		        const grouped = {};
 
-                docs.forEach(doc => {
-                    const year = doc.year;
-                    if (!grouped[year]) grouped[year] = [];
-                    grouped[year].push(doc);
-                });
+		        docs.forEach(doc => {
+		            const year = doc.year;
+		            if (!grouped[year]) grouped[year] = [];
+		            grouped[year].push(doc);
+		        });
 
-                // 年の降順に並べ替え
-                const years = Object.keys(grouped).sort((a, b) => b - a);
-                
-                renderPublications(years, grouped);
-                document.getElementById('loading').style.display = 'none';
+		        const years = Object.keys(grouped).sort((a, b) => b - a);
+		        renderPublications(years, grouped);
+		        document.getElementById('loading').style.display = 'none';
 
-            } catch (error) {
-                console.error('Error fetching ADS data:', error);
-                document.getElementById('loading').innerHTML = 
-                    '<p>Unable to load the publication list. Please view our library directly on <a href="https://ui.adsabs.harvard.edu/">ADS</a>.</p>';
-            }
-        }
+		    } catch (error) {
+		        console.error('Error:', error);
+		        document.getElementById('loading').innerHTML = 
+		            '<p>Unable to load the list. Please view the <a href="https://ui.adsabs.harvard.edu/public-libraries/' + libraryId + '" target="_blank">ADS Library directly</a>.</p>';
+		    }
+		}
 
         function renderPublications(years, grouped) {
             const container = document.getElementById('pub-list-container');
