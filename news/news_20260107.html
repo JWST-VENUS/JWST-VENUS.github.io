@@ -76,11 +76,39 @@ section.acknowledgement-container {
   margin-top: 0em;
   width: 100%;
 }
+
+.download-links h4 {
+  font-size: 1.1em;
+  margin-bottom: 1em;
+  color: #fff;
+}
+
+.download-links p {
+  font-size: 0.95em;
+  line-height: 2; /* リンク同士がくっつきすぎないように調整 */
+}
+
+.file-link {
+  color: #ed4933 !important; /* アクセントカラーでリンクを強調 */
+  text-decoration: none;
+  border-bottom: 1px dotted #ed4933;
+  transition: 0.3s;
+  margin-left: 0.5em;
+}
+
+.file-link:hover {
+  border-bottom-style: solid;
+  opacity: 0.8;
+}
+
     /* ロゴのサイズ調整 */
     #header h1 a.header-logo img {
       height: 1.5em;
       vertical-align: middle;
     }
+
+
+
   </style>
 </head>
 
@@ -192,13 +220,18 @@ section.acknowledgement-container {
             </p>
           </section>
 
-          <section>
-            <h4>Image Files</h4>
-            <p>
-              MACSJ0308+2645 (MJ0308): <a href="../images/news/mj0308.png" target="_blank" rel="noopener">Full RGB color composite</a>
-              MACS-J0417.5-1154 (MJ0417): <a href="../images/news/mj0417.png" target="_blank" rel="noopener">Full RGB color composite</a>
-            </p>
-          </section>
+          <hr />
+
+          <section class="download-links">
+          <h4>Image Files</h4>
+          <p>
+            <strong>MACS J0308+2645 (MJ0308):</strong> 
+            <a href="../images/news/mj0308.png" target="_blank" rel="noopener" class="file-link">Full RGB color composite (PNG)</a> 
+            <br />
+            <strong>MACS J0417.5-1154 (MJ0417):</strong> 
+            <a href="../images/news/mj0417.png" target="_blank" rel="noopener" class="file-link">Full RGB color composite (PNG)</a>
+          </p>
+        </section>
 
           <section class="acknowledgement-text">
               <hr />
