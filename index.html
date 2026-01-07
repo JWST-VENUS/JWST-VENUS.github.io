@@ -694,6 +694,21 @@ html, body { font-family: 'Cinzel', serif; }
         </div>
       </section>
 
+
+    <section class="spotlight">
+      <div class="image"><img src="images/cover_pub.png" alt="Publications" /></div>
+      <div class="content">
+        <h2>Latest Publications</h2>
+        <div id="ads-library-cards" class="news-cards-container">
+          <p>Fetching latest papers from ADS...</p>
+        </div>
+        <p style="margin-top:1.5em;">
+          View full library on 
+          <a href="https://ui.adsabs.harvard.edu/public-libraries/81Jnu02bT_-A-8TngvUXPA">ADS</a>.
+        </p>
+      </div>
+    </section>
+
       <section class="spotlight">
         <div class="image"><img src="images/cover_santander.png" alt="Events" /></div>
         <div class="content">
@@ -882,7 +897,53 @@ html, body { font-family: 'Cinzel', serif; }
       });
       dots.forEach((btn, i) => btn.addEventListener('click', () => update(i)));
       update(0);
-    })();
+    })();    
   </script>
+
+  <script>
+  async function loadADSPublications() {
+    const libraryId = '81Jnu02bT_-A-8TngvUXPA'; 
+    const container = document.getElementById('ads-library-cards');
+    
+    // ADSのExport機能を使ってJSON形式（あるいはそれに近い形）を取得
+    // 注意: 直接のJSON取得がCORSでブロックされる場合、RSS経由で解析するのが一般的です
+    const proxyUrl = 'https://api.allorigins.win/get?url=';
+    const adsUrl = `https://ui.adsabs.harvard.edu/v1/public-libraries/${libraryId}/export/rss`;
+
+    try {
+      const response = await fetch(proxyUrl + encodeURIComponent(adsUrl));
+      const data = await response.json();
+      const parser = new DOMParser();
+      const xml = parser.parseFromString(data.contents, "text/xml");
+      const items = xml.querySelectorAll("item");
+
+      if (items.length > 0) {
+        container.innerHTML = '';
+        // 最新2件を表示
+        const count = Math.min(items.length, 2);
+        for (let i = 0; i < count; i++) {
+          const title = items[i].querySelector("title").textContent;
+          const link = items[i].querySelector("link").textContent;
+          // 著者名や日付は description から抽出可能（簡易化のため今回はタイトルとリンク）
+          
+          const card = document.createElement('div');
+          card.className = 'news-card';
+          card.onclick = () => window.open(link, '_blank');
+          card.innerHTML = `
+            <div class="card-body">
+              <div class="card-date">ADS Publication</div>
+              <h4 class="card-title">${title}</h4>
+            </div>
+          `;
+          container.appendChild(card);
+        }
+      }
+    } catch (err) {
+      container.innerHTML = '<p>Check our <a href="https://ui.adsabs.harvard.edu/public-libraries/' + libraryId + '">ADS Library</a> for latest papers.</p>';
+    }
+  }
+  document.addEventListener('DOMContentLoaded', loadADSPublications);
+  </script>
+
 </body>
 </html>
