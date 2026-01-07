@@ -1,0 +1,325 @@
+<!DOCTYPE HTML>
+<!--
+  Spectral by HTML5 UP
+  html5up.net | @ajlkn
+  Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+  <title>VENUS - News</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+
+  <style>
+    /* Keep typography consistent with index/about */
+    html, body { font-family: 'Cinzel', serif; }
+
+    /* =========================================================
+       Header: logo / menu sizing (match index)
+       ========================================================= */
+    @media screen and (max-width: 736px){
+      #header h1 a{ font-size: 0.98em; }
+      #header nav a{ font-size: 0.63em; }
+    }
+    #header nav ul li.special a.menuToggle{
+      padding: 0.56em 1.68em 0.56em 1.40em !important;
+    }
+    #header nav ul li.special a.menuToggle span{
+      font-size: 1.4em !important;
+      letter-spacing: 0.175em !important;
+    }
+    #header nav ul li.special a.menuToggle:before,
+    #header nav ul li.special a.menuToggle:after{
+      top: 50% !important;
+      transform: translateY(-18%) scale(1.26) !important;
+      right: 0.77em !important;
+    }
+    #menu ul li a{
+      font-size: 0.91em !important;
+      letter-spacing: 0.042em !important;
+      line-height: 1.5 !important;
+    }
+    @media screen and (max-width: 736px){
+      #menu ul li a{ font-size: 0.875em !important; }
+    }
+    #header h1 a.header-logo{
+      border: 0 !important;
+      text-decoration: none !important;
+      margin-top: 0.42em;
+      display: inline-block;
+    }
+    #header h1 a.header-logo img{
+      display: block;
+      height: 1.75em;
+      width: auto;
+    }
+    @media screen and (max-width: 736px){
+      #header h1{ margin-top: 0.21em; }
+      #header h1 a.header-logo img{ height: 0.84em; }
+    }
+    #header{
+      height: 2.8em;
+      line-height: 1.6;
+    }
+
+    /* =========================================================
+       News page styling
+       ========================================================= */
+    .news-lead{
+      max-width: 72em;
+      margin: 0 auto 1.25em auto;
+      text-transform: none !important;
+      letter-spacing: normal;
+    }
+
+    .news-wrap{
+      max-width: 86em;
+      margin: 0 auto;
+    }
+
+    .news-controls{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75em;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.25em;
+    }
+
+    .news-search{
+      flex: 1 1 22em;
+      max-width: 32em;
+    }
+    .news-search input{
+      width: 100%;
+    }
+
+    .news-filter{
+      flex: 0 0 auto;
+      min-width: 16em;
+    }
+
+    .news-list{
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+
+    .news-item{
+      border-top: 1px solid rgba(0,0,0,0.12);
+      padding: 1.15em 0;
+    }
+    .news-item:first-child{
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .news-date{
+      font-size: 0.95em;
+      opacity: 0.85;
+      margin-bottom: 0.2em;
+    }
+
+    .news-title{
+      margin: 0.1em 0 0.35em 0;
+    }
+
+    .news-meta{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5em;
+      align-items: center;
+      margin-bottom: 0.4em;
+    }
+
+    .tag{
+      display: inline-block;
+      padding: 0.2em 0.6em;
+      border-radius: 999px;
+      font-size: 0.78em;
+      line-height: 1.2;
+      border: 1px solid rgba(0,0,0,0.18);
+      background: rgba(0,0,0,0.03);
+    }
+
+    .news-desc{
+      margin: 0.25em 0 0 0;
+      opacity: 0.95;
+    }
+
+    .news-links a{
+      margin-right: 0.9em;
+    }
+  </style>
+</head>
+
+<body class="is-preload">
+  <div id="page-wrapper">
+
+    <!-- Header (consistent with index) -->
+    <header id="header">
+      <h1>
+        <a href="index.html" class="header-logo" aria-label="VENUS Home">
+          <img src="icon/VENUS_logo_H2_W.png" alt="VENUS" />
+        </a>
+      </h1>
+      <nav id="nav">
+        <ul>
+          <li class="special">
+            <a href="#menu" class="menuToggle"><span>Menu</span></a>
+            <div id="menu">
+              <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="team.html">Meet the Team</a></li>
+                <li><a href="data.html">Data Products</a></li>
+                <li><a href="news.html">News</a></li>
+                <li><a href="pubs.html">Publications</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="internal.html">Internal</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Main -->
+    <article id="main">
+      <header>
+        <h2>News</h2>
+        <p class="news-lead">
+          Press releases, media coverage, public announcements, and major milestones from the VENUS program. 
+        </p>
+      </header>
+
+      <section class="wrapper style5">
+        <div class="inner news-wrap">
+
+          <!-- Controls (optional, but useful) -->
+          <div class="news-controls">
+            <div class="news-search">
+              <input type="text" id="newsSearch" placeholder="Search (e.g., press release, data release, AAS, lensing...)" />
+            </div>
+
+            <div class="news-filter">
+              <select id="newsFilter">
+                <option value="all">All categories</option>
+                <option value="press">Press Release</option>
+                <option value="media">Media</option>
+                <option value="data">Data Release</option>
+                <option value="event">Event</option>
+                <option value="talk">Talk / Seminar</option>
+                <option value="milestone">Milestone</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- News list -->
+          <ul class="news-list" id="newsList">
+
+            <!-- Example entries (replace/extend; keep newest at top) -->
+            <li class="news-item" data-cat="event">
+              <div class="news-date">2026-01-DD</div>
+              <h3 class="news-title">VENUS at AAS 247: Postcard release</h3>
+              <div class="news-meta">
+                <span class="tag">Event</span>
+              </div>
+              <p class="news-desc">
+                VENUS postcard distributed at AAS 247. (Add details and links as needed.)
+              </p>
+              <div class="news-links">
+                <a href="https://aas.org/meetings/aas247" target="_blank" rel="noopener">AAS 247</a>
+                <a href="TBD" target="_blank" rel="noopener">Postcard (TBD)</a>
+              </div>
+            </li>
+
+            <li class="news-item" data-cat="press">
+              <div class="news-date">2025-MM-DD</div>
+              <h3 class="news-title">Press release: VENUS program announced</h3>
+              <div class="news-meta">
+                <span class="tag">Press Release</span>
+              </div>
+              <p class="news-desc">
+                Short summary of the announcement (1–2 sentences).
+              </p>
+              <div class="news-links">
+                <a href="TBD" target="_blank" rel="noopener">Press release (TBD)</a>
+                <a href="TBD" target="_blank" rel="noopener">Media coverage (TBD)</a>
+              </div>
+            </li>
+
+            <li class="news-item" data-cat="milestone">
+              <div class="news-date">2025-MM-DD</div>
+              <h3 class="news-title">Observation milestone: first fields observed</h3>
+              <div class="news-meta">
+                <span class="tag">Milestone</span>
+              </div>
+              <p class="news-desc">
+                A short description of the milestone. Add program IDs / field names if you want.
+              </p>
+              <div class="news-links">
+                <a href="TBD" target="_blank" rel="noopener">Details (TBD)</a>
+              </div>
+            </li>
+
+          </ul>
+
+        </div>
+      </section>
+    </article>
+
+    <!-- Footer (consistent) -->
+    <footer id="footer">
+      <ul class="copyright">
+        <li>&copy; JWST-VENUS <span class="since">since 2025</span></li>
+        <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+        <li>Seiji Fujimoto &amp; Hollis Akins</li>
+      </ul>
+    </footer>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/jquery.scrollex.min.js"></script>
+  <script src="assets/js/jquery.scrolly.min.js"></script>
+  <script src="assets/js/browser.min.js"></script>
+  <script src="assets/js/breakpoints.min.js"></script>
+  <script src="assets/js/util.js"></script>
+  <script src="assets/js/main.js"></script>
+
+  <!-- Simple filter/search (optional) -->
+  <script>
+    (function(){
+      const searchEl = document.getElementById('newsSearch');
+      const filterEl = document.getElementById('newsFilter');
+      const listEl = document.getElementById('newsList');
+      if(!searchEl || !filterEl || !listEl) return;
+
+      function apply(){
+        const q = (searchEl.value || '').trim().toLowerCase();
+        const f = filterEl.value;
+
+        const items = Array.from(listEl.querySelectorAll('.news-item'));
+        items.forEach(li => {
+          const cat = li.getAttribute('data-cat') || '';
+          const text = li.innerText.toLowerCase();
+
+          const okCat = (f === 'all') || (cat === f);
+          const okText = (!q) || text.includes(q);
+
+          li.style.display = (okCat && okText) ? '' : 'none';
+        });
+      }
+
+      searchEl.addEventListener('input', apply);
+      filterEl.addEventListener('change', apply);
+      apply();
+    })();
+  </script>
+
+</body>
+</html>
