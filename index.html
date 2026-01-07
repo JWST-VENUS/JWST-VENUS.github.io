@@ -572,6 +572,7 @@ html, body { font-family: 'Cinzel', serif; }
 /* ニュースセクション専用の完全新規レイアウト */
 .news-section-full {
     display: flex;
+    flex-direction: row-reverse; /* これだけで左右が逆転します */
     width: 100%;
     min-height: 500px;
     background: #0d0d0d; /* 背景色：サイトに合わせて調整してください */
@@ -579,9 +580,9 @@ html, body { font-family: 'Cinzel', serif; }
     overflow: hidden;
 }
 
-/* 左側：テキストエリア (50%) */
+/* 右側：テキストエリア (40%) */
 .news-section-full .info-column {
-    flex: 0 0 50%;
+    flex: 0 0 40%;
     padding: 4em 5em; /* 上のセクションの文字位置に合わせるための余白 */
     display: flex;
     flex-direction: column;
@@ -589,9 +590,9 @@ html, body { font-family: 'Cinzel', serif; }
     box-sizing: border-box;
 }
 
-/* 右側：カードエリア (50%) */
+/* 左側：カードエリア (60%) */
 .news-section-full .cards-column {
-    flex: 0 0 50%;
+    flex: 0 0 60%;
     padding: 2em;
     background: rgba(255, 255, 255, 0.02); /* 右半分をわずかに明るくして境界を作る */
     display: flex;
@@ -744,28 +745,28 @@ html, body { font-family: 'Cinzel', serif; }
       </div>
     </section>
       
+
+    <section class="news-section-full">    
+        <div class="info-column">
+            <h2 style="font-size: 2em; letter-spacing: 0.1em; margin-bottom: 0.5em;">LATEST NEWS</h2>
+            <p style="opacity: 0.8; line-height: 1.8; margin-bottom: 2em;">
+                Check out our latest updates, breakthroughs, and project milestones.
+            </p>
+            <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5em;">
+                <p style="font-size: 0.9em;">
+                    See all press releases and milestones <a href="news.html">here</a>.
+                </p>
+            </div>
+        </div>
+
+        <div class="cards-column">
+            <div id="latest-news-cards" class="news-cards-container">
+                <p>Loading updates...</p>
+            </div>
+        </div>
+    </section>
+
     <section id="two" class="wrapper alt style2">      
-
-      <section class="news-section-full">    
-          <div class="info-column">
-              <h2 style="font-size: 2em; letter-spacing: 0.1em; margin-bottom: 0.5em;">LATEST NEWS</h2>
-              <p style="opacity: 0.8; line-height: 1.8; margin-bottom: 2em;">
-                  Check out our latest updates, breakthroughs, and project milestones.
-              </p>
-              <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5em;">
-                  <p style="font-size: 0.9em;">
-                      See all press releases and milestones <a href="news.html">here</a>.
-                  </p>
-              </div>
-          </div>
-
-          <div class="cards-column">
-              <div id="latest-news-cards" class="news-cards-container">
-                  <p>Loading updates...</p>
-              </div>
-          </div>
-      </section>
-
       <section class="spotlight">
         <div class="image">
           <div class="meet-slider" id="meetTeamSlider" aria-label="Meet the Team screenshots" tabindex="0">
