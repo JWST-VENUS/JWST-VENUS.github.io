@@ -590,6 +590,20 @@ html, body { font-family: 'Cinzel', serif; }
     box-sizing: border-box;
 }
 
+/* 他のセクションのH2と見た目を合わせる */
+.news-section-full .info-column h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.75em; /* 標準的なSpotlightのサイズに調整 */
+    margin: 0 0 0.5em 0;
+    line-height: 1.3;
+    letter-spacing: 0.1em;
+    text-transform: uppercase; /* 大文字に統一 */
+}
+
+.news-section-full .info-column p {
+    margin: 0 0 1.5em 0;
+}
+
 /* 左側：カードエリア (60%) */
 .news-section-full .cards-column {
     flex: 0 0 60%;
@@ -746,6 +760,9 @@ html, body { font-family: 'Cinzel', serif; }
     </section>
       
 
+    <section id="two" class="wrapper alt style2">    
+
+
     <section class="news-section-full">    
         <div class="info-column">
             <h2 style="font-size: 2em; letter-spacing: 0.1em; margin-bottom: 0.5em;">LATEST NEWS</h2>
@@ -766,7 +783,7 @@ html, body { font-family: 'Cinzel', serif; }
         </div>
     </section>
 
-    <section id="two" class="wrapper alt style2">      
+      
       <section class="spotlight">
         <div class="image">
           <div class="meet-slider" id="meetTeamSlider" aria-label="Meet the Team screenshots" tabindex="0">
