@@ -592,7 +592,7 @@ html, body { font-family: 'Cinzel', serif; }
 /* 右側：カードエリア (50%) */
 .news-section-full .cards-column {
     flex: 0 0 50%;
-    padding: 3em;
+    padding: 2em;
     background: rgba(255, 255, 255, 0.02); /* 右半分をわずかに明るくして境界を作る */
     display: flex;
     align-items: center;
@@ -603,9 +603,9 @@ html, body { font-family: 'Cinzel', serif; }
 /* カードの並び（横並び） */
 .news-cards-container {
     display: flex;
-    gap: 2em;
+    gap: 1em;
     width: 100%;
-    max-width: 800px; /* カードが広がりすぎないように制限 */
+    max-width: 950px; /* カードが広がりすぎないように制限 */
     justify-content: center;
 }
 
@@ -878,7 +878,7 @@ html, body { font-family: 'Cinzel', serif; }
         
         if (newsItems.length > 0) {
           container.innerHTML = '';
-          const count = Math.min(newsItems.length, 2);
+          const count = Math.min(newsItems.length, 3);
           for (let i = 0; i < count; i++) {
             const item = newsItems[i];
             const date = item.querySelector('.news-date')?.innerText || '';
