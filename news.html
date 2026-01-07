@@ -152,6 +152,40 @@
     .news-links a{
       margin-right: 0.9em;
     }
+
+/* =========================
+   News item thumbnail
+   ========================= */
+
+.news-thumb {
+  margin: 0.75em 0 0.9em 0;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 0.6em;
+  background: rgba(0,0,0,0.08);
+}
+
+.news-thumb img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+/* 少しだけ立体感（任意） */
+.news-thumb img {
+  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+}
+
+/* モバイル調整 */
+@media (max-width: 736px) {
+  .news-thumb {
+    margin: 0.6em 0 0.8em 0;
+    border-radius: 0.5em;
+  }
+}
+
   </style>
 </head>
 
@@ -270,6 +304,13 @@
               <div class="news-meta">
                 <span class="tag">Milestone</span>
               </div>
+
+
+              <!-- ★ アイキャッチ画像 -->
+              <div class="news-thumb">
+                <img src="images/jwst.png">
+              </div>
+
               <p class="news-desc">
                 VENUS was approved as a multi-epoch Large Treasury program (Program ID 6882),
                 with a total time allocation of 301.2 hours
