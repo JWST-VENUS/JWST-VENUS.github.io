@@ -120,120 +120,90 @@
     .effect-circle { clip-path: circle(0% at center); }
     .slide.show.effect-circle { clip-path: circle(100% at center); }
 
-    /* =========================================================
-       Banner overlay: title / subtitle / logo
-       ========================================================= */
-    .banner-title-overlay {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      z-index: 11;
-      width: 100%;
-      text-align: center;
-      pointer-events: none;
-      padding: max(2rem, env(safe-area-inset-top)) 1.25rem max(2rem, env(safe-area-inset-bottom));
-    }
+/* =========================================================
+   Banner overlay: title / subtitle / logo
+   ========================================================= */
+.banner-title-overlay{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 11;
+  width: 100%;
+  text-align: center;
+  pointer-events: none;
+  padding: 0 1rem;
+}
 
-    #banner .banner-title-overlay .venus-title {
-      font-size: clamp(3.2rem, 13vw, 10rem) !important;
-      line-height: 0.95 !important;
-      margin: 0 0 0.2em 0 !important;
-      letter-spacing: 0.08em !important;
-      text-transform: none !important;
-    }
+#banner .banner-title-overlay .venus-title{
+  font-size: 2.5em !important;
+  line-height: 1 !important;
+  margin: 0 0 0.25em 0 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: none !important;
+}
 
-    #banner .banner-title-overlay .venus-title-wrap {
-      position: relative;
-      display: inline-block;
-      padding: 1.2rem 0 0 0;
-      max-width: 100%;
-    }
+#banner .banner-title-overlay .venus-title-wrap{
+  position: relative;
+  display: inline-block;
+  padding: 0.35em 0;
+}
 
-    .venus-title {
-      color: #fff;
-      font-family: 'Cinzel', serif;
-      font-weight: bold;
-      text-shadow: 2px 2px 6px #000, 4px 4px 10px rgba(0,0,0,0.4);
-      line-height: 1;
-      margin: 0;
-    }
+.venus-title{
+  color: #fff;
+  font-family: 'Cinzel', serif;
+  font-size: 16em;
+  font-weight: bold;
+  text-shadow: 2px 2px 6px #000, 4px 4px 10px rgba(0,0,0,0.4);
+  margin: 0 0 0.25em 0;
+  line-height: 1;
+  letter-spacing: 0.08em;
+}
 
-    .venus-subtitle {
-      color: #fff;
-      font-family: 'Cinzel', serif;
-      font-size: clamp(0.9rem, 2.8vw, 1.5rem);
-      font-weight: normal;
-      text-shadow: 2px 2px 4px #000, 4px 4px 8px rgba(0,0,0,0.4);
-      margin: 1.2rem 0 0 0;
-      opacity: 0;
-      transition: opacity 1s ease;
-      letter-spacing: 0.02em;
-      max-width: min(92vw, 900px);
-      line-height: 1.45;
-      padding: 0 0.4rem;
-    }
+.venus-subtitle{
+  color: #fff;
+  font-family: 'Cinzel', serif;
+  font-size: 0.8em;
+  font-weight: normal;
+  text-shadow: 2px 2px 4px #000, 4px 4px 8px rgba(0,0,0,0.4);
+  margin: 2em 0 0 0;
+  opacity: 0;
+  transition: opacity 1s ease;
+  letter-spacing: 0.02em;
+}
+.venus-subtitle.show{ opacity: 1; }
 
-    .venus-subtitle.show {
-      opacity: 1;
-    }
+#venus-logo{
+  position: absolute;
+  left: 50%;
+  top: 0.02em;
+  transform: translate(-50%, -120%);
+  width: 12em;
+  max-width: 80vw;
+  height: auto;
+  opacity: 0;
+  filter: drop-shadow(2px 2px 8px rgba(0,0,0,0.45));
+  animation: venusLogoFadeIn 1.6s ease forwards;
+  animation-delay: 3.6s;
+}
+#venus-logo.show{ animation: venusLogoFadeIn 1.0s ease forwards; }
 
-    #venus-logo {
-      position: absolute;
-      left: 50%;
-      top: 0.1rem;
-      transform: translate(-50%, -115%);
-      width: clamp(5rem, 18vw, 12rem);
-      max-width: 70vw;
-      height: auto;
-      opacity: 0;
-      filter: drop-shadow(2px 2px 8px rgba(0,0,0,0.45));
-      animation: venusLogoFadeIn 1.6s ease forwards;
-      animation-delay: 3.6s;
-    }
+@keyframes venusLogoFadeIn{
+  from{ opacity: 0; transform: translate(-50%, -140%); }
+  to{ opacity: 1; transform: translate(-50%, -120%); }
+}
 
-    #venus-logo.show {
-      animation: venusLogoFadeIn 1s ease forwards;
-    }
+@media (max-width: 900px){
+  .venus-title{ font-size: 4.6em; }
+  .venus-subtitle{ font-size: 1.725em; }
+}
+@media (max-width: 600px){
+  .banner-title-overlay{ top: 34%; }
+  .venus-title{ font-size: 2.8em; }
+  .venus-subtitle{ font-size: 1.05em; }
+} 
 
-    @keyframes venusLogoFadeIn {
-      from { opacity: 0; transform: translate(-50%, -130%); }
-      to   { opacity: 1; transform: translate(-50%, -115%); }
-    }
-
-    @media (max-width: 900px) {
-      #banner .banner-title-overlay .venus-title {
-        font-size: clamp(3rem, 14vw, 5.2rem) !important;
-      }
-      .venus-subtitle {
-        font-size: clamp(0.95rem, 3vw, 1.2rem);
-      }
-    }
-
-    @media (max-width: 600px) {
-      .banner-title-overlay {
-        padding-left: 1rem;
-        padding-right: 1rem;
-      }
-
-      #banner .banner-title-overlay .venus-title {
-        font-size: clamp(2.5rem, 16vw, 4rem) !important;
-        letter-spacing: 0.06em !important;
-      }
-
-      .venus-subtitle {
-        font-size: 0.95rem;
-        line-height: 1.5;
-        margin-top: 0.8rem;
-      }
-
-      #venus-logo {
-        width: clamp(4.5rem, 22vw, 6.5rem);
-        top: 0;
-      }
-    }
+ 
 
     /* =========================================================
        Header: logo / menu sizing
