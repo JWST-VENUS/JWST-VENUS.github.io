@@ -1,674 +1,924 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="en">
 <head>
   <title>VENUS</title>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+  <meta name="description" content="VENUS explores the earliest epoch of the universe using massive galaxy clusters as a magnifying glass." />
+
   <link rel="stylesheet" href="assets/css/main.css" />
   <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 
-<style>
-/* =========================================================
-   Global
-   ========================================================= */
-html, body { font-family: 'Cinzel', serif; }
-
-/* =========================================================
-   Banner slideshow
-   ========================================================= */
-#banner{
-  position: relative;
-  overflow: hidden;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-}
-
-.slideshow{
-  position: absolute;
-  inset: 0;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  z-index: 1;
-}
-
-.slide{
-  position: absolute;
-  inset: 0;
-  width: 100vw;
-  height: 100vh;
-  opacity: 0;
-  transition: opacity 2.5s, transform 2.5s, clip-path 2.5s;
-  z-index: 1;
-}
-.slide.show{ opacity: 1; z-index: 2; }
-.slide.fade-out{ opacity: 0; z-index: 1; transition: opacity 2.5s; }
-
-.img-layer{
-  width: 100vw;
-  height: 100vh;
-  background-size: cover;
-  background-position: center;
-  animation: zoomEffect 7s forwards;
-}
-@keyframes zoomEffect{ from{ transform: scale(1);} to{ transform: scale(1.2);} }
-
-.effect-fade {}
-.effect-slideX{ transform: translateX(-100%); }
-.slide.show.effect-slideX{ transform: translateX(0); }
-.effect-splitX{ clip-path: inset(50% 0 50% 0); }
-.slide.show.effect-splitX{ clip-path: inset(0 0 0 0); }
-.effect-splitY{ clip-path: inset(0 50% 0 50%); }
-.slide.show.effect-splitY{ clip-path: inset(0 0 0 0); }
-.effect-slideY{ transform: translateY(-100%); }
-.slide.show.effect-slideY{ transform: translateY(0); }
-.effect-zoomRotate{ transform: scale(0.7) rotate(-14deg); }
-.slide.show.effect-zoomRotate{ transform: scale(1) rotate(0); }
-.effect-circle{ clip-path: circle(0% at center); }
-.slide.show.effect-circle{ clip-path: circle(100% at center); }
-
-/* =========================================================
-   Banner overlay: title / subtitle / logo
-   ========================================================= */
-.banner-title-overlay{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 11;
-  width: 100vw;
-  text-align: center;
-  pointer-events: none;
-}
-
-#banner .banner-title-overlay .venus-title{
-  font-size: 2.5em !important;
-  line-height: 1 !important;
-  margin: 0 0 0.25em 0 !important;
-  letter-spacing: 0.08em !important;
-  text-transform: none !important;
-}
-
-#banner .banner-title-overlay .venus-title-wrap{
-  position: relative;
-  display: inline-block;
-  padding: 0.35em 0;
-}
-
-.venus-title{
-  color: #fff;
-  font-family: 'Cinzel', serif;
-  font-size: 16em;
-  font-weight: bold;
-  text-shadow: 2px 2px 6px #000, 4px 4px 10px rgba(0,0,0,0.4);
-  margin: 0 0 0.25em 0;
-  line-height: 1;
-  letter-spacing: 0.08em;
-}
-
-.venus-subtitle{
-  color: #fff;
-  font-family: 'Cinzel', serif;
-  font-size: 0.8em;
-  font-weight: normal;
-  text-shadow: 2px 2px 4px #000, 4px 4px 8px rgba(0,0,0,0.4);
-  margin: 2em 0 0 0;
-  opacity: 0;
-  transition: opacity 1s ease;
-  letter-spacing: 0.02em;
-}
-.venus-subtitle.show{ opacity: 1; }
-
-#venus-logo{
-  position: absolute;
-  left: 50%;
-  top: 0.02em;
-  transform: translate(-50%, -120%);
-  width: 12em;
-  max-width: 80vw;
-  height: auto;
-  opacity: 0;
-  filter: drop-shadow(2px 2px 8px rgba(0,0,0,0.45));
-  animation: venusLogoFadeIn 1.6s ease forwards;
-  animation-delay: 3.6s;
-}
-#venus-logo.show{ animation: venusLogoFadeIn 1.0s ease forwards; }
-
-@keyframes venusLogoFadeIn{
-  from{ opacity: 0; transform: translate(-50%, -140%); }
-  to{ opacity: 1; transform: translate(-50%, -120%); }
-}
-
-@media (max-width: 900px){
-  .venus-title{ font-size: 4.6em; }
-  .venus-subtitle{ font-size: 1.725em; }
-}
-@media (max-width: 600px){
-  .banner-title-overlay{ top: 34%; }
-  .venus-title{ font-size: 2.8em; }
-  .venus-subtitle{ font-size: 1.05em; }
-}
-
-/* =========================================================
-   Header: logo / menu sizing
-   ========================================================= */
-@media screen and (max-width: 736px){
-  #header h1 a{ font-size: 0.98em; }
-  #header nav a{ font-size: 0.63em; }
-}
-
-#header nav ul li.special a.menuToggle{
-  padding: 0.56em 1.68em 0.56em 1.40em !important;
-}
-#header nav ul li.special a.menuToggle span{
-  font-size: 1.4em !important;
-  letter-spacing: 0.175em !important;
-}
-
-#header nav ul li.special a.menuToggle:before,
-#header nav ul li.special a.menuToggle:after{
-  top: 50% !important;
-  transform: translateY(-18%) scale(1.26) !important;
-  right: 0.77em !important;
-}
-
-#menu ul li a{
-  font-size: 0.91em !important;
-  letter-spacing: 0.042em !important;
-  line-height: 1.5 !important;
-}
-@media screen and (max-width: 736px){
-  #menu ul li a{ font-size: 0.875em !important; }
-}
-
-#header h1 a.header-logo{
-  border: 0 !important;
-  text-decoration: none !important;
-  margin-top: 0.42em;
-  display: inline-block;
-}
-#header h1 a.header-logo img{
-  display: block;
-  height: 1.75em;
-  width: auto;
-}
-@media screen and (max-width: 736px){
-  #header h1{ margin-top: 0.21em; }
-  #header h1 a.header-logo img{ height: 0.84em; }
-}
-
-#header{
-  height: 2.8em;
-  line-height: 1.6;
-}
-
-/* =========================================================
-   Generic features layout
-   ========================================================= */
-.features{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding-left: 0;
-  margin: 0 auto;
-  max-width: 64em;
-}
-.features li{
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 50%;
-  padding: 2.5em 2em 2em 2em;
-  margin: 0;
-  list-style: none;
-  text-align: center;
-}
-@media (max-width: 980px){
-  .features li{ padding: 2em 1.5em 1.5em 1.5em; }
-}
-@media (max-width: 736px){
-  .features{ flex-direction: column; }
-  .features li{
-    width: 100%;
-    padding: 2em 1.5em 1.5em 1.5em;
-  }
-}
-
-.feature-icon{
-  display: block;
-  width: 3.5em;
-  height: 3.5em;
-  margin: 0 auto 1em auto;
-  object-fit: contain;
-  border-radius: 0.5em;
-  background: transparent;
-  box-shadow: none;
-}
-
-/* =========================================================
-   Meet the Team slider
-   ========================================================= */
-@media screen and (min-width: 981px){
-  #two .spotlight .image{ width: 56% !important; }
-  #two .spotlight .content{ width: 44% !important; }
-}
-
-.meet-slider{
-  position: relative;
-  width: 100%;
-  overflow: visible;
-  padding: 0 64px;
-  box-sizing: border-box;
-}
-.meet-viewport{
-  overflow: hidden;
-  width: 100%;
-}
-.meet-track{
-  white-space: nowrap;
-  transition: transform 0.35s ease;
-}
-.meet-slide{
-  display: inline-block;
-  width: 100%;
-  vertical-align: top;
-}
-.meet-slide img{
-  display: block;
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-  background: transparent;
-  border-radius: 0;
-}
-
-.meet-arrow{
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 0;
-  height: 0;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  z-index: 3;
-}
-.meet-arrow.prev{
-  left: 14px;
-  border-top: 30px solid transparent;
-  border-bottom: 30px solid transparent;
-  border-right: 40px solid rgba(255,255,255,0.85);
-}
-.meet-arrow.next{
-  right: 14px;
-  border-top: 30px solid transparent;
-  border-bottom: 30px solid transparent;
-  border-left: 40px solid rgba(255,255,255,0.85);
-}
-.meet-arrow.prev:hover{ border-right-color: #fff; }
-.meet-arrow.next:hover{ border-left-color: #fff; }
-
-@media screen and (max-width: 736px){
-  .meet-slider{ padding: 0 46px; }
-  .meet-arrow.prev{ left: 8px; }
-  .meet-arrow.next{ right: 8px; }
-  .meet-arrow.prev{
-    border-top-width: 22px; border-bottom-width: 22px; border-right-width: 30px;
-  }
-  .meet-arrow.next{
-    border-top-width: 22px; border-bottom-width: 22px; border-left-width: 30px;
-  }
-}
-
-.meet-indicators{
-  position: absolute;
-  left: 0; right: 0; bottom: 8px;
-  display: flex;
-  justify-content: center;
-  gap: 6px;
-  z-index: 2;
-  pointer-events: auto;
-}
-.meet-indicators button{
-  width: 28px;
-  height: 5px;
-  border: none;
-  border-radius: 3px;
-  background: rgba(255,255,255,0.35);
-  cursor: pointer;
-}
-.meet-indicators button.active{ background: #fff; }
-
-.spotlight .image img{ height: auto !important; }
-
-/* =========================================================
-   Data Products fixed image box
-   ========================================================= */
-.spotlight-fixedimg .image{
-  height: 850px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-.spotlight-fixedimg .image img{
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
-  object-fit: contain;
-  display: block;
-}
-@media screen and (max-width: 736px){
-  .spotlight-fixedimg .image{ height: 240px; }
-}
-
-#two .spotlight.spotlight-fixedimg .image{
-  padding: 0 !important;
-  margin: 0 !important;
-}
-#two .spotlight.spotlight-fixedimg .content{
-  padding-right: 4em;
-}
-
-.acknowledgement-text{
-  max-width: 60em;
-  margin: 0 auto;
-  font-size: 0.9em;
-  line-height: 1.6;
-  color: rgba(255,255,255,0.75);
-}
-
-/* =========================================================
-   #three: Four Science Pillars styling
-   ========================================================= */
-#three.wrapper{
-  padding-top: 3em;
-  padding-bottom: 3em;
-}
-#three .inner{
-  padding-top: 0;
-  padding-bottom: 0;
-}
-
-#three.wrapper.style3.special .inner{
-  max-width: 92em;
-  width: 100%;
-  padding-left: 1.2em;
-  padding-right: 1.2em;
-}
-
-#three.wrapper.style3.special{
-  background-color: #070b1a !important;
-}
-
-#three header.major{
-  margin-bottom: 2em;
-}
-
-#three .features{
-  max-width: none;
-  width: 100%;
-  margin: 0 auto;
-  gap: 1.2em;
-}
-
-#three .features li{
-  width: calc(25% - 1.2em) !important;
-  padding: 2.0em 1.4em 1.6em 1.4em;
-  position: relative;
-  overflow: hidden;
-  border-radius: 0.75em;
-}
-
-#three .features li p{ font-size: 0.95em; }
-
-#three .features li::before{
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 0.65;
-  z-index: 0;
-  transform: scale(1.03);
-}
-
-#three .features li::after{
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.55);
-  z-index: 1;
-}
-
-#three .features li > *{
-  position: relative;
-  z-index: 2;
-}
-
-#three .features li:nth-child(1)::before{ background-image: url("images/cover_bg_galaxy.png"); }
-#three .features li:nth-child(2)::before{ background-image: url("images/cover_bg_fs.png"); }
-#three .features li:nth-child(3)::before{ background-image: url("images/cover_bg_smbh.png"); }
-#three .features li:nth-child(4)::before{ background-image: url("images/cover_bg_sn.png"); }
-
-#three .feature-icon{
-  filter: invert(1) brightness(1.1) contrast(1.1);
-}
-
-@media (max-width: 980px){
-  #three .features li{ width: calc(50% - 1.2em) !important; }
-}
-@media (max-width: 736px){
-  #three.wrapper.style3.special .inner{
-    padding-left: 1.5em;
-    padding-right: 1.5em;
-  }
-  #three .features li{ width: 100% !important; }
-}
-
-#two.wrapper.alt.style2 > .spotlight + .spotlight{
-  padding-top: 2.5em;
-  border-top: 1px solid rgba(255,255,255,0.15);
-}
-
-/* =========================================================
-   News Dynamic Display Styling (Refined Layout)
-   ========================================================= */
-.news-layout-container {
-  display: flex;
-  gap: 4em;
-  align-items: flex-start;
-  width: 100%;
-}
-
-.info-side {
-  flex: 0 0 320px;
-}
-
-.cards-side {
-  flex: 1;
-}
-
-.news-cards-container {
-  display: flex;
-  gap: 1.5em;
-  justify-content: flex-start;
-}
-
-.news-card {
-  flex: 1;
-  max-width: 320px;
-  background: rgba(255,255,255,0.05);
-  border-radius: 6px;
-  overflow: hidden;
-  text-align: left;
-  border: 1px solid rgba(255,255,255,0.1);
-  transition: transform 0.3s ease, background 0.3s ease;
-  cursor: pointer;
-}
-
-.news-card:hover { 
-  transform: translateY(-5px); 
-  background: rgba(255,255,255,0.1);
-}
-
-.news-card img {
-  width: 100%;
-  aspect-ratio: 16/9;
-  object-fit: cover;
-  display: block;
-}
-
-.news-card .card-body {
-  padding: 1em;
-}
-
-.news-card .card-date {
-  font-size: 0.75em;
-  opacity: 0.6;
-  margin-bottom: 0.4em;
-  text-transform: uppercase;
-}
-
-.news-card .card-title {
-  font-size: 0.95em;
-  line-height: 1.4;
-  margin: 0;
-  color: #fff;
-  font-family: 'Cinzel', serif;
-}
-
-.info-side h2 {
-  margin-bottom: 0.5em;
-}
-
-.description {
-  margin-bottom: 1.5em;
-  font-size: 0.95em;
-  line-height: 1.6;
-  opacity: 0.8;
-}
-
-.see-all-link {
-  font-size: 0.9em;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding-top: 1.5em;
-  margin-top: 1.5em;
-}
-
-@media (max-width: 980px) {
-  .news-layout-container { flex-direction: column; gap: 2em; }
-  .info-side { flex: none; width: 100%; }
-  .news-cards-container { flex-direction: column; align-items: center; }
-  .news-card { width: 100%; max-width: none; }
-}
-
-/* ニュースセクション専用の完全新規レイアウト */
-.news-section-full {
-    display: flex;
-    flex-direction: row-reverse; /* これだけで左右が逆転します */
-    width: 100%;
-    min-height: 500px;
-    background: #0d0d0d; /* 背景色：サイトに合わせて調整してください */
-    border-top: 1px solid rgba(255, 255, 255, 0.15);
-    overflow: hidden;
-}
-
-/* 右側：テキストエリア (40%) */
-.news-section-full .info-column {
-    flex: 0 0 40%;
-    padding: 4em 5em; /* 上のセクションの文字位置に合わせるための余白 */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    box-sizing: border-box;
-}
-
-/* 他のセクションのH2と見た目を合わせる */
-.news-section-full .info-column h2 {
-    font-family: 'Cinzel', serif;
-    font-size: 1.75em; /* 標準的なSpotlightのサイズに調整 */
-    margin: 0 0 0.5em 0;
-    line-height: 1.3;
-    letter-spacing: 0.1em;
-    text-transform: uppercase; /* 大文字に統一 */
-}
-
-.news-section-full .info-column p {
-    margin: 0 0 1.5em 0;
-}
-
-/* 左側：カードエリア (60%) */
-.news-section-full .cards-column {
-    flex: 0 0 60%;
-    padding: 2em;
-    background: rgba(255, 255, 255, 0.02); /* 右半分をわずかに明るくして境界を作る */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-sizing: border-box;
-}
-
-/* カードの並び（横並び） */
-.news-cards-container {
-    display: flex;
-    gap: 1.2em;
-    width: 100%;
-    max-width: 950px; /* カードが広がりすぎないように制限 */
-    justify-content: center;
-}
-
-/* カード1枚のスタイル */
-.news-card {
-    flex: 1;
-    /* 1枚あたりの最小幅を保証したい場合は以下を追加 */
-    min-width: 300px;
-    background: #1a1a1a;
-    border-radius: 4px;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: 0.3s;
-}
-
-.news-card:hover {
-    transform: translateY(-5px);
-    background: #252525;
-}
-
-/* レスポンシブ（スマホ用） */
-@media screen and (max-width: 980px) {
-    .news-section-full {
-        flex-direction: column;
+  <style>
+    /* =========================================================
+       Base / Reset
+       ========================================================= */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
     }
-    .news-section-full .info-column,
+
+    html {
+      overflow-x: hidden;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      overflow-x: hidden;
+      font-family: 'Cinzel', serif;
+      word-wrap: break-word;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a, button, input, textarea, select {
+      -webkit-tap-highlight-color: rgba(255,255,255,0.15);
+    }
+
+    #page-wrapper {
+      overflow-x: hidden;
+    }
+
+    /* =========================================================
+       Banner slideshow
+       ========================================================= */
+    #banner {
+      position: relative;
+      overflow: hidden;
+      min-height: 100vh;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      isolation: isolate;
+    }
+
+    .slideshow {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 2.5s, transform 2.5s, clip-path 2.5s;
+      z-index: 1;
+      will-change: opacity, transform, clip-path;
+      backface-visibility: hidden;
+    }
+
+    .slide.show {
+      opacity: 1;
+      z-index: 2;
+    }
+
+    .slide.fade-out {
+      opacity: 0;
+      z-index: 1;
+      transition: opacity 2.5s;
+    }
+
+    .img-layer {
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      animation: zoomEffect 7s forwards;
+      transform-origin: center center;
+      will-change: transform;
+    }
+
+    @keyframes zoomEffect {
+      from { transform: scale(1); }
+      to   { transform: scale(1.12); }
+    }
+
+    .effect-fade {}
+    .effect-slideX { transform: translateX(-100%); }
+    .slide.show.effect-slideX { transform: translateX(0); }
+    .effect-splitX { clip-path: inset(50% 0 50% 0); }
+    .slide.show.effect-splitX { clip-path: inset(0 0 0 0); }
+    .effect-splitY { clip-path: inset(0 50% 0 50%); }
+    .slide.show.effect-splitY { clip-path: inset(0 0 0 0); }
+    .effect-slideY { transform: translateY(-100%); }
+    .slide.show.effect-slideY { transform: translateY(0); }
+    .effect-zoomRotate { transform: scale(0.7) rotate(-14deg); }
+    .slide.show.effect-zoomRotate { transform: scale(1) rotate(0); }
+    .effect-circle { clip-path: circle(0% at center); }
+    .slide.show.effect-circle { clip-path: circle(100% at center); }
+
+    /* =========================================================
+       Banner overlay: title / subtitle / logo
+       ========================================================= */
+    .banner-title-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 11;
+      width: 100%;
+      text-align: center;
+      pointer-events: none;
+      padding: max(2rem, env(safe-area-inset-top)) 1.25rem max(2rem, env(safe-area-inset-bottom));
+    }
+
+    #banner .banner-title-overlay .venus-title {
+      font-size: clamp(3.2rem, 13vw, 10rem) !important;
+      line-height: 0.95 !important;
+      margin: 0 0 0.2em 0 !important;
+      letter-spacing: 0.08em !important;
+      text-transform: none !important;
+    }
+
+    #banner .banner-title-overlay .venus-title-wrap {
+      position: relative;
+      display: inline-block;
+      padding: 1.2rem 0 0 0;
+      max-width: 100%;
+    }
+
+    .venus-title {
+      color: #fff;
+      font-family: 'Cinzel', serif;
+      font-weight: bold;
+      text-shadow: 2px 2px 6px #000, 4px 4px 10px rgba(0,0,0,0.4);
+      line-height: 1;
+      margin: 0;
+    }
+
+    .venus-subtitle {
+      color: #fff;
+      font-family: 'Cinzel', serif;
+      font-size: clamp(0.9rem, 2.8vw, 1.5rem);
+      font-weight: normal;
+      text-shadow: 2px 2px 4px #000, 4px 4px 8px rgba(0,0,0,0.4);
+      margin: 1.2rem 0 0 0;
+      opacity: 0;
+      transition: opacity 1s ease;
+      letter-spacing: 0.02em;
+      max-width: min(92vw, 900px);
+      line-height: 1.45;
+      padding: 0 0.4rem;
+    }
+
+    .venus-subtitle.show {
+      opacity: 1;
+    }
+
+    #venus-logo {
+      position: absolute;
+      left: 50%;
+      top: 0.1rem;
+      transform: translate(-50%, -115%);
+      width: clamp(5rem, 18vw, 12rem);
+      max-width: 70vw;
+      height: auto;
+      opacity: 0;
+      filter: drop-shadow(2px 2px 8px rgba(0,0,0,0.45));
+      animation: venusLogoFadeIn 1.6s ease forwards;
+      animation-delay: 3.6s;
+    }
+
+    #venus-logo.show {
+      animation: venusLogoFadeIn 1s ease forwards;
+    }
+
+    @keyframes venusLogoFadeIn {
+      from { opacity: 0; transform: translate(-50%, -130%); }
+      to   { opacity: 1; transform: translate(-50%, -115%); }
+    }
+
+    @media (max-width: 900px) {
+      #banner .banner-title-overlay .venus-title {
+        font-size: clamp(3rem, 14vw, 5.2rem) !important;
+      }
+      .venus-subtitle {
+        font-size: clamp(0.95rem, 3vw, 1.2rem);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .banner-title-overlay {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+
+      #banner .banner-title-overlay .venus-title {
+        font-size: clamp(2.5rem, 16vw, 4rem) !important;
+        letter-spacing: 0.06em !important;
+      }
+
+      .venus-subtitle {
+        font-size: 0.95rem;
+        line-height: 1.5;
+        margin-top: 0.8rem;
+      }
+
+      #venus-logo {
+        width: clamp(4.5rem, 22vw, 6.5rem);
+        top: 0;
+      }
+    }
+
+    /* =========================================================
+       Header: logo / menu sizing
+       ========================================================= */
+    #header {
+      height: auto;
+      min-height: 2.8em;
+      line-height: 1.4;
+      padding-left: max(1rem, env(safe-area-inset-left));
+      padding-right: max(1rem, env(safe-area-inset-right));
+    }
+
+    #header h1 a.header-logo {
+      border: 0 !important;
+      text-decoration: none !important;
+      margin-top: 0.35em;
+      display: inline-block;
+      max-width: 100%;
+    }
+
+    #header h1 a.header-logo img {
+      display: block;
+      height: 1.75em;
+      width: auto;
+      max-width: 100%;
+    }
+
+    #header nav ul li.special a.menuToggle {
+      padding: 0.56em 1.68em 0.56em 1.4em !important;
+    }
+
+    #header nav ul li.special a.menuToggle span {
+      font-size: 1.15em !important;
+      letter-spacing: 0.14em !important;
+    }
+
+    #header nav ul li.special a.menuToggle:before,
+    #header nav ul li.special a.menuToggle:after {
+      top: 50% !important;
+      transform: translateY(-18%) scale(1.15) !important;
+      right: 0.77em !important;
+    }
+
+    #menu ul li a {
+      font-size: 0.91em !important;
+      letter-spacing: 0.042em !important;
+      line-height: 1.5 !important;
+    }
+
+    @media screen and (max-width: 736px) {
+      #header {
+        min-height: 2.6em;
+      }
+
+      #header h1 {
+        margin-top: 0.12em;
+      }
+
+      #header h1 a.header-logo img {
+        height: 0.95em;
+      }
+
+      #header nav a {
+        font-size: 0.72em;
+      }
+
+      #header nav ul li.special a.menuToggle {
+        padding: 0.45em 1.45em 0.45em 1em !important;
+      }
+
+      #header nav ul li.special a.menuToggle span {
+        font-size: 1.05em !important;
+        letter-spacing: 0.12em !important;
+      }
+
+      #menu ul li a {
+        font-size: 0.9em !important;
+      }
+    }
+
+    /* =========================================================
+       Generic features layout
+       ========================================================= */
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: stretch;
+      padding-left: 0;
+      margin: 0 auto;
+      max-width: 64em;
+      gap: 0;
+    }
+
+    .features li {
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 50%;
+      padding: 2.5em 2em 2em 2em;
+      margin: 0;
+      list-style: none;
+      text-align: center;
+      min-width: 0;
+    }
+
+    @media (max-width: 980px) {
+      .features li {
+        padding: 2em 1.5em 1.5em 1.5em;
+      }
+    }
+
+    @media (max-width: 736px) {
+      .features {
+        flex-direction: column;
+      }
+
+      .features li {
+        width: 100%;
+        padding: 1.8em 1.2em 1.4em 1.2em;
+      }
+    }
+
+    .feature-icon {
+      display: block;
+      width: 3.5em;
+      height: 3.5em;
+      margin: 0 auto 1em auto;
+      object-fit: contain;
+      border-radius: 0.5em;
+      background: transparent;
+      box-shadow: none;
+      flex-shrink: 0;
+    }
+
+    /* =========================================================
+       Meet the Team slider
+       ========================================================= */
+    @media screen and (min-width: 981px) {
+      #two .spotlight .image {
+        width: 56% !important;
+      }
+
+      #two .spotlight .content {
+        width: 44% !important;
+      }
+    }
+
+    .meet-slider {
+      position: relative;
+      width: 100%;
+      max-width: 100%;
+      overflow: visible;
+      padding: 0 56px;
+      box-sizing: border-box;
+    }
+
+    .meet-viewport {
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .meet-track {
+      white-space: nowrap;
+      transition: transform 0.35s ease;
+    }
+
+    .meet-slide {
+      display: inline-block;
+      width: 100%;
+      vertical-align: top;
+    }
+
+    .meet-slide img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      background: transparent;
+      border-radius: 0;
+    }
+
+    .meet-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 0;
+      height: 0;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      z-index: 3;
+      appearance: none;
+    }
+
+    .meet-arrow.prev {
+      left: 10px;
+      border-top: 24px solid transparent;
+      border-bottom: 24px solid transparent;
+      border-right: 32px solid rgba(255,255,255,0.85);
+    }
+
+    .meet-arrow.next {
+      right: 10px;
+      border-top: 24px solid transparent;
+      border-bottom: 24px solid transparent;
+      border-left: 32px solid rgba(255,255,255,0.85);
+    }
+
+    .meet-arrow.prev:hover {
+      border-right-color: #fff;
+    }
+
+    .meet-arrow.next:hover {
+      border-left-color: #fff;
+    }
+
+    .meet-indicators {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 8px;
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      z-index: 2;
+      pointer-events: auto;
+      padding: 0 0.5rem;
+    }
+
+    .meet-indicators button {
+      width: 26px;
+      height: 5px;
+      border: none;
+      border-radius: 3px;
+      background: rgba(255,255,255,0.35);
+      cursor: pointer;
+      appearance: none;
+    }
+
+    .meet-indicators button.active {
+      background: #fff;
+    }
+
+    .spotlight .image img {
+      height: auto !important;
+    }
+
+    @media screen and (max-width: 736px) {
+      .meet-slider {
+        padding: 0 38px;
+      }
+
+      .meet-arrow.prev {
+        left: 4px;
+        border-top-width: 16px;
+        border-bottom-width: 16px;
+        border-right-width: 20px;
+      }
+
+      .meet-arrow.next {
+        right: 4px;
+        border-top-width: 16px;
+        border-bottom-width: 16px;
+        border-left-width: 20px;
+      }
+
+      .meet-indicators button {
+        width: 20px;
+        height: 4px;
+      }
+    }
+
+    /* =========================================================
+       Data Products fixed image box
+       ========================================================= */
+    .spotlight-fixedimg .image {
+      height: 850px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 0;
+    }
+
+    .spotlight-fixedimg .image img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      display: block;
+    }
+
+    #two .spotlight.spotlight-fixedimg .image {
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+
+    #two .spotlight.spotlight-fixedimg .content {
+      padding-right: 4em;
+    }
+
+    @media screen and (max-width: 980px) {
+      .spotlight-fixedimg .image {
+        height: 420px;
+      }
+
+      #two .spotlight.spotlight-fixedimg .content {
+        padding-right: 2.5em;
+      }
+    }
+
+    @media screen and (max-width: 736px) {
+      .spotlight-fixedimg .image {
+        height: 260px;
+      }
+
+      #two .spotlight.spotlight-fixedimg .content {
+        padding-right: 1.5em;
+      }
+    }
+
+    .acknowledgement-text {
+      max-width: 60em;
+      margin: 0 auto;
+      font-size: 0.9em;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.75);
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+    }
+
+    /* =========================================================
+       #three: Four Science Pillars styling
+       ========================================================= */
+    #three.wrapper {
+      padding-top: 3em;
+      padding-bottom: 3em;
+    }
+
+    #three .inner {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+
+    #three.wrapper.style3.special .inner {
+      max-width: 92em;
+      width: 100%;
+      padding-left: 1.2em;
+      padding-right: 1.2em;
+    }
+
+    #three.wrapper.style3.special {
+      background-color: #070b1a !important;
+    }
+
+    #three header.major {
+      margin-bottom: 2em;
+    }
+
+    #three .features {
+      max-width: none;
+      width: 100%;
+      margin: 0 auto;
+      gap: 1.2em;
+    }
+
+    #three .features li {
+      width: calc(25% - 1.2em) !important;
+      padding: 2em 1.4em 1.6em 1.4em;
+      position: relative;
+      overflow: hidden;
+      border-radius: 0.75em;
+      min-height: 100%;
+    }
+
+    #three .features li p {
+      font-size: 0.95em;
+      margin-bottom: 0;
+    }
+
+    #three .features li::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0.65;
+      z-index: 0;
+      transform: scale(1.03);
+    }
+
+    #three .features li::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      z-index: 1;
+    }
+
+    #three .features li > * {
+      position: relative;
+      z-index: 2;
+    }
+
+    #three .features li:nth-child(1)::before { background-image: url("images/cover_bg_galaxy.png"); }
+    #three .features li:nth-child(2)::before { background-image: url("images/cover_bg_fs.png"); }
+    #three .features li:nth-child(3)::before { background-image: url("images/cover_bg_smbh.png"); }
+    #three .features li:nth-child(4)::before { background-image: url("images/cover_bg_sn.png"); }
+
+    #three .feature-icon {
+      filter: invert(1) brightness(1.1) contrast(1.1);
+    }
+
+    @media (max-width: 980px) {
+      #three .features li {
+        width: calc(50% - 0.6em) !important;
+      }
+    }
+
+    @media (max-width: 736px) {
+      #three.wrapper.style3.special .inner {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+
+      #three .features {
+        gap: 0.9em;
+      }
+
+      #three .features li {
+        width: 100% !important;
+        padding: 1.5em 1em 1.3em 1em;
+      }
+    }
+
+    #two.wrapper.alt.style2 > .spotlight + .spotlight {
+      padding-top: 2.5em;
+      border-top: 1px solid rgba(255,255,255,0.15);
+    }
+
+    /* =========================================================
+       News section
+       ========================================================= */
+    .news-section-full {
+      display: flex;
+      flex-direction: row-reverse;
+      width: 100%;
+      min-height: 500px;
+      background: #0d0d0d;
+      border-top: 1px solid rgba(255,255,255,0.15);
+      overflow: hidden;
+    }
+
+    .news-section-full .info-column {
+      flex: 0 0 40%;
+      padding: 4em 4.5em;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      box-sizing: border-box;
+      min-width: 0;
+    }
+
+    .news-section-full .info-column h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.75em;
+      margin: 0 0 0.5em 0;
+      line-height: 1.3;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .news-section-full .info-column p {
+      margin: 0 0 1.5em 0;
+    }
+
     .news-section-full .cards-column {
+      flex: 0 0 60%;
+      padding: 2em;
+      background: rgba(255,255,255,0.02);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      min-width: 0;
+    }
+
+    .news-cards-container {
+      display: flex;
+      gap: 1.2em;
+      width: 100%;
+      max-width: 950px;
+      justify-content: center;
+      align-items: stretch;
+      min-width: 0;
+    }
+
+    .news-card {
+      flex: 1 1 0;
+      min-width: 0;
+      background: #1a1a1a;
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: transform 0.3s, background 0.3s;
+      cursor: pointer;
+    }
+
+    .news-card:hover {
+      transform: translateY(-5px);
+      background: #252525;
+    }
+
+    .news-card img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      display: block;
+    }
+
+    .news-card .card-body {
+      padding: 1em;
+    }
+
+    .news-card .card-date {
+      font-size: 0.75em;
+      opacity: 0.6;
+      margin-bottom: 0.45em;
+      text-transform: uppercase;
+      line-height: 1.4;
+    }
+
+    .news-card .card-title {
+      font-size: 0.95em;
+      line-height: 1.45;
+      margin: 0;
+      color: #fff;
+      font-family: 'Cinzel', serif;
+    }
+
+    @media screen and (max-width: 1100px) {
+      .news-section-full .info-column {
+        padding: 3em 2.5em;
+      }
+    }
+
+    @media screen and (max-width: 980px) {
+      .news-section-full {
+        flex-direction: column;
+        min-height: auto;
+      }
+
+      .news-section-full .info-column,
+      .news-section-full .cards-column {
         flex: 0 0 100%;
         width: 100%;
-        padding: 3em 2em;
+      }
+
+      .news-section-full .info-column {
+        padding: 2.5em 1.5em 1.5em 1.5em;
+      }
+
+      .news-section-full .cards-column {
+        padding: 0 1.25em 2.25em 1.25em;
+      }
+
+      .news-cards-container {
+        flex-direction: column;
+        align-items: stretch;
+        max-width: 100%;
+      }
+
+      .news-card {
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+      }
     }
-}
 
-/* 他のセクションのH2と見た目を合わせる */
-.news-section-full .info-column h2 {
-    font-family: 'Cinzel', serif;
-    font-size: 1.75em; /* 標準的なSpotlightのサイズに調整 */
-    margin: 0 0 0.5em 0;
-    line-height: 1.3;
-    letter-spacing: 0.1em;
-    text-transform: uppercase; /* 大文字に統一 */
-}
+    @media screen and (max-width: 480px) {
+      .news-section-full .info-column {
+        padding: 2.2em 1rem 1.2em 1rem;
+      }
 
-.news-section-full .info-column p {
-    margin: 0 0 1.5em 0;
-}
+      .news-section-full .cards-column {
+        padding: 0 1rem 2rem 1rem;
+      }
 
-</style>
+      .news-card .card-body {
+        padding: 0.9em;
+      }
+
+      .news-card .card-title {
+        font-size: 0.92em;
+      }
+    }
+
+    /* =========================================================
+       Main content mobile adjustments
+       ========================================================= */
+    #one .major h2,
+    #three .major h2,
+    .spotlight .content h2 {
+      line-height: 1.35;
+    }
+
+    #one .major p,
+    .spotlight .content p,
+    .spotlight .content li {
+      line-height: 1.7;
+    }
+
+    .spotlight .content ul {
+      padding-left: 1.2em;
+      margin: 0 0 1em 0;
+    }
+
+    @media screen and (max-width: 736px) {
+      #one.wrapper,
+      #three.wrapper,
+      #acknowledgement.wrapper {
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      #one .inner,
+      #three .inner,
+      #acknowledgement .inner {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+
+      #one .major h2 {
+        font-size: 1.35em;
+      }
+
+      #one .major p {
+        font-size: 0.96em;
+      }
+
+      .spotlight .content {
+        padding-left: 1.25em !important;
+        padding-right: 1.25em !important;
+        padding-top: 1.5em !important;
+        padding-bottom: 1.5em !important;
+      }
+
+      .spotlight .content h2 {
+        font-size: 1.35em;
+        margin-bottom: 0.6em;
+      }
+
+      .spotlight .content p,
+      .spotlight .content li {
+        font-size: 0.95em;
+      }
+
+      footer#footer {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+
+      footer#footer .copyright {
+        word-break: break-word;
+      }
+    }
+
+    /* =========================================================
+       Reduce motion accessibility
+       ========================================================= */
+    @media (prefers-reduced-motion: reduce) {
+      .slide,
+      .img-layer,
+      .venus-subtitle,
+      .news-card,
+      .meet-track {
+        transition: none !important;
+        animation: none !important;
+      }
+    }
+  </style>
 </head>
 
 <body class="landing is-preload">
@@ -705,19 +955,21 @@ html, body { font-family: 'Cinzel', serif; }
       <div class="slideshow" id="venus-slideshow"></div>
       <div class="banner-title-overlay">
         <div class="venus-title-wrap">
-          <img src="icon/VENUS_logo_V_W2.png" alt="VENUS logo" id="venus-logo">
+          <img src="icon/VENUS_logo_V_W2.png" alt="VENUS logo" id="venus-logo" />
           <h2 class="venus-title">VENUS</h2>
         </div>
         <p class="venus-subtitle">Vast Exploration for Nascent Unexplored Sources</p>
       </div>
-      <a href="#one" class="more scrolly"></a>
+      <a href="#one" class="more scrolly" aria-label="Scroll to content"></a>
     </section>
 
     <section id="one" class="wrapper style1 special">
       <div class="inner">
         <header class="major">
-          <h2>VENUS explores the earliest epoch of the universe<br />
-            <span style="white-space: nowrap;">using massive galaxy clusters as a magnifying glass</span></h2>
+          <h2>
+            VENUS explores the earliest epoch of the universe<br />
+            <span style="white-space: nowrap;">using massive galaxy clusters as a magnifying glass</span>
+          </h2>
           <p>
             VENUS will unlock uniform 10-filter NIRCam imaging across 60 lensing clusters in Cycle 4<br />
             and multi-epoch NIRCam imaging + NIRSpec PRISM+G395M spectroscopy in Cycle 5
@@ -770,51 +1022,48 @@ html, body { font-family: 'Cinzel', serif; }
             <h3>Earliest stars and supernovae</h3>
             <p>
               By exploiting wide, multi-epoch lensing fields, VENUS opens a new time-domain window on the early
-              universe, enabling the discovery of individual lensed stars and supernovae at z ≳ 5, including rare explosions from massive,
-              low-metallicity stars that directly constrain the high-redshift initial mass function.
+              universe, enabling the discovery of individual lensed stars and supernovae at z ≳ 5, including rare explosions
+              from massive, low-metallicity stars that directly constrain the high-redshift initial mass function.
             </p>
           </li>
         </ul>
       </div>
     </section>
-      
 
-    <section id="two" class="wrapper alt style2">    
+    <section id="two" class="wrapper alt style2">
 
-
-    <section class="news-section-full">    
+      <section class="news-section-full">
         <div class="info-column">
-            <h2 style="font-size: 2em; letter-spacing: 0.1em; margin-bottom: 0.5em;">LATEST NEWS</h2>
-            <p style="opacity: 0.8; line-height: 1.8; margin-bottom: 2em;">
-                Check out our latest updates, breakthroughs, and project milestones.
+          <h2 style="font-size: 2em; letter-spacing: 0.1em; margin-bottom: 0.5em;">LATEST NEWS</h2>
+          <p style="opacity: 0.8; line-height: 1.8; margin-bottom: 2em;">
+            Check out our latest updates, breakthroughs, and project milestones.
+          </p>
+          <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5em;">
+            <p style="font-size: 0.9em;">
+              See all press releases and milestones <a href="news.html">here</a>.
             </p>
-            <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5em;">
-                <p style="font-size: 0.9em;">
-                    See all press releases and milestones <a href="news.html">here</a>.
-                </p>
-            </div>
+          </div>
         </div>
 
         <div class="cards-column">
-            <div id="latest-news-cards" class="news-cards-container">
-                <p>Loading updates...</p>
-            </div>
+          <div id="latest-news-cards" class="news-cards-container">
+            <p>Loading updates...</p>
+          </div>
         </div>
-    </section>
-
+      </section>
 
       <section class="spotlight">
         <div class="image">
           <div class="meet-slider" id="meetTeamSlider" aria-label="Meet the Team screenshots" tabindex="0">
             <div class="meet-viewport">
               <div class="meet-track">
-                <div class="meet-slide"><img src="images/group1.png" alt="Team 1"></div>
-                <div class="meet-slide"><img src="images/group2.png" alt="Team 2"></div>
-                <div class="meet-slide"><img src="images/group3.png" alt="Team 3"></div>
+                <div class="meet-slide"><img src="images/group1.png" alt="Team 1" /></div>
+                <div class="meet-slide"><img src="images/group2.png" alt="Team 2" /></div>
+                <div class="meet-slide"><img src="images/group3.png" alt="Team 3" /></div>
               </div>
             </div>
-            <button class="meet-arrow prev" aria-label="Previous slide">&#10094;</button>
-            <button class="meet-arrow next" aria-label="Next slide">&#10095;</button>
+            <button class="meet-arrow prev" aria-label="Previous slide"></button>
+            <button class="meet-arrow next" aria-label="Next slide"></button>
             <div class="meet-indicators" role="tablist">
               <button type="button" aria-label="Go to slide 1" class="active"></button>
               <button type="button" aria-label="Go to slide 2"></button>
@@ -825,7 +1074,7 @@ html, body { font-family: 'Cinzel', serif; }
         <div class="content">
           <h2>Meet the Team</h2>
           <p>
-            PIs Seiji Fujimoto (U.Toronto) & Dan Coe (STScI), <br>
+            PIs Seiji Fujimoto (U.Toronto) &amp; Dan Coe (STScI), <br />
             with 150+ international members from around the world.
           </p>
           <p>Read more about our team <a href="team.html">here</a>.</p>
@@ -854,7 +1103,7 @@ html, body { font-family: 'Cinzel', serif; }
         <div class="content">
           <h2>Publications</h2>
           <p>
-            View the full list of VENUS publications on 
+            View the full list of VENUS publications on
             <a href="https://ui.adsabs.harvard.edu/public-libraries/81Jnu02bT_-A-8TngvUXPA">ADS</a>.
           </p>
         </div>
@@ -878,7 +1127,7 @@ html, body { font-family: 'Cinzel', serif; }
         <p class="acknowledgement-text">
           Support for the VENUS program is provided by NASA through a grant from the Space Telescope Science Institute,
           which is operated by the Association of Universities for Research in Astronomy, Inc.,
-          under NASA contract NAS 5-26555, and by Canadian Space Agency (CSA) under the contract 25JWGO4A18. 
+          under NASA contract NAS 5-26555, and by Canadian Space Agency (CSA) under the contract 25JWGO4A18.
         </p>
       </div>
     </section>
@@ -886,12 +1135,11 @@ html, body { font-family: 'Cinzel', serif; }
     <footer id="footer">
       <ul class="copyright">
         <li>&copy; JWST-VENUS <span class="since">since 2025</span></li>
-        
         <li style="display: block; font-size: 0.9em; opacity: 0.7; margin-top: 0.5em;">
-          Site Design: HTML5 UP | Seiji Fujimoto &amp; Hollis Akins</li>
-        
+          Site Design: HTML5 UP | Seiji Fujimoto &amp; Hollis Akins
+        </li>
         <li style="display: block; font-size: 0.8em; opacity: 0.7; margin-top: 0.5em;">
-          Logo design: <a href="http://nt-design.jp/" target="_blank">Takahisa Nakajima</a>
+          Logo design: <a href="http://nt-design.jp/" target="_blank" rel="noopener noreferrer">Takahisa Nakajima</a>
         </li>
       </ul>
     </footer>
@@ -912,31 +1160,47 @@ html, body { font-family: 'Cinzel', serif; }
       if (!container) return;
 
       try {
-        const response = await fetch('news.html');
+        const response = await fetch('news.html', { cache: 'no-store' });
         const htmlText = await response.text();
         const parser = new DOMParser();
         const newsDoc = parser.parseFromString(htmlText, 'text/html');
         const newsItems = newsDoc.querySelectorAll('.news-item');
-        
+
         if (newsItems.length > 0) {
           container.innerHTML = '';
           const count = Math.min(newsItems.length, 3);
+
           for (let i = 0; i < count; i++) {
             const item = newsItems[i];
-            const date = item.querySelector('.news-date')?.innerText || '';
-            const title = item.querySelector('.news-title')?.innerText || '';
+            const date = item.querySelector('.news-date')?.innerText?.trim() || '';
+            const title = item.querySelector('.news-title')?.innerText?.trim() || '';
             const imgSrc = item.querySelector('.news-thumb img')?.getAttribute('src') || '';
-            
+
             const card = document.createElement('div');
             card.className = 'news-card';
-            card.onclick = () => window.location.href = 'news.html';
+            card.setAttribute('role', 'link');
+            card.setAttribute('tabindex', '0');
+
+            const goNews = function () {
+              window.location.href = 'news.html';
+            };
+
+            card.addEventListener('click', goNews);
+            card.addEventListener('keydown', function (e) {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                goNews();
+              }
+            });
+
             card.innerHTML = `
-              <img src="${imgSrc}" alt="">
+              ${imgSrc ? `<img src="${imgSrc}" alt="">` : ''}
               <div class="card-body">
                 <div class="card-date">${date}</div>
                 <h4 class="card-title">${title}</h4>
               </div>
             `;
+
             container.appendChild(card);
           }
         } else {
@@ -946,6 +1210,7 @@ html, body { font-family: 'Cinzel', serif; }
         container.innerHTML = '<p><a href="news.html">View News Page</a></p>';
       }
     }
+
     document.addEventListener('DOMContentLoaded', loadNewsForIndex);
   </script>
 
@@ -958,6 +1223,7 @@ html, body { font-family: 'Cinzel', serif; }
       'cover_image/macs0416.jpg',
       'cover_image/spt0615.jpg'
     ];
+
     const scenes = [
       { image: images[0], effect: 'effect-splitX' },
       { image: images[1], effect: 'effect-fade' },
@@ -966,34 +1232,44 @@ html, body { font-family: 'Cinzel', serif; }
       { image: images[4], effect: 'effect-circle' },
       { image: images[5], effect: 'effect-slideX' }
     ];
+
     const slideshowContainer = document.getElementById('venus-slideshow');
     let current = 0;
 
     function createSlide(scene) {
       const slide = document.createElement('div');
       slide.classList.add('slide', scene.effect);
+
       const imgLayer = document.createElement('div');
       imgLayer.className = 'img-layer';
       imgLayer.style.backgroundImage = `url(${scene.image})`;
+
       slide.appendChild(imgLayer);
       return slide;
     }
 
     function showScene(index) {
+      if (!slideshowContainer) return;
+
       const scene = scenes[index];
       const slide = createSlide(scene);
       slideshowContainer.appendChild(slide);
-      void slide.offsetWidth; 
-      setTimeout(() => slide.classList.add('show'), 10);
-      const slides = slideshowContainer.querySelectorAll('.slide.show');
-      if (slides.length > 1) {
-        const fadeSlide = slides[0];
+
+      void slide.offsetWidth;
+      requestAnimationFrame(() => {
+        slide.classList.add('show');
+      });
+
+      const activeSlides = slideshowContainer.querySelectorAll('.slide.show');
+      if (activeSlides.length > 1) {
+        const fadeSlide = activeSlides[0];
         fadeSlide.classList.remove('show');
         fadeSlide.classList.add('fade-out');
+
         fadeSlide.addEventListener('transitionend', function onFade(e) {
-          if (e.propertyName === "opacity") {
-            if (fadeSlide.parentNode) fadeSlide.parentNode.removeChild(fadeSlide);
+          if (e.propertyName === 'opacity') {
             fadeSlide.removeEventListener('transitionend', onFade);
+            if (fadeSlide.parentNode) fadeSlide.parentNode.removeChild(fadeSlide);
           }
         });
       }
@@ -1009,18 +1285,19 @@ html, body { font-family: 'Cinzel', serif; }
       setInterval(loopScenes, 6000);
     }
 
-    window.onload = function () {
+    window.addEventListener('load', function () {
       setTimeout(() => {
         const el = document.querySelector('.venus-subtitle');
         if (el) el.classList.add('show');
       }, 1000);
-    };
+    });
   </script>
 
   <script>
     (function () {
       const root = document.getElementById('meetTeamSlider');
       if (!root) return;
+
       const track = root.querySelector('.meet-track');
       const slides = Array.from(root.querySelectorAll('.meet-slide'));
       const prev = root.querySelector('.meet-arrow.prev');
@@ -1034,17 +1311,36 @@ html, body { font-family: 'Cinzel', serif; }
         dots.forEach((d, i) => d.classList.toggle('active', i === index));
       }
 
-      prev.addEventListener('click', () => {
-        index = (index - 1 + slides.length) % slides.length;
-        update();
+      if (prev) {
+        prev.addEventListener('click', () => {
+          index = (index - 1 + slides.length) % slides.length;
+          update();
+        });
+      }
+
+      if (next) {
+        next.addEventListener('click', () => {
+          index = (index + 1) % slides.length;
+          update();
+        });
+      }
+
+      dots.forEach((btn, i) => {
+        btn.addEventListener('click', () => update(i));
       });
-      next.addEventListener('click', () => {
-        index = (index + 1) % slides.length;
-        update();
+
+      root.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowLeft') {
+          index = (index - 1 + slides.length) % slides.length;
+          update();
+        } else if (e.key === 'ArrowRight') {
+          index = (index + 1) % slides.length;
+          update();
+        }
       });
-      dots.forEach((btn, i) => btn.addEventListener('click', () => update(i)));
+
       update(0);
-    })();    
+    })();
   </script>
 
 </body>
