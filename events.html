@@ -1,0 +1,537 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <title>VENUS | Events</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+  <meta name="description" content="Upcoming conferences, meetings, and public events for the JWST-VENUS collaboration." />
+
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+
+  <style>
+    /* =========================================================
+       Base
+       ========================================================= */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      overflow-x: hidden;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      overflow-x: hidden;
+      font-family: 'Cinzel', serif;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a, button {
+      -webkit-tap-highlight-color: rgba(255,255,255,0.15);
+    }
+
+    #page-wrapper {
+      overflow-x: hidden;
+    }
+
+    /* =========================================================
+       Header consistency with index
+       ========================================================= */
+    #header {
+      height: auto;
+      min-height: 2.8em;
+      line-height: 1.4;
+      padding-left: max(1rem, env(safe-area-inset-left));
+      padding-right: max(1rem, env(safe-area-inset-right));
+    }
+
+    #header h1 a.header-logo {
+      border: 0 !important;
+      text-decoration: none !important;
+      margin-top: 0.35em;
+      display: inline-block;
+      max-width: 100%;
+    }
+
+    #header h1 a.header-logo img {
+      display: block;
+      height: 1.75em;
+      width: auto;
+      max-width: 100%;
+    }
+
+    #header nav ul li.special a.menuToggle {
+      padding: 0.56em 1.68em 0.56em 1.4em !important;
+    }
+
+    #header nav ul li.special a.menuToggle span {
+      font-size: 1.15em !important;
+      letter-spacing: 0.14em !important;
+    }
+
+    #header nav ul li.special a.menuToggle:before,
+    #header nav ul li.special a.menuToggle:after {
+      top: 50% !important;
+      transform: translateY(-18%) scale(1.15) !important;
+      right: 0.77em !important;
+    }
+
+    #menu ul li a {
+      font-size: 0.91em !important;
+      letter-spacing: 0.042em !important;
+      line-height: 1.5 !important;
+    }
+
+    @media screen and (max-width: 736px) {
+      #header {
+        min-height: 2.6em;
+      }
+
+      #header h1 {
+        margin-top: 0.12em;
+      }
+
+      #header h1 a.header-logo img {
+        height: 0.95em;
+      }
+
+      #header nav a {
+        font-size: 0.72em;
+      }
+
+      #header nav ul li.special a.menuToggle {
+        padding: 0.45em 1.45em 0.45em 1em !important;
+      }
+
+      #header nav ul li.special a.menuToggle span {
+        font-size: 1.05em !important;
+        letter-spacing: 0.12em !important;
+      }
+
+      #menu ul li a {
+        font-size: 0.9em !important;
+      }
+    }
+
+    /* =========================================================
+       Hero / page intro
+       ========================================================= */
+    .page-hero {
+      position: relative;
+      min-height: 44vh;
+      min-height: 44svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      padding: 7rem 1.5rem 4.5rem 1.5rem;
+      background:
+        linear-gradient(rgba(6,10,22,0.55), rgba(6,10,22,0.72)),
+        url("images/cover_santander.png") center center / cover no-repeat;
+    }
+
+    .page-hero .hero-inner {
+      max-width: 900px;
+      width: 100%;
+      z-index: 2;
+    }
+
+    .page-hero h2 {
+      margin: 0 0 0.45em 0;
+      font-size: clamp(2rem, 6vw, 4rem);
+      line-height: 1.05;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #fff;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+    }
+
+    .page-hero p {
+      margin: 0 auto;
+      max-width: 780px;
+      color: rgba(255,255,255,0.9);
+      font-size: 1rem;
+      line-height: 1.8;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.35);
+    }
+
+    @media screen and (max-width: 736px) {
+      .page-hero {
+        min-height: 36vh;
+        min-height: 36svh;
+        padding: 6.5rem 1rem 3.5rem 1rem;
+      }
+
+      .page-hero p {
+        font-size: 0.96rem;
+        line-height: 1.7;
+      }
+    }
+
+    /* =========================================================
+       Events list
+       ========================================================= */
+    .events-wrapper {
+      background: #0b1020;
+      padding: 4.5rem 1.5rem 5rem 1.5rem;
+    }
+
+    .events-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .events-intro {
+      text-align: center;
+      margin-bottom: 2.8rem;
+    }
+
+    .events-intro h3 {
+      margin: 0 0 0.6em 0;
+      font-size: 1.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #fff;
+    }
+
+    .events-intro p {
+      margin: 0 auto;
+      max-width: 760px;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.78);
+      font-size: 0.98rem;
+    }
+
+    .events-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .event-card {
+      display: grid;
+      grid-template-columns: minmax(280px, 360px) minmax(0, 1fr);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+    }
+
+    .event-card:hover {
+      transform: translateY(-4px);
+      background: rgba(255,255,255,0.065);
+      border-color: rgba(255,255,255,0.18);
+    }
+
+    .event-thumb {
+      position: relative;
+      min-height: 100%;
+      background: #111;
+    }
+
+    .event-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .event-content {
+      padding: 1.6rem 1.7rem 1.5rem 1.7rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-width: 0;
+    }
+
+    .event-date {
+      display: inline-block;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.62);
+      margin-bottom: 0.8rem;
+    }
+
+    .event-title {
+      margin: 0 0 0.55rem 0;
+      font-size: 1.5rem;
+      line-height: 1.3;
+      color: #fff;
+      text-transform: none;
+      letter-spacing: 0.02em;
+    }
+
+    .event-summary {
+      margin: 0 0 1.2rem 0;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.75;
+      font-size: 0.97rem;
+    }
+
+    .event-actions {
+      margin-top: auto;
+    }
+
+    .event-link {
+      display: inline-block;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.28);
+      color: #fff;
+      padding: 0.72rem 1.15rem;
+      border-radius: 999px;
+      font-size: 0.86rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+    }
+
+    .event-link:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.42);
+      transform: translateY(-1px);
+    }
+
+    @media screen and (max-width: 900px) {
+      .event-card {
+        grid-template-columns: 1fr;
+      }
+
+      .event-thumb {
+        aspect-ratio: 16 / 9;
+      }
+    }
+
+    @media screen and (max-width: 736px) {
+      .events-wrapper {
+        padding: 3.2rem 1rem 3.8rem 1rem;
+      }
+
+      .events-intro {
+        margin-bottom: 2rem;
+      }
+
+      .events-intro h3 {
+        font-size: 1.45rem;
+      }
+
+      .event-content {
+        padding: 1.2rem 1.1rem 1.2rem 1.1rem;
+      }
+
+      .event-title {
+        font-size: 1.2rem;
+      }
+
+      .event-summary {
+        font-size: 0.95rem;
+        line-height: 1.68;
+      }
+
+      .event-link {
+        width: 100%;
+        text-align: center;
+      }
+    }
+
+    /* =========================================================
+       Empty / future placeholder
+       ========================================================= */
+    .events-note {
+      margin-top: 2.3rem;
+      padding: 1.3rem 1.4rem;
+      border: 1px dashed rgba(255,255,255,0.18);
+      border-radius: 10px;
+      color: rgba(255,255,255,0.72);
+      line-height: 1.8;
+      font-size: 0.94rem;
+      background: rgba(255,255,255,0.02);
+    }
+
+    .events-note code {
+      font-family: monospace;
+      font-size: 0.95em;
+      color: rgba(255,255,255,0.92);
+    }
+
+    /* =========================================================
+       Footer consistency
+       ========================================================= */
+    footer#footer {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    footer#footer .copyright {
+      word-break: break-word;
+    }
+
+    /* =========================================================
+       Reduced motion
+       ========================================================= */
+    @media (prefers-reduced-motion: reduce) {
+      .event-card,
+      .event-link {
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="page-wrapper">
+
+    <header id="header">
+      <h1>
+        <a href="index.html" class="header-logo" aria-label="VENUS Home">
+          <img src="icon/VENUS_logo_H2_W.png" alt="VENUS" />
+        </a>
+      </h1>
+      <nav id="nav">
+        <ul>
+          <li class="special">
+            <a href="#menu" class="menuToggle"><span>Menu</span></a>
+            <div id="menu">
+              <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="news.html">News</a></li>
+                <li><a href="team.html">Meet the Team</a></li>
+                <li><a href="data.html">Data Products</a></li>
+                <li><a href="https://ui.adsabs.harvard.edu/public-libraries/81Jnu02bT_-A-8TngvUXPA">Publications</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="https://venus-internal.pages.dev/">Internal</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="page-hero">
+      <div class="hero-inner">
+        <h2>Events</h2>
+        <p>
+          Conferences, collaboration meetings, workshops, and public events related to the JWST-VENUS survey
+          will be listed here.
+        </p>
+      </div>
+    </section>
+
+    <section class="events-wrapper">
+      <div class="events-inner">
+
+        <div class="events-intro">
+          <h3>Upcoming and Recent Events</h3>
+          <p>
+            Browse VENUS-related events below. Click on each item for more details,
+            schedules, venue information, or related announcements.
+          </p>
+        </div>
+
+        <div class="events-list">
+
+          <!-- =====================================================
+               EVENT 1
+               ===================================================== -->
+          <article class="event-card">
+            <div class="event-thumb">
+              <img src="images/cover_santander.png" alt="JWST-Lensing / Solar Eclipse Conference" />
+            </div>
+            <div class="event-content">
+              <span class="event-date">August 2026</span>
+              <h4 class="event-title">JWST-Lensing / Solar Eclipse Conference held in August 2026</h4>
+              <p class="event-summary">
+                A conference related to JWST lensing science and solar eclipse themes.
+                More details on venue, program, speakers, and participation information
+                will be posted on the dedicated event page.
+              </p>
+              <div class="event-actions">
+                <a href="https://example.com/event-jwst-lensing-solar-eclipse-2026" class="event-link" target="_blank" rel="noopener noreferrer">
+                  Read more
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- =====================================================
+               EVENT TEMPLATE: copy from here for future events
+               Remove this comment and duplicate the whole article block
+               ===================================================== -->
+          <!--
+          <article class="event-card">
+            <div class="event-thumb">
+              <img src="images/your-event-image.png" alt="Event title" />
+            </div>
+            <div class="event-content">
+              <span class="event-date">Month Year</span>
+              <h4 class="event-title">Your Event Title Here</h4>
+              <p class="event-summary">
+                Add a short 1-3 sentence summary here. This should briefly explain what
+                the event is, who it is for, and where readers can find more details.
+              </p>
+              <div class="event-actions">
+                <a href="https://example.com/your-event-page" class="event-link" target="_blank" rel="noopener noreferrer">
+                  Read more
+                </a>
+              </div>
+            </div>
+          </article>
+          -->
+
+        </div>
+
+        <div class="events-note">
+          Additional events will be added here as they are announced.  
+          For future updates, duplicate the commented <code>&lt;article class="event-card"&gt; ... &lt;/article&gt;</code>
+          template block and replace the image, date, title, summary, and link.
+        </div>
+
+      </div>
+    </section>
+
+    <section id="acknowledgement" class="wrapper style1 special">
+      <div class="inner">
+        <p class="acknowledgement-text" style="max-width: 60em; margin: 0 auto; font-size: 0.9em; line-height: 1.6; color: rgba(255,255,255,0.75);">
+          Support for the VENUS program is provided by NASA through a grant from the Space Telescope Science Institute,
+          which is operated by the Association of Universities for Research in Astronomy, Inc.,
+          under NASA contract NAS 5-26555, and by Canadian Space Agency (CSA) under the contract 25JWGO4A18.
+        </p>
+      </div>
+    </section>
+
+    <footer id="footer">
+      <ul class="copyright">
+        <li>&copy; JWST-VENUS <span class="since">since 2025</span></li>
+
+        <li style="display: block; font-size: 0.9em; opacity: 0.7; margin-top: 0.5em;">
+          Site Design: HTML5 UP | Seiji Fujimoto &amp; Hollis Akins
+        </li>
+
+        <li style="display: block; font-size: 0.8em; opacity: 0.7; margin-top: 0.5em;">
+          Logo design: <a href="http://nt-design.jp/" target="_blank" rel="noopener noreferrer">Takahisa Nakajima</a>
+        </li>
+      </ul>
+    </footer>
+
+  </div>
+
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/jquery.scrollex.min.js"></script>
+  <script src="assets/js/jquery.scrolly.min.js"></script>
+  <script src="assets/js/browser.min.js"></script>
+  <script src="assets/js/breakpoints.min.js"></script>
+  <script src="assets/js/util.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
