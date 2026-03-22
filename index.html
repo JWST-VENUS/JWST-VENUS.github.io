@@ -370,144 +370,146 @@
       flex-shrink: 0;
     }
 
-    /* =========================================================
-       Meet the Team slider
-       ========================================================= */
-    @media screen and (min-width: 981px) {
-      #two .spotlight .image {
-        width: 56% !important;
-      }
+/* =========================================================
+   Meet the Team slider (clean + mobile-safe)
+   ========================================================= */
+@media screen and (min-width: 981px) {
+  #two .spotlight .image {
+    width: 56% !important;
+  }
 
-      #two .spotlight .content {
-        width: 44% !important;
-      }
-    }
+  #two .spotlight .content {
+    width: 44% !important;
+  }
+}
 
-    .meet-slider {
-      position: relative;
-      width: 100%;
-      max-width: 100%;
-      overflow: visible;
-      padding: 0 56px;
-      box-sizing: border-box;
-    }
+.meet-slider {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  overflow: visible;
+  padding: 0 48px;
+  box-sizing: border-box;
+}
 
-    .meet-viewport {
-      overflow: hidden;
-      width: 100%;
-    }
+.meet-viewport {
+  overflow: hidden;
+  width: 100%;
+}
 
-    .meet-track {
-      white-space: nowrap;
-      transition: transform 0.35s ease;
-    }
+.meet-track {
+  white-space: nowrap;
+  transition: transform 0.35s ease;
+}
 
-    .meet-slide {
-      display: inline-block;
-      width: 100%;
-      vertical-align: top;
-    }
+.meet-slide {
+  display: inline-block;
+  width: 100%;
+  vertical-align: top;
+}
 
-    .meet-slide img {
-      display: block;
-      width: 100%;
-      height: auto;
-      object-fit: contain;
-      background: transparent;
-      border-radius: 0;
-    }
+.meet-slide img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  background: transparent;
+  border-radius: 0;
+}
 
-    .meet-arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 0;
-      height: 0;
-      border: none;
-      background: transparent;
-      cursor: pointer;
-      z-index: 3;
-      appearance: none;
-    }
+/* ---------- arrows (NEW clean style) ---------- */
+.meet-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(255,255,255,0.35);
+  border-radius: 999px;
+  background: rgba(0,0,0,0.28);
+  color: #fff;
+  cursor: pointer;
+  z-index: 3;
 
-    .meet-arrow.prev {
-      left: 10px;
-      border-top: 24px solid transparent;
-      border-bottom: 24px solid transparent;
-      border-right: 32px solid rgba(255,255,255,0.85);
-    }
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    .meet-arrow.next {
-      right: 10px;
-      border-top: 24px solid transparent;
-      border-bottom: 24px solid transparent;
-      border-left: 32px solid rgba(255,255,255,0.85);
-    }
+  font-size: 16px;
+  line-height: 1;
 
-    .meet-arrow.prev:hover {
-      border-right-color: #fff;
-    }
+  appearance: none;
+  -webkit-appearance: none;
 
-    .meet-arrow.next:hover {
-      border-left-color: #fff;
-    }
+  backdrop-filter: blur(2px);
+}
 
-    .meet-indicators {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 8px;
-      display: flex;
-      justify-content: center;
-      gap: 6px;
-      z-index: 2;
-      pointer-events: auto;
-      padding: 0 0.5rem;
-    }
+.meet-arrow.prev { left: 6px; }
+.meet-arrow.next { right: 6px; }
 
-    .meet-indicators button {
-      width: 26px;
-      height: 5px;
-      border: none;
-      border-radius: 3px;
-      background: rgba(255,255,255,0.35);
-      cursor: pointer;
-      appearance: none;
-    }
+.meet-arrow:hover {
+  background: rgba(0,0,0,0.42);
+  border-color: rgba(255,255,255,0.55);
+}
 
-    .meet-indicators button.active {
-      background: #fff;
-    }
+.meet-arrow:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.2);
+}
 
-    .spotlight .image img {
-      height: auto !important;
-    }
+/* ---------- indicators ---------- */
+.meet-indicators {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 8px;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  z-index: 2;
+  pointer-events: auto;
+  padding: 0 0.5rem;
+}
 
-    @media screen and (max-width: 736px) {
-      .meet-slider {
-        padding: 0 38px;
-      }
+.meet-indicators button {
+  width: 26px;
+  height: 5px;
+  border: none;
+  border-radius: 3px;
+  background: rgba(255,255,255,0.35);
+  cursor: pointer;
+  appearance: none;
+}
 
-      .meet-arrow.prev {
-        left: 4px;
-        border-top-width: 16px;
-        border-bottom-width: 16px;
-        border-right-width: 20px;
-      }
+.meet-indicators button.active {
+  background: #fff;
+}
 
-      .meet-arrow.next {
-        right: 4px;
-        border-top-width: 16px;
-        border-bottom-width: 16px;
-        border-left-width: 20px;
-      }
+.spotlight .image img {
+  height: auto !important;
+}
 
-      .meet-indicators button {
-        width: 20px;
-        height: 4px;
-      }
-    }
+/* ---------- mobile ---------- */
+@media screen and (max-width: 736px) {
 
+  .meet-slider {
+    padding: 0 34px;
+  }
+
+  .meet-arrow {
+    width: 26px;
+    height: 26px;
+    font-size: 13px;
+  }
+
+  .meet-arrow.prev { left: 2px; }
+  .meet-arrow.next { right: 2px; }
+
+  .meet-indicators button {
+    width: 20px;
+    height: 4px;
+  }
+}
     /* =========================================================
        Data Products fixed image box
        ========================================================= */
@@ -1062,8 +1064,8 @@
                 <div class="meet-slide"><img src="images/group3.png" alt="Team 3" /></div>
               </div>
             </div>
-            <button class="meet-arrow prev" aria-label="Previous slide"></button>
-            <button class="meet-arrow next" aria-label="Next slide"></button>
+            <button class="meet-arrow prev" aria-label="Previous slide">‹</button>
+            <button class="meet-arrow next" aria-label="Next slide">›</button>
             <div class="meet-indicators" role="tablist">
               <button type="button" aria-label="Go to slide 1" class="active"></button>
               <button type="button" aria-label="Go to slide 2"></button>
