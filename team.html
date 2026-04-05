@@ -755,7 +755,7 @@ html, body { font-family: 'Cinzel', serif; }
   <script src="assets/js/util.js"></script>
   <script src="assets/js/main.js"></script>
 
-<!-- Google Maps API 読み込み -->
+<!-- Google Maps -->
 <script>
 async function initCollabMap() {
   const mapElement = document.getElementById('collabMap');
@@ -765,13 +765,26 @@ async function initCollabMap() {
     return;
   }
 
+  const worldBounds = {
+    north: 85,
+    south: -85,
+    west: -179.9,
+    east: 179.9
+  };
+
   const map = new google.maps.Map(mapElement, {
     center: { lat: 20, lng: 0 },
     zoom: 2,
+    minZoom: 2,
+    maxZoom: 8,
     mapTypeId: 'roadmap',
     streetViewControl: false,
     mapTypeControl: false,
-    fullscreenControl: true
+    fullscreenControl: true,
+    restriction: {
+      latLngBounds: worldBounds,
+      strictBounds: false
+    }
   });
 
   const infoWindow = new google.maps.InfoWindow();
@@ -811,7 +824,9 @@ async function initCollabMap() {
       });
 
       marker.addListener('click', () => {
-        infoWindow.setContent(`<div style="font-family: serif; font-size: 14px;">${item.name}</div>`);
+        infoWindow.setContent(
+          `<div style="font-family: serif; font-size: 14px;">${item.name}</div>`
+        );
         infoWindow.open(map, marker);
       });
 
@@ -819,9 +834,12 @@ async function initCollabMap() {
     });
 
     if (!bounds.isEmpty()) {
-      map.fitBounds(bounds, 60);
+      map.fitBounds(bounds, 50);
 
-      google.maps.event.addListenerOnce(map, 'bounds_changed', () => {
+      google.maps.event.addListenerOnce(map, 'idle', () => {
+        if (map.getZoom() < 2) {
+          map.setZoom(2);
+        }
         if (map.getZoom() > 3) {
           map.setZoom(3);
         }
