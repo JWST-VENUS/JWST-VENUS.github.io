@@ -765,12 +765,6 @@ async function initCollabMap() {
     return;
   }
 
-  const worldBounds = {
-    north: 85,
-    south: -85,
-    west: -179.9,
-    east: 179.9
-  };
 
   const map = new google.maps.Map(mapElement, {
     center: { lat: 20, lng: 0 },
