@@ -765,20 +765,15 @@ async function initCollabMap() {
     return;
   }
 
-
   const map = new google.maps.Map(mapElement, {
     center: { lat: 20, lng: 0 },
-    zoom: 3,
-    minZoom: 3,
+    zoom: 2.5,
+    minZoom: 2.5,
     maxZoom: 8,
     mapTypeId: 'roadmap',
     streetViewControl: false,
     mapTypeControl: false,
-    fullscreenControl: true,
-    restriction: {
-      latLngBounds: worldBounds,
-      strictBounds: false
-    }
+    fullscreenControl: true
   });
 
   const infoWindow = new google.maps.InfoWindow();
@@ -828,13 +823,14 @@ async function initCollabMap() {
     });
 
     if (!bounds.isEmpty()) {
-      map.fitBounds(bounds, 50);
+      map.fitBounds(bounds, 40);
 
       google.maps.event.addListenerOnce(map, 'idle', () => {
-        if (map.getZoom() < 2) {
+        const z = map.getZoom();
+
+        if (z < 2) {
           map.setZoom(2);
-        }
-        if (map.getZoom() > 3) {
+        } else if (z > 3) {
           map.setZoom(3);
         }
       });
