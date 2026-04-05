@@ -756,101 +756,92 @@ html, body { font-family: 'Cinzel', serif; }
   <script src="assets/js/main.js"></script>
 
 <!-- Google Maps API 読み込み -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrPu_3XJ6nPeNcfznEGlFlDmmcMamQNmw"></script>
-<div id="collabMap" style="width:100%; height:600px; margin: 30px 0;"></div>
 <script>
-const collaboratorInstitutes = [
-  "The Johns Hopkins University",
-  "University of Toronto",
-  "Universidad de Cantabria",
-  "Stockholm University",
-  "University of Illinois Urbana - Champaign",
-  "University of Texas at Austin",
-  "Ben Gurion University",
-  "Universidad de La Serena",
-  "Institut d'Astrophysique de Paris",
-  "Pontificia Universidad Católica de Chile",
-  "University of Pittsburgh",
-  "European Space Astronomy Centre",
-  "University of Texas at Austin",
-  "University of Ljubljana",
-  "Space Telescope Science Institute",
-  "University of Copenhagen",
-  "University of Nova Gorica",
-  "University of Manchester",
-  "University of California - Berkeley",
-  "Canadian Institute for Theoretical Astrophysics",
-  "University of Arizona",
-  "Kapteyn Astronomical Institute",
-  "Instituto de Física de Cantabria",
-  "NOIRLab",
-  "University of Arizona",
-  "Harvard University",
-  "California Institute of Technology",
-  "Chiba University",
-  "Instituto de Astrofísica de Canarias",
-  "Shawnee State University",
-  "University of Tokyo",
-  "University of Tsukuba",
-  "National Astronomical Observatory of Japan",
-  "Pekin University",
-  "Instituto de Astrofísica de Andalucía",
-  "Institut d'Astrophysique de Paris",
-  "Rochester Institute of Technology",
-  "University of Washington",
-  "Chalmers University",
-  "Universidad de Chile",
-  "Swinburne University of Technology",
-  "Massachusetts Institute of Technology",
-  "Federal University of Rio de Janeiro",
-  "Technical University of Denmark",
-  "Tufts University",
-  "Institute of Science and Technology Austria",
-  "Saint Mary's University",
-  "INAF - Bologna",
-  "York University",
-  "Massachusetts Institute of Technology",
-  "Arizona State University",
-  "Texas A&M University",
-  "University of Pittsburgh",
-  "Centre de Recherche Astrophysique de Lyon",
-  "University of Maryland",
-  "NASA Goddard Space Flight Center",
-  "Tufts University",
-  "University of Geneva",
-  "Università di Roma La Sapienza",
-  "University of California – Los Angeles",
-  "Harvard University",
-  "INAF - Bologna",
-  "Massachusetts Institute of Technology",
-  "University of Massachusetts Amherst",
-  "NRC Herzberg Institute of Astrophysics",
-  "Uppsala Astronomical Observatory",
-  "INAF - Roma"
-];
+async function initCollabMap() {
+  const mapElement = document.getElementById('collabMap');
 
-const geocoder = new google.maps.Geocoder();
-const map = new google.maps.Map(document.getElementById('collabMap'), {
-  center: { lat: 23.0527, lng: -78.8784},  // Fayettevilleの緯度経度 
-  zoom: 2.5,
-  mapTypeId: 'roadmap',
-  streetViewControl: false,
-  mapTypeControl: false,
-});
+  if (!mapElement) {
+    console.error('collabMap element not found.');
+    return;
+  }
 
-collaboratorInstitutes.forEach((institute) => {
-  geocoder.geocode({ address: institute }, (results, status) => {
-    if (status === 'OK') {
-      new google.maps.Marker({
+  const map = new google.maps.Map(mapElement, {
+    center: { lat: 20, lng: 0 },
+    zoom: 2,
+    mapTypeId: 'roadmap',
+    streetViewControl: false,
+    mapTypeControl: false,
+    fullscreenControl: true
+  });
+
+  const infoWindow = new google.maps.InfoWindow();
+  const bounds = new google.maps.LatLngBounds();
+
+  try {
+    const response = await fetch('./collaborator_locations.json', {
+      cache: 'no-cache'
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to load collaborator_locations.json: ${response.status}`);
+    }
+
+    const locations = await response.json();
+
+    if (!Array.isArray(locations) || locations.length === 0) {
+      throw new Error('Location JSON is empty or invalid.');
+    }
+
+    locations.forEach((item) => {
+      if (
+        !item ||
+        typeof item.lat !== 'number' ||
+        typeof item.lng !== 'number' ||
+        typeof item.name !== 'string'
+      ) {
+        return;
+      }
+
+      const position = { lat: item.lat, lng: item.lng };
+
+      const marker = new google.maps.Marker({
         map: map,
-        position: results[0].geometry.location,
-        title: institute
+        position: position,
+        title: item.name
+      });
+
+      marker.addListener('click', () => {
+        infoWindow.setContent(`<div style="font-family: serif; font-size: 14px;">${item.name}</div>`);
+        infoWindow.open(map, marker);
+      });
+
+      bounds.extend(position);
+    });
+
+    if (!bounds.isEmpty()) {
+      map.fitBounds(bounds, 60);
+
+      google.maps.event.addListenerOnce(map, 'bounds_changed', () => {
+        if (map.getZoom() > 3) {
+          map.setZoom(3);
+        }
       });
     }
-  });
-});
+
+  } catch (error) {
+    console.error('Error while initializing collaboration map:', error);
+    mapElement.innerHTML = `
+      <div style="padding: 1.5em; text-align: center; font-size: 0.95em;">
+        Failed to load collaboration map data.
+      </div>
+    `;
+  }
+}
 </script>
 
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrPu_3XJ6nPeNcfznEGlFlDmmcMamQNmw&callback=initCollabMap">
+</script>
 
 </body>
 </html>
