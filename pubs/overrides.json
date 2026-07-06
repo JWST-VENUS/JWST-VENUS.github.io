@@ -1,0 +1,41 @@
+{
+  "_readme": [
+    "Optional manual overrides for the publications page, keyed by ADS bibcode.",
+    "Fields (all optional):",
+    "  blurb  : short 1-2 sentence description shown on the card (plain text).",
+    "           If absent, the beginning of the ADS abstract is shown instead.",
+    "  figure : path (relative to site root) to the key figure shown on the card.",
+    "           If absent, the auto-downloaded first figure from arXiv is used",
+    "           (pubs/figures/<arxiv_id>.jpg). To replace an auto figure, either",
+    "           point this field to another file or overwrite the jpg directly.",
+    "  hide   : true to hide the entry from the page.",
+    "pubs/pubs.json is regenerated automatically from the public ADS library by",
+    "scripts/update_pubs.py (GitHub Action: .github/workflows/update-publications.yml).",
+    "This file is never touched by the automation."
+  ],
+  "2026A&A...710A.226G": {
+    "blurb": "A doubly imaged little red dot at z ≈ 6 behind Abell 383, paired with a compact blue companion only ~380 pc away. The predicted time delay of ~5 years between the two images opens a rare window on LRD variability."
+  },
+  "2026arXiv260214074A": {
+    "blurb": "A new strong-lensing model of MACS J1931.8-2635, constrained by 19 multiple-image systems, predicting five images of the multiply imaged supernova SN Eos with relative time delays of up to ~54 years."
+  },
+  "2026arXiv260106015Y": {
+    "blurb": "Red Eyes: a pair of faint little red dots separated by only ~70 pc, hidden in a strongly lensed star-forming galaxy at z ~ 7. Without lensing, the system would appear as an ordinary galaxy with no LRD signature."
+  },
+  "2026arXiv260104156C": {
+    "blurb": "SN Eos, a strongly lensed, multiply imaged Type II supernova at z = 5.13: the farthest spectroscopically confirmed supernova to date, which exploded when the Universe was only about one billion years old."
+  },
+  "2025arXiv251205180Z": {
+    "blurb": "A quadruply imaged little red dot behind RXCJ2211-0350 with lensing time delays spanning ~130 years. Color and brightness differences among the images reveal slow pulsations of a vast stellar-like envelope, suggesting LRDs are a distinct class of AGN."
+  },
+  "2025arXiv251208054A": {
+    "blurb": "Spatially resolved stellar populations in the Cosmic Spear at z = 6.2, the brightest z > 6 galaxy known to date. Its lensed tail resolves into extremely compact (~5 pc), young, gravitationally bound star clusters."
+  },
+  "2025arXiv251114483N": {
+    "blurb": "Misty Moons: a strongly lensed sub-L* galaxy at z ~ 11-12 behind MACS J0257.1-2325, resolved into 10-70 pc stellar clumps that dominate its stellar mass budget, pointing to highly clustered star formation in the early Universe."
+  },
+  "2025jwst.prop.6882F": {
+    "blurb": "The VENUS survey design: uniform NIRCam 10-filter imaging of 60 massive lensing clusters in Cycle 4, followed by NIRSpec/MSA spectroscopy and multi-epoch NIRCam imaging in the 10 best-selected clusters in Cycle 5.",
+    "figure": "images/cover_key.png"
+  }
+}

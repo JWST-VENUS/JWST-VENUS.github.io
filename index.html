@@ -6,6 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
   <meta name="description" content="VENUS explores the earliest epoch of the universe using massive galaxy clusters as a magnifying glass." />
 
+  <link rel="icon" type="image/png" sizes="32x32" href="icon/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="64x64" href="icon/favicon-64.png" />
+  <link rel="apple-touch-icon" href="icon/apple-touch-icon.png" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="VENUS | JWST Treasury Survey" />
+  <meta property="og:description" content="VENUS explores the earliest epoch of the universe using massive galaxy clusters as a magnifying glass." />
+  <meta property="og:url" content="https://jwst-venus.github.io/" />
+  <meta property="og:image" content="https://jwst-venus.github.io/cover_image/venus/spt2325.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
   <link rel="stylesheet" href="assets/css/main.css" />
   <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 
@@ -893,9 +904,9 @@
                 <li><a href="news.html">News</a></li>
                 <li><a href="team.html">Meet the Team</a></li>
                 <li><a href="data.html">Data Products</a></li>
-                <li><a href="https://ui.adsabs.harvard.edu/public-libraries/81Jnu02bT_-A-8TngvUXPA">Publications</a></li>
+                <li><a href="pubs.html">Publications</a></li>
                 <li><a href="events.html">Events</a></li>
-                <li><a href="https://venus-internal.pages.dev/">Internal</a></li>
+                <li><a href="https://venushub.astro.utoronto.ca/login">Internal</a></li>
               </ul>
             </div>
           </li>
@@ -930,7 +941,7 @@
             Read more about VENUS <a href="about.html">here</a>.
           </p>
           <p>
-            For team members: Internal website <a href="https://venus-internal.pages.dev/">here</a>.
+            For team members: Internal website <a href="https://venushub.astro.utoronto.ca/login">here</a>.
           </p>
         </header>
       </div>
@@ -1055,7 +1066,8 @@
         <div class="content">
           <h2>Publications</h2>
           <p>
-            View the full list of VENUS publications on
+            Browse VENUS publications with key figures and summaries
+            <a href="pubs.html">here</a>, or view the full list on
             <a href="https://ui.adsabs.harvard.edu/public-libraries/81Jnu02bT_-A-8TngvUXPA">ADS</a>.
           </p>
         </div>
@@ -1167,13 +1179,16 @@
   </script>
 
   <script>
+    // VENUS NIRCam RGB images (2026 calendar project)
     const images = [
-      'cover_image/a2744.jpg',
-      'cover_image/plckg165.jpg',
-      'cover_image/smacs0723.png',
-      'cover_image/elgordo.png',
-      'cover_image/macs0416.jpg',
-      'cover_image/spt0615.jpg'
+      'cover_image/venus/spt2325.jpg',
+      'cover_image/venus/a383.jpg',
+      'cover_image/venus/macsj0308.jpg',
+      'cover_image/venus/rj2211.jpg',
+      'cover_image/venus/macsj0417.jpg',
+      'cover_image/venus/macsj1931.jpg',
+      'cover_image/venus/mj0257.jpg',
+      'cover_image/venus/pg004.jpg'
     ];
 
     const scenes = [
@@ -1182,7 +1197,9 @@
       { image: images[2], effect: 'effect-zoomRotate' },
       { image: images[3], effect: 'effect-splitY' },
       { image: images[4], effect: 'effect-circle' },
-      { image: images[5], effect: 'effect-slideX' }
+      { image: images[5], effect: 'effect-slideX' },
+      { image: images[6], effect: 'effect-fade' },
+      { image: images[7], effect: 'effect-splitY' }
     ];
 
     const slideshowContainer = document.getElementById('venus-slideshow');

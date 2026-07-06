@@ -1,215 +1,462 @@
 <!DOCTYPE HTML>
-<html>
+<!--
+  Spectral by HTML5 UP
+  html5up.net | @ajlkn
+  Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html lang="en">
 <head>
-    <title>Publications - VENUS Project</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-    <style>
-        /* 出版物リスト専用のスタイル */
-        .pub-year-section {
-            margin-bottom: 4em;
-        }
-        .pub-year-title {
-            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-            margin-bottom: 1.5em;
-            padding-bottom: 0.5em;
-            font-family: 'Cinzel', serif;
-            color: #fff;
-        }
-        .pub-item {
-            margin-bottom: 2em;
-            padding-left: 1em;
-            border-left: 3px solid #ed4933; /* アクセントカラー */
-            transition: 0.3s;
-        }
-        .pub-item:hover {
-            background: rgba(255, 255, 255, 0.05);
-            padding-left: 1.5em;
-        }
-        .pub-title {
-            font-weight: bold;
-            color: #fff;
-            display: block;
-            margin-bottom: 0.3em;
-            line-height: 1.4;
-        }
-        .pub-authors {
-            font-size: 0.9em;
-            opacity: 0.8;
-            margin-bottom: 0.3em;
-        }
-        .pub-meta {
-            font-size: 0.85em;
-            font-style: italic;
-            opacity: 0.6;
-        }
-        .ads-link {
-            display: inline-block;
-            margin-top: 0.5em;
-            font-size: 0.8em;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #ed4933 !important;
-            text-decoration: none;
-        }
-        .ads-link:hover {
-            text-decoration: underline;
-        }
-        #loading {
-            text-align: center;
-            padding: 3em;
-        }
-    </style>
+  <title>VENUS | Publications</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <meta name="description" content="Publications from the JWST VENUS Treasury survey. The list is generated automatically from the public ADS library." />
+    <link rel="icon" type="image/png" sizes="32x32" href="icon/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="64x64" href="icon/favicon-64.png" />
+  <link rel="apple-touch-icon" href="icon/apple-touch-icon.png" />
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+
+  <style>
+    /* Keep typography consistent with index/about */
+    html, body { font-family: 'Cinzel', serif; }
+
+    /* =========================================================
+       Header: logo / menu sizing (match index)
+       ========================================================= */
+    @media screen and (max-width: 736px){
+      #header h1 a{ font-size: 0.98em; }
+      #header nav a{ font-size: 0.63em; }
+    }
+    #header nav ul li.special a.menuToggle{
+      padding: 0.56em 1.68em 0.56em 1.40em !important;
+    }
+    #header nav ul li.special a.menuToggle span{
+      font-size: 1.4em !important;
+      letter-spacing: 0.175em !important;
+    }
+    #header nav ul li.special a.menuToggle:before,
+    #header nav ul li.special a.menuToggle:after{
+      top: 50% !important;
+      transform: translateY(-18%) scale(1.26) !important;
+      right: 0.77em !important;
+    }
+    #menu ul li a{
+      font-size: 0.91em !important;
+      letter-spacing: 0.042em !important;
+      line-height: 1.5 !important;
+    }
+    @media screen and (max-width: 736px){
+      #menu ul li a{ font-size: 0.875em !important; }
+    }
+    #header h1 a.header-logo{
+      border: 0 !important;
+      text-decoration: none !important;
+      margin-top: 0.42em;
+      display: inline-block;
+    }
+    #header h1 a.header-logo img{
+      display: block;
+      height: 1.75em;
+      width: auto;
+    }
+    @media screen and (max-width: 736px){
+      #header h1{ margin-top: 0.21em; }
+      #header h1 a.header-logo img{ height: 0.84em; }
+    }
+    #header{
+      height: 2.8em;
+      line-height: 1.6;
+    }
+
+    /* =========================================================
+       Publications page styling
+       ========================================================= */
+    .pubs-lead{
+      max-width: 72em;
+      margin: 0 auto 1.25em auto;
+      text-transform: none !important;
+      letter-spacing: normal;
+    }
+
+    .pubs-wrap{
+      max-width: 86em;
+      margin: 0 auto;
+    }
+
+    .pubs-toolbar{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1em;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 1.5em;
+    }
+
+    .pubs-count{
+      opacity: 0.75;
+      font-size: 0.95em;
+    }
+
+    .pub-year-title{
+      border-bottom: 2px solid rgba(0,0,0,0.12);
+      margin: 2em 0 1em 0;
+      padding-bottom: 0.35em;
+    }
+    .pub-year-section:first-of-type .pub-year-title{
+      margin-top: 0;
+    }
+
+    .pub-card{
+      display: flex;
+      gap: 1.5em;
+      align-items: stretch;
+      border: 1px solid rgba(0,0,0,0.12);
+      border-radius: 0.6em;
+      overflow: hidden;
+      margin-bottom: 1.5em;
+      background: #fff;
+      transition: box-shadow 0.25s, transform 0.25s;
+    }
+    .pub-card:hover{
+      box-shadow: 0 10px 28px rgba(0,0,0,0.14);
+      transform: translateY(-2px);
+    }
+
+    .pub-figure{
+      flex: 0 0 34%;
+      max-width: 34%;
+      background: #f4f4f4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      min-height: 14em;
+    }
+    .pub-figure a{
+      display: flex;
+      width: 100%;
+      height: 100%;
+      align-items: center;
+      justify-content: center;
+      border: 0;
+    }
+    .pub-figure img{
+      display: block;
+      width: 100%;
+      height: 100%;
+      max-height: 22em;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .pub-body{
+      flex: 1 1 auto;
+      padding: 1.4em 1.6em 1.3em 0.2em;
+      min-width: 0;
+    }
+    .pub-card.no-figure .pub-body{
+      padding-left: 1.6em;
+    }
+
+    .pub-title{
+      font-weight: bold;
+      font-size: 1.05em;
+      line-height: 1.45;
+      margin: 0 0 0.4em 0;
+      text-transform: none;
+      letter-spacing: normal;
+    }
+    .pub-title a{
+      border-bottom: 0;
+      text-decoration: none;
+      color: inherit;
+    }
+    .pub-title a:hover{
+      color: #b74e91;
+    }
+
+    .pub-authors{
+      font-size: 0.9em;
+      opacity: 0.85;
+      margin-bottom: 0.25em;
+      text-transform: none;
+      letter-spacing: normal;
+    }
+
+    .pub-venue{
+      font-size: 0.85em;
+      font-style: italic;
+      opacity: 0.65;
+      margin-bottom: 0.7em;
+    }
+
+    .pub-blurb{
+      font-size: 0.93em;
+      line-height: 1.65;
+      margin: 0 0 0.8em 0;
+      text-transform: none;
+      letter-spacing: normal;
+    }
+
+    .pub-badge{
+      display: inline-block;
+      padding: 0.14em 0.65em;
+      border-radius: 999px;
+      font-size: 0.72em;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border: 1px solid rgba(0,0,0,0.2);
+      opacity: 0.8;
+      margin-bottom: 0.6em;
+    }
+    .pub-badge.refereed{
+      border-color: rgba(183, 78, 145, 0.55);
+      color: #b74e91;
+    }
+
+    .pub-links{
+      font-size: 0.8em;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .pub-links a{
+      margin-right: 1.2em;
+      color: #b74e91 !important;
+      text-decoration: none;
+      border-bottom: 0;
+    }
+    .pub-links a:hover{
+      text-decoration: underline;
+    }
+
+    #pubs-loading{
+      text-align: center;
+      padding: 3em 1em;
+      opacity: 0.7;
+    }
+
+    @media screen and (max-width: 860px){
+      .pub-card{
+        flex-direction: column;
+        gap: 0;
+      }
+      .pub-figure{
+        flex: none;
+        max-width: 100%;
+        width: 100%;
+        min-height: 0;
+      }
+      .pub-figure img{
+        max-height: 16em;
+      }
+      .pub-body{
+        padding: 1.2em 1.2em 1.1em 1.2em;
+      }
+      .pub-card.no-figure .pub-body{
+        padding-left: 1.2em;
+      }
+    }
+  </style>
+
+  <!-- MathJax: paper titles/abstracts from ADS may contain TeX -->
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+      startup: { typeset: false }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 </head>
+
 <body class="is-preload">
+  <div id="page-wrapper">
 
-    <div id="page-wrapper">
+    <!-- Header (consistent with index) -->
+    <header id="header">
+      <h1>
+        <a href="index.html" class="header-logo" aria-label="VENUS Home">
+          <img src="icon/VENUS_logo_H2_W.png" alt="VENUS" />
+        </a>
+      </h1>
+      <nav id="nav">
+        <ul>
+          <li class="special">
+            <a href="#menu" class="menuToggle"><span>Menu</span></a>
+            <div id="menu">
+              <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="news.html">News</a></li>
+                <li><a href="team.html">Meet the Team</a></li>
+                <li><a href="data.html">Data Products</a></li>
+                <li><a href="pubs.html">Publications</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="https://venushub.astro.utoronto.ca/login">Internal</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </header>
 
-        <header id="header">
-            <h1><a href="index.html">VENUS</a></h1>
-            <nav id="nav">
-                <ul>
-                    <li class="special">
-                        <a href="#menu" class="menu-toggle"><span>Menu</span></a>
-                        <div id="menu">
-                            <ul>
-                                <li><a href="index.html">Home</a></li>
-                                <li><a href="news.html">News</a></li>
-                                <li><a href="pub.html">Publications</a></li>
-                                <li><a href="team.html">Team</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
-            </nav>
-        </header>
+    <!-- Main -->
+    <article id="main">
+      <header>
+        <h2>Publications</h2>
+        <p class="pubs-lead">
+          Scientific results from the VENUS survey. This list is generated automatically from the
+          <a href="https://ui.adsabs.harvard.edu/public-libraries/81Jnu02bT_-A-8TngvUXPA" target="_blank" rel="noopener">public ADS library</a>
+          maintained by the collaboration.
+        </p>
+      </header>
 
-        <article id="main">
-            <header>
-                <h2>Publications</h2>
-                <p>Scientific results from the VENUS survey and related studies.</p>
-            </header>
-            <section class="wrapper style5">
-                <div class="inner">
-                    
-                    <div id="loading">
-                        <div class="spinner">Loading publication list from ADS...</div>
-                    </div>
-                    
-                    <div id="pub-list-container">
-                        </div>
+      <section class="wrapper style5">
+        <div class="inner pubs-wrap">
 
-                </div>
-            </section>
-        </article>
+          <div class="pubs-toolbar">
+            <span class="pubs-count" id="pubs-count"></span>
+            <a class="button small" href="https://ui.adsabs.harvard.edu/public-libraries/81Jnu02bT_-A-8TngvUXPA" target="_blank" rel="noopener">View library on ADS</a>
+          </div>
 
-        <footer id="footer">
-            <ul class="icons">
-                <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-                <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-            </ul>
-            <ul class="copyright">
-                <li>&copy; VENUS Project</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-            </ul>
-        </footer>
+          <div id="pubs-loading">Loading publication list...</div>
+          <div id="pubs-container"></div>
 
-    </div>
+        </div>
+      </section>
+    </article>
 
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/jquery.scrollex.min.js"></script>
-    <script src="assets/js/jquery.scrolly.min.js"></script>
-    <script src="assets/js/browser.min.js"></script>
-    <script src="assets/js/breakpoints.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
+    <!-- Footer (consistent) -->
+    <footer id="footer">
+      <ul class="copyright">
+        <li>&copy; JWST-VENUS <span class="since">since 2025</span></li>
+        <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+        <li>Seiji Fujimoto &amp; Hollis Akins</li>
+      </ul>
+    </footer>
 
-    <script>
-        /**
-         * ADS Public Libraryからデータを取得して表示するスクリプト
-         */
-		async function fetchPublications() {
-		    // 公開ライブラリからデータを取得するための正しいエンドポイント
-		    // export?format=json というパラメータが必要です
-		    const libraryId = '81Jnu02bT_-A-8TngvUXPA'; 
-		    const url = `https://ui.adsabs.harvard.edu/v1/biblib/public/libraries/${libraryId}/export?format=json`;
-		    
-		    // ADS APIは通常Token（鍵）が必要ですが、パブリックライブラリの書き出し機能は
-		    // ブラウザから直接叩けない場合が多いです。
-		    // まずは以下の「プロキシ（経由地）」を使った方法を試してください。
-		    const proxyUrl = 'https://api.allorigins.win/get?url=' + encodeURIComponent(url);
-		    
-		    try {
-		        const response = await fetch(proxyUrl);
-		        const rawData = await response.json();
-		        // alloriginsは中身を文字列として返すのでJSONにパース
-		        const data = JSON.parse(rawData.contents);
-		        
-		        // ADSのJSON形式に合わせた処理
-		        // 書き出し形式によってデータ構造が変わるため、以下で調整します
-		        const docs = data.response.docs; 
-		        const grouped = {};
+  </div>
 
-		        docs.forEach(doc => {
-		            const year = doc.year;
-		            if (!grouped[year]) grouped[year] = [];
-		            grouped[year].push(doc);
-		        });
+  <!-- Scripts -->
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/jquery.scrollex.min.js"></script>
+  <script src="assets/js/jquery.scrolly.min.js"></script>
+  <script src="assets/js/browser.min.js"></script>
+  <script src="assets/js/breakpoints.min.js"></script>
+  <script src="assets/js/util.js"></script>
+  <script src="assets/js/main.js"></script>
 
-		        const years = Object.keys(grouped).sort((a, b) => b - a);
-		        renderPublications(years, grouped);
-		        document.getElementById('loading').style.display = 'none';
+  <script>
+    (function () {
+      const ADS_LIB_URL = 'https://ui.adsabs.harvard.edu/public-libraries/81Jnu02bT_-A-8TngvUXPA';
 
-		    } catch (error) {
-		        console.error('Error:', error);
-		        document.getElementById('loading').innerHTML = 
-		            '<p>Unable to load the list. Please view the <a href="https://ui.adsabs.harvard.edu/public-libraries/' + libraryId + '" target="_blank">ADS Library directly</a>.</p>';
-		    }
-		}
+      function esc(s) {
+        return String(s == null ? '' : s)
+          .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;');
+      }
 
-        function renderPublications(years, grouped) {
-            const container = document.getElementById('pub-list-container');
-            let html = '';
+      // ADS fields use <SUB>/<SUP> markup; restore them after escaping.
+      function adsText(s) {
+        return esc(s)
+          .replace(/&lt;(\/?)SUB&gt;/gi, '<$1sub>')
+          .replace(/&lt;(\/?)SUP&gt;/gi, '<$1sup>');
+      }
 
-            years.forEach(year => {
-                html += `<div class="pub-year-section">
-                            <h3 class="pub-year-title">${year}</h3>`;
-                
-                grouped[year].forEach(doc => {
-                    const bibcode = doc.bibcode;
-                    const title = doc.title[0];
-                    const authors = formatAuthors(doc.author);
-                    const journal = doc.pub || "arXiv";
-                    
-                    html += `
-                        <div class="pub-item">
-                            <span class="pub-title">${title}</span>
-                            <div class="pub-authors">${authors}</div>
-                            <div class="pub-meta">${journal} (${year})</div>
-                            <a href="https://ui.adsabs.harvard.edu/abs/${bibcode}/abstract" class="ads-link" target="_blank">ADS Abstract &raquo;</a>
-                        </div>
-                    `;
-                });
+      function formatAuthors(authors) {
+        if (!authors || !authors.length) return '';
+        const shown = authors.slice(0, 4).join('; ');
+        const extra = authors.length > 4 ? ' et al. (' + authors.length + ' authors)' : '';
+        return shown + extra;
+      }
 
-                html += `</div>`;
-            });
+      function badgeFor(pub) {
+        if (pub.doctype === 'proposal') return '<span class="pub-badge">JWST Proposal</span>';
+        if (pub.doctype === 'eprint') return '<span class="pub-badge">arXiv preprint</span>';
+        return '<span class="pub-badge refereed">Peer-reviewed</span>';
+      }
 
-            container.innerHTML = html;
+      function truncate(text, n) {
+        if (!text) return '';
+        if (text.length <= n) return text;
+        const cut = text.slice(0, n);
+        return cut.slice(0, cut.lastIndexOf(' ')) + ' ...';
+      }
+
+      function cardHTML(pub, ov) {
+        const adsUrl = 'https://ui.adsabs.harvard.edu/abs/' + encodeURIComponent(pub.bibcode) + '/abstract';
+        const figure = (ov && ov.figure) || pub.figure;
+        const blurb = (ov && ov.blurb) || truncate(pub.abstract, 340);
+        const venueParts = [pub.pub, pub.year].filter(Boolean).join(' &middot; ');
+
+        let links = '<a href="' + adsUrl + '" target="_blank" rel="noopener">ADS</a>';
+        if (pub.arxiv) links += '<a href="https://arxiv.org/abs/' + pub.arxiv + '" target="_blank" rel="noopener">arXiv</a>';
+        if (pub.doi) links += '<a href="https://doi.org/' + encodeURIComponent(pub.doi) + '" target="_blank" rel="noopener">DOI</a>';
+
+        const figHTML = figure
+          ? '<div class="pub-figure"><a href="' + adsUrl + '" target="_blank" rel="noopener" aria-label="Open on ADS">' +
+            '<img src="' + esc(figure) + '" alt="Key figure of the paper" loading="lazy" /></a></div>'
+          : '';
+
+        return '<div class="pub-card' + (figure ? '' : ' no-figure') + '">' + figHTML +
+          '<div class="pub-body">' +
+            badgeFor(pub) +
+            '<h4 class="pub-title"><a href="' + adsUrl + '" target="_blank" rel="noopener">' + adsText(pub.title) + '</a></h4>' +
+            '<div class="pub-authors">' + esc(formatAuthors(pub.authors)) + '</div>' +
+            '<div class="pub-venue">' + venueParts + '</div>' +
+            '<p class="pub-blurb">' + adsText(blurb) + '</p>' +
+            '<div class="pub-links">' + links + '</div>' +
+          '</div></div>';
+      }
+
+      async function load() {
+        const container = document.getElementById('pubs-container');
+        const loading = document.getElementById('pubs-loading');
+        try {
+          const [pubsResp, ovResp] = await Promise.all([
+            fetch('pubs/pubs.json', { cache: 'no-store' }),
+            fetch('pubs/overrides.json', { cache: 'no-store' }).catch(() => null)
+          ]);
+          const data = await pubsResp.json();
+          let overrides = {};
+          if (ovResp && ovResp.ok) {
+            try { overrides = await ovResp.json(); } catch (e) { /* optional */ }
+          }
+
+          const pubs = (data.publications || []).filter(p => !(overrides[p.bibcode] || {}).hide);
+
+          // group by year, newest first (input already sorted by date desc)
+          const years = [];
+          const byYear = {};
+          pubs.forEach(p => {
+            const y = p.year || 'Other';
+            if (!byYear[y]) { byYear[y] = []; years.push(y); }
+            byYear[y].push(p);
+          });
+
+          let html = '';
+          years.forEach(y => {
+            html += '<div class="pub-year-section"><h3 class="pub-year-title">' + esc(y) + '</h3>';
+            byYear[y].forEach(p => { html += cardHTML(p, overrides[p.bibcode]); });
+            html += '</div>';
+          });
+
+          container.innerHTML = html;
+          document.getElementById('pubs-count').textContent = pubs.length + ' entries';
+          loading.style.display = 'none';
+
+          if (window.MathJax && MathJax.typesetPromise) {
+            MathJax.typesetPromise([container]).catch(() => {});
+          }
+        } catch (err) {
+          console.error(err);
+          loading.innerHTML = 'Unable to load the list here. Please view the ' +
+            '<a href="' + ADS_LIB_URL + '" target="_blank" rel="noopener">ADS library directly</a>.';
         }
+      }
 
-        function formatAuthors(authorArray) {
-            if (!authorArray) return "";
-            if (authorArray.length <= 5) {
-                return authorArray.join('; ');
-            } else {
-                return authorArray.slice(0, 5).join('; ') + " et al.";
-            }
-        }
-
-        // 実行
-        window.onload = fetchPublications;
-    </script>
+      document.addEventListener('DOMContentLoaded', load);
+    })();
+  </script>
 
 </body>
 </html>
