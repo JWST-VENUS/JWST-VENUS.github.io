@@ -1203,55 +1203,86 @@
     ];
 
     const slideshowContainer = document.getElementById('venus-slideshow');
+    const SLIDE_INTERVAL = 6000;
+    const SLIDE_FADE_MS = 2500; // keep in sync with the .slide opacity transition
     let current = 0;
+    let currentSlide = null;
 
     function createSlide(scene) {
       const slide = document.createElement('div');
-      slide.classList.add('slide', scene.effect);
+      slide.className = 'slide ' + scene.effect;
 
       const imgLayer = document.createElement('div');
       imgLayer.className = 'img-layer';
-      imgLayer.style.backgroundImage = `url(${scene.image})`;
+      imgLayer.style.backgroundImage = 'url("' + scene.image + '")';
 
       slide.appendChild(imgLayer);
       return slide;
     }
 
+    // Fade out and remove a slide, deterministically.
+    function retireSlide(slide) {
+      if (!slide) return;
+      slide.classList.remove('show');
+      slide.classList.add('fade-out');
+
+      let removed = false;
+      const remove = function () {
+        if (removed) return;
+        removed = true;
+        if (slide.parentNode) slide.parentNode.removeChild(slide);
+      };
+      slide.addEventListener('transitionend', function (e) {
+        if (e.propertyName === 'opacity') remove();
+      });
+      // Fallback: transitionend can be missed (e.g. the tab was hidden mid-fade),
+      // so guarantee removal and avoid slides piling up.
+      setTimeout(remove, SLIDE_FADE_MS + 400);
+    }
+
     function showScene(index) {
       if (!slideshowContainer) return;
 
-      const scene = scenes[index];
-      const slide = createSlide(scene);
+      const slide = createSlide(scenes[index]);
       slideshowContainer.appendChild(slide);
 
-      void slide.offsetWidth;
-      requestAnimationFrame(() => {
-        slide.classList.add('show');
-      });
+      void slide.offsetWidth; // force reflow so the entrance transition runs
+      requestAnimationFrame(function () { slide.classList.add('show'); });
 
-      const activeSlides = slideshowContainer.querySelectorAll('.slide.show');
-      if (activeSlides.length > 1) {
-        const fadeSlide = activeSlides[0];
-        fadeSlide.classList.remove('show');
-        fadeSlide.classList.add('fade-out');
+      retireSlide(currentSlide);
+      currentSlide = slide;
 
-        fadeSlide.addEventListener('transitionend', function onFade(e) {
-          if (e.propertyName === 'opacity') {
-            fadeSlide.removeEventListener('transitionend', onFade);
-            if (fadeSlide.parentNode) fadeSlide.parentNode.removeChild(fadeSlide);
-          }
-        });
+      // Safety net: never let more than the two crossfading slides survive.
+      while (slideshowContainer.children.length > 2) {
+        slideshowContainer.removeChild(slideshowContainer.firstChild);
       }
     }
 
-    function loopScenes() {
+    function advanceScene() {
       showScene(current);
       current = (current + 1) % scenes.length;
     }
 
     if (slideshowContainer) {
-      loopScenes();
-      setInterval(loopScenes, 6000);
+      advanceScene();
+      setInterval(function () {
+        // requestAnimationFrame is paused while the tab is hidden, so advancing
+        // then would append slides that never fade out and jitter on return.
+        // Only advance while the page is actually visible.
+        if (!document.hidden) advanceScene();
+      }, SLIDE_INTERVAL);
+
+      // On returning to the tab, drop any straggler so playback stays smooth.
+      document.addEventListener('visibilitychange', function () {
+        if (document.hidden || !slideshowContainer) return;
+        while (slideshowContainer.children.length > 1) {
+          slideshowContainer.removeChild(slideshowContainer.firstChild);
+        }
+        if (slideshowContainer.lastElementChild) {
+          currentSlide = slideshowContainer.lastElementChild;
+          currentSlide.classList.add('show');
+        }
+      });
     }
 
     window.addEventListener('load', function () {
