@@ -533,7 +533,7 @@
       "doctype": "eprint",
       "doi": "10.48550/arXiv.2512.05180",
       "arxiv": "2512.05180",
-      "citations": 27,
+      "citations": 28,
       "abstract": "\"Little red dots\" (LRDs) represent a new population of astronomical objects uncovered by JWST whose nature remains debated. Although many LRDs are suspected as active galactic nuclei (AGN), they show little variability on days-years timescales. We report the discovery of two gravitationally lensed LRDs at redshift $\\sim$4.3 behind the cluster RXCJ2211-0350, one of which (RX1) is quadruply imaged with time delays spanning $\\sim$130 years. RX1 exhibits intrinsic color and brightness variations of up to 0.7 magnitude among its images. These changes are consistent with blackbody-temperature variations of a photosphere, indicating long-term variability analogous to Cepheid-like pulsations but in a far more extended ($R \\sim 2000$ AU) and massive ($M \\gtrsim 10^6 \\, M_{\\odot}$) systems. These results suggest LRDs as a distinct class of AGN with stellar-like envelopes.",
       "figure": "pubs/figures/2512.05180.jpg"
     },
