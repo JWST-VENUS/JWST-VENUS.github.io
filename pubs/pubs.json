@@ -516,7 +516,7 @@
       "doctype": "eprint",
       "doi": "10.48550/arXiv.2601.04156",
       "arxiv": "2601.04156",
-      "citations": 27,
+      "citations": 28,
       "abstract": "Observing supernovae (SNe) in the early Universe (z &gt; 3) provides a window into how both galaxies and individual stars have evolved over cosmic time, yet a detailed study of high-redshift stars and SNe has remained difficult due to their extreme distances and cosmological redshifting. To overcome the former, searches for gravitationally lensed sources allow for the discovery of magnified SNe that appear as multiple images - further providing the opportunity for efficient follow-up. Here we present the discovery of \"SN Eos\": a strongly lensed, multiply-imaged, SN II at a spectroscopic redshift of z = 5.133 +/- 0.001. SN Eos exploded in a Lyman-α emitting galaxy when the Universe was only ~1 billion years old, shortly after it reionized and became transparent to ultraviolet radiation. A year prior to our discovery in JWST data, archival HST imaging of SN Eos reveals rest-frame far ultraviolet (~1,300Å) emission, indicative of shock breakout or interaction with circumstellar material in the first few (rest-frame) days after explosion. The JWST spectroscopy of SN Eos, now the farthest spectroscopically confirmed SN ever discovered, shows that SN Eos's progenitor star likely formed in a metal-poor environment (&lt;= 0.1 Z_{\\odot}), providing the first direct evidence of massive star formation in the metal-poor, early Universe. SN Eos would not have been detectable without the extreme lensing magnification of the system, highlighting the potential of such discoveries to eventually place constraints on the faint end of the cosmic star-formation rate density in the very early Universe.",
       "figure": "pubs/figures/2601.04156.jpg"
     },
@@ -678,7 +678,7 @@
       "doctype": "eprint",
       "doi": "10.48550/arXiv.2512.05180",
       "arxiv": "2512.05180",
-      "citations": 46,
+      "citations": 47,
       "abstract": "\"Little red dots\" (LRDs) represent a new population of astronomical objects uncovered by JWST whose nature remains debated. Although many LRDs are suspected as active galactic nuclei (AGN), they show little variability on days-years timescales. We report the discovery of two gravitationally lensed LRDs at redshift $\\sim$4.3 behind the cluster RXCJ2211-0350, one of which (RX1) is quadruply imaged with time delays spanning $\\sim$130 years. RX1 exhibits intrinsic color and brightness variations of up to 0.7 magnitude among its images. These changes are consistent with blackbody-temperature variations of a photosphere, indicating long-term variability analogous to Cepheid-like pulsations but in a far more extended ($R \\sim 2000$ AU) and massive ($M \\gtrsim 10^6 \\, M_{\\odot}$) systems. These results suggest LRDs as a distinct class of AGN with stellar-like envelopes.",
       "figure": "pubs/figures/2512.05180.jpg"
     },
