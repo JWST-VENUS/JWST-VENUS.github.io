@@ -416,7 +416,7 @@
     },
     {
       "bibcode": "2026arXiv260106015Y",
-      "title": "VENUS: Two Faint Little Red Dots Separated by $\\sim70\\,\\mathrm{pc}$ Hidden in a Single Lensed Galaxy at $z\\sim7$",
+      "title": "VENUS: Two Faint Little Red Dots Separated by $\\sim150\\,\\mathrm{pc}$ Hidden in a Single Lensed Galaxy at $z\\sim7$",
       "authors": [
         "Yanagisawa, Hiroto",
         "Ouchi, Masami",
@@ -440,7 +440,6 @@
         "Finkelstein, Steven L.",
         "Furtak, Lukas J.",
         "Inayoshi, Kohei",
-        "Koekemoer, Anton M.",
         "Matthee, Jorryt",
         "Naidu, Rohan P.",
         "Ono, Yoshiaki",
@@ -454,7 +453,8 @@
         "Bromm, Volker",
         "Conselice, Christopher J.",
         "Dayal, Pratika",
-        "Kartaltepe, Jeyhan S.",
+        "Fei, Qinyue",
+        "Kartaltepe, Andreas L. Faisst Jeyhan S.",
         "Lopes, Paulo A. A.",
         "Lucas, Ray A.",
         "Magdis, Georgios E.",
@@ -476,7 +476,7 @@
       "doi": "10.48550/arXiv.2601.06015",
       "arxiv": "2601.06015",
       "citations": 37,
-      "abstract": "We report the identification of a pair of faint little red dots (LRDs), dubbed Red Eyes, in a strongly-lensed galaxy at $z\\sim7$ behind the PLCKG004.5-10.5 cluster, identified from the JWST Treasury program VENUS. Red Eyes are spatially resolved on the image plane with distinct colors, while the critical curve lies far north of Red Eyes, clearly requiring two different LRDs rather than a single LRD. Red Eyes is an extremely close pair of LRDs separated by $\\sim70\\,\\mathrm{pc}$ in the source plane with a magnification of $μ\\sim20$, which consistently explains another counter-image detected to the north-west. Red Eyes is hosted in a typical star-forming galaxy with $M_{\\mathrm{UV,int}}\\sim -19$, but its own UV emission is very faint ($M_{\\mathrm{UV,int}} \\gtrsim -16$). Moreover, Red Eyes does not reside at the galaxy center but lies at an offset position of approximately one effective radius $R_{\\mathrm{e}}$ away from the galaxy center. If observed without lensing, Red Eyes would appear as a typical star-forming galaxy at $z\\sim 7$ with $M_{\\mathrm{UV}}\\sim -19$, showing no apparent LRD signatures in either morphology or SED. These results suggest that multiple off-center LRDs, similar to Red Eyes, may be commonly hidden in a typical high-$z$ star-forming galaxy. In this case, various plausible scenarios may emerge, one of which is that intermediate-mass black holes (IMBHs) with $M_\\mathrm{BH}\\sim10^{4\\text{--}6}\\,M_\\odot$ may form in star clusters on a stellar disk and contribute to the growth of the central supermassive black hole via mergers, with some IMBHs detectable as luminous LRDs in a sufficiently active and massive phase.",
+      "abstract": "We report the identification of a pair of faint little red dots (LRDs), dubbed Red Eyes, in a strongly lensed galaxy at $z\\sim7$ behind the PLCK G004.5-19.5 cluster, identified from the JWST Treasury program VENUS. Red Eyes are spatially resolved on the image plane with distinct colors, while the critical curve lies far north of Red Eyes, clearly requiring two different LRDs rather than a single LRD. Red Eyes is an extremely close pair of LRDs separated by $\\sim 150\\,\\mathrm{pc}$ in the source plane with a magnification of $μ\\sim11$, which consistently explains another counter-image detected to the north-west. Red Eyes is hosted in a typical star-forming galaxy with $M_{\\mathrm{UV,int}}\\sim -19$, but its own UV emission is very faint ($M_{\\mathrm{UV,int}} \\gtrsim -17$). Moreover, Red Eyes lies at an offset position from the galaxy component. If observed without lensing, Red Eyes would appear as a typical star-forming galaxy at $z\\sim 7$ with $M_{\\mathrm{UV}}\\sim -19$, without unambiguous LRD signatures in either morphology or SED. These results suggest that multiple off-center LRDs, similar to Red Eyes, may be commonly hidden in a typical high-$z$ star-forming galaxy. In this case, various plausible scenarios may emerge, one of which is that intermediate-mass black holes (IMBHs) with $M_\\mathrm{BH}\\sim10^{4\\text{--}6}\\,M_\\odot$ may form in star clusters on a stellar disk and contribute to the growth of the central supermassive black hole via mergers, with some IMBHs detectable as luminous LRDs in a sufficiently active and massive phase.",
       "figure": "pubs/figures/2601.06015.jpg"
     },
     {
